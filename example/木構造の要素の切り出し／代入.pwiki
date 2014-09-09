@@ -1,0 +1,51 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*要素の切り出し
+ /* root.item#0 の切り出し */
+ var path = "root.item#0";
+ var cloned_ptree = ptree.clone(path);
+ if (new_ptree === null) {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.clone メソッド~
+--シグネチャ:~
+---PTree.clone(path_exists)~
+--パスの指す要素を切り出し、新しいインスタンスを生成して返す。~
+--パスの指す要素が存在しなかった場合、null を返す。~
+
+
+
+*要素の代入
+ /* root.item#+ へ代入 */
+ var path = "root.item#+";
+ bool succeeded = ptree.assign(path, other_ptree)
+ if (!succeeded) {
+     Debug.message("不正なパス文字列、または不正なオブジェクトです。");
+ }
+
+-PTree.assign メソッド~
+--シグネチャ:~
+---PTree.assign(path_insertable, obj)~
+--パスの指す要素へ、他のインスタンスを代入する。~
+--成功した場合は true、失敗した場合は false を返す。~
+

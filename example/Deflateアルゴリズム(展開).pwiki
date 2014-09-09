@@ -1,0 +1,197 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_compression.dll（または ktl_compression-d.dll）~
+
+-スクリプト~
+--[[ktl/Compression.tjs]]~
+
+-クラス~
+--Inflate クラス~
+
+
+
+*データ展開
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Compression.tjs");
+ 
+ /* Inflate のインスタンス作成 */
+ var inf = new Inflate();
+ 
+ /* CRC 計算オプションを真に設定 */
+ inf.calculateCRC = true;
+ 
+ /* 展開処理開始 */
+ inf.setup();
+ 
+ /* ファイル内容の処理 */
+ inf.processStorage(System.exePath + "compressed.bin");
+ 
+ /* 展開処理完了 */
+ inf.finish();
+ 
+ /* 情報の取得 */
+ Debug.message("展開後のサイズ = " + inf.size);
+ Debug.message("CRC = " + inf.CRC);
+ 
+ /* 展開データを取り出し */
+ var decompressed = inf.asString();
+ 
+ /* 展開データをファイルに保存 */
+ inf.saveStorage(System.exePath + "decompressed.bin");
+
+-Inflate クラス~
+--Deflateアルゴリズムによって圧縮されたデータを展開するクラス。~
+
+-Inflate.reset メソッド~
+--シグネチャ:~
+---Inflate.reset()~
+--展開処理設定およびバッファをリセットする。~
+
+-Inflate.setup メソッド~
+--シグネチャ:~
+---Inflate.setup()~
+--この呼び出し以前に設定された展開処理設定をもとに、展開処理をセットアップする。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Inflate.finish メソッド~
+--シグネチャ:~
+---Inflate.finish()~
+--展開処理を完了する。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Inflate.processByte メソッド~
+--シグネチャ:~
+---Inflate.processByte(byte)~
+--計算に1byte値を追加。~
+
+-Inflate.processStorage メソッド~
+--シグネチャ:~
+---Inflate.processStorage(storage)~
+---Inflate.processStorage(storage, spos)~
+---Inflate.processStorage(storage, spos, ssize)~
+--計算にストレージの内容を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Inflate.processOctet メソッド~
+--シグネチャ:~
+---Inflate.processOctet(octet)~
+---Inflate.processOctet(octet, spos)~
+---Inflate.processOctet(octet, spos, ssize)~
+--計算にオクテット列を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Inflate.CRC プロパティ~
+--オリジナルデータ（展開前）の CRC 値を符号無し整数として返す。~
+
+-Inflate.originalSize プロパティ~
+--オリジナルデータ（展開前）のサイズ返す。~
+
+-Inflate.size プロパティ~
+--展開データを格納したバッファサイズを返す。~
+--展開処理が完了していない場合、0 を返す。~
+
+-Inflate.asOctet メソッド~
+--シグネチャ:~
+---Inflate.asOctet()~
+---Inflate.asOctet(pos)~
+---Inflate.asOctet(pos, size)~
+--展開データをオクテット列として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ返す。~
+--展開処理が完了していない場合、void を返す。~
+
+-Inflate.asString メソッド~
+--シグネチャ:~
+---Inflate.asString()~
+---Inflate.asString(pos)~
+---Inflate.asString(pos, size)~
+--展開データを文字列（UTF-16LE）として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--展開処理が完了していない場合、void を返す。~
+
+-Inflate.asNarrowString メソッド~
+--シグネチャ:~
+---Inflate.asNarrowString()~
+---Inflate.asNarrowString(pos)~
+---Inflate.asNarrowString(pos, size)~
+--展開データを文字列（Shift_JIS）として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--展開処理が完了していない場合、void を返す。~
+
+-Inflate.saveStorage メソッド~
+--シグネチャ:~
+---Inflate.saveStorage(storage)~
+---Inflate.saveStorage(storage, pos)~
+---Inflate.saveStorage(storage, pos, size)~
+--展開データをローカルストレージへ保存する。~
+--第１引数には保存するストレージのパスを渡す。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ保存する。~
+--実際に保存されたバイト数を返す。~
+--展開処理が完了していない、または保存に失敗した場合、負値が返される。~
+
+-Inflate.level プロパティ~
+--圧縮レベルを表すフラグを設定／取得する。~
+
+-Inflate.method プロパティ~
+--圧縮メソッドを表すフラグを設定／取得する。~
+
+-Inflate.windowBits プロパティ~
+--履歴バッファの大きさを設定／取得する。~
+--8～15。~
+
+-Inflate.memLevel プロパティ~
+--圧縮処理の内部状態を保持するためのメモリの大きさを設定／取得する。~
+--1～9。~
+
+-Inflate.strategy プロパティ~
+--圧縮ストラテジーを表すフラグを設定／取得する。~
+
+-Inflate.noHeader プロパティ~
+--パラメータを記録するためのヘッダを出力するか設定／取得する。~
+--ヘッダを圧縮データに含まない場合、データ展開時に明示的にパラメータを設定する必要がある。~
+
+-Inflate.calculateCRC プロパティ~
+--処理されたデータから CRC チェックサムを計算するか設定／取得する。~
+
+-Inflate.clfNoCompression プロパティ~
+--圧縮レベルオプション。~
+--無圧縮。
+
+-Inflate.clfBestSpeed プロパティ~
+--圧縮レベルオプション。~
+--速度優先。
+
+-Inflate.clfBestCompression プロパティ~
+--圧縮レベルオプション。~
+--圧縮率優先。
+
+-Inflate.clfDefaultCompression プロパティ~
+--圧縮レベルオプション。~
+--デフォルト設定。
+
+-Inflate.cmfDeflated プロパティ~
+--圧縮レベルオプション。~
+--現在これのみ。
+
+-Inflate.csfDefaultStrategy プロパティ~
+--圧縮ストラテジーオプション。~
+--デフォルト設定。
+
+-Inflate.csfFiltered プロパティ~
+--圧縮ストラテジーオプション。~
+--小さい値がある程度ランダムに分布しているデータに最適。
+
+-Inflate.csfHuffmanOnly プロパティ~
+--圧縮ストラテジーオプション。~
+--ハフマン符号化のみ。
+

@@ -1,0 +1,113 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Socket クラス>ktl/Network.tjs#Socket]]~
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+
+
+
+*ソケット作成
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* Socket のインスタンス作成 */
+ var sock = new Socket();
+
+
+
+*名前解決
+ /* ホスト名="xxx.xx" サービス名="http" */
+ if (!sock.resolve("xxx.xx", "http")) {
+     Debug.message("名前解決に失敗しました。");
+ }
+
+-[[Socket.resolve メソッド>ktl/Network.tjs#Socket-resolve]]~
+ 名前解決（IP アドレスを求める）を実行する。
+
+-[[Socket.asyncResolve メソッド>ktl/Network.tjs#Socket-asyncResolve]]~
+ 名前解決（IP アドレスを求める）を実行する。非同期処理。
+
+-[[Socket.resolvingFinished プロパティ>ktl/Network.tjs#Socket-resolvingFinished]]~
+ 名前解決の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+-[[Socket.resolvingSucceeded プロパティ>ktl/Network.tjs#Socket-resolvingSucceeded]]~
+ 名前解決の処理が成功したならば true、でなければ false を返す。 (getter)
+
+
+
+*接続
+ /* （名前解決によって割り出された）アドレスへ接続 */
+ if (!sock.connect()) {
+     Debug.message("接続に失敗しました。");
+ }
+
+-[[Socket.connect メソッド>ktl/Network.tjs#Socket-connect]]~
+ アドレスへ接続を実行する。
+
+-[[Socket.connectSSL メソッド>ktl/Network.tjs#Socket-connectSSL]]~
+ アドレスへSSL接続を実行する。
+
+-[[Socket.asyncConnect メソッド>ktl/Network.tjs#Socket-asyncConnect]]~
+ アドレスへ接続を実行する。非同期処理。
+
+-[[Socket.asyncConnectSSL メソッド>ktl/Network.tjs#Socket-asyncConnectSSL]]~
+ アドレスへSSL接続を実行する。非同期処理。
+
+-[[Socket.connectingFinished プロパティ>ktl/Network.tjs#Socket-connectingFinished]]~
+ 接続の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+-[[Socket.resolvingFinished プロパティ>ktl/Network.tjs#Socket-resolvingFinished]]~
+ 接続の処理が成功したならば true、でなければ false を返す。 (getter)
+
+
+
+*通信の確認
+ /* 通信が確立されているか */
+ if (sock.isOpen) {
+     Debug.message("通信が確立されています。");
+     /* SSL通信であるか */
+     if (sock.isSSL) {
+         Debug.message("SSL通信です。");
+     }
+ } else {
+     Debug.message("通信が確立されていません。");
+ }
+
+-[[Socket.isOpen プロパティ>ktl/Network.tjs#Socket-isOpen]]~
+ ソケットが開かれていれば true、でなければ false を返す。 (getter)
+
+-[[Socket.isSSL プロパティ>ktl/Network.tjs#Socket-isSSL]]~
+ SSL通信であれば true、でなければ false を返す。 (getter)
+
+
+
+*ハンドシェイク
+ /* （SSL通信の場合）ハンドシェイクを行う */
+ if (sock.isSSL && !sock.handshake()) {
+     Debug.message("ハンドシェイクに失敗しました。");
+ }
+
+-[[Socket.handshake メソッド>ktl/Network.tjs#Socket-handshake]]~
+ ハンドシェイクを実行する。
+
+-[[Socket.asyncHandshake メソッド>ktl/Network.tjs#Socket-asyncHandshake]]~
+ ハンドシェイクを実行する。非同期処理。
+
+-[[Socket.handshakingFinished プロパティ>ktl/Network.tjs#Socket-handshakingFinished]]~
+ ハンドシェイクの処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+-[[Socket.handshakingSucceeded プロパティ>ktl/Network.tjs#Socket-handshakingSucceeded]]~
+ ハンドシェイクの処理が成功したならば true、でなければ false を返す。 (getter)
+

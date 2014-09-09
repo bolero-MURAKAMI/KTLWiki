@@ -1,0 +1,125 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Socket クラス>ktl/Network.tjs#Socket]]~
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+
+
+
+*リクエスト送信
+ /* GETリクエストを送信用バッファに追加 */
+ sock.pushLine("GET / HTTP/1.0");
+ sock.pushLine("Host: www.boost.org");
+ sock.pushLine("Accept: */*");
+ sock.pushLine("");
+ 
+ /* 送信用バッファの内容を接続先へ書き込み（送信） */
+ var bytes_transfferd = sock.write();
+ if (bytes_transfferd > 0) {
+     Debug.message("送信しました: " + bytes_transfferd + "byte");
+ }
+ if (!sock.writingSucceeded) {
+     Debug.message("送信でエラーが発生しました。");
+ }
+
+-[[Socket.pushLine メソッド>ktl/Network.tjs#Socket-pushLine]]~
+ 送信用バッファに行を追加する。
+
+-[[Socket.pushString メソッド>ktl/Network.tjs#Socket-pushString]]~
+ 送信用バッファに文字列を追加する。
+
+-[[Socket.pushNarrowString メソッド>ktl/Network.tjs#Socket-pushNarrowString]]~
+ 送信用バッファにナロー文字列を追加する。
+
+-[[Socket.pushOctet メソッド>ktl/Network.tjs#Socket-pushOctet]]~
+ 送信用バッファにオクテット列を追加する。
+
+-[[Socket.write メソッド>ktl/Network.tjs#Socket-write]]~
+ 送信用バッファの内容を接続先へ書き込み（送信）する。
+
+-[[Socket.asyncWrite メソッド>ktl/Network.tjs#Socket-asyncWrite]]~
+ 送信用バッファの内容を接続先へ書き込み（送信）する。非同期処理。
+
+-[[Socket.writingFinished プロパティ>ktl/Network.tjs#Socket-writingFinished]]~
+ 送信の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+-[[Socket.writingSucceeded プロパティ>ktl/Network.tjs#Socket-writingSucceeded]]~
+ 送信の処理が成功したならば true、でなければ false を返す。 (getter)
+
+-[[Socket.writingBufferSize プロパティ>ktl/Network.tjs#Socket-writingBufferSize]]~
+ 送信用バッファに格納されているバイト数を返す。 (getter)
+
+
+
+*レスポンス受信
+ /* 受信用バッファへHTTPレスポンスを読み取り（受信） */
+ bytes_transfferd = sock.readUntil("\r\n\r\n");
+ if (bytes_transfferd > 0) {
+     Debug.message("受信しました: " + bytes_transfferd + "byte");
+ }
+ if (!sock.readingSucceeded) {
+     Debug.message("受信でエラーが発生しました。");
+ }
+ 
+ /* 受信用バッファから１行ずつ取出 */
+ while (sock.readingBufferSize) {
+     Debug.message(sock.popLine());
+ }
+ 
+ /* 受信用バッファへ残り（データ部分）を読み取り（受信） */
+ bytes_transfferd = sock.read();
+ if (bytes_transfferd > 0) {
+     Debug.message("受信しました: " + bytes_transfferd + "byte");
+ }
+ if (!sock.readingSucceeded) {
+     Debug.message("受信でエラーが発生しました。");
+ }
+ if (sock.eof) {
+     Debug.message("終端まで受信しました。");
+ }
+ 
+ /* 受信用バッファから全て取出 */
+ var html = sock.popNarrowString();
+
+-[[Socket.popLine メソッド>ktl/Network.tjs#Socket-popLine]]~
+ 受信用バッファからナロー文字列を改行コードまたは終端まで取出する。
+
+-[[Socket.popString メソッド>ktl/Network.tjs#Socket-popString]]~
+ 受信用バッファから文字列を取出する。
+
+-[[Socket.popNarrowString メソッド>ktl/Network.tjs#Socket-popNarrowString]]~
+ 受信用バッファからナロー文字列を取出する。
+
+-[[Socket.popOctet メソッド>ktl/Network.tjs#Socket-popOctet]]~
+ 受信用バッファからオクテット列を取出する。
+
+-[[Socket.read メソッド>ktl/Network.tjs#Socket-read]]~
+ 受信用バッファへ接続先から読み込み（受信）する。
+
+-[[Socket.asyncRead メソッド>ktl/Network.tjs#Socket-asyncRead]]~
+ 受信用バッファへ接続先から読み込み（受信）する。非同期処理。
+
+-[[Socket.readingFinished プロパティ>ktl/Network.tjs#Socket-readingFinished]]~
+ 受信の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+-[[Socket.readingSucceeded プロパティ>ktl/Network.tjs#Socket-readingSucceeded]]~
+ 受信の処理が成功したならば true、でなければ false を返す。 (getter)
+
+-[[Socket.eof プロパティ>ktl/Network.tjs#Socket-eof]]~
+ データの終端まで受信したならば true、でなければ false を返す。 (getter)
+
+-[[Socket.readingBufferSize プロパティ>ktl/Network.tjs#Socket-readingBufferSize]]~
+ 受信用バッファに格納されているバイト数を返す。 (getter)
+

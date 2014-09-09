@@ -1,0 +1,144 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*バッファサイズ
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* バッファが空であるか */
+ if (oct.empty) {
+     Debug.message("バッファは空です。");
+ }
+ 
+ /* バッファサイズの設定 */
+ oct.size = 256;
+ Debug.message("size = " + oct.size);
+
+-OctetBuilder クラス~
+--様々なリソースとオクテット列との、データの相互変換や操作を行うクラス。~
+
+-OctetBuilder.empty プロパティ~
+--バッファが空であるか。~
+
+-OctetBuilder.size プロパティ~
+-OctetBuilder.length プロパティ~
+-OctetBuilder.count プロパティ~
+--バッファサイズを取得／設定する。~
+--これらのメンバは同じ意味を持つ。~
+
+
+
+*データの種類
+ /* 64bit整数／リトルエンディアン を指定するフラグ */
+ var flag = OctetBuilder.vtfInt64 | OctetBuilder.vefLittleEndian;
+ 
+ /* データ型指定フラグを取り出す */
+ if (flag & OctetBuilder.vtfMask == OctetBuilder.vtfInt64) {
+     Debug.message("64bit整数の指定です。");
+ }
+ 
+ /* エンディアン指定フラグを取り出す */
+ if (flag & OctetBuilder.vefMask == OctetBuilder.vefLittleEndian) {
+     Debug.message("リトルエンディアンの指定です。");
+ }
+
+-OctetBuilder.vtfByte プロパティ~
+--データ型指定フラグ。~
+--1byte 値として指定する。~
+
+-OctetBuilder.vtfInt8 プロパティ~
+--データ型指定フラグ。~
+--8bit 符号付き整数値として指定する。~
+
+-OctetBuilder.vtfInt16 プロパティ~
+--データ型指定フラグ。~
+--16bit 符号付き整数値として指定する。~
+
+-OctetBuilder.vtfInt32 プロパティ~
+--データ型指定フラグ。~
+--32bit 符号付き整数値として指定する。~
+
+-OctetBuilder.vtfInt64 プロパティ~
+--データ型指定フラグ。~
+--64bit 符号付き整数値として指定する。~
+
+-OctetBuilder.vtfUInt8 プロパティ~
+--データ型指定フラグ。~
+--8bit 符号無し整数値として指定する。~
+
+-OctetBuilder.vtfUInt16 プロパティ~
+--データ型指定フラグ。~
+--16bit 符号無し整数値として指定する。~
+
+-OctetBuilder.vtfUInt32 プロパティ~
+--データ型指定フラグ。~
+--32bit 符号無し整数値として指定する。~
+
+-OctetBuilder.vtfUInt64 プロパティ~
+--データ型指定フラグ。~
+--64bit 符号無し整数値として指定する。~
+
+-OctetBuilder.vtfFloat プロパティ~
+--データ型指定フラグ。~
+--32bit 単精度浮動小数点数値として指定する。~
+--なお、浮動小数点数のバイナリ表現は環境によって異なる可能性があるので、
+異なるアプリケーションから利用される場合のあるデータには非推奨。~
+
+-OctetBuilder.vtfDouble プロパティ~
+--データ型指定フラグ。~
+--64bit 倍精度浮動小数点数値として指定する。~
+--なお、浮動小数点数のバイナリ表現は環境によって異なる可能性があるので、
+異なるアプリケーションから利用される場合のあるデータには非推奨。~
+
+-OctetBuilder.vtfOctet プロパティ~
+--データ型指定フラグ。~
+--オクテット列として指定する。~
+
+-OctetBuilder.vtfString プロパティ~
+--データ型指定フラグ。~
+--文字列（UTF-16LE）として指定する。~
+
+-OctetBuilder.vtfNarrowString プロパティ~
+--データ型指定フラグ。~
+--文字列（Shift_JIS）として指定する。~
+
+-OctetBuilder.vtfBuilder プロパティ~
+--データ型指定フラグ。~
+--OctetBuilder クラスのインスタンスとして指定する。~
+
+-OctetBuilder.vtfMask プロパティ~
+--データ型指定フラグのマスク。~
+--ビット演算によって、フラグ値から vtfXXX の部分を取り出すことができる。~
+--なお、vtfXXX のフラグ同士を同時に指定することはできない。~
+
+-OctetBuilder.vefBigEndian プロパティ~
+--エンディアン指定フラグ。~
+--ビッグエンディアンとして指定する。~
+
+-OctetBuilder.vefLittleEndian プロパティ~
+--エンディアン指定フラグ。~
+--リトルエンディアンとして指定する。~
+
+-OctetBuilder.vefMask プロパティ~
+--エンディアン指定フラグのマスク。~
+--ビット演算によって、フラグ値から vefXXX の部分を取り出すことができる。~
+--エンディアン指定は通常、データ型指定フラグと組み合わせる。~
+--なお、エンディアン指定は整数および浮動小数点数以外に対しては、単に無視される。~
+--また、エンディアン指定のない場合、ビッグエンディアンとして扱われる。~

@@ -1,0 +1,160 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Socket クラス>ktl/Network.tjs#Socket]]~
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+--[[Acceptor クラス>ktl/Network.tjs#Acceptor]]~
+ ソケット通信のための接続待ちを行うクラス。SSL接続に対応。
+
+
+
+*サーバサンプル
+ // スクリプトのロード
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ 
+ // サーバクラス
+ //  指定ポートを常に監視し、受信したメッセージをコンソールに出力する
+ class Server {
+     var sockets = [];
+     var acceptor = new Acceptor();
+     var port = 0;
+ 
+     function Server(port_) {
+         port = port_;
+         // 接続待ちの開始
+         //  指定ポートへの接続を常に監視し、接続に成功したソケットはキューイングされる
+         if (!acceptor.monitor(port)) {
+             Debug.message("info: Server - 接続待ちの開始に失敗しました");
+         }
+         System.addContinuousHandler(onContinuous);
+     }
+     function finalize() {
+         System.removeContinuousHandler(onContinuous);
+         for (var i = 0, last = sockets.count; i != last; ++i) {
+             invalidate sockets[i];
+         }
+         invalidate acceptor;
+     }
+     function onContinuous() {
+         // 受信のチェック
+         for (var i = 0, last = sockets.count; i != last; ++i) {
+             var socket = sockets[i];
+             if (socket.readingFinished) {
+                 var failed = false;
+                 if (!socket.readingSucceeded) {
+                     Debug.message("info: Server - 受信に失敗しました");
+                     failed = true;
+                 }
+                 if (failed) {
+                     System.removeContinuousHandler(onContinuous);
+                     return;
+                 }
+                 Debug.message("info: Server - 受信に成功しました");
+                 // 受信に成功した場合、改行まで読み込み、受信を再開する
+                 var message = socket.popLine();
+                 if (socket.asyncReadUntil("\r\n") < 0) {
+                     Debug.message("info: Server - 受信の開始に失敗しました");
+                 }
+                 // 受信メッセージ出力
+                 Debug.message("message : " + message);
+             }
+         }
+         // 接続待ちのチェック
+         while (acceptor.acceptedCount) {
+             var socket = acceptor.popAccepted();
+             var failed = false;
+             if (!socket.acceptingSucceeded) {
+                 Debug.message("info: Server - 接続待ちに失敗しました");
+                 failed = true;
+             } else if (!socket.isOpen) {
+                 Debug.message("info: Server - ソケットが開かれていません");
+                 failed = true;
+             }
+             if (failed) {
+                 System.removeContinuousHandler(onContinuous);
+                 return;
+             }
+             Debug.message("info: Server - 接続待ちに成功しました");
+             // 接続待ちに成功した場合、受信に移行する
+             if (socket.asyncReadUntil("\r\n") < 0) {
+                 Debug.message("info: Server - 受信の開始に失敗しました");
+             }
+             // 接続されたソケットを配列に移す
+             sockets.add(socket);
+         }
+     }
+ }
+ 
+ // クライアントクラス
+ //  指定ポートに接続してメッセージ送信する
+ class Client {
+     var socket;
+     var port;
+ 
+     function Client(port_) {
+         port = port_;
+         socket = new Socket();
+     }
+     function finalize() {
+         invalidate socket;
+     }
+     function connect() {
+         // 接続 (ループバックアドレス = 127.0.0.1)
+         if (!socket.connectLoopback(port)) {
+             Debug.message("info: Client - 接続に失敗しました");
+             return;
+         }
+         Debug.message("info: Client - 接続に成功しました");
+         if (!socket.isOpen) {
+             Debug.message("info: Client - ソケットが開かれていません");
+             return;
+         }
+     }
+     function send(message) {
+         socket.pushNarrowString(message + "\r\n");
+         if (socket.write() < 0) {
+             Debug.message("info: Client - 送信に失敗しました");
+         }
+     }
+ }
+ 
+ 
+ // スレッドプールのスレッド数を 10 に設定
+ //  非同期処理の並列実行（例えばソケットの接続待ちをしながら既に接続されたソケットの受信を行う）はこの数に制限される
+ //  それ以上の場合は、非同期処理はキューイングされる
+ Network.runAtLeast(10);
+ 
+ 
+ var port = 31400;
+ 
+ 
+ var server = new Server(port);
+ kag.add(server);
+ 
+ var client1 = new Client(port);
+ var client2 = new Client(port);
+ kag.add(client1);
+ kag.add(client2);
+ 
+ 
+ // クライアント１から接続と送信
+ client1.connect();
+ client1.send("(1) Hello!");
+ 
+ // クライアント２から接続と送信
+ client2.connect();
+ client2.send("(2) Hello!");
+

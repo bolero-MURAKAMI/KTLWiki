@@ -1,0 +1,143 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_bzip2.dll（または ktl_bzip2-d.dll）~
+
+-外部DLL~
+--libbz2.dll~
+
+-スクリプト~
+--[[ktl/Bzip2.tjs]]~
+
+-クラス~
+--Bzip2Compressor クラス~
+
+
+
+*データ圧縮
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Bzip2.tjs");
+ 
+ /* Bzip2Compressor のインスタンス作成 */
+ var bz2com = new Bzip2Compressor();
+ 
+ /* 圧縮処理開始 */
+ bz2com.setup();
+ 
+ /* 文字列（ワイド文字列）の処理 */
+ bz2com.processString("The quick brown fox jumps over the lazy dog");
+ 
+ /* 圧縮処理完了 */
+ bz2com.finish();
+ 
+ /* 情報の取得 */
+ Debug.message("圧縮後のサイズ = " + bz2com.size);
+ 
+ /* 圧縮データを取り出し */
+ var compressed = bz2com.asOctet();
+ 
+ /* 圧縮データをファイルに保存 */
+ bz2com.saveStorage(System.exePath + "compressed.bz2");
+
+-Bzip2Compressor クラス~
+--bzip2によってデータ圧縮をするクラス。~
+--実行にはlibbzip2のDLLが必要。~
+--libbz2.dll は吉里吉里の実行ファイルと同じフォルダに置く。~
+
+-Bzip2Compressor.reset メソッド~
+--シグネチャ:~
+---Bzip2Compressor.reset()~
+--圧縮処理設定およびバッファをリセットする。~
+
+-Bzip2Compressor.setup メソッド~
+--シグネチャ:~
+---Bzip2Compressor.setup()~
+--この呼び出し以前に設定された圧縮処理設定をもとに、圧縮処理をセットアップする。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Bzip2Compressor.finish メソッド~
+--シグネチャ:~
+---Bzip2Compressor.finish()~
+--圧縮処理を完了する。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Bzip2Compressor.processByte メソッド~
+--シグネチャ:~
+---Bzip2Compressor.processByte(byte)~
+--計算に1byte値を追加。~
+
+-Bzip2Compressor.processStorage メソッド~
+--シグネチャ:~
+---Bzip2Compressor.processStorage(storage)~
+---Bzip2Compressor.processStorage(storage, spos)~
+---Bzip2Compressor.processStorage(storage, spos, ssize)~
+--計算にストレージの内容を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Compressor.processOctet メソッド~
+--シグネチャ:~
+---Bzip2Compressor.processOctet(octet)~
+---Bzip2Compressor.processOctet(octet, spos)~
+---Bzip2Compressor.processOctet(octet, spos, ssize)~
+--計算にオクテット列を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Compressor.processString メソッド~
+--シグネチャ:~
+---Bzip2Compressor.processString(str)~
+---Bzip2Compressor.processString(str, spos)~
+---Bzip2Compressor.processString(str, spos, ssize)~
+--計算に文字列（ワイド文字列）を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Compressor.processNarrowString メソッド~
+--シグネチャ:~
+---Bzip2Compressor.processNarrowString(str)~
+---Bzip2Compressor.processNarrowString(str, spos)~
+---Bzip2Compressor.processNarrowString(str, spos, ssize)~
+--計算に文字列（マルチバイト文字列）を追加。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Compressor.size プロパティ~
+--圧縮データを格納したバッファサイズを返す。~
+--圧縮処理が完了していない場合、0 を返す。~
+
+-Bzip2Compressor.asOctet メソッド~
+--シグネチャ:~
+---Bzip2Compressor.asOctet()~
+---Bzip2Compressor.asOctet(pos)~
+---Bzip2Compressor.asOctet(pos, size)~
+--圧縮データをオクテット列として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ返す。~
+--圧縮処理が完了していない場合、void を返す。~
+
+-Bzip2Compressor.saveStorage メソッド~
+--シグネチャ:~
+---Bzip2Compressor.saveStorage(storage)~
+---Bzip2Compressor.saveStorage(storage, pos)~
+---Bzip2Compressor.saveStorage(storage, pos, size)~
+--圧縮データをローカルストレージへ保存する。~
+--第１引数には保存するストレージのパスを渡す。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ保存する。~
+--実際に保存されたバイト数を返す。~
+--圧縮処理が完了していない、または保存に失敗した場合、負値が返される。~
+
+-Bzip2Compressor.blockSize プロパティ~
+--圧縮に使用するブロックサイズを設定／取得する。~
+--1～9。~
+
+-Bzip2Compressor.workFactor プロパティ~
+--ワーストケースの動作コントロールを設定／取得する。~
+--0～250。~
+

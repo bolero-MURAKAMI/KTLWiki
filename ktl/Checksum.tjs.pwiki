@@ -1,0 +1,2948 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ チェックサム計算など。
+-パス:~
+--[[ktl/Checksum.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_checksum.dll / ktl_checksum-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[CRC_16 クラス>#CRC_16]]~
+--[[CRC_CCITT クラス>#CRC_CCITT]]~
+--[[CRC_XMODEM クラス>#CRC_XMODEM]]~
+--[[CRC_32 クラス>#CRC_32]]~
+--[[MD5 クラス>#MD5]]~
+--[[SHA1 クラス>#SHA1]]~
+
+--------------------------------------------------------------------------------
+
+**CRC_16 クラス [#CRC_16]
+ CRC-16 チェックサム計算を行うクラス。
+-メソッド:~
+--[[CRC_16 メソッド>#CRC_16-CRC_16]]~
+--[[reset メソッド>#CRC_16-reset]]~
+--[[processBlock メソッド>#CRC_16-processBlock]]~
+--[[processBytes メソッド>#CRC_16-processBytes]]~
+--[[processByte メソッド>#CRC_16-processByte]]~
+--[[processOctet メソッド>#CRC_16-processOctet]]~
+--[[processString メソッド>#CRC_16-processString]]~
+--[[processNarrowString メソッド>#CRC_16-processNarrowString]]~
+--[[processStorage メソッド>#CRC_16-processStorage]]~
+--[[checksum メソッド>#CRC_16-checksum]]~
+--[[checksumOctet メソッド>#CRC_16-checksumOctet]]~
+--[[checksumHex メソッド>#CRC_16-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#CRC_16-calculateBlock]]~
+--[[calculateBytes メソッド>#CRC_16-calculateBytes]]~
+--[[calculateOctet メソッド>#CRC_16-calculateOctet]]~
+--[[calculateString メソッド>#CRC_16-calculateString]]~
+--[[calculateNarrowString メソッド>#CRC_16-calculateNarrowString]]~
+--[[calculateStorage メソッド>#CRC_16-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#CRC_16-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#CRC_16-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#CRC_16-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#CRC_16-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#CRC_16-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#CRC_16-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#CRC_16-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#CRC_16-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#CRC_16-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#CRC_16-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#CRC_16-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#CRC_16-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-CRC_16.CRC_16 メソッド &aname(CRC_16-CRC_16);~
+ コンストラクタ。
+--シグネチャ:~
+---CRC_16()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_16.reset メソッド &aname(CRC_16-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---CRC_16.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_16.processBlock メソッド &aname(CRC_16-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_16.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.processBytes メソッド &aname(CRC_16-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_16.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.processByte メソッド &aname(CRC_16-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---CRC_16.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_16.processOctet メソッド &aname(CRC_16-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---CRC_16.processOctet(octet)~
+---CRC_16.processOctet(octet, spos)~
+---CRC_16.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_16.processString メソッド &aname(CRC_16-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---CRC_16.processString(str)~
+---CRC_16.processString(str, spos)~
+---CRC_16.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_16.processNarrowString メソッド &aname(CRC_16-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---CRC_16.processNarrowString(str)~
+---CRC_16.processNarrowString(str, spos)~
+---CRC_16.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_16.processStorage メソッド &aname(CRC_16-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---CRC_16.processStorage(storage)~
+---CRC_16.processStorage(storage, spos)~
+---CRC_16.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_16.checksum メソッド &aname(CRC_16-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---CRC_16.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Integer~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_16.checksumOctet メソッド &aname(CRC_16-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---CRC_16.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_16.checksumHex メソッド &aname(CRC_16-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBlock メソッド &aname(CRC_16-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBytes メソッド &aname(CRC_16-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateOctet メソッド &aname(CRC_16-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateString メソッド &aname(CRC_16-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateNarrowString メソッド &aname(CRC_16-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateStorage メソッド &aname(CRC_16-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_16.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBlockAsOctet メソッド &aname(CRC_16-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBytesAsOctet メソッド &aname(CRC_16-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateOctetAsOctet メソッド &aname(CRC_16-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateStringAsOctet メソッド &aname(CRC_16-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateNarrowStringAsOctet メソッド &aname(CRC_16-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateStorageAsOctet メソッド &aname(CRC_16-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_16.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBlockAsHex メソッド &aname(CRC_16-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateBytesAsHex メソッド &aname(CRC_16-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateOctetAsHex メソッド &aname(CRC_16-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateStringAsHex メソッド &aname(CRC_16-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateNarrowStringAsHex メソッド &aname(CRC_16-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_16.calculateStorageAsHex メソッド &aname(CRC_16-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_16.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+
+**CRC_CCITT クラス [#CRC_CCITT]
+ CRC-CCITT チェックサム計算を行うクラス。
+-メソッド:~
+--[[CRC_CCITT メソッド>#CRC_CCITT-CRC_CCITT]]~
+--[[reset メソッド>#CRC_CCITT-reset]]~
+--[[processBlock メソッド>#CRC_CCITT-processBlock]]~
+--[[processBytes メソッド>#CRC_CCITT-processBytes]]~
+--[[processByte メソッド>#CRC_CCITT-processByte]]~
+--[[processOctet メソッド>#CRC_CCITT-processOctet]]~
+--[[processString メソッド>#CRC_CCITT-processString]]~
+--[[processNarrowString メソッド>#CRC_CCITT-processNarrowString]]~
+--[[processStorage メソッド>#CRC_CCITT-processStorage]]~
+--[[checksum メソッド>#CRC_CCITT-checksum]]~
+--[[checksumOctet メソッド>#CRC_CCITT-checksumOctet]]~
+--[[checksumHex メソッド>#CRC_CCITT-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#CRC_CCITT-calculateBlock]]~
+--[[calculateBytes メソッド>#CRC_CCITT-calculateBytes]]~
+--[[calculateOctet メソッド>#CRC_CCITT-calculateOctet]]~
+--[[calculateString メソッド>#CRC_CCITT-calculateString]]~
+--[[calculateNarrowString メソッド>#CRC_CCITT-calculateNarrowString]]~
+--[[calculateStorage メソッド>#CRC_CCITT-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#CRC_CCITT-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#CRC_CCITT-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#CRC_CCITT-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#CRC_CCITT-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#CRC_CCITT-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#CRC_CCITT-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#CRC_CCITT-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#CRC_CCITT-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#CRC_CCITT-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#CRC_CCITT-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#CRC_CCITT-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#CRC_CCITT-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.CRC_CCITT メソッド &aname(CRC_CCITT-CRC_CCITT);~
+ コンストラクタ。
+--シグネチャ:~
+---CRC_CCITT()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.reset メソッド &aname(CRC_CCITT-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---CRC_CCITT.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processBlock メソッド &aname(CRC_CCITT-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_CCITT.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processBytes メソッド &aname(CRC_CCITT-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_CCITT.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processByte メソッド &aname(CRC_CCITT-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---CRC_CCITT.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processOctet メソッド &aname(CRC_CCITT-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---CRC_CCITT.processOctet(octet)~
+---CRC_CCITT.processOctet(octet, spos)~
+---CRC_CCITT.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processString メソッド &aname(CRC_CCITT-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---CRC_CCITT.processString(str)~
+---CRC_CCITT.processString(str, spos)~
+---CRC_CCITT.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processNarrowString メソッド &aname(CRC_CCITT-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---CRC_CCITT.processNarrowString(str)~
+---CRC_CCITT.processNarrowString(str, spos)~
+---CRC_CCITT.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.processStorage メソッド &aname(CRC_CCITT-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---CRC_CCITT.processStorage(storage)~
+---CRC_CCITT.processStorage(storage, spos)~
+---CRC_CCITT.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.checksum メソッド &aname(CRC_CCITT-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---CRC_CCITT.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Integer~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.checksumOctet メソッド &aname(CRC_CCITT-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.checksumHex メソッド &aname(CRC_CCITT-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBlock メソッド &aname(CRC_CCITT-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBytes メソッド &aname(CRC_CCITT-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateOctet メソッド &aname(CRC_CCITT-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateString メソッド &aname(CRC_CCITT-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateNarrowString メソッド &aname(CRC_CCITT-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateStorage メソッド &aname(CRC_CCITT-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_CCITT.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBlockAsOctet メソッド &aname(CRC_CCITT-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBytesAsOctet メソッド &aname(CRC_CCITT-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateOctetAsOctet メソッド &aname(CRC_CCITT-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateStringAsOctet メソッド &aname(CRC_CCITT-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateNarrowStringAsOctet メソッド &aname(CRC_CCITT-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateStorageAsOctet メソッド &aname(CRC_CCITT-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBlockAsHex メソッド &aname(CRC_CCITT-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateBytesAsHex メソッド &aname(CRC_CCITT-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateOctetAsHex メソッド &aname(CRC_CCITT-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateStringAsHex メソッド &aname(CRC_CCITT-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateNarrowStringAsHex メソッド &aname(CRC_CCITT-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_CCITT.calculateStorageAsHex メソッド &aname(CRC_CCITT-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_CCITT.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+
+**CRC_XMODEM クラス [#CRC_XMODEM]
+ CRC-XMODEM チェックサム計算を行うクラス。
+-メソッド:~
+--[[CRC_XMODEM メソッド>#CRC_XMODEM-CRC_XMODEM]]~
+--[[reset メソッド>#CRC_XMODEM-reset]]~
+--[[processBlock メソッド>#CRC_XMODEM-processBlock]]~
+--[[processBytes メソッド>#CRC_XMODEM-processBytes]]~
+--[[processByte メソッド>#CRC_XMODEM-processByte]]~
+--[[processOctet メソッド>#CRC_XMODEM-processOctet]]~
+--[[processString メソッド>#CRC_XMODEM-processString]]~
+--[[processNarrowString メソッド>#CRC_XMODEM-processNarrowString]]~
+--[[processStorage メソッド>#CRC_XMODEM-processStorage]]~
+--[[checksum メソッド>#CRC_XMODEM-checksum]]~
+--[[checksumOctet メソッド>#CRC_XMODEM-checksumOctet]]~
+--[[checksumHex メソッド>#CRC_XMODEM-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#CRC_XMODEM-calculateBlock]]~
+--[[calculateBytes メソッド>#CRC_XMODEM-calculateBytes]]~
+--[[calculateOctet メソッド>#CRC_XMODEM-calculateOctet]]~
+--[[calculateString メソッド>#CRC_XMODEM-calculateString]]~
+--[[calculateNarrowString メソッド>#CRC_XMODEM-calculateNarrowString]]~
+--[[calculateStorage メソッド>#CRC_XMODEM-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#CRC_XMODEM-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#CRC_XMODEM-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#CRC_XMODEM-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#CRC_XMODEM-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#CRC_XMODEM-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#CRC_XMODEM-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#CRC_XMODEM-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#CRC_XMODEM-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#CRC_XMODEM-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#CRC_XMODEM-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#CRC_XMODEM-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#CRC_XMODEM-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.CRC_XMODEM メソッド &aname(CRC_XMODEM-CRC_XMODEM);~
+ コンストラクタ。
+--シグネチャ:~
+---CRC_XMODEM()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.reset メソッド &aname(CRC_XMODEM-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---CRC_XMODEM.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processBlock メソッド &aname(CRC_XMODEM-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_XMODEM.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processBytes メソッド &aname(CRC_XMODEM-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_XMODEM.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processByte メソッド &aname(CRC_XMODEM-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---CRC_XMODEM.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processOctet メソッド &aname(CRC_XMODEM-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---CRC_XMODEM.processOctet(octet)~
+---CRC_XMODEM.processOctet(octet, spos)~
+---CRC_XMODEM.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processString メソッド &aname(CRC_XMODEM-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---CRC_XMODEM.processString(str)~
+---CRC_XMODEM.processString(str, spos)~
+---CRC_XMODEM.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processNarrowString メソッド &aname(CRC_XMODEM-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---CRC_XMODEM.processNarrowString(str)~
+---CRC_XMODEM.processNarrowString(str, spos)~
+---CRC_XMODEM.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.processStorage メソッド &aname(CRC_XMODEM-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---CRC_XMODEM.processStorage(storage)~
+---CRC_XMODEM.processStorage(storage, spos)~
+---CRC_XMODEM.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.checksum メソッド &aname(CRC_XMODEM-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---CRC_XMODEM.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Integer~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.checksumOctet メソッド &aname(CRC_XMODEM-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.checksumHex メソッド &aname(CRC_XMODEM-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBlock メソッド &aname(CRC_XMODEM-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBytes メソッド &aname(CRC_XMODEM-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateOctet メソッド &aname(CRC_XMODEM-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateString メソッド &aname(CRC_XMODEM-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateNarrowString メソッド &aname(CRC_XMODEM-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateStorage メソッド &aname(CRC_XMODEM-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBlockAsOctet メソッド &aname(CRC_XMODEM-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBytesAsOctet メソッド &aname(CRC_XMODEM-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateOctetAsOctet メソッド &aname(CRC_XMODEM-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateStringAsOctet メソッド &aname(CRC_XMODEM-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateNarrowStringAsOctet メソッド &aname(CRC_XMODEM-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateStorageAsOctet メソッド &aname(CRC_XMODEM-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBlockAsHex メソッド &aname(CRC_XMODEM-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateBytesAsHex メソッド &aname(CRC_XMODEM-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateOctetAsHex メソッド &aname(CRC_XMODEM-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateStringAsHex メソッド &aname(CRC_XMODEM-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateNarrowStringAsHex メソッド &aname(CRC_XMODEM-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_XMODEM.calculateStorageAsHex メソッド &aname(CRC_XMODEM-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_XMODEM.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+
+**CRC_32 クラス [#CRC_32]
+ CRC-32 チェックサム計算を行うクラス。
+-メソッド:~
+--[[CRC_32 メソッド>#CRC_32-CRC_32]]~
+--[[reset メソッド>#CRC_32-reset]]~
+--[[processBlock メソッド>#CRC_32-processBlock]]~
+--[[processBytes メソッド>#CRC_32-processBytes]]~
+--[[processByte メソッド>#CRC_32-processByte]]~
+--[[processOctet メソッド>#CRC_32-processOctet]]~
+--[[processString メソッド>#CRC_32-processString]]~
+--[[processNarrowString メソッド>#CRC_32-processNarrowString]]~
+--[[processStorage メソッド>#CRC_32-processStorage]]~
+--[[checksum メソッド>#CRC_32-checksum]]~
+--[[checksumOctet メソッド>#CRC_32-checksumOctet]]~
+--[[checksumHex メソッド>#CRC_32-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#CRC_32-calculateBlock]]~
+--[[calculateBytes メソッド>#CRC_32-calculateBytes]]~
+--[[calculateOctet メソッド>#CRC_32-calculateOctet]]~
+--[[calculateString メソッド>#CRC_32-calculateString]]~
+--[[calculateNarrowString メソッド>#CRC_32-calculateNarrowString]]~
+--[[calculateStorage メソッド>#CRC_32-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#CRC_32-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#CRC_32-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#CRC_32-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#CRC_32-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#CRC_32-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#CRC_32-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#CRC_32-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#CRC_32-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#CRC_32-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#CRC_32-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#CRC_32-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#CRC_32-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-CRC_32.CRC_32 メソッド &aname(CRC_32-CRC_32);~
+ コンストラクタ。
+--シグネチャ:~
+---CRC_32()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_32.reset メソッド &aname(CRC_32-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---CRC_32.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-CRC_32.processBlock メソッド &aname(CRC_32-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_32.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.processBytes メソッド &aname(CRC_32-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---CRC_32.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.processByte メソッド &aname(CRC_32-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---CRC_32.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_32.processOctet メソッド &aname(CRC_32-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---CRC_32.processOctet(octet)~
+---CRC_32.processOctet(octet, spos)~
+---CRC_32.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_32.processString メソッド &aname(CRC_32-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---CRC_32.processString(str)~
+---CRC_32.processString(str, spos)~
+---CRC_32.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_32.processNarrowString メソッド &aname(CRC_32-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---CRC_32.processNarrowString(str)~
+---CRC_32.processNarrowString(str, spos)~
+---CRC_32.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_32.processStorage メソッド &aname(CRC_32-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---CRC_32.processStorage(storage)~
+---CRC_32.processStorage(storage, spos)~
+---CRC_32.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-CRC_32.checksum メソッド &aname(CRC_32-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---CRC_32.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Integer~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_32.checksumOctet メソッド &aname(CRC_32-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---CRC_32.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_32.checksumHex メソッド &aname(CRC_32-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBlock メソッド &aname(CRC_32-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBytes メソッド &aname(CRC_32-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateOctet メソッド &aname(CRC_32-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateString メソッド &aname(CRC_32-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateNarrowString メソッド &aname(CRC_32-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateStorage メソッド &aname(CRC_32-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---CRC_32.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Integer~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBlockAsOctet メソッド &aname(CRC_32-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBytesAsOctet メソッド &aname(CRC_32-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateOctetAsOctet メソッド &aname(CRC_32-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateStringAsOctet メソッド &aname(CRC_32-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateNarrowStringAsOctet メソッド &aname(CRC_32-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateStorageAsOctet メソッド &aname(CRC_32-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---CRC_32.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBlockAsHex メソッド &aname(CRC_32-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateBytesAsHex メソッド &aname(CRC_32-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateOctetAsHex メソッド &aname(CRC_32-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateStringAsHex メソッド &aname(CRC_32-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateNarrowStringAsHex メソッド &aname(CRC_32-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-CRC_32.calculateStorageAsHex メソッド &aname(CRC_32-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---CRC_32.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+
+**MD5 クラス [#MD5]
+ MD5 チェックサム計算を行うクラス。
+-メソッド:~
+--[[MD5 メソッド>#MD5-MD5]]~
+--[[reset メソッド>#MD5-reset]]~
+--[[processBlock メソッド>#MD5-processBlock]]~
+--[[processBytes メソッド>#MD5-processBytes]]~
+--[[processByte メソッド>#MD5-processByte]]~
+--[[processOctet メソッド>#MD5-processOctet]]~
+--[[processString メソッド>#MD5-processString]]~
+--[[processNarrowString メソッド>#MD5-processNarrowString]]~
+--[[processStorage メソッド>#MD5-processStorage]]~
+--[[checksum メソッド>#MD5-checksum]]~
+--[[checksumOctet メソッド>#MD5-checksumOctet]]~
+--[[checksumHex メソッド>#MD5-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#MD5-calculateBlock]]~
+--[[calculateBytes メソッド>#MD5-calculateBytes]]~
+--[[calculateOctet メソッド>#MD5-calculateOctet]]~
+--[[calculateString メソッド>#MD5-calculateString]]~
+--[[calculateNarrowString メソッド>#MD5-calculateNarrowString]]~
+--[[calculateStorage メソッド>#MD5-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#MD5-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#MD5-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#MD5-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#MD5-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#MD5-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#MD5-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#MD5-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#MD5-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#MD5-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#MD5-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#MD5-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#MD5-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-MD5.MD5 メソッド &aname(MD5-MD5);~
+ コンストラクタ。
+--シグネチャ:~
+---MD5()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MD5.reset メソッド &aname(MD5-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---MD5.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MD5.processBlock メソッド &aname(MD5-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---MD5.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.processBytes メソッド &aname(MD5-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---MD5.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.processByte メソッド &aname(MD5-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---MD5.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-MD5.processOctet メソッド &aname(MD5-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---MD5.processOctet(octet)~
+---MD5.processOctet(octet, spos)~
+---MD5.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-MD5.processString メソッド &aname(MD5-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---MD5.processString(str)~
+---MD5.processString(str, spos)~
+---MD5.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-MD5.processNarrowString メソッド &aname(MD5-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---MD5.processNarrowString(str)~
+---MD5.processNarrowString(str, spos)~
+---MD5.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-MD5.processStorage メソッド &aname(MD5-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---MD5.processStorage(storage)~
+---MD5.processStorage(storage, spos)~
+---MD5.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-MD5.checksum メソッド &aname(MD5-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---MD5.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-MD5.checksumOctet メソッド &aname(MD5-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---MD5.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-MD5.checksumHex メソッド &aname(MD5-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---MD5.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateBlock メソッド &aname(MD5-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateBytes メソッド &aname(MD5-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateOctet メソッド &aname(MD5-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateString メソッド &aname(MD5-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateNarrowString メソッド &aname(MD5-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateStorage メソッド &aname(MD5-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---MD5.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateBlockAsOctet メソッド &aname(MD5-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateBytesAsOctet メソッド &aname(MD5-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateOctetAsOctet メソッド &aname(MD5-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateStringAsOctet メソッド &aname(MD5-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateNarrowStringAsOctet メソッド &aname(MD5-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateStorageAsOctet メソッド &aname(MD5-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---MD5.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateBlockAsHex メソッド &aname(MD5-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateBytesAsHex メソッド &aname(MD5-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-MD5.calculateOctetAsHex メソッド &aname(MD5-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateStringAsHex メソッド &aname(MD5-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateNarrowStringAsHex メソッド &aname(MD5-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-MD5.calculateStorageAsHex メソッド &aname(MD5-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---MD5.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+
+**SHA1 クラス [#SHA1]
+ SHA1 チェックサム計算を行うクラス。
+-メソッド:~
+--[[SHA1 メソッド>#SHA1-SHA1]]~
+--[[reset メソッド>#SHA1-reset]]~
+--[[processBlock メソッド>#SHA1-processBlock]]~
+--[[processBytes メソッド>#SHA1-processBytes]]~
+--[[processByte メソッド>#SHA1-processByte]]~
+--[[processOctet メソッド>#SHA1-processOctet]]~
+--[[processString メソッド>#SHA1-processString]]~
+--[[processNarrowString メソッド>#SHA1-processNarrowString]]~
+--[[processStorage メソッド>#SHA1-processStorage]]~
+--[[checksum メソッド>#SHA1-checksum]]~
+--[[checksumOctet メソッド>#SHA1-checksumOctet]]~
+--[[checksumHex メソッド>#SHA1-checksumHex]]~
+-スタティックメソッド:~
+--[[calculateBlock メソッド>#SHA1-calculateBlock]]~
+--[[calculateBytes メソッド>#SHA1-calculateBytes]]~
+--[[calculateOctet メソッド>#SHA1-calculateOctet]]~
+--[[calculateString メソッド>#SHA1-calculateString]]~
+--[[calculateNarrowString メソッド>#SHA1-calculateNarrowString]]~
+--[[calculateStorage メソッド>#SHA1-calculateStorage]]~
+--[[calculateBlockAsOctet メソッド>#SHA1-calculateBlockAsOctet]]~
+--[[calculateBytesAsOctet メソッド>#SHA1-calculateBytesAsOctet]]~
+--[[calculateOctetAsOctet メソッド>#SHA1-calculateOctetAsOctet]]~
+--[[calculateStringAsOctet メソッド>#SHA1-calculateStringAsOctet]]~
+--[[calculateNarrowStringAsOctet メソッド>#SHA1-calculateNarrowStringAsOctet]]~
+--[[calculateStorageAsOctet メソッド>#SHA1-calculateStorageAsOctet]]~
+--[[calculateBlockAsHex メソッド>#SHA1-calculateBlockAsHex]]~
+--[[calculateBytesAsHex メソッド>#SHA1-calculateBytesAsHex]]~
+--[[calculateOctetAsHex メソッド>#SHA1-calculateOctetAsHex]]~
+--[[calculateStringAsHex メソッド>#SHA1-calculateStringAsHex]]~
+--[[calculateNarrowStringAsHex メソッド>#SHA1-calculateNarrowStringAsHex]]~
+--[[calculateStorageAsHex メソッド>#SHA1-calculateStorageAsHex]]~
+
+--------------------------------------------------------------------------------
+-SHA1.SHA1 メソッド &aname(SHA1-SHA1);~
+ コンストラクタ。
+--シグネチャ:~
+---SHA1()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SHA1.reset メソッド &aname(SHA1-reset);~
+ チェックサム計算をリセットする。
+--シグネチャ:~
+---SHA1.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SHA1.processBlock メソッド &aname(SHA1-processBlock);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---SHA1.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.processBytes メソッド &aname(SHA1-processBytes);~
+ チェックサム計算にポインタの範囲を追加。
+--シグネチャ:~
+---SHA1.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+追加されたバイト数。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.processByte メソッド &aname(SHA1-processByte);~
+ チェックサム計算に 1byte 値を追加。
+--シグネチャ:~
+---SHA1.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-SHA1.processOctet メソッド &aname(SHA1-processOctet);~
+ チェックサム計算にオクテット列を追加。
+--シグネチャ:~
+---SHA1.processOctet(octet)~
+---SHA1.processOctet(octet, spos)~
+---SHA1.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-SHA1.processString メソッド &aname(SHA1-processString);~
+ チェックサム計算に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---SHA1.processString(str)~
+---SHA1.processString(str, spos)~
+---SHA1.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-SHA1.processNarrowString メソッド &aname(SHA1-processNarrowString);~
+ チェックサム計算にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---SHA1.processNarrowString(str)~
+---SHA1.processNarrowString(str, spos)~
+---SHA1.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-SHA1.processStorage メソッド &aname(SHA1-processStorage);~
+ チェックサム計算にローカルストレージの内容を追加。
+--シグネチャ:~
+---SHA1.processStorage(storage)~
+---SHA1.processStorage(storage, spos)~
+---SHA1.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+追加されたバイト数。~
+
+--------------------------------------------------------------------------------
+-SHA1.checksum メソッド &aname(SHA1-checksum);~
+ チェックサムの計算結果を返す。
+--シグネチャ:~
+---SHA1.checksum()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-SHA1.checksumOctet メソッド &aname(SHA1-checksumOctet);~
+ チェックサムの計算結果をオクテット列で返す。
+--シグネチャ:~
+---SHA1.checksumOctet()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-SHA1.checksumHex メソッド &aname(SHA1-checksumHex);~
+ チェックサムの計算結果を 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.checksumHex(upper = false)~
+--引数:~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBlock メソッド &aname(SHA1-calculateBlock);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBytes メソッド &aname(SHA1-calculateBytes);~
+ ポインタの範囲からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateOctet メソッド &aname(SHA1-calculateOctet);~
+ オクテット列からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateString メソッド &aname(SHA1-calculateString);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateString(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateNarrowString メソッド &aname(SHA1-calculateNarrowString);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateNarrowString(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateStorage メソッド &aname(SHA1-calculateStorage);~
+ ローカルストレージの内容からチェックサムを直接計算して返す。
+--シグネチャ:~
+---SHA1.calculateStorage(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBlockAsOctet メソッド &aname(SHA1-calculateBlockAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateBlockAsOctet(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBytesAsOctet メソッド &aname(SHA1-calculateBytesAsOctet);~
+ ポインタの範囲からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateBytesAsOctet(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateOctetAsOctet メソッド &aname(SHA1-calculateOctetAsOctet);~
+ オクテット列からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateOctetAsOctet(octet)~
+--引数:~
+---octet~
+追加するオクテット列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateStringAsOctet メソッド &aname(SHA1-calculateStringAsOctet);~
+ 文字列（UTF-16LE）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateStringAsOctet(str)~
+--引数:~
+---str~
+追加する文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateNarrowStringAsOctet メソッド &aname(SHA1-calculateNarrowStringAsOctet);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateNarrowStringAsOctet(str)~
+--引数:~
+---str~
+追加するナロー文字列。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateStorageAsOctet メソッド &aname(SHA1-calculateStorageAsOctet);~
+ ローカルストレージの内容からチェックサムを直接計算してオクテット列で返す。
+--シグネチャ:~
+---SHA1.calculateStorageAsOctet(storage)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+--返値:~
+---Octet~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBlockAsHex メソッド &aname(SHA1-calculateBlockAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateBlockAsHex(first, last, upper = false)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateBytesAsHex メソッド &aname(SHA1-calculateBytesAsHex);~
+ ポインタの範囲からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateBytesAsHex(data, ssize, upper = false)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-SHA1.calculateOctetAsHex メソッド &aname(SHA1-calculateOctetAsHex);~
+ オクテット列からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateOctetAsHex(octet, upper = false)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateStringAsHex メソッド &aname(SHA1-calculateStringAsHex);~
+ 文字列（UTF-16LE）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加する文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateNarrowStringAsHex メソッド &aname(SHA1-calculateNarrowStringAsHex);~
+ ナロー文字列（Shift_JIS）からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateNarrowStringAsHex(str, upper = false)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-SHA1.calculateStorageAsHex メソッド &aname(SHA1-calculateStorageAsHex);~
+ ローカルストレージの内容からチェックサムを直接計算して 16 進文字列で返す。
+--シグネチャ:~
+---SHA1.calculateStorageAsHex(storage, upper = false)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---upper~
+アルファベットを大文字にするかどうか。~
+--返値:~
+---String~
+チェックサム値。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------

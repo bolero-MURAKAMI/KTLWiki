@@ -1,0 +1,132 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列へ書き込み
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* オフセット位置 */
+ var bytes_offset = 0;
+ 
+ /* 64bit 整数の書き込み */
+ bytes_offset += oct.set(bytes_offset, 37564, OctetBuilder.vtfInt64);
+ Debug.message("bytes_offset = " + bytes_offset); // bytes_offset = 4
+ 
+ /* 倍精度浮動小数点数の書き込み */
+ bytes_offset += oct.set(bytes_offset, 3.14159265, OctetBuilder.vtfDouble);
+ Debug.message("bytes_offset = " + bytes_offset); // bytes_offset = 12
+ 
+ /* オクテット列の書き込み */
+ bytes_offset += oct.set(bytes_offset, <% DE AD BE AF %>, OctetBuilder.vtfOctet);
+ Debug.message("bytes_offset = " + bytes_offset); // bytes_offset = 16
+ 
+ /* BOM付き文字列の書き込み */
+ bytes_offset += oct.set(bytes_offset, "\xFEFFfoobar", OctetBuilder.vtfString);
+ Debug.message("bytes_offset = " + bytes_offset); // bytes_offset = 30
+ 
+ /* ローカルストレージの内容の書き込み */
+ bytes_offset += oct.setStorage(bytes_offset, System.exePath + "foobar.txt");
+
+-OctetBuilder.set メソッド~
+--シグネチャ:~
+---OctetBuilder.set(pos, v, flag = OctetBuilder.vtfByte)~
+--バッファへ値を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれる値を渡す。~
+--第３引数には、値のデータ型やエンディアンを指定するフラグを渡すことができる(デフォルト=1byte 値)。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.setByte メソッド~
+--シグネチャ:~
+---OctetBuilder.setByte(pos, size, b)~
+--バッファへ、1byte 値を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には連続して書き込むサイズを渡す。~
+--第３引数には書き込まれる値を渡す。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.setBuilder メソッド~
+--シグネチャ:~
+---OctetBuilder.setBuilder(pos, obj)~
+---OctetBuilder.setBuilder(pos, obj, spos)~
+---OctetBuilder.setBuilder(pos, obj, spos, ssize)~
+--バッファへ OctetBuilder インスタンスの内容を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれる OctetBuilder インスタンスを渡す。~
+--第３引数に数値を指定すると、書き込まれるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ書き込まれる。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.setOctet メソッド~
+--シグネチャ:~
+---OctetBuilder.setOctet(pos, octet)~
+---OctetBuilder.setOctet(pos, octet, spos)~
+---OctetBuilder.setOctet(pos, octet, spos, ssize)~
+--バッファへオクテット列を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれるオクテット列を渡す。~
+--第３引数に数値を指定すると、書き込まれるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ書き込まれる。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.setString メソッド~
+--シグネチャ:~
+---OctetBuilder.setString(pos, str)~
+---OctetBuilder.setString(pos, str, spos)~
+---OctetBuilder.setString(pos, str, spos, ssize)~
+--バッファへ文字列を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれる文字列（UTF-16LE）を渡す。~
+--第３引数に数値を指定すると、書き込まれるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ書き込まれる。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+-OctetBuilder.setNarrowString メソッド~
+--シグネチャ:~
+---OctetBuilder.setNarrowString(pos, str)~
+---OctetBuilder.setNarrowString(pos, str, spos)~
+---OctetBuilder.setNarrowString(pos, str, spos, ssize)~
+--バッファへ文字列を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれる文字列（Shift_JIS）を渡す。~
+--第３引数に数値を指定すると、書き込まれるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ書き込まれる。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）は挿入されない。~
+
+-OctetBuilder.setStorage メソッド~
+--シグネチャ:~
+---OctetBuilder.setStorage(pos, storage)~
+---OctetBuilder.setStorage(pos, storage, spos)~
+---OctetBuilder.setStorage(pos, storage, spos, ssize)~
+--バッファへローカルストレージの内容を書き込む。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には書き込まれるストレージのパスを渡す。~
+--第３引数に数値を指定すると、書き込まれるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ書き込まれる。~
+--実際に書き込まれたバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~

@@ -1,0 +1,125 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_checksum.dll（または ktl_checksum-d.dll）~
+
+-スクリプト~
+--[[ktl/Checksum.tjs]]~
+
+-クラス~
+--CRC_16 クラス~
+--CRC_CCITT クラス~
+--CRC_XMODEM クラス~
+--CRC_32 クラス~
+--MD5 クラス~
+--SHA1 クラス~
+
+
+
+*チェックサム直接計算
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Checksum.tjs");
+ 
+ /* 文字列（ワイド文字列）のMD5計算 */
+ Debug.message(
+     MD5.calculateStringAsHex("The quick brown fox jumps over the lazy dog")
+     );
+ 
+ /* xxx1.dat と xxx2.dat のストレージの内容のSHA1比較 */
+ if (SHA1.calculateStorage("xxx1.dat") === SHA1.calculateStorage("xxx1.dat")) {
+     Debug.message("２つのファイルのチェックサムは一致しました。");
+ }
+
+-CRC_16 クラス~
+-CRC_CCITT クラス~
+-CRC_XMODEM クラス~
+-CRC_32 クラス~
+-MD5 クラス~
+-SHA1 クラス~
+--それぞれの方法でチェックサムを計算するクラス。~
+--これらはほぼ同じインタフェースを持つ。~
+--以下のメンバの説明の<Checksum>はそれぞれのクラス名前に置き換える。~
+
+-<Checksum>.calculateStorage メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateStorage(storage)~
+--ストレージの内容からチェックサムを計算。~
+--CRC系の場合整数値として、MD5とSHA1の場合はオクテット列が返る。~
+
+-<Checksum>.calculateOctet メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateOctet(octet)~
+--オクテット列からチェックサムを計算。~
+--CRC系の場合整数値として、MD5とSHA1の場合はオクテット列が返る。~
+
+-<Checksum>.calculateString メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateString(str)~
+--文字列（ワイド文字列）からチェックサムを計算。~
+--CRC系の場合整数値として、MD5とSHA1の場合はオクテット列が返る。~
+
+-<Checksum>.calculateNarrowString メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateNarrowString(str)~
+--文字列（マルチバイト文字列）からチェックサムを計算。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--CRC系の場合整数値として、MD5とSHA1の場合はオクテット列が返る。~
+
+-<Checksum>.calculateStorageAsOctet メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateStorageAsOctet(storage)~
+--ストレージの内容からチェックサムを計算。~
+--このメソッドは必ずオクテット列が返る。~
+
+-<Checksum>.calculateOctetAsOctet メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateOctetAsOctet(octet)~
+--オクテット列からチェックサムを計算。~
+--このメソッドは必ずオクテット列が返る。~
+
+-<Checksum>.calculateStringAsOctet メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateStringAsOctet(str)~
+--文字列（ワイド文字列）からチェックサムを計算。~
+--このメソッドは必ずオクテット列が返る。~
+
+-<Checksum>.calculateNarrowStringAsOctet メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateNarrowStringAsOctet(str)~
+--文字列（マルチバイト文字列）からチェックサムを計算。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--このメソッドは必ずオクテット列が返る。~
+
+-<Checksum>.calculateStorageAsHex メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateStorageAsHex(storage, upper = false)~
+--ストレージの内容からチェックサムを計算。~
+--このメソッドは16進文字列が返る。~
+--第２引数にtrueを渡した場合、アルファベットは大文字で表わされる（デフォルトで小文字）。~
+
+-<Checksum>.calculateOctetAsHex メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateOctetAsHex(octet, upper = false)~
+--オクテット列からチェックサムを計算。~
+--このメソッドは16進文字列が返る。~
+--第２引数にtrueを渡した場合、アルファベットは大文字で表わされる（デフォルトで小文字）。~
+
+-<Checksum>.calculateStringAsHex メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateStringAsHex(str, upper = false)~
+--文字列（ワイド文字列）からチェックサムを計算。~
+--このメソッドは16進文字列が返る。~
+--第２引数にtrueを渡した場合、アルファベットは大文字で表わされる（デフォルトで小文字）。~
+
+-<Checksum>.calculateNarrowStringAsHex メソッド(2010/08/20 追加)~
+--シグネチャ:~
+---<Checksum>.calculateNarrowStringAsHex(str, upper = false)~
+--文字列（マルチバイト文字列）からチェックサムを計算。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--このメソッドは16進文字列が返る。~
+--第２引数にtrueを渡した場合、アルファベットは大文字で表わされる（デフォルトで小文字）。~
+

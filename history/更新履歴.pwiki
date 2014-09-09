@@ -1,0 +1,771 @@
+*目次 [#contents-]
+#contents
+
+
+
+*更新履歴(2014/04) [#update1404-]
+-2014/04/30~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.1f から 1.0.1g へアップデート。~
+--スクリプト[[ktl/SystemInfo.tjs]]追加。~
+--DLL ktl_system_info.dll, ktl_system_info-d.dll 追加。~
+---実行環境のシステム情報を提供する SystemInfo クラスを実装。~
+--DLL VC12(VC++2013)ビルド版を公開。~
+---■[[plugin-vc12.zip:http://www.boleros.x0.com/data/plugin-vc12.zip]]~
+---VC12版DLLは、あくまで実験的なものです。~
+
+
+
+*更新履歴(2014/02) [#update1402-]
+-2014/02/07~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスにエアリー関数、ヤコビの楕円関数を追加。~
+
+-2014/02/05~
+&color(red){Ver 0.2.9};~
+--DLL すべて更新。~
+---Boost を Boost 1.54 から Boost 1.55 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.6.5 から libpng 1.6.8 へアップデート。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.1e から 1.0.1f へアップデート。~
+--スクリプト更新。~
+---Copyright(C) を表記。~
+
+
+
+*更新履歴(2014/01) [#update1401-]
+-2014/01/23~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader, Socket, Acceptor クラスの onFinished ハンドラの中から呼出元インスタンスのメンバにアクセスした場合デッドロックが発生する可能性があった問題を修正。~
+---Downloader, Socket, Acceptor クラスの onFinished プロパティが void に設定されるタイミングを、ハンドラ呼出後から呼出時点に変更。~
+これによって、ハンドラの中から次の非同期処理で使われるハンドラを再設定できるようになった。~
+---Downloader, Socket クラスの waitTimeoutFromNow, waitTimeoutAt メソッドで、非同期処理の完了如何に関わらず指定時間まで待機していたのを、非同期処理が完了した時点で返るように修正。~
+---Downloader, Socket クラスに、単に非同期処理の完了を待機する join メソッドを追加。~
+---Network クラスに、非同期処理をハードウェアの CPU コアの使用可能な並列実行数に基づいて駆動させる runWithHardwareConcurrency メソッドを追加。~
+---Network クラスに、ハードウェアの CPU コアの使用可能な並列実行数を取得する threadHardwareConcurrency プロパティ を追加。~
+
+
+
+*更新履歴(2013/07) [#update1307-]
+-2013/07/03~
+&color(red){Ver 0.2.8};~
+--DLL すべて更新。~
+---Boost を Boost 1.53 から Boost 1.54 へアップデート。~
+
+
+
+*更新履歴(2013/05) [#update1305-]
+-2013/05/03~
+--DLL ktl_compression.dll, ktl_compression-d.dll 更新。~
+---zlib を zlib 1.2.7 から zlib 1.2.8 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.6.1 から libpng 1.6.2 へアップデート。~
+
+
+
+*更新履歴(2013/04) [#update1304-]
+-2013/04/03~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.5.14 から libpng 1.6.1 へアップデート。~
+--DLL ktl_big_int.dll, ktl_big_int-d.dll 更新。~
+---NTL を NTL 5.5.2 から NTL 6.0.0 へアップデート。~
+
+
+
+*更新履歴(2013/02) [#update1302-]
+-2013/02/14~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.1c から 1.0.1e へアップデート。~
+--DLL ktl_big_int.dll, ktl_big_int-d.dll 更新。~
+---BigInt と同等のインタフェースで Boost.Multiprecision バックエンドによる実装の CppInt クラスを追加。~
+
+-2013/02/06~
+&color(red){Ver 0.2.7};~
+--DLL すべて更新。~
+---Boost を Boost 1.52 から Boost 1.53 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.5.13 から libpng 1.5.14 へアップデート。~
+
+
+
+*更新履歴(2013/01) [#update1301-]
+-2013/01/06~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---yaml-cpp を yaml-cpp 0.3.0 から yaml-cpp 0.5.0 へ更新。~
+---PTree クラスの YAML 書き出しメソッドで、ドキュメント開始マークが出力されていなかった問題を修正。~
+---PTree クラスの HTML 読み込みメソッドで、BOM 付き Unicode 文字列を正常に読み込めなかった問題を修正。~
+---PTree クラスに、YAML 書き出し時にドキュメント終了マークを出力するフラグを追加。~
+
+
+
+*更新履歴(2012/11) [#update1211-]
+-2012/11/06~
+&color(red){Ver 0.2.6};~
+--DLL すべて更新。~
+---Boost を Boost 1.51 から Boost 1.52 へアップデート。~
+
+
+
+*更新履歴(2012/10) [#update1210-]
+-2012/10/16~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスで、サーバ側の転送コーディング（Transfer-Encoding）が chunked の場合の処理が正しくなかった問題を修正。~
+
+-2012/10/15~
+--DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+--DLL ktl_storage_stream.dll, ktl_storage_stream-d.dll 更新。~
+--DLL ktl_compression.dll, ktl_compression-d.dll 更新。~
+--DLL ktl_bzip2.dll, ktl_bzip2-d.dll 更新。~
+--DLL ktl_checksum.dll, ktl_checksum-d.dll 更新。~
+--DLL ktl_octet_builder.dll, ktl_octet_builder-d.dll 更新。~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+--DLL ktl_big_int.dll, ktl_big_int-d.dll 更新。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+--DLL ktl_serialization.dll, ktl_serialization-d.dll 更新。~
+--DLL ktl_sprite_coord.dll, ktl_sprite_coord-d.dll 更新。~
+--DLL ktl_sprites.dll, ktl_sprites-d.dll 更新。~
+---オクテット列を引数にとるメソッドで、空のオクテット列を渡した場合 EAccessViolation が発生する問題を修正。~
+---（このバグは、[[Mili(Yi)Zhang:https://github.com/milizhang]] 氏の報告を受けて修正したものです）~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.5.11 から libpng 1.5.13 へアップデート。~
+
+-2012/10/10~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスに、HTTPリクエストに独自のヘッダを追加するメソッドを追加。~
+---Downloader クラスに、レスポンスのHTTPステータスコードがエラーを返しても解析を続行するプロパティを追加。~
+---（この追加機能は、[[Mili(Yi)Zhang:https://github.com/milizhang]] 氏の実装によるものです）~
+
+
+
+*更新履歴(2012/09) [#update1209-]
+-2012/09/05~
+--DLL VC11(VC++2012)ビルド版を公開。~
+---■[[plugin-vc11.zip:http://www.boleros.x0.com/data/plugin-vc11.zip]]~
+---VC11版DLLは、あくまで実験的なものです。~
+
+
+
+*更新履歴(2012/08) [#update1208-]
+-2012/08/21~
+&color(red){Ver 0.2.5};~
+--DLL すべて更新。~
+---Boost を Boost 1.50 から Boost 1.51 へアップデート。~
+
+
+
+*更新履歴(2012/07) [#update1207-]
+-2012/07/06~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスにハンケル関数、オーウェンのT関数を追加。~
+
+-2012/07/03~
+&color(red){Ver 0.2.4};~
+--DLL すべて更新。~
+---Boost を Boost 1.49 から Boost 1.50 へアップデート。~
+---zlib を zlib 1.2.6 から zlib 1.2.7 へアップデート。~
+---libpng を libpng 1.5.9 から libpng 1.5.11 へアップデート。~
+---OpenSSL を OpenSSL 1.0.1 から 1.0.1c へアップデート。~
+--DLL ktl_local_files.dll, ktl_local_files-d.dll 更新。~
+---LocalFiles.status メソッドがファイルタイプを返していたのを、ファイルタイプとパーミッションの辞書配列を返すよう変更。&color(darkred){[破壊的変更]};~
+---LocalFiles クラスにファイルステータスを返すメソッドのバリエーションを追加。~
+---LocalFiles クラスにディレクトリ容量を返すメソッドを追加。~
+---LocalFiles クラスにパーミッションを変更するメソッドを追加。~
+
+
+
+*更新履歴(2012/03) [#update1203-]
+-2012/03/21~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスのメソッドで、保存パスに日本語が含まれていた場合、ファイルオープンに失敗する問題（2012/03/08 で混入したバグ）を修正。~
+---VC8 ビルド版において、Downloader クラスのメソッドで、保存パスを変換する際にスタックオーバーフローで終了する問題（2012/03/08 で混入したバグ）を修正。~
+
+-2012/03/18~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0g から 1.0.1 へアップデート。~
+
+-2012/03/15~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader, Socket, Acceptor クラスで、非同期処理内で例外が投げられた時、プログラムが異常終了する問題を修正。~
+
+-2012/03/14~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader.clearBuffer メソッドで、非同期処理中に呼ばれたとき何もせず false を返すよう仕様変更。&color(darkred){[破壊的変更]};~
+---Downloader クラスで、非同期処理が進行中にオブジェクトが無効化されたとき、正常に処理がキャンセルされるよう修正。~
+---Downloader クラスで、HTTPレスポンス解析失敗時のログ出力がスレッドセーフになっていなかった問題を修正。~
+---Downloader クラスに、データ送信（POST）機能を追加。~
+
+-2012/03/09~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+---Encoding.URLDecodeToOctet メソッドのシグネチャ変更。&color(darkred){[破壊的変更]};~
+---Encoding クラスで、URLエンコードとBase64エンコードのいくつかのメソッド名変更。~
+古い名前は互換性のために残される。~
+---Encoding クラスで、バイナリからURLエンコードするためのメソッドのバリエーション追加。~
+---Encoding クラスで、URLエンコードの実装で余分な文字コード変換が発生しないよう改善。~
+
+-2012/03/08~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスで、ダウンロードのファイル出力処理をTJSベースからC++標準ライブラリベースに変更。~
+これにより非同期処理がスレッドセーフになった。~
+---Downloader クラスに、ダウンロード元のURLや保存先パスを取得するプロパティ追加。~
+---Downloader, Socket, Acceptor クラスに、処理終了時のコールバックを設定するプロパティ追加。~
+
+-2012/03/08~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスの非同期ダウンロードで、https の場合、接続時にプログラムが異常終了する問題を修正。~
+---Downloader クラスの非同期ダウンロードで、非同期処理のハンドラからのログ出力がメインスレッドで行われるよう修正。~
+
+-2012/03/04~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket クラスに、名前解決したIPアドレスのリストを取得するメソッドを追加。~
+
+
+
+*更新履歴(2012/02) [#update1202-]
+-2012/02/27~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader, Socket クラスに、タイムアウトをエポック時間で設定するメソッドを追加。~
+---Downloader, Socket クラスで使用されるタイムアウト用タイマの実装を、Boost.DateTime ベースから Boost.Chrono ベースに変更。~
+---Network クラスに、エポック時間を取得するメソッドを追加。~
+
+-2012/02/25~
+--DLL すべて更新。~
+---Boost を Boost 1.49.beta.1 から Boost 1.49 へアップデート。~
+
+-2012/02/23~
+&color(red){Ver 0.2.3};~
+--DLL すべて更新。~
+---Boost を Boost 1.48 から Boost 1.49.beta.1 へアップデート。~
+---その他いくつか小さなバグの修正。~
+--DLL ktl_compression.dll, ktl_compression-d.dll 更新。~
+---zlib を zlib 1.2.5 から zlib 1.2.6 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---アルファチャンネル付き画像を使ったスプラッシュスクリーンを扱える LayeredSplashWindow クラスを追加。~
+---SplashWindow クラスに、メモリ上から画像を読み込むメソッドを追加。~
+---libpng を libpng 1.2.46 から libpng 1.5.9 へアップデート。~
+
+-2012/02/19~
+--スクリプト[[ktl/Network.tjs]]更新。~
+---吉里吉里終了時に ktl_network.dll がアンロードされるとき、非同期ネットワーク処理が進行中だった場合、ネットワーク停止時に不正な処理が行なわれる場合がある問題に対応。~
+
+-2012/02/16~
+--ランタイム Microsoft.VC90.CRT.manifest 更新。~
+--ランタイム msvcp90.dll 追加。~
+---これは Microsoft Visual C++ 2008 ランタイムの SxS のためのマニフェストと DLL である。~
+---■[[Microsoft.VC90.CRT.zip:http://www.boleros.x0.com/data/Microsoft.VC90.CRT.zip]]~
+
+-2012/02/13~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスに INI 読み書きのためのメソッド追加。~
+---PTree クラスに INI 整形のためのメソッド追加。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0f から 1.0.0g へアップデート。~
+
+-2012/02/02~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+---Encoding クラスに、文字セット名のエイリアスが等値であるか比較するメソッド追加。~
+---Encoding クラスに、オクテット列表現による文字列から文字コード検出するメソッド追加。~
+この実装にともない、外部 DLL icuin46.dll に依存するようになった。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---yaml-cpp を yaml-cpp 0.2.7 から yaml-cpp 0.3.0 へ更新。~
+---PTree クラスに、HTML 読み込みのためのメソッド追加。~
+これは内部実装に htmlcxx 0.85 を使用している。~
+--外部 DLL icuin46.dll 追加。~
+---これは IBM 製の Unicode ライブラリ ICU の DLL で、多言語への対応で使用される。~
+---■[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]]~
+
+
+
+*更新履歴(2012/01) [#update1201-]
+-2012/01/26~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket クラスのプロトコルフラグや完了条件フラグを、Network クラスのプロパティとして追加。~
+
+-2012/01/25~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket クラスのメソッドで、内部処理でのソケットの close で失敗したとき例外が投げられていたのを、メソッドがエラー値を返すように変更。~
+---Acceptor クラスを追加。これは指定ポートへの接続を常に監視するためなどに使用される。~
+
+-2012/01/19~
+--DLL すべて更新。~
+---いくつかのヒープオブジェクト構築を効率化。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket クラスで、接続待ちの非同期処理が駆動中にオブジェクトが無効化されたとき、プログラムが異常終了する場合がある問題を修正。~
+---Socket.accept, Socket.asyncAccept メソッドで、既に接続されたソケットがあるポートを使った接続待ちが失敗する問題を修正。~
+---Socket.accept, Socket.asyncAccept メソッドで、内部処理での bind や listen で失敗したとき例外が投げられていたのを、メソッドがエラー値を返すように変更。~
+---Socket.asyncAccept メソッドで、非同期処理の駆動中フラグが変更されていなかった問題を修正。~
+---Socket.cancel メソッドで、接続待ちの非同期処理のキャンセルが常に失敗する問題を修正。~
+---Socket.close メソッドで、駆動中の非同期処理のキャンセルが確実に試行されるよう変更。~
+---Network.hostName プロパティを追加。~
+---ktl_network.dll がアンロードされるとき、Network.finish メソッド相当の動作をしていたのを、デフォルトで Network.stop メソッド相当の動作に変更。~
+---その他いくつか小さなバグの修正。~
+
+-2012/01/15~
+--DLL すべて更新。~
+---いくつかの文字列を引数に取るメソッドで、空文字列を渡すとプログラムが終了する場合がある問題を修正。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket.readUntil, Socket.asyncReadUntil 系統のメソッドに、指定バイト/指定ワイド文字列/指定ナロー文字列/指定オクテット列/指定正規表現に一致するまで受信するメソッドを追加。~
+---Socket.read, Socket.asyncRead メソッドの第２引数に完了条件フラグを指定できるよう変更（少なくとも指定バイト数まで／丁度指定バイト数まで）。~
+
+-2012/01/14~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket.accept, Socket.asyncAccept 等の接続待ちメソッドを追加。~
+---Socket.connect 系統の同期メソッドで、接続に成功したにも関わらず開かれたソケットが破棄されていた問題を修正。~
+---Socket.pushLine メソッドで、空文字列を渡したときプログラムが終了する問題を修正。~
+---Socket.handshake, Socket.asyncHandshake メソッドで、connectSSL の後か acceptSSL の後かによって、クライアント側のハンドシェイクかサーバ側のハンドシェイクかが自動的に選択実行されるよう変更。~
+---Socket.connectLoopback, Socket.asyncConnectLoopback メソッドで、プロトコルをデフォルトの IPv4 の他に IPv6 を選択できるよう変更。~
+
+-2012/01/12~
+&color(red){Ver 0.2.2};~
+--DLL すべて更新。~
+---Boost を Boost 1.47 から Boost 1.48 へアップデート。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0e から 1.0.0f へアップデート。~
+---Socket.connect, Socket.asyncConnect メソッドの port 引数が 256 以上の値のとき例外が発生する問題を修正。~
+
+
+
+*更新履歴(2011/09) [#update1109-]
+-2011/09/16~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---yaml-cpp を yaml-cpp 0.2.6 から yaml-cpp 0.2.7 へ更新。~
+
+-2011/09/10~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0d から 1.0.0e へアップデート。~
+
+
+
+*更新履歴(2011/07) [#update1107-]
+-2011/07/27~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスに浮動小数点数関連のメソッドを追加。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.2.45 から libpng 1.2.46 へアップデート。~
+
+-2011/07/25~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx.hermite メソッドで、第１引数を符号付き整数に誤ってキャストしていた問題を修正。~
+---MathEx.ellint3 メソッドで、２引数版のオーバーロード（第３種ルジャンドル完全楕円積分）が実装されていなかった問題を修正。~
+
+-2011/07/24~
+--スクリプト[[ktl/MathEx.tjs]]追加。~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 追加。~
+---Math クラスの互換機能および様々な数学関数を実装。~
+
+-2011/07/17~
+--DLL ktl_variate_random.dll, ktl_variate_random-d.dll 更新。~
+---VariateRandom クラスとすべての確率分布クラスに min, max プロパティを実装。~
+
+-2011/07/15~
+&color(red){Ver 0.2.1};~
+--DLL すべて更新。~
+---Boost を Boost 1.46.1 から Boost 1.47 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.2.44 から libpng 1.2.45 へアップデート。~
+--DLL ktl_variate_random.dll, ktl_variate_random-d.dll 更新。~
+---乱数生成エンジンクラス KnuthB, MT19937_64 を追加。~
+---確率分布クラス NegativeBinomialDistribution, WeibullDistribution, ExtremeValueDistribution, ChiSquaredDistribution, FisherFDistribution, StudentTDistribution, DiscreteDistribution, PiecewiseConstantDistribution, PiecewiseLinearDistribution を追加。~
+---確率分布クラス UniformInt, UiformReal を UniformIntDistribution, UiformRealDistribution に改名。~
+古い名前はこれらのエイリアスとして使用可能。~
+---すべての確率分布クラスで、コンストラクタに既定より多くの引数を渡した場合の動作で、すべての引数を無視するようになっていたのを、余分な引数のみ無視するように修正。~
+---全ての乱数生成エンジンクラスで、符合付き整数の代わりに符号無し整数を使用するように変更。~
+---GammaDistribution クラスのコンストラクタに引数 beta を追加。~
+---GammaDistribution クラスのシリアライズ形式の変更。[非前方互換]~
+---GeometricDistribution, LognormalDistribution クラスのパラメータの意味を変更。&color(darkred){[破壊的変更]};~
+---BinomialDistribution の精度を、実装上の問題から 64bit から 32bit に変更。~
+※この変更は以降の更新で元の仕様に戻される場合がある。~
+
+
+
+*更新履歴(2011/04) [#update1104-]
+-2011/04/18~
+--DLL ktl_local_files.dll, ktl_local_files-d.dll 更新。~
+---LocalFiles クラスにディレクトリエントリを列挙するメソッドを追加。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree.sort メソッドの comp 引数に指定可能なバリエーションを追加。~
+
+-2011/04/08~
+&color(red){Ver 0.2};~
+--DLL すべて更新。[重要な更新]~
+---外部 DLL を除く全ての DLL を MSVC ランタイムに依存しないように変更。~
+これにより、多くの場合ユーザ環境に拘わらずスタンドアロンに動作するようになった。~
+--DLL ktl_encoding-d.dll 更新。~
+--DLL ktl_ptree-d.dll 更新。~
+---依存する外部 DLL を、icuuc46d.dll から icuuc46.dll に変更。~
+--DLL ktl_bzip2.dll, ktl_bzip2-d.dll 更新。~
+---外部 DLL libbz2.dll に依存しないように変更。~
+--外部 DLL msvcr90.dll（およびマニフェスト）追加。~
+---これは MSVC ランタイムの DLL で、再頒布可能パッケージのインストールされていないユーザ環境で実行するためのもの。~
+
+-2011/04/03~
+--スクリプト[[ktl/LocalFiles.tjs]]追加。~
+--DLL ktl_local_files.dll, ktl_local_files-d.dll 追加。~
+---基本的なファイル操作を実装。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---yaml-cpp を yaml-cpp 0.2.5 から yaml-cpp 0.2.6 へ更新。~
+--DLL VC10(VC++2010)ビルド版の開発環境を更新。~
+---VC++2010 に Visual Studio 2010 SP1 を適用。~
+
+
+
+*更新履歴(2011/03) [#update1103-]
+-2011/03/31~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Network クラスに、インターネット接続状態を返すプロパティを追加。~
+--スクリプト[[ktl/Outputs.tjs]]更新。~
+---例外等による異常系フローのとき、インデントの巻き戻し等が正しく行われるよう修正。~
+
+-2011/03/28~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---ウィンドウを再初期化できるよう変更。~
+---未初期化状態のときのプロパティアクセスで例外が投げられる仕様を、単に何もしないよう変更。~
+
+-2011/03/15~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスの書き出し系メソッドで、indent_count 引数を正しく処理できていなかった問題を修正。~
+
+-2011/03/15~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスの書き出し系メソッドで、indent_count 引数を正しく処理できていなかった問題を修正。~
+
+-2011/03/14~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスの JSON 書き出しメソッドに pretty 引数を追加。~
+--DLL すべて更新。~
+---Boost を Boost 1.45 から Boost 1.46.1 へアップデート。~
+
+-2011/03/10~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader, Socket クラスにタイムアウト機能を追加。~
+--DLL すべて更新。~
+---Copyright 表記を 2009-2011 に更新。~
+
+-2011/03/05~
+--スクリプト[[ktl/VariateRandom.tjs]]追加。~
+--DLL ktl_variate_random.dll, ktl_variate_random-d.dll 追加。~
+---様々な疑似乱数生成エンジン、非決定論的乱数生成エンジン、確率分布などを実装。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0c から 1.0.0d へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 追加。~
+---SplashWindow.initialize メソッドで、identity 引数を省略可能にした。~
+--DLL すべて更新。~
+---いくつかのシリアライズ用メソッドのうち文字列を引数にとるもので、空文字列を渡したとき不正な処理が行われる場合がある問題を修正。~
+
+
+
+*更新履歴(2011/02) [#update1102-]
+-2011/02/03~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---ICU を ICU 4.5.2 から ICU 4.6 へ更新。~
+--外部 DLL icudt46.dll icuuc46.dll icuuc46d.dll 追加。~
+---これは IBM 製の Unicode ライブラリ ICU の DLL で、文字コードの変換で使用される。~
+---■[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]]~
+---■（旧版）[[ICU-4.5.2.zip:http://www.boleros.x0.com/data/ICU-4.5.2.zip]]~
+
+
+
+*更新履歴(2011/01) [#update1101-]
+-2011/01/29~
+--DLL すべて更新。~
+---ヘッダの構成を変更してリビルド。~
+--DLL ktl_sprite_coord.dll, ktl_sprite_coord-d.dll 更新。~
+---SpriteCoord クラスで、points3Y プロパティの名前が間違っていたのを修正。~
+
+-2011/01/17~
+--スクリプト[[ktl/MethodOverrider.tjs]]修正。~
+--スクリプト[[ktl/OverrideMethod.tjs]]修正。~
+
+
+
+*更新履歴(2010/12) [#update1012-]
+-2010/12/31~
+--スクリプト[[ktl/MethodOverrider.tjs]]追加。~
+--スクリプト[[ktl/OverrideMethod.tjs]]追加。~
+--DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
+---Utils クラスに、getContext メソッドを追加。~
+
+-2010/12/21~
+--スクリプト[[ktl/PTime.tjs]]追加。~
+--DLL ktl_ptime.dll, ktl_ptime-d.dll 追加。~
+
+-2010/12/13~
+--DLL ktl_compression.dll, ktl_compression-d.dll 更新。~
+---Inflate クラスで、ワイド文字を読み出すとき指定バイト数が奇数の場合、有効な範囲を越えて読み込もうとする場合がある問題を修正。~
+--DLL ktl_bzip2.dll, ktl_bzip2-d.dll 更新。~
+---Bzip2Decompressor クラスで、ワイド文字を読み出すとき指定バイト数が奇数の場合、有効な範囲を越えて読み込もうとする場合がある問題を修正。~
+
+-2010/12/10~
+--DLL ktl_octet_builder.dll, ktl_octet_builder-d.dll 更新。~
+---OctetBuilder クラスで、以下の点を変更。~
+OctetBuilder.transformNotByte メソッドの名前が間違っていたのを修正。~
+ワイド文字を読み出すとき指定バイト数が奇数の場合、有効な範囲を越えて読み込もうとする場合がある問題を修正。~
+
+-2010/12/08~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0b から 1.0.0c へアップデート。~
+
+-2010/12/07~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader クラスで、以下の点を変更。~
+非同期処理をキャンセルするとき、通信が遅延している場合、システムが成功または失敗を返すまでキャンセル処理が実際に行われない問題を修正。~
+HTTPヘッダのフィールド名を、大文字小文字を区別して扱っていたため、一致すべきフィールド名が一致しないものと判定される場合がある問題を修正。~
+---Socket クラスで、以下の点を変更。~
+非同期処理をキャンセルする cancel メソッドを追加。~
+ソケットを閉じる close メソッドを追加。~
+enableSocket プロパティを isOpen プロパティに改名。&color(darkred){[破壊的変更]};~
+--DLL ktl_storage_stream.dll, ktl_storage_stream-d.dll 更新。~
+---StorageStream クラスで、ワイド文字を読み出すとき指定バイト数が奇数の場合、有効な範囲を越えて読み込もうとする場合がある問題を修正。~
+
+
+
+*更新履歴(2010/11) [#update1011-]
+-2010/11/25~
+--DLL すべて更新。~
+---Boost を Boost 1.44 から Boost 1.45 へアップデート。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.0a から 1.0.0b へアップデート。~
+---Downloader クラスで、以下の点を変更。~
+コンテンツのデータ長（Content-Length）がサーバが実際に返すデータ長と一致しない場合の問題を修正。~
+サーバ側の転送コーディング（Transfer-Encoding）が chunked のとき正しく処理できるよう対応。~
+フラグでの指定にかかわらず、必ずHTTPレスポンスへッダを解析するように変更。~
+いくつかの情報取得プロパティを追加。~
+
+-2010/11/15~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Socket クラスのメソッドをIPv6アドレスに対応。~
+
+
+
+*更新履歴(2010/10) [#update1010-]
+-2010/10/27~
+--DLL すべて更新。~
+---tp_stub を 吉里吉里2.30 から 吉里吉里2.32rev2 に更新。~
+
+-2010/10/06~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+外部 DLL icudt45.dll icuuc45.dll icuuc45d.dll 更新。~
+---ICU を ICU 4.5.1 から ICU 4.5.2 へ更新。~
+
+-2010/10/04~
+--DLL ktl_os_version.dll, ktl_os_version-d.dll 更新。~
+---OSVersion クラスに簡易バージョンチェック用メソッドを実装。~
+--スクリプト[[ktl/Network.tjs]]更新。~
+---OSのバージョンチェック部分を少し変更。(実際的な挙動はそのまま)~
+
+-2010/10/03~
+--DLL すべて更新。~
+---デバッグ版のビルドオプションを変更。~
+--スクリプト[[ktl/OSVersion.tjs]]追加。~
+--DLL ktl_os_version.dll, ktl_os_version-d.dll 追加。~
+---実行環境のOSのバージョンを取得する OSVersion クラスを実装。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 追加。~
+---KTL.Network のDLLを Windows 2000 で実行可能にしたもの。~
+--スクリプト[[ktl/Network.tjs]]更新。~
+---OSのバージョンチェックをもとに適切なDLLを選択して読み込むよう変更。~
+
+-2010/10/01~
+--DLL すべて更新。~
+--外部 DLL libbz2.dll 更新。~
+---bzip2 を bzip2 1.0.5 から bzip2 1.0.6 へ更新。~
+--外部 DLL icudt45.dll icuuc45.dll icuuc45d.dll 更新。~
+---ICU のビルドオプション(ランタイム選択関連)を修正してリビルド。~
+
+
+
+*更新履歴(2010/09) [#update1009-]
+-2010/09/17~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスのHTTPレスポンスヘッダ構文解析をきちんとしたパーサに書き直した。~
+
+
+
+*更新履歴(2010/08) [#update1008-]
+-2010/08/30~
+--DLL VC8(VC++2005)ビルド版を公開。~
+---■[[plugin-vc8.zip:http://www.boleros.x0.com/data/plugin-vc8.zip]]~
+---VC8版DLLは、互換性のためのものです。~
+通常のVC9でビルドしたものが動かない場合など、より古い環境で動く可能性がある。~
+
+-2010/08/26~
+--DLL すべて更新。~
+---ICU を ICU 4.4 から ICU 4.5.1 へ更新。~
+--外部 DLL icudt45.dll icuuc45.dll icuuc45d.dll 追加。~
+---これは IBM 製の Unicode ライブラリ ICU の DLL で、文字コードの変換で使用される。~
+---■[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]]~
+---■（旧版）[[ICU-4.4.zip:http://www.boleros.x0.com/data/ICU-4.4.zip]]~
+
+-2010/08/24~
+--DLL VC10(VC++2010)ビルド版を公開。~
+---■[[plugin-vc10.zip:http://www.boleros.x0.com/data/plugin-vc10.zip]]~
+---VC10版DLLは、あくまで実験的なものです。~
+通常のVC9でビルドしたものよりパフォーマンスが向上する可能性があるが、~
+Windows2000で動かない、実行環境のランタイムがない可能性などのデメリットがある。~
+
+-2010/08/22~
+--DLL すべて更新。~
+---デバッグ版とリリース版でロギングのレベルを分けた。~
+---（リリース版では冗長な情報を無視し、重要な通知、および警告やエラーのみ出力されるようにした）~
+
+-2010/08/20~
+--DLL すべて更新。~
+---内部のログ出力機能を更新。~
+--DLL ktl_checksum.dll, ktl_checksum-d.dll 更新。~
+---各クラスに、チェックサム値の直接計算のためのメソッドを追加。~
+
+-2010/08/18~
+--DLL すべて更新。~
+---Boost を Boost 1.43 から Boost 1.44 へアップデート。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---Ptree クラスのJSON書き出しのメソッドで、pretty引数を廃止。&color(darkred){[破壊的変更]};~
+
+-2010/08/17~
+--DLL ktl_octet_builder.dll, ktl_octet_builder-d.dll 追加。~
+---OctetBuilder クラスに、ビット演算メソッドを追加。~
+
+-2010/08/14~
+--スクリプト[[ktl/Bzip2.tjs]]追加。~
+--DLL ktl_bzip2.dll, ktl_bzip2-d.dll 追加。~
+---bzip2 によるデータ圧縮／展開を実装。~
+--DLL ktl_compression.dll, ktl_compression-d.dll 更新。~
+---Inflate クラスの内部実装を改良。~
+--外部 DLL libbz2.dll 追加。~
+---これは libbzip2 の DLL で、bzip2 によるデータ圧縮／展開で使用される。~
+
+-2010/08/12~
+--スクリプト[[ktl/Compression.tjs]]追加。~
+--DLL ktl_compression.dll, ktl_compression-d.dll 追加。~
+---Deflateアルゴリズムによるデータ圧縮／展開を実装。~
+--DLL ktl_checksum.dll, ktl_checksum-d.dll 更新。~
+---非推奨な非公開メソッドを削除。&color(darkred){[破壊的変更]};~
+---処理メソッドで、より細かい指定ができるようシグネチャ追加。~
+--DLL ktl_octet_builder.dll, ktl_octet_builder-d.dll 更新。~
+---引数チェックの冗長性を改善。~
+
+-2010/08/02~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスに YAML 読み書きのためのメソッド追加。~
+
+
+
+*更新履歴(2010/07) [#update1007-]
+-2010/07/24~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスにソートや切り出し／代入のためのメソッド追加。~
+--DLL ktl_octet_builder.dll, ktl_octet_builder-d.dll 更新。~
+---OctetBuilder クラスでのインスタンス名チェックのバグ修正。~
+
+-2010/07/23~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 更新。~
+---PTree クラスに要素取得／操作のためのメソッド追加。~
+
+-2010/07/19~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Socket クラスにIPアドレスを直接指定して接続するメソッド追加。~
+--DLL ktl_checksum.dll, ktl_checksum-d.dll 更新。~
+---チェックサム値を16進文字列として取得するメソッド追加。~
+
+-2010/07/17~
+--スクリプト[[ktl/PTree.tjs]]追加。~
+--DLL ktl_ptree.dll, ktl_ptree-d.dll 追加。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Socket クラスにバッファ読み取りのためのメソッド追加。~
+--いくつかのDLLで、細かなバグ修正。~
+
+-2010/07/14~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.2.43 から libpng 1.2.44 へアップデート。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Socket クラスの更新、バグ修正。~
+
+-2010/07/13~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---ソケット通信のための Socket クラスを更新。~
+
+-2010/07/11~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+---URLエンコードに対応するデコード機能を追加。~
+
+-2010/07/10~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスのダウンロードメソッド(内部バッファ版)で、ダウンロードが途中で失敗したとき~
+内部バッファ(既にダウンロードされた分のデータが格納されている)がクリアされるバグを修正。~
+
+-2010/07/09~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスに、ダウンロードデータを内部バッファに保持するメソッドを追加。~
+---Downloader クラスに、HTTPヘッダを解析するフラグを追加。~
+---ほか、細かな変更とバグ修正。~
+
+-2010/07/07~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+---URLエンコードの変換オプションフラグのメンバ名を変更。~
+---Base64エンコード／デコード機能を追加。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---最前面化機能を追加。~
+
+
+
+*更新履歴(2010/06) [#update1006-]
+-2010/06/30~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスに、HTTPレスポンスなどを取得するプロパティを追加。~
+--DLL 更新。~
+---いくつかのメソッドの引数において、64bit 整数から 32bit 整数へのキャスト時に~
+オーバーフローが発生した場合、例外を投げるように変更。~
+
+-2010/06/29~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 更新。~
+---URLエンコード機能を追加。~
+
+-2010/06/28~
+--スクリプト[[ktl/Encoding.tjs]]追加。~
+--DLL ktl_encoding.dll, ktl_encoding-d.dll 追加。~
+--外部 DLL icudt44.dll icuuc44.dll icuuc44d.dll 追加。~
+---これは IBM 製の Unicode ライブラリ ICU の DLL で、文字コードの変換で使用される。~
+
+-2010/06/25~
+--DLL 更新。~
+---ストレージ読込を行うメソッドにおいて、必要なバッファを一度に確保するよう変更。~
+
+-2010/06/20~
+--スクリプト[[ktl/StorageStream.tjs]]追加。~
+--DLL ktl_storage_stream.dll, ktl_storage_stream-d.dll 追加。~
+--DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
+---ktl_utils の提供するネイティブメソッドを、Utils クラスに属するよう変更。~
+--ktl_utils 更新に伴い、当該メソッドを利用するいくつかのスクリプトを修正。~
+

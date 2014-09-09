@@ -1,0 +1,99 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列をクリア
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* バッファを確保 */
+ oct.size = 100;
+ 
+ /* バッファをクリア */
+ oct.clear();
+ 
+ /* バッファは空になる */
+ if (oct.empty) {
+     Debug.message("バッファはクリアされました。");
+ }
+
+-OctetBuilder.clear メソッド~
+--シグネチャ:~
+---OctetBuilder.clear()~
+--バッファをクリアする。~
+
+
+
+*オクテット列を削除
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* バッファを確保 */
+ oct.size = 100;
+ 
+ /* バッファを削除 */
+ oct.erase(0, 30);
+ Debug.message("size = " + oct.size); // size = 70
+
+-OctetBuilder.erase メソッド~
+--シグネチャ:~
+---OctetBuilder.erase(pos, size = 1)~
+--バッファを削除する。~
+--第１引数には削除するオフセットのバイト数を渡す。~
+--第３引数には、削除するバイト数を渡すことができる(デフォルト=1)。~
+
+
+
+*オクテット列を前／後から削除
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* バッファを確保 */
+ oct.size = 100;
+ 
+ /* バッファを後から削除 */
+ var popped_byte = oct.pop();
+ Debug.message("popped_byte = " + popped_byte);
+ 
+ /* バッファを後から削除 */
+ var popped_size = oct.pop(3);
+ Debug.message("popped_size = " + popped_size);
+
+-OctetBuilder.pop メソッド~
+--シグネチャ:~
+---OctetBuilder.pop()~
+---OctetBuilder.pop(size)~
+--バッファを後から削除する。~
+--1byte削除し、その値を返す。
+--第１引数に削除するバイト数を渡した場合、実際に削除されたバイト数を返す。~
+
+-OctetBuilder.shift メソッド~
+--シグネチャ:~
+---OctetBuilder.shift()~
+---OctetBuilder.shift(size)~
+--バッファを前から削除する。~
+--1byte削除し、その値を返す。
+--第１引数に削除するバイト数を渡した場合、実際に削除されたバイト数を返す。~
+

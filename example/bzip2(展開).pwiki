@@ -1,0 +1,139 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_bzip2.dll（または ktl_bzip2-d.dll）~
+
+-外部DLL~
+--libbz2.dll~
+
+-スクリプト~
+--[[ktl/Bzip2.tjs]]~
+
+-クラス~
+--Bzip2Decompressor クラス~
+
+
+
+*データ展開
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Bzip2.tjs");
+ 
+ /* Bzip2Decompressor のインスタンス作成 */
+ var bz2dec = new Bzip2Decompressor();
+ 
+ /* 展開処理開始 */
+ bz2dec.setup();
+ 
+ /* ファイル内容の処理 */
+ bz2dec.processStorage(System.exePath + "compressed.bz2");
+ 
+ /* 展開処理完了 */
+ bz2dec.finish();
+ 
+ /* 情報の取得 */
+ Debug.message("展開後のサイズ = " + bz2dec.size);
+ 
+ /* 展開データを取り出し */
+ var decompressed = bz2dec.asString();
+ 
+ /* 展開データをファイルに保存 */
+ bz2dec.saveStorage(System.exePath + "decompressed.bin");
+
+-Bzip2Decompressor クラス~
+--bzip2によって圧縮されたデータを展開するクラス。~
+--実行にはlibbzip2のDLLが必要。~
+--libbz2.dll は吉里吉里の実行ファイルと同じフォルダに置く。~
+
+-Bzip2Decompressor.reset メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.reset()~
+--展開処理設定およびバッファをリセットする。~
+
+-Bzip2Decompressor.setup メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.setup()~
+--この呼び出し以前に設定された展開処理設定をもとに、展開処理をセットアップする。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Bzip2Decompressor.finish メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.finish()~
+--展開処理を完了する。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Bzip2Decompressor.processByte メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.processByte(byte)~
+--計算に1byte値を追加。~
+
+-Bzip2Decompressor.processStorage メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.processStorage(storage)~
+---Bzip2Decompressor.processStorage(storage, spos)~
+---Bzip2Decompressor.processStorage(storage, spos, ssize)~
+--計算にストレージの内容を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Decompressor.processOctet メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.processOctet(octet)~
+---Bzip2Decompressor.processOctet(octet, spos)~
+---Bzip2Decompressor.processOctet(octet, spos, ssize)~
+--計算にオクテット列を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Bzip2Decompressor.size プロパティ~
+--展開データを格納したバッファサイズを返す。~
+--展開処理が完了していない場合、0 を返す。~
+
+-Bzip2Decompressor.asOctet メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.asOctet()~
+---Bzip2Decompressor.asOctet(pos)~
+---Bzip2Decompressor.asOctet(pos, size)~
+--展開データをオクテット列として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ返す。~
+--展開処理が完了していない場合、void を返す。~
+
+-Bzip2Decompressor.asString メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.asString()~
+---Bzip2Decompressor.asString(pos)~
+---Bzip2Decompressor.asString(pos, size)~
+--展開データを文字列（UTF-16LE）として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--展開処理が完了していない場合、void を返す。~
+
+-Bzip2Decompressor.asNarrowString メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.asNarrowString()~
+---Bzip2Decompressor.asNarrowString(pos)~
+---Bzip2Decompressor.asNarrowString(pos, size)~
+--展開データを文字列（Shift_JIS）として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--展開処理が完了していない場合、void を返す。~
+
+-Bzip2Decompressor.saveStorage メソッド~
+--シグネチャ:~
+---Bzip2Decompressor.saveStorage(storage)~
+---Bzip2Decompressor.saveStorage(storage, pos)~
+---Bzip2Decompressor.saveStorage(storage, pos, size)~
+--展開データをローカルストレージへ保存する。~
+--第１引数には保存するストレージのパスを渡す。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ保存する。~
+--実際に保存されたバイト数を返す。~
+--展開処理が完了していない、または保存に失敗した場合、負値が返される。~
+
+-Bzip2Decompressor.small プロパティ~
+--省メモリで動作させるか設定／取得する。~
+

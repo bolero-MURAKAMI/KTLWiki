@@ -1,0 +1,93 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+--ktl_encoding.dll（または ktl_encoding-d.dll）~
+--ktl_checksum.dll（または ktl_checksum-d.dll）~
+
+-外部DLL~
+--%%icudt44.dll%% icudt45.dll (2010/08/26 更新)~
+--%%icuuc44.dll（または icuucd44.dll）%% icuuc45.dll（または icuucd45.dll） (2010/08/26 更新)~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+--[[ktl/Encoding.tjs]]~
+--[[ktl/Checksum.tjs]]~
+
+-クラス~
+--MD5 クラス~
+--SHA1 クラス~
+--OctetBuilder クラス~
+--Encoding クラス~
+
+
+
+*HMAC とは？
+　■http://ja.wikipedia.org/wiki/HMAC
+> HMAC(Keyed-Hashing for Message Authentication code)とは、MAC(Message Authentication Code)の一つで、ハッシュ関数を使って秘密鍵と組み合わせて計算するMACである。
+> MACは認証及び改竄検出技術の核となるアルゴリズムである。 MAC値の算出時にHMACアルゴリズムの中で用いられるハッシュアルゴリズムは、MD5やSHA-1など任意のハッシュ関数が適用可能であり、それぞれHMAC-MD5、HMAC-SHA1などと呼ばれる。
+
+
+
+*HMAC を計算する calcHMAC メソッドの実装
+ /* スクリプトのロード */
+ Sources.include("ktl/OctetBuilder.tjs");
+ Sources.include("ktl/Encoding.tjs");
+ Sources.include("ktl/Checksum.tjs");
+ 
+ /* HMAC(k, d, h) = h((k ^ opad) || h((k ^ ipad) || d)) */
+ function calcHMAC(key, data, Hasher) {
+     var ipad = 0x36;
+     var opad = 0x5C;
+ 
+     var k = Encoding.encodeToOctet("utf-8", key);
+     if (k.length < 64) {
+         var w = new OctetBuilder();
+         w.assignOctet(k);
+         w.length = 64;
+         k = w.asOctet();
+         invalidate w;
+     }
+ 
+     var d = Encoding.encodeToOctet("utf-8", data);
+ 
+     /* work1 = (k ^ ipad) || d) */
+     var work1 = new OctetBuilder();
+     work1.assignOctet(k);
+     work1.transformXorByte(ipad);
+     work1.addOctet(d);
+ 
+     /* work2 = (k ^ opad) */
+     var work2 = new OctetBuilder();
+     work2.assignOctet(k);
+     work2.transformXorByte(opad);
+ 
+     /* work2 || h(work1) */
+     var h = new Hasher();
+     h.processOctet(work1.asOctet());
+     work2.addOctet(h.checksumOctet());
+ 
+     /* result = h(work2 || h(work1)) */
+     h.reset();
+     h.processOctet(work2.asOctet());
+     var result = h.checksumHex();
+ 
+     invalidate work1;
+     invalidate work2;
+     invalidate h;
+ 
+     return result;
+ }
+
+
+
+*calcHMAC メソッドのテスト
+ var key = "Jefe";
+ var data = "what do ya want for nothing?";
+ System.inform(calcHMAC(key, data, MD5), "HMAC-MD5");   // 750c783e6ab0b503eaa86e310a5db738
+ System.inform(calcHMAC(key, data, SHA1), "HMAC-SHA1"); // effcdf6ae5eb2fa2d27416d5f184df9c259a7c79
+

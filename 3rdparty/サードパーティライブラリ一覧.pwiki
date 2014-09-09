@@ -1,0 +1,68 @@
+*目次 [#contents-]
+#contents
+
+
+
+*謝辞 [#acknowledgment-]
+
+　　KTL は下記サードパーティライブラリを利用しています。~
+　　有用なライブラリを公開されている方々に感謝いたします。~
+~
+--tp_stub - TVP2 ( T Visual Presenter 2 )  A script authoring tool~
+　　https://sv.kikyou.info/trac/kirikiri/browser/kirikiri2/trunk/kirikiri2/src/plugins/win32~
+　　Copyright (C) 2000-2009 W.Dee <dee@kikyou.info> and contributors~
+~
+--ncbind - 吉里吉里プラグイン向けネイティブクラスバインダ~
+　　https://sv.kikyou.info/trac/kirikiri/browser/kirikiri2/trunk/kirikiri2/src/plugins/win32/ncbind~
+　　Author: miahmie~
+~
+--Boost C++ Libraries~
+　　http://www.boost.org/~
+~
+--Hamigaki C++ Libraries~
+　　http://hamigaki.sourceforge.jp/~
+　　Copyright (C) 2006-2008 Takeshi Mouri~
+~
+--Sprig C++ Libraries~
+　　https://github.com/bolero-MURAKAMI/Sprig~
+　　Copyright (C) 2009-2012 Bolero MURAKAMI.~
+~
+--zlib~
+　　http://zlib.net/~
+　　Copyright (C) 1995-2012 Jean-loup Gailly and Mark Adler~
+~
+--libbzip2~
+　　http://www.bzip.org/~
+　　copyright (C) 1996-2010 Julian R Seward.  All rights reserved.~
+~
+--ICU - International Components for Unicode~
+　　http://site.icu-project.org/~
+　　Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved.~
+~
+--htmlcxx - html and css APIs for C++~
+　　http://htmlcxx.sourceforge.net/~
+　　Davi de Castro Reis - <davi (a) users sf net>~
+　　Robson Braga Araujo - <braga (a) users sf net>~
+~
+--yaml-cpp~
+　　http://code.google.com/p/yaml-cpp/~
+　　Copyright (c) 2008 Jesse Beder.~
+~
+--OpenSSL: The Open Source toolkit for SSL/TLS~
+　　http://www.openssl.org/~
+　　Copyright (c) 1998-2011 The OpenSSL Project.  All rights reserved.~
+~
+--libpng~
+　　http://www.libpng.org/pub/png/libpng.html~
+　　Copyright (c) 1998-2011 Glenn Randers-Pehrson~
+　　Copyright (c) 1996-1997 Andreas Dilger~
+　　Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.~
+~
+--NTL: A Library for doing Number Theory ~
+　　http://www.shoup.net/ntl/~
+　　Author: Victor Shoup (victor@shoup.net)~
+~
+--DirectX SDK~
+　　http://msdn.microsoft.com/ja-jp/directx~
+~
+

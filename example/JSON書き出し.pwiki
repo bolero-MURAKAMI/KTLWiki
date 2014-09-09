@@ -1,0 +1,64 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*JSON書き出し
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/PTree.tjs");
+ 
+ /* PTree のインスタンス作成 */
+ var ptree = new PTree();
+ 
+ /*
+     ...読み込み、操作など...
+ */
+ 
+ /* settings.json へ書き出し */
+ ptree.writeStorageJSON(System.exePath + "settings.json", "UTF-8", true);
+
+-PTree クラス~
+--XML,JSON等のような構造化データの読み書きや操作を行う。~
+
+-PTree.writeStorageJSON メソッド~
+--シグネチャ:~
+---%%PTree.writeJSONToOctet(storage, code = "UTF-16", pretty = true)%%(2010/08/18 シグネチャ変更)~
+---PTree.writeJSONToOctet(storage, code = "UTF-16")~
+--木構造をJSONで、ローカルストレージへ書き出す。~
+--第１引数にはストレージのパス文字列を渡す。~
+--第２引数には、エンコードする文字コード名を渡すことができる(デフォルト=UTF-16)。~
+--%%第３引数には、人間に読みやすいインデントで出力するかの真偽を渡すことができる(デフォルト=true)。%%(2010/08/18 廃止)~
+--成功した場合は書き込まれたバイト数、失敗した場合は負値を返す。~
+
+-PTree.writeJSONToString メソッド~
+--シグネチャ:~
+---%%PTree.writeJSONToString(pretty = true)%%(2010/08/18 シグネチャ変更)~
+---PTree.writeJSONToString()~
+--木構造をJSONで、文字列へ書き出す。~
+--%%第１引数には、人間に読みやすいインデントで出力するかの真偽を渡すことができる(デフォルト=true)。%%(2010/08/18 廃止)~
+--失敗した場合は void を返す。~
+
+-PTree.writeJSONToOctet メソッド~
+--シグネチャ:~
+---%%PTree.writeJSONToOctet(code, pretty = true))%%(2010/08/18 シグネチャ変更)~
+---PTree.writeJSONToOctet(code)~
+--木構造をJSONで、オクテット列へ書き出す。~
+--第１引数には、エンコードする文字コード名を渡す。~
+--%%第２引数には、人間に読みやすいインデントで出力するかの真偽を渡すことができる(デフォルト=true)。%%(2010/08/18 廃止)~
+--失敗した場合は void を返す。~

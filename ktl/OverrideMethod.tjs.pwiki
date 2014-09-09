@@ -1,0 +1,104 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ メンバメソッドの上書きなど。
+-パス:~
+--[[ktl/OverrideMethod.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+--[[ktl/Operation.tjs]]~
+--[[ktl/MethodOverrider.tjs]]~
+--[[ktl/Utils.tjs]]~
+-インポートDLL:~
+--ktl_utils.dll / ktl_utils-d.dll(デバッグ版)~
+
+
+
+*グローバルメソッド [#method-]
+-メソッド:~
+--[[getMultiMethodOverrider メソッド>#getMultiMethodOverrider]]~
+--[[overrideMultiMethod メソッド>#overrideMultiMethod]]~
+--[[unoverrideMultiMethod メソッド>#unoverrideMultiMethod]]~
+--[[unoverrideMultiMethodTag メソッド>#unoverrideMultiMethodTag]]~
+
+--------------------------------------------------------------------------------
+**getMultiMethodOverrider メソッド [#getMultiMethodOverrider]
+ 多重上書きされたメンバメソッドの MultiMethodOverrider インスタンスを取得する。
+--シグネチャ:~
+---getMultiMethodOverrider(object, key, createIfNothing = false)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---createIfNothing~
+上書きされていない場合、多重上書きのための MultiMethodOverrider インスタンスを生成するかどうか。~
+--返値:~
+---MultiMethodOverrider~
+多重上書きしている MultiMethodOverrider インスタンス。~
+---void~
+上書きされていない場合。~
+
+--------------------------------------------------------------------------------
+**overrideMultiMethod メソッド [#overrideMultiMethod]
+ メンバメソッドを多重上書きする。
+--シグネチャ:~
+---overrideMultiMethod(object, key, override, useThisContext = false, tag = void)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---override~
+上書きするメソッド。~
+---useThisContext~
+上書きするメソッドのコンテキストを、このクラスのインスタンスに置きかえるかどうか。~
+---tag~
+メソッドの識別タグ。~
+--返値:~
+---MultiMethodOverrider~
+多重上書きした MultiMethodOverrider インスタンス。~
+
+--------------------------------------------------------------------------------
+**unoverrideMultiMethod メソッド [#unoverrideMultiMethod]
+ 上書きメソッドを削除する。
+--シグネチャ:~
+---unoverrideMultiMethod(object, key, override, invalidateIfEmpty = true)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---override~
+削除する上書きメソッド。~
+---invalidateIfEmpty~
+上書きしているメソッドが無くなった場合、フックを解除するかどうか。~
+--返値:~
+---true~
+削除した場合。~
+---false~
+メソッドが見つからなかった場合。~
+
+--------------------------------------------------------------------------------
+**unoverrideMultiMethodTag メソッド [#unoverrideMultiMethodTag]
+ 識別タグによって上書きメソッドを削除する。
+--シグネチャ:~
+---unoverrideMultiMethodTag(object, key, tag, invalidateIfEmpty = true)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---tag~
+メソッドの識別タグ。~
+---invalidateIfEmpty~
+上書きしているメソッドが無くなった場合、フックを解除するかどうか。~
+--返値:~
+---Integer~
+削除したメソッドの数。~
+
+--------------------------------------------------------------------------------
+

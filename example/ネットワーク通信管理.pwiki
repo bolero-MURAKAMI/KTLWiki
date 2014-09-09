@@ -1,0 +1,63 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Network クラス>ktl/Network.tjs#Network]]~
+ ネットワーク処理のグローバルな設定などを行うクラス。
+
+
+
+*非同期処理のスレッドプールを設定
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* スレッドプールを10以上に設定
+    非同期処理が少なくとも10個まで並列処理されるようになる */
+ Network.runAtLeast(10);
+
+-[[Network.runAtLeast メソッド>ktl/Network.tjs#Network-runAtLeast]]~
+ 非同期処理の処理ループを、少なくとも指定スレッド数以上で駆動させる。
+
+-[[Network.threadCount プロパティ>ktl/Network.tjs#Network-threadCount]]~
+ 現在駆動中の非同期処理のためのスレッド数を返す。 (getter)
+
+
+
+*非同期処理の強制停止
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* 非同期処理を強制的に停止する */
+ Network.stop();
+
+-[[Network.stop メソッド>ktl/Network.tjs#Network-stop]]~
+ 非同期処理の処理ループを停止する。
+
+
+
+*インターネット接続チェック
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* 接続チェック */
+ if (!Network.isInternetConnected) {
+     Debug.message("インターネットに接続されていません");
+ }
+
+-[[Network.isInternetConnected プロパティ>ktl/Network.tjs#Network-isInternetConnected]]~
+ クライアントのインターネット接続が確立されているかを返す。 (getter)
+
+-[[Network.internetConnetionState プロパティ>ktl/Network.tjs#Network-internetConnetionState]]~
+ クライアントのインターネット接続状態を返す。 (getter)
+

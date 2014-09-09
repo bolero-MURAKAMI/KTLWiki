@@ -1,0 +1,196 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_compression.dll（または ktl_compression-d.dll）~
+
+-スクリプト~
+--[[ktl/Compression.tjs]]~
+
+-クラス~
+--Deflate クラス~
+
+
+
+*データ圧縮
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Compression.tjs");
+ 
+ /* Deflate のインスタンス作成 */
+ var def = new Deflate();
+ 
+ /* CRC 計算オプションを真に設定 */
+ def.calculateCRC = true;
+ 
+ /* 圧縮処理開始 */
+ def.setup();
+ 
+ /* 文字列（ワイド文字列）の処理 */
+ def.processString("The quick brown fox jumps over the lazy dog");
+ 
+ /* 圧縮処理完了 */
+ def.finish();
+ 
+ /* 情報の取得 */
+ Debug.message("圧縮後のサイズ = " + def.size);
+ Debug.message("CRC = " + def.CRC);
+ 
+ /* 圧縮データを取り出し */
+ var compressed = def.asOctet();
+ 
+ /* 圧縮データをファイルに保存 */
+ def.saveStorage(System.exePath + "compressed.bin");
+
+-Deflate クラス~
+--Deflateアルゴリズムによってデータ圧縮をするクラス。~
+
+-Deflate.reset メソッド~
+--シグネチャ:~
+---Deflate.reset()~
+--圧縮処理設定およびバッファをリセットする。~
+
+-Deflate.setup メソッド~
+--シグネチャ:~
+---Deflate.setup()~
+--この呼び出し以前に設定された圧縮処理設定をもとに、圧縮処理をセットアップする。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Deflate.finish メソッド~
+--シグネチャ:~
+---Deflate.finish()~
+--圧縮処理を完了する。~
+--成功するとtrue、失敗するとfalseが返る。~
+
+-Deflate.processByte メソッド~
+--シグネチャ:~
+---Deflate.processByte(byte)~
+--計算に1byte値を追加。~
+
+-Deflate.processStorage メソッド~
+--シグネチャ:~
+---Deflate.processStorage(storage)~
+---Deflate.processStorage(storage, spos)~
+---Deflate.processStorage(storage, spos, ssize)~
+--計算にストレージの内容を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Deflate.processOctet メソッド~
+--シグネチャ:~
+---Deflate.processOctet(octet)~
+---Deflate.processOctet(octet, spos)~
+---Deflate.processOctet(octet, spos, ssize)~
+--計算にオクテット列を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Deflate.processString メソッド~
+--シグネチャ:~
+---Deflate.processString(str)~
+---Deflate.processString(str, spos)~
+---Deflate.processString(str, spos, ssize)~
+--計算に文字列（ワイド文字列）を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Deflate.processNarrowString メソッド~
+--シグネチャ:~
+---Deflate.processNarrowString(str)~
+---Deflate.processNarrowString(str, spos)~
+---Deflate.processNarrowString(str, spos, ssize)~
+--計算に文字列（マルチバイト文字列）を追加。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-Deflate.CRC プロパティ~
+--オリジナルデータ（圧縮前）の CRC 値を符号無し整数として返す。~
+
+-Deflate.originalSize プロパティ~
+--オリジナルデータ（圧縮前）のサイズ返す。~
+
+-Deflate.size プロパティ~
+--圧縮データを格納したバッファサイズを返す。~
+--圧縮処理が完了していない場合、0 を返す。~
+
+-Deflate.asOctet メソッド~
+--シグネチャ:~
+---Deflate.asOctet()~
+---Deflate.asOctet(pos)~
+---Deflate.asOctet(pos, size)~
+--圧縮データをオクテット列として返す。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ返す。~
+--圧縮処理が完了していない場合、void を返す。~
+
+-Deflate.saveStorage メソッド~
+--シグネチャ:~
+---Deflate.saveStorage(storage)~
+---Deflate.saveStorage(storage, pos)~
+---Deflate.saveStorage(storage, pos, size)~
+--圧縮データをローカルストレージへ保存する。~
+--第１引数には保存するストレージのパスを渡す。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ保存する。~
+--実際に保存されたバイト数を返す。~
+--圧縮処理が完了していない、または保存に失敗した場合、負値が返される。~
+
+-Deflate.level プロパティ~
+--圧縮レベルを表すフラグを設定／取得する。~
+
+-Deflate.method プロパティ~
+--圧縮メソッドを表すフラグを設定／取得する。~
+
+-Deflate.windowBits プロパティ~
+--履歴バッファの大きさを設定／取得する。~
+--8～15。~
+
+-Deflate.memLevel プロパティ~
+--圧縮処理の内部状態を保持するためのメモリの大きさを設定／取得する。~
+--1～9。~
+
+-Deflate.strategy プロパティ~
+--圧縮ストラテジーを表すフラグを設定／取得する。~
+
+-Deflate.noHeader プロパティ~
+--パラメータを記録するためのヘッダを出力するか設定／取得する。~
+--ヘッダを圧縮データに含めない場合、データ展開時に明示的にパラメータを設定する必要がある。~
+
+-Deflate.calculateCRC プロパティ~
+--処理されたデータから CRC チェックサムを計算するか設定／取得する。~
+
+-Deflate.clfNoCompression プロパティ~
+--圧縮レベルオプション。~
+--無圧縮。
+
+-Deflate.clfBestSpeed プロパティ~
+--圧縮レベルオプション。~
+--速度優先。
+
+-Deflate.clfBestCompression プロパティ~
+--圧縮レベルオプション。~
+--圧縮率優先。
+
+-Deflate.clfDefaultCompression プロパティ~
+--圧縮レベルオプション。~
+--デフォルト設定。
+
+-Deflate.cmfDeflated プロパティ~
+--圧縮メソッドオプション。~
+--現在これのみ。
+
+-Deflate.csfDefaultStrategy プロパティ~
+--圧縮ストラテジーオプション。~
+--デフォルト設定。
+
+-Deflate.csfFiltered プロパティ~
+--圧縮ストラテジーオプション。~
+--小さい値がある程度ランダムに分布しているデータに最適。
+
+-Deflate.csfHuffmanOnly プロパティ~
+--圧縮ストラテジーオプション。~
+--ハフマン符号化のみ。
+

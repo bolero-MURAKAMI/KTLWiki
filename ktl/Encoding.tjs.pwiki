@@ -1,0 +1,444 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 文字コード変換やエンコード、文字コード検出など。
+-パス:~
+--[[ktl/Encoding.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_encoding.dll / ktl_encoding-d.dll(デバッグ版)~
+-外部DLL~
+--icudt46.dll~
+--icuuc46.dll~
+--icuin46.dll~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Encoding クラス>#Encoding]]~
+
+--------------------------------------------------------------------------------
+
+**Encoding クラス [#Encoding]
+ 文字コード変換やエンコード、文字コード検出などを行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+
+> (文字コード変換)~
+
+--[[encodeToOctet メソッド>#Encoding-encodeToOctet]]~
+--[[encodeToString メソッド>#Encoding-encodeToString]]~
+
+> (Base64 エンコード)~
+
+--[[base64EncodeToAsciiOctet メソッド>#Encoding-base64EncodeToAsciiOctet]] ([[base64EncodeToOctet メソッド>#Encoding-base64EncodeToOctet]])~
+--[[base64EncodeToString メソッド>#Encoding-base64EncodeToString]]~
+--[[base64DecodeToOctetData メソッド>#Encoding-base64DecodeToOctetData]] ([[base64DecodeToOctet メソッド>#Encoding-base64DecodeToOctet]])~
+
+> (URL エンコード)~
+
+--[[URLEncodeToAsciiOctet メソッド>#Encoding-URLEncodeToAsciiOctet]] ([[URLEncodeToOctet メソッド>#Encoding-URLEncodeToOctet]])~
+--[[URLEncodeToString メソッド>#Encoding-URLEncodeToString]]~
+--[[URLDecodeToOctetData メソッド>#Encoding-URLDecodeToOctetData]] ([[URLDecodeToOctet メソッド>#Encoding-URLDecodeToOctet]])~
+--[[URLDecodeToString メソッド>#Encoding-URLDecodeToString]]~
+
+> (文字セットエイリアス)~
+
+--[[sameCharsetAlias メソッド>#Encoding-sameCharsetAlias]]~
+
+> (文字コード検出)~
+
+--[[detect メソッド>#Encoding-detect]]~
+--[[detectAll メソッド>#Encoding-detectAll]]~
+--[[checkDetected メソッド>#Encoding-checkDetected]]~
+
+-スタティックプロパティ:~
+--[[uefSpaceToPlus プロパティ>#Encoding-uefSpaceToPlus]]~
+--[[uefEncodeTilde プロパティ>#Encoding-uefEncodeTilde]]~
+
+--------------------------------------------------------------------------------
+-Encoding.encodeToOctet メソッド &aname(Encoding-encodeToOctet);~
+ 任意の文字コードへ変換する。
+--シグネチャ:~
+---Encoding.encodeToOctet(charset, str)~
+---Encoding.encodeToOctet(charset, octet, src_charset)~
+--引数:~
+---charset~
+変換先の文字セットエイリアス。~
+---str~
+変換元の文字列。~
+---octet~
+変換元のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+--返値:~
+---Octet~
+変換されたオクテット列。~
+--例外:~
+---変換に失敗した場合~
+--使用例:~
+ /* 文字列を UTF-8 へ変換 */
+ var oct_utf8 = Encoding.encodeToOctet("utf-8", "The quick brown fox jumps over the lazy dog.");
+ /* UTF-8 から Shift_JIS へ変換 */
+ var oct_sjis Encoding.encodeToOctet("shift_jis", oct_utf8, "utf-8");
+
+--------------------------------------------------------------------------------
+-Encoding.encodeToString メソッド &aname(Encoding-encodeToString);~
+ 任意の文字コードから文字列へ変換する。
+--シグネチャ:~
+---Encoding.encodeToString(octet, src_charset)~
+--引数:~
+---octet~
+変換元のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+--返値:~
+---String~
+変換された文字列。~
+--例外:~
+---変換に失敗した場合~
+--使用例:~
+ /* UTF-8 から文字列へ変換 */
+ var str = Encoding.encodeToString(oct_utf8, "utf-8");
+
+--------------------------------------------------------------------------------
+-Encoding.base64EncodeToAsciiOctet メソッド &aname(Encoding-base64EncodeToAsciiOctet);~
+ Base64エンコードされたASCII表現のオクテット列を返す。
+--シグネチャ:~
+---Encoding.base64EncodeToAsciiOctet(octet, line_max_length = 76)~
+--引数:~
+---octet~
+変換元のオクテット列。~
+---line_max_length~
+改行を挿入する文字数。~
+0 ならば改行は挿入されない。~
+--返値:~
+---Octet~
+変換されたオクテット列。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Encoding.base64EncodeToOctet メソッド &aname(Encoding-base64EncodeToOctet);~
+ Base64エンコードされたASCII表現のオクテット列を返す。
+--注記:~
+[[Encoding.base64EncodeToAsciiOctet メソッド>#Encoding-base64EncodeToAsciiOctet]] に同じ。~
+ [deprecated] このメソッドは互換性のために残されています。
+
+--------------------------------------------------------------------------------
+-Encoding.base64EncodeToString メソッド &aname(Encoding-base64EncodeToString);~
+ Base64エンコードされた文字列を返す。
+--シグネチャ:~
+---Encoding.base64EncodeToString(octet, line_max_length = 76)~
+--引数:~
+---octet~
+変換元のオクテット列。~
+---line_max_length~
+改行を挿入する文字数。~
+0 ならば改行は挿入されない。~
+--返値:~
+---String~
+変換された文字列。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Encoding.base64DecodeToOctetData メソッド &aname(Encoding-base64DecodeToOctetData);~
+ Base64エンコードされたオクテット列または文字列から、デコードしたオクテット列を返す。
+--シグネチャ:~
+---Encoding.base64DecodeToOctetData(ascii_octet)~
+---Encoding.base64DecodeToOctetData(str)~
+--引数:~
+---ascii_octet~
+変換元のASCII表現のオクテット列。~
+---str~
+変換元の文字列。~
+--返値:~
+---Octet~
+変換されたオクテット列。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Encoding.base64DecodeToOctet メソッド &aname(Encoding-base64DecodeToOctet);~
+ Base64エンコードされたオクテット列または文字列から、デコードしたオクテット列を返す。
+--注記:~
+[[Encoding.base64DecodeToOctetData メソッド>#Encoding-base64DecodeToOctetData]] に同じ。~
+ [deprecated] このメソッドは互換性のために残されています。
+
+--------------------------------------------------------------------------------
+-Encoding.URLEncodeToAsciiOctet メソッド &aname(Encoding-URLEncodeToAsciiOctet);~
+ 文字列から任意の文字コードでURLエンコードされたASCII表現のオクテット列を返す。
+ またはバイナリ表現のオクテット列からURLエンコードされたASCII表現のオクテット列を返す。
+--シグネチャ:~
+---Encoding.URLEncodeToAsciiOctet(charset, str, flag = 0)~
+---Encoding.URLEncodeToAsciiOctet(charset, str_octet, src_charset, flag = 0)~
+---Encoding.URLEncodeToAsciiOctet(octet_data, flag = 0)~
+--引数:~
+---charset~
+変換先の文字セットエイリアス。~
+---str~
+変換元の文字列。~
+---str_octet~
+変換元の文字列表現のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+---octet_data~
+変換元のバイナリ表現のオクテット列。~
+---flag~
+URLエンコードオプション。~
+--返値:~
+---Octet~
+変換されたオクテット列。~
+---void~
+エンコードに失敗した場合。~
+--例外:~
+---文字コード変換に失敗した場合~
+
+--------------------------------------------------------------------------------
+-Encoding.URLEncodeToOctet メソッド &aname(Encoding-URLEncodeToOctet);~
+ 文字列から任意の文字コードでURLエンコードされたASCII表現のオクテット列を返す。
+ またはバイナリ表現のオクテット列からURLエンコードされたASCII表現のオクテット列を返す。
+--注記:~
+[[Encoding.URLEncodeToAsciiOctet メソッド>#Encoding-URLEncodeToAsciiOctet]] に同じ。~
+ [deprecated] このメソッドは互換性のために残されています。
+
+--------------------------------------------------------------------------------
+-Encoding.URLEncodeToString メソッド &aname(Encoding-URLEncodeToString);~
+ 文字列から任意の文字コードでURLエンコードされた文字列を返す。
+ またはバイナリ表現のオクテット列からURLエンコードされた文字列を返す。
+--シグネチャ:~
+---Encoding.URLEncodeToString(charset, str, flag = 0)~
+---Encoding.URLEncodeToString(charset, str_octet, src_charset, flag = 0)~
+---Encoding.URLEncodeToString(octet_data, flag = 0)~
+--引数:~
+---charset~
+変換先の文字セットエイリアス。~
+---str~
+変換元の文字列。~
+---str_octet~
+変換元の文字列表現のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+---octet_data~
+変換元のバイナリ表現のオクテット列。~
+---flag~
+URLエンコードオプション。~
+--返値:~
+---String~
+変換されたオクテット列。~
+---void~
+エンコードに失敗した場合。~
+--例外:~
+---文字コード変換に失敗した場合~
+
+--------------------------------------------------------------------------------
+-Encoding.URLDecodeToOctetData メソッド &aname(Encoding-URLDecodeToOctetData);~
+ URLエンコードされたオクテット列または文字列から、デコードしたバイナリ表現のオクテット列を返す。
+--シグネチャ:~
+---Encoding.URLDecodeToOctetData(str)~
+---Encoding.URLDecodeToOctetData(str_octet, src_charset)~
+---Encoding.URLDecodeToOctetData(ascii_octet)~
+--引数:~
+---str~
+変換元の文字列。~
+---str_octet~
+変換元の文字列表現のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+---ascii_octet~
+変換元のASCII表現のオクテット列。~
+--返値:~
+---Octet~
+変換されたオクテット列。~
+---void~
+デコードに失敗した場合。~
+--例外:~
+---文字コード変換に失敗した場合~
+
+--------------------------------------------------------------------------------
+-Encoding.URLDecodeToOctet メソッド &aname(Encoding-URLDecodeToOctet);~
+ URLエンコードされたオクテット列または文字列から、デコードしたバイナリ表現のオクテット列を返す。
+--注記:~
+[[Encoding.URLDecodeToOctetData メソッド>#Encoding-URLDecodeToOctetData]] に同じ。~
+ [deprecated] このメソッドは互換性のために残されています。
+
+--------------------------------------------------------------------------------
+-Encoding.URLDecodeToString メソッド &aname(Encoding-URLDecodeToString);~
+ 任意の文字コードでURLエンコードされたオクテット列または文字列から、デコードした文字列を返す。
+--シグネチャ:~
+---Encoding.URLDecodeToString(charset, str)~
+---Encoding.URLDecodeToString(charset, str_octet, src_charset)~
+---Encoding.URLDecodeToString(charset, ascii_octet)~
+--引数:~
+---charset~
+変換先の文字セットエイリアス。~
+---str~
+変換元の文字列。~
+---str_octet~
+変換元の文字列表現のオクテット列。~
+---src_charset~
+変換元のオクテット列が表現する文字セットエイリアス。~
+---ascii_octet~
+変換元のASCII表現のオクテット列。~
+--返値:~
+---String~
+変換されたオクテット列。~
+---void~
+デコードに失敗した場合。~
+--例外:~
+---文字コード変換に失敗した場合~
+
+--------------------------------------------------------------------------------
+-Encoding.sameCharsetAlias メソッド &aname(Encoding-sameCharsetAlias);~
+ 二つの文字セットエイリアスが等値であるか比較する。
+--シグネチャ:~
+---Encoding.sameCharsetAlias(name1, name2)~
+--引数:~
+---name1~
+文字セットエイリアスその１。~
+---name2~
+文字セットエイリアスその２。~
+--返値:~
+---true~
+二つの文字セットエイリアスが同じ文字セットである場合。~
+---false~
+二つの文字セットエイリアスが同じ文字セットでない場合。~
+--注釈:~
+例えば、"UTF-8" と "utf_8" は同じ文字セットのエイリアスである。~
+
+--------------------------------------------------------------------------------
+-Encoding.detect メソッド &aname(Encoding-detect);~
+ オクテット列から文字コードを検出する。
+--シグネチャ:~
+---Encoding.detect(source, length = 0, confidence_threshold = 0)~
+--引数:~
+---source~
+ソースオクテット列。~
+---length~
+ソースから検出に利用する長さの制限。~
+0 を指定した場合、ソース全体が対象となる。~
+(長さがあるほど検出精度は上がるが、速度が低下する場合がある)~
+---confidence_threshold~
+信頼度の制限。~
+(信頼度は 1～100 の範囲で、100 に近いほど検出結果の信頼性が高い)~
+(一般に信頼度が 10 以上であれば最低限信頼性のある結果とされる)~
+--返値:~
+---Dictionary~
+検出結果の情報を格納した辞書配列。~
+ %[
+    name,      /* 文字セット名 */
+    language,  /* 言語 */
+    confidence /* 信頼度（数値） */
+ ]
+---void~
+検出に失敗した場合。~
+--例外:~
+---検出でエラーが発生した場合~
+--注釈:~
+最も信頼度の高かった文字コードを結果とする。~
+例えば以下のような情報が返される。~
+ %[
+    name = "Shift_JIS",
+    language = "ja",
+    confidence = 50
+ ]
+
+--------------------------------------------------------------------------------
+-Encoding.detectAll メソッド &aname(Encoding-detectAll);~
+ オクテット列から可能性のある文字コード全てを検出する。
+--シグネチャ:~
+---Encoding.detectAll(source, length = 0, confidence_threshold = 0)~
+--引数:~
+---source~
+ソースオクテット列。~
+---length~
+ソースから検出に利用する長さの制限。~
+0 を指定した場合、ソース全体が対象となる。~
+(長さがあるほど検出精度は上がるが、速度が低下する場合がある)~
+---confidence_threshold~
+信頼度の制限。~
+(信頼度は 1～100 の範囲で、100 に近いほど検出結果の信頼性が高い)~
+(一般に信頼度が 10 以上であれば最低限信頼性のある結果とされる)~
+--返値:~
+---Array~
+検出結果の情報を格納した辞書配列の配列。~
+ [
+    %[
+        name,      /* 文字セット名 */
+        language,  /* 言語 */
+        confidence /* 信頼度（数値） */
+    ], ...
+ ]
+---void~
+検出に失敗した場合。~
+--例外:~
+---検出でエラーが発生した場合~
+--注釈:~
+結果は信頼度の降順で整列されている。~
+例えば以下のような情報が返される。~
+ [
+     %[
+        name = "Shift_JIS",
+        language = "ja",
+        confidence = 50
+     ],
+     %[
+        name = "UTF-8",
+        language = "ja",
+        confidence = 20
+     ], ...
+ ]
+
+--------------------------------------------------------------------------------
+-Encoding.checkDetected メソッド &aname(Encoding-checkDetected);~
+ オクテット列から検出された文字コードに指定エイリアスが含まれるか返す。
+--シグネチャ:~
+---Encoding.checkDetected(charset_name, source, length = 0, confidence_threshold = 0)~
+--引数:~
+---charset_name~
+文字セットエイリアス。~
+---source~
+ソースオクテット列。~
+---length~
+ソースから検出に利用する長さの制限。~
+0 を指定した場合、ソース全体が対象となる。~
+(長さがあるほど検出精度は上がるが、速度が低下する場合がある)~
+---confidence_threshold~
+信頼度の制限。~
+(信頼度は 1～100 の範囲で、100 に近いほど検出結果の信頼性が高い)~
+(一般に信頼度が 10 以上であれば最低限信頼性のある結果とされる)~
+--返値:~
+---true~
+検出された文字コードに指定エイリアスが含まれていた場合。~
+---false~
+検出された文字コードに指定エイリアスが含まれていない場合。~
+--例外:~
+---検出でエラーが発生した場合~
+--注釈:~
+例えば以下は、ソースが信頼度 10 以上で Shift_JIS である可能性があることを検証する。~
+ if(Encoding.checkDetected("Shift_JIS", source, , 10)) {
+    Debug.message("ソースはおそらく Shift_JIS と見なして問題ありません。");
+ }
+
+--------------------------------------------------------------------------------
+-Encoding.uefSpaceToPlus プロパティ &aname(Encoding-uefSpaceToPlus);~
+ URLエンコードオプション。" "(半角スペース)を"+"に変換するフラグを返す。 (getter)
+ ビット演算で他のフラグと組み合わせることができる。
+--注記:~
+application/x-www-form-urlencoded の仕様。~
+
+--------------------------------------------------------------------------------
+-Encoding.uefEncodeTilde プロパティ &aname(Encoding-uefEncodeTilde);~
+ URLエンコードオプション。%xx形式に変換する文字に、"~"(チルダ)を含めるフラグを返す。 (getter)
+ ビット演算で他のフラグと組み合わせることができる。
+--注記:~
+古いURL仕様に基づく環境ではチルダをエンコードする必要があったため。~
+
+--------------------------------------------------------------------------------
+

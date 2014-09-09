@@ -1,0 +1,59 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Downloader クラス>ktl/Network.tjs#Downloader]]~
+ HTTPダウンロードを行うクラス。SSL接続（HTTPS）に対応。同期／非同期処理に対応。
+
+
+
+*同期ダウンロード(内部バッファ版)
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* Downloader のインスタンス作成 */
+ var down = new Downloader();
+ 
+ /* foo.txt をダウンロード（データを内部バッファへ格納） */
+ if (!down.downloadHTTPToBuffer("http://xxx.xx/foo.txt")) {
+     Debug.message("foo.txt のダウンロードに失敗しました。");
+ }
+ 
+ /* バッファサイズ */
+ Debug.message("bufferSize = " + down.bufferSize);
+ 
+ /* バッファの内容を文字列として取得　※文字コードはUTF-16LEでなければならない */
+ Debug.message(down.getBufferAsString());
+ 
+ /* バッファの内容をクリア */
+ down.clearBuffer();
+
+-[[Downloader.downloadHTTPToBuffer メソッド>ktl/Network.tjs#Downloader-downloadHTTPToBuffer]]~
+ 同期ダウンロードを実行する。データは Downloader クラスインスタンスの内部バッファへ格納される。
+
+-[[Downloader.asyncDownloadHTTPToBuffer メソッド>ktl/Network.tjs#Downloader-asyncDownloadHTTPToBuffer]]~
+ 非同期ダウンロードを実行する。データは Downloader クラスインスタンスの内部バッファへ格納される。
+
+-[[Downloader.clearBuffer メソッド>ktl/Network.tjs#Downloader-clearBuffer]]~
+ ダウンロードされた内部バッファの内容をクリアする。
+
+-[[Downloader.getBufferAsOctet メソッド>ktl/Network.tjs#Downloader-getBufferAsOctet]]~
+ 内部バッファの内容をオクテット列として取得する。
+
+-[[Downloader.getBufferAsString メソッド>ktl/Network.tjs#Downloader-getBufferAsString]]~
+ 内部バッファの内容を文字列として取得する。
+
+-[[Downloader.getBufferAsNarrowString メソッド>ktl/Network.tjs#Downloader-getBufferAsNarrowString]]~
+ 内部バッファの内容をナロー文字列として取得する。
+

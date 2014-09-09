@@ -1,0 +1,66 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Downloader クラス>ktl/Network.tjs#Downloader]]~
+ HTTPダウンロードを行うクラス。SSL接続（HTTPS）に対応。同期／非同期処理に対応。
+
+
+
+*HTTPヘッダのチェック
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* Downloader のインスタンス作成 */
+ var down = new Downloader();
+ 
+ /* foo.txt をダウンロード（データを内部バッファへ格納） */
+ if (!down.downloadHTTPToBuffer("http://xxx.xx/foo.txt", Downloader.dhfAnalyHTTPHeader/*HTTPヘッダを解析するフラグ*/)) {
+     Debug.message("foo.txt のダウンロードに失敗しました。");
+ }
+ 
+ /* URL情報の表示 */
+ Debug.message("ホスト名: " + down.hostName);              // xxx.xx
+ Debug.message("サービス名: " + down.serviceName);         // http
+ Debug.message("コンテンツへのパス: " + down.contentPath); // /foo.txt
+ 
+ /* HTTPレスポンスの表示＝例えば（HTTP/1.1 200 OK）など */
+ Debug.message("HTTPレスポンス: " + down.HTTPVersion + " " + down.statusCode + " " + down.reasonPhrase);
+ 
+ /* いくつかのHTTPヘッダを表示 */
+ Debug.message("Date: " + down.getField("Date"));
+ Debug.message("Server: " + down.getField("Server"));
+ Debug.message("Content-Type: " + down.getField("Content-Type"));
+
+-[[Downloader.hostName プロパティ>ktl/Network.tjs#Downloader-hostName]]~
+ ダウンロード元のURLのホスト名を返す。 (getter)
+
+-[[Downloader.serviceName プロパティ>ktl/Network.tjs#Downloader-serviceName]]~
+ ダウンロード元のURLのサービス名を返す。 (getter)
+
+-[[Downloader.contentPath プロパティ>ktl/Network.tjs#Downloader-contentPath]]~
+ ダウンロード元のURLのコンテンツへのパスを返す。 (getter)
+
+-[[Downloader.HTTPVersion プロパティ>ktl/Network.tjs#Downloader-HTTPVersion]]~
+ ダウンロード元のサーバからのHTTPレスポンスの、HTTPバージョンを返す。 (getter)
+
+-[[Downloader.statusCode プロパティ>ktl/Network.tjs#Downloader-statusCode]]~
+ ダウンロード元のサーバからのHTTPレスポンスの、ステータスコードを返す。 (getter)
+
+-[[Downloader.reasonPhrase プロパティ>ktl/Network.tjs#Downloader-reasonPhrase]]~
+ ダウンロード元のサーバからのHTTPレスポンスの、説明句を返す。 (getter)
+
+-[[Downloader.getField メソッド>ktl/Network.tjs#Downloader-getField]]~
+ サーバから返されたHTTPレスポンスヘッダで、指定したフィールド名からフィールド値を取得する。
+

@@ -1,0 +1,141 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#outlines-]
+-OS~
+--Windows 2000 SP4 (VirtualBox)~
+--Windows XP SP3 (VirtualBox)~
+--Windows Vista SP2 (VirtualBox)~
+--Windows 7 (VirtualBox)~
+-吉里吉里~
+--core 2.32rev2~
+-注釈~
+--VC10はWindows 2000に非対応なので最初から対象外~
+--検証は、DLLのロードと解放で問題が起きないか、簡単なテストコードが通るか、の二つのみテスト~
+-その他~
+--この環境で動かなかった等の事例がありましたらご報告ください。~
+
+
+
+*注釈 [#notes-]
+-※1~
+Microsoft Visual C++ 2008 ランタイムが必要~
+--[[ユーザ環境への依存-Microsoft Visual C++ ランタイム >environment/ユーザ環境への依存#msvcrt-]]を参照のこと。~
+-※2~
+DirectX ランタイムが必要~
+--[[ユーザ環境への依存-DirectX ランタイム >environment/ユーザ環境への依存#directx-]]を参照のこと。~
+
+
+
+*Windows 2000 SP4 (VirtualBox) [#win2000-virtual-]
+2012/03/23 検証~
+-core 2.32rev2~
+|CENTER:150|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|c
+|~               | バージョン |>| VC8ビルド版         |>| VC9ビルド版(通常)   |>| VC10ビルド版        |h
+|~|~|                           Release版 | Debug版   | Release版 | Debug版   | Release版 | Debug版   |h
+|~ Utils         | 0.2.3.1    | ○        | ○        | ○        | ○        |>| (非対応)            |
+|~ Network       | 0.2.3.9    | ○(v500)  | ○(v500)  | ○(v500)  | ○(v500)  |>|~|
+|~ LocalFiles    | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ StorageStream | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Compression   | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Bzip2         | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Checksum      | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ OctetBuilder  | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Encoding      | 0.2.3.2    | ○※1     | ○※1     | ○※1     | ○※1     |>|~|
+|~ PTree         | 0.2.3.1    | ○※1     | ○※1     | ○※1     | ○※1     |>|~|
+|~ PTime         | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ VariateRandom | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ BigInt        | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ SplashWindow  | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Serialization | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ SpriteCoord   | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Functor       | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+|~ Sprites       | 0.2.3.1    | ○※2     | ○※2     | ○※2     | ○※2     |>|~|
+|~ OSVersion     | 0.2.3.1    | ○        | ○        | ○        | ○        |>|~|
+
+
+
+*Windows XP SP3 (VirtualBox) [#winxp-virtual-]
+2012/03/23 検証~
+-core 2.32rev2~
+|CENTER:150|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|c
+|~               | バージョン |>| VC8ビルド版         |>| VC9ビルド版(通常)   |>| VC10ビルド版        |h
+|~|~|                           Release版 | Debug版   | Release版 | Debug版   | Release版 | Debug版   |h
+|~ Utils         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Network       | 0.2.3.9    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ LocalFiles    | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ StorageStream | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Compression   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Bzip2         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Checksum      | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ OctetBuilder  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Encoding      | 0.2.3.2    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTree         | 0.2.3.1    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTime         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ VariateRandom | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ BigInt        | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SplashWindow  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Serialization | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SpriteCoord   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Functor       | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Sprites       | 0.2.3.1    | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     |
+|~ OSVersion     | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+
+
+
+*Windows Vista SP2 (VirtualBox) [#winvista-virtual-]
+2012/03/23 検証~
+-core 2.32rev2~
+|CENTER:150|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|c
+|~               | バージョン |>| VC8ビルド版         |>| VC9ビルド版(通常)   |>| VC10ビルド版        |h
+|~|~|                           Release版 | Debug版   | Release版 | Debug版   | Release版 | Debug版   |h
+|~ Utils         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Network       | 0.2.3.9    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ LocalFiles    | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ StorageStream | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Compression   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Bzip2         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Checksum      | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ OctetBuilder  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Encoding      | 0.2.3.2    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTree         | 0.2.3.1    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTime         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ VariateRandom | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ BigInt        | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SplashWindow  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Serialization | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SpriteCoord   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Functor       | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Sprites       | 0.2.3.1    | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     |
+|~ OSVersion     | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+
+
+
+*Windows 7 (VirtualBox) [#win7-virtual-]
+2012/03/23 検証~
+-core 2.32rev2~
+|CENTER:150|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|CENTER:75|c
+|~               | バージョン |>| VC8ビルド版         |>| VC9ビルド版(通常)   |>| VC10ビルド版        |h
+|~|~|                           Release版 | Debug版   | Release版 | Debug版   | Release版 | Debug版   |h
+|~ Utils         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Network       | 0.2.3.9    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ LocalFiles    | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ StorageStream | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Compression   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Bzip2         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Checksum      | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ OctetBuilder  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Encoding      | 0.2.3.2    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTree         | 0.2.3.1    | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     | ○※1     |
+|~ PTime         | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ VariateRandom | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ BigInt        | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SplashWindow  | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Serialization | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ SpriteCoord   | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Functor       | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+|~ Sprites       | 0.2.3.1    | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     | ○※2     |
+|~ OSVersion     | 0.2.3.1    | ○        | ○        | ○        | ○        | ○        | ○        |
+

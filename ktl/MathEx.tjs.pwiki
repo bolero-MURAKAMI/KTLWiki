@@ -1,0 +1,2315 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 様々な数学計算など。
+-パス:~
+--[[ktl/MathEx.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_math_ex.dll / ktl_math_ex-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[MathEx クラス>#MathEx]]~
+
+--------------------------------------------------------------------------------
+
+**MathEx クラス [#MathEx]
+ 様々な数学計算などを行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+ このクラスは Math クラスのほぼ上位互換として使える。
+-スタティックメソッド:~
+
+> (各種算術関数)~
+
+--[[abs メソッド>#MathEx-abs]]~
+--[[ceil メソッド>#MathEx-ceil]]~
+--[[floor メソッド>#MathEx-floor]]~
+--[[sqrt メソッド>#MathEx-sqrt]]~
+--[[cbrt メソッド>#MathEx-cbrt]]~
+--[[sqrt1Pm1 メソッド>#MathEx-sqrt1Pm1]]~
+--[[hypot メソッド>#MathEx-hypot]]~
+
+> (浮動小数点数)~
+
+--[[round メソッド>#MathEx-round]]~
+--[[trunc メソッド>#MathEx-trunc]]~
+--[[modf メソッド>#MathEx-modf]]~
+--[[fpart メソッド>#MathEx-fpart]]~
+--[[ldexp メソッド>#MathEx-ldexp]]~
+--[[frexp メソッド>#MathEx-frexp]]~
+
+> (浮動小数点数の比較)~
+
+--[[equals メソッド>#MathEx-equals]]~
+--[[notEquals メソッド>#MathEx-notEquals]]~
+--[[less メソッド>#MathEx-less]]~
+--[[greater メソッド>#MathEx-greater]]~
+--[[lessEqual メソッド>#MathEx-lessEqual]]~
+--[[greaterEqual メソッド>#MathEx-greaterEqual]]~
+--[[compare メソッド>#MathEx-compare]]~
+
+> (三角関数)~
+
+--[[sin メソッド>#MathEx-sin]]~
+--[[cos メソッド>#MathEx-cos]]~
+--[[tan メソッド>#MathEx-tan]]~
+--[[asin メソッド>#MathEx-asin]]~
+--[[acos メソッド>#MathEx-acos]]~
+--[[atan メソッド>#MathEx-atan]]~
+--[[atan2 メソッド>#MathEx-atan2]]~
+
+> (双曲線関数)~
+
+--[[sinh メソッド>#MathEx-sinh]]~
+--[[cosh メソッド>#MathEx-cosh]]~
+--[[tanh メソッド>#MathEx-tanh]]~
+--[[asinh メソッド>#MathEx-asinh]]~
+--[[acosh メソッド>#MathEx-acosh]]~
+--[[atanh メソッド>#MathEx-atanh]]~
+
+> (指数関数・対数関数)~
+
+--[[pow メソッド>#MathEx-pow]]~
+--[[pow10 メソッド>#MathEx-pow10]]~
+--[[pow2 メソッド>#MathEx-pow2]]~
+--[[exp メソッド>#MathEx-exp]]~
+--[[log メソッド>#MathEx-log]]~
+--[[ln メソッド>#MathEx-ln]]~
+--[[log10 メソッド>#MathEx-log10]]~
+--[[lc メソッド>#MathEx-lc]]~
+--[[log2 メソッド>#MathEx-log2]]~
+--[[lg メソッド>#MathEx-lg]]~
+--[[logN メソッド>#MathEx-logN]]~
+--[[powm1 メソッド>#MathEx-powm1]]~
+--[[expm1 メソッド>#MathEx-expm1]]~
+--[[log1P メソッド>#MathEx-log1P]]~
+
+> (ガンマ関数)~
+
+--[[tgamma メソッド>#MathEx-tgamma]]~
+--[[tgamma1Pm1 メソッド>#MathEx-tgamma1Pm1]]~
+--[[lgamma メソッド>#MathEx-lgamma]]~
+--[[digamma メソッド>#MathEx-digamma]]~
+--[[tgammaRatio メソッド>#MathEx-tgammaRatio]]~
+--[[tgammaDeltaRatio メソッド>#MathEx-tgammaDeltaRatio]]~
+--[[gammaP メソッド>#MathEx-gammaP]]~
+--[[gammaQ メソッド>#MathEx-gammaQ]]~
+--[[tgammaLower メソッド>#MathEx-tgammaLower]]~
+--[[gammaPInv メソッド>#MathEx-gammaPInv]]~
+--[[gammaQInv メソッド>#MathEx-gammaQInv]]~
+--[[gammaPInva メソッド>#MathEx-gammaPInva]]~
+--[[gammaQInva メソッド>#MathEx-gammaQInva]]~
+--[[gammaPDerivative メソッド>#MathEx-gammaPDerivative]]~
+
+> (ベータ関数)~
+
+--[[beta メソッド>#MathEx-beta]]~
+--[[ibeta メソッド>#MathEx-ibeta]]~
+--[[ibetac メソッド>#MathEx-ibetac]]~
+--[[betac メソッド>#MathEx-betac]]~
+--[[ibetaInv メソッド>#MathEx-ibetaInv]]~
+--[[ibetacInv メソッド>#MathEx-ibetacInv]]~
+--[[ibetaInva メソッド>#MathEx-ibetaInva]]~
+--[[ibetacInva メソッド>#MathEx-ibetacInva]]~
+--[[ibetaInvb メソッド>#MathEx-ibetaInvb]]~
+--[[ibetacInvb メソッド>#MathEx-ibetacInvb]]~
+--[[ibetaDerivative メソッド>#MathEx-ibetaDerivative]]~
+
+> (誤差関数)~
+
+--[[erf メソッド>#MathEx-erf]]~
+--[[erfc メソッド>#MathEx-erfc]]~
+--[[erfInv メソッド>#MathEx-erfInv]]~
+--[[erfcInv メソッド>#MathEx-erfcInv]]~
+
+> (ルジャンドル多項式・ラゲール多項式・エルミート多項式・球面調和関数)~
+
+--[[legendreP メソッド>#MathEx-legendreP]]~
+--[[legendreQ メソッド>#MathEx-legendreQ]]~
+--[[legendreNext メソッド>#MathEx-legendreNext]]~
+--[[laguerre メソッド>#MathEx-laguerre]]~
+--[[laguerreNext メソッド>#MathEx-laguerreNext]]~
+--[[hermite メソッド>#MathEx-hermite]]~
+--[[hermiteNext メソッド>#MathEx-hermiteNext]]~
+--[[sphericalHarmonic メソッド>#MathEx-sphericalHarmonic]]~
+--[[sphericalHarmonicR メソッド>#MathEx-sphericalHarmonicR]]~
+--[[sphericalHarmonicI メソッド>#MathEx-sphericalHarmonicI]]~
+
+> (ベッセル関数)~
+
+--[[cylBesselJ メソッド>#MathEx-cylBesselJ]]~
+--[[cylNeumann メソッド>#MathEx-cylNeumann]]~
+--[[cylBesselI メソッド>#MathEx-cylBesselI]]~
+--[[cylBesselK メソッド>#MathEx-cylBesselK]]~
+--[[sphBessel メソッド>#MathEx-sphBessel]]~
+--[[sphNeumann メソッド>#MathEx-sphNeumann]]~
+
+> (ハンケル関数)~
+
+--[[cylHankel1 メソッド>#MathEx-cylHankel1]]~
+--[[cylHankel2 メソッド>#MathEx-cylHankel2]]~
+--[[sphHankel1 メソッド>#MathEx-sphHankel1]]~
+--[[sphHankel2 メソッド>#MathEx-sphHankel2]]~
+
+> (エアリー関数)~
+
+--[[airyAi メソッド>#MathEx-airyAi]]~
+--[[airyBi メソッド>#MathEx-airyBi]]~
+--[[airyAiPrime メソッド>#MathEx-airyAiPrime]]~
+--[[airyBiPrime メソッド>#MathEx-airyBiPrime]]~
+
+> (ゼータ関数)~
+
+--[[zeta メソッド>#MathEx-zeta]]~
+
+> (シンク関数)~
+
+--[[sincPi メソッド>#MathEx-sincPi]]~
+--[[sinhcPi メソッド>#MathEx-sinhcPi]]~
+
+> (オーウェンのT関数)~
+
+--[[owensT メソッド>#MathEx-owensT]]~
+
+> (楕円積分)~
+
+--[[ellintRf メソッド>#MathEx-ellintRf]]~
+--[[ellintRd メソッド>#MathEx-ellintRd]]~
+--[[ellintRj メソッド>#MathEx-ellintRj]]~
+--[[ellintRc メソッド>#MathEx-ellintRc]]~
+--[[ellint1 メソッド>#MathEx-ellint1]]~
+--[[ellint2 メソッド>#MathEx-ellint2]]~
+--[[ellint3 メソッド>#MathEx-ellint3]]~
+
+> (ヤコビの楕円関数)~
+
+--[[jacobiElliptic メソッド>#MathEx-jacobiElliptic]]~
+--[[jacobiCd メソッド>#MathEx-jacobiCd]]~
+--[[jacobiCn メソッド>#MathEx-jacobiCn]]~
+--[[jacobiCs メソッド>#MathEx-jacobiCs]]~
+--[[jacobiDc メソッド>#MathEx-jacobiDc]]~
+--[[jacobiDn メソッド>#MathEx-jacobiDn]]~
+--[[jacobiDs メソッド>#MathEx-jacobiDs]]~
+--[[jacobiNc メソッド>#MathEx-jacobiNc]]~
+--[[jacobiNd メソッド>#MathEx-jacobiNd]]~
+--[[jacobiNs メソッド>#MathEx-jacobiNs]]~
+--[[jacobiSc メソッド>#MathEx-jacobiSc]]~
+--[[jacobiSd メソッド>#MathEx-jacobiSd]]~
+--[[jacobiSn メソッド>#MathEx-jacobiSn]]~
+
+> (指数積分)~
+
+--[[expint メソッド>#MathEx-expint]]~
+
+> (階乗・二項係数)~
+
+--[[factorial メソッド>#MathEx-factorial]]~
+--[[doubleFactorial メソッド>#MathEx-doubleFactorial]]~
+--[[risingFactorial メソッド>#MathEx-risingFactorial]]~
+--[[fallingFactorial メソッド>#MathEx-fallingFactorial]]~
+--[[binomialCoefficient メソッド>#MathEx-binomialCoefficient]]~
+
+> (最大公約数・最小公倍数)~
+
+--[[gcd メソッド>#MathEx-gcd]]~
+--[[lcm メソッド>#MathEx-lcm]]~
+
+> (最大・最小)~
+
+--[[minメソッド>#MathEx-min]]~
+--[[maxメソッド>#MathEx-max]]~
+
+> (乱数)~
+
+--[[random メソッド>#MathEx-random]]~
+--[[randomDevice メソッド>#MathEx-randomDevice]]~
+-スタティックプロパティ:~
+--[[PI プロパティ>#MathEx-PI]]~
+--[[E プロパティ>#MathEx-E]]~
+--[[LN10 プロパティ>#MathEx-LN10]]~
+--[[LN2 プロパティ>#MathEx-LN2]]~
+--[[LOG10E プロパティ>#MathEx-LOG10E]]~
+--[[LOG2E プロパティ>#MathEx-LOG2E]]~
+--[[SQRT2 プロパティ>#MathEx-SQRT2]]~
+--[[SQRT1_2 プロパティ>#MathEx-SQRT1_2]]~
+
+--------------------------------------------------------------------------------
+-MathEx.abs メソッド &aname(MathEx-abs);~
+ 絶対値を返す。
+#tex(\[ abs(x) = |x| \])
+--シグネチャ:~
+---MathEx.abs(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ceil メソッド &aname(MathEx-ceil);~
+ 天井関数（x 以下の最大の整数）。
+#tex(\[ ceil(x) = \lceil x \rceil \])
+--シグネチャ:~
+---MathEx.ceil(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.floor メソッド &aname(MathEx-floor);~
+ 床関数（x 以上の最小の整数）。
+#tex(\[ floor(x) = \lfloor x \rfloor \])
+--シグネチャ:~
+---MathEx.floor(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sqrt メソッド &aname(MathEx-sqrt);~
+ 平方根を返す。
+#tex(\[ sqrt(x) = \sqrt{x} \])
+--シグネチャ:~
+---MathEx.sqrt(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cbrt メソッド &aname(MathEx-cbrt);~
+ 立方根を返す。
+#tex(\[ cbrt(x) = \sqrt[3]{x} \])
+--シグネチャ:~
+---MathEx.cbrt(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sqrt1Pm1 メソッド &aname(MathEx-sqrt1Pm1);~
+#tex(\[ sqrt1Pm1(x) = \sqrt{1+x}-1 \])
+--シグネチャ:~
+---MathEx.sqrt1Pm1(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.hypot メソッド &aname(MathEx-hypot);~
+#tex(\[ hypot(x, y) = \sqrt{x^2+y^2} \])
+--シグネチャ:~
+---MathEx.hypot(x, y)~
+--引数:~
+---x~
+実数。~
+---y~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.round メソッド &aname(MathEx-round);~
+ 実数の整数への丸め（四捨五入）。
+--シグネチャ:~
+---MathEx.round(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.trunc メソッド &aname(MathEx-trunc);~
+ 実数の小数点以下の切り捨て。
+--シグネチャ:~
+---MathEx.trunc(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.modf メソッド &aname(MathEx-modf);~
+ 実数の整数部および小数部の分割。
+--シグネチャ:~
+---MathEx.modf(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果を表わす配列。 [小数部, 整数部]~
+
+--------------------------------------------------------------------------------
+-MathEx.fpart メソッド &aname(MathEx-fpart);~
+ 実数の小数点以下の取得。
+--シグネチャ:~
+---MathEx.fpart(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ldexp メソッド &aname(MathEx-ldexp);~
+ 実数の仮数と指数から実数を計算して返す。
+--シグネチャ:~
+---MathEx.ldexp(x, exponent)~
+--引数:~
+---x~
+仮数。~
+---exponent~
+指数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.frexp メソッド &aname(MathEx-frexp);~
+ 実数の仮数部および指数部の分割。
+--シグネチャ:~
+---MathEx.frexp(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果を表わす配列。 [仮数部, 指数部]~
+
+--------------------------------------------------------------------------------
+-MathEx.equals メソッド &aname(MathEx-equals);~
+ 実数が等しいかどうかの比較。(a == b)
+--シグネチャ:~
+---MathEx.equals(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+--注記:~
+浮動小数点数同士の比較は、精度の低下等の原因による誤差によって直観に反する結果を返す場合がある。~
+これらのメソッドは計算機イプシロンによって演算誤差を吸収した比較を行う。~
+
+--------------------------------------------------------------------------------
+-MathEx.notEquals メソッド &aname(MathEx-notEquals);~
+ 実数が等しくないかどうかの比較。(a != b)
+--シグネチャ:~
+---MathEx.notEquals(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.less メソッド &aname(MathEx-less);~
+ 実数が小なりであるかの比較。(a < b)
+--シグネチャ:~
+---MathEx.less(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.greater メソッド &aname(MathEx-greater);~
+ 実数が大なりであるかの比較。(a > b)
+--シグネチャ:~
+---MathEx.greater(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.lessEqual メソッド &aname(MathEx-lessEqual);~
+ 実数が小なりイコールであるかの比較。(a <= b)
+--シグネチャ:~
+---MathEx.lessEqual(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.greaterEqual メソッド &aname(MathEx-greaterEqual);~
+ 実数が大なりイコールであるかの比較。(a >= b)
+--シグネチャ:~
+---MathEx.greaterEqual(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---true~
+比較が真である場合。~
+---false~
+比較が偽である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.compare メソッド &aname(MathEx-compare);~
+ 実数の比較結果を返す。
+--シグネチャ:~
+---MathEx.compare(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---0~
+a == b である場合。~
+---正値~
+a > b である場合。~
+---負値~
+a < b である場合。~
+
+--------------------------------------------------------------------------------
+-MathEx.sin メソッド &aname(MathEx-sin);~
+ 正弦関数。
+#tex(\[ sin(x) = \sin x \])
+--シグネチャ:~
+---MathEx.sin(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cos メソッド &aname(MathEx-cos);~
+ 余弦関数。
+#tex(\[ cos(x) = \cos x \])
+--シグネチャ:~
+---MathEx.cos(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tan メソッド &aname(MathEx-tan);~
+ 正接関数。
+#tex(\[ tan(x) = \tan x \])
+--シグネチャ:~
+---MathEx.tan(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.asin メソッド &aname(MathEx-asin);~
+ 逆正弦関数。
+#tex(\[ tan(x) = \sin^{-1}x \])
+--シグネチャ:~
+---MathEx.tan(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.acos メソッド &aname(MathEx-acos);~
+ 逆余弦関数。
+#tex(\[ acos(x) = \cos^{-1}x \])
+--シグネチャ:~
+---MathEx.acos(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.atan メソッド &aname(MathEx-atan);~
+ 逆正接関数。
+#tex(\[ atan(x) = \tan^{-1}x \])
+--シグネチャ:~
+---MathEx.atan(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.atan2 メソッド &aname(MathEx-atan2);~
+ 逆正接関数（直交座標から偏角を求める）。
+#tex(\[ atan2(y, x) = \tan^{-1} \frac{y}{x} \])
+--シグネチャ:~
+---MathEx.atan2(y, x)~
+--引数:~
+---y~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+--注記:~
+引数の順序が x, y ではなく y, x であることに注意。~
+
+--------------------------------------------------------------------------------
+-MathEx.sinh メソッド &aname(MathEx-sinh);~
+ 双曲線正弦関数。
+#tex(\[ sinh(x) = \sinh x \])
+--シグネチャ:~
+---MathEx.sinh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cosh メソッド &aname(MathEx-cosh);~
+ 双曲線余弦関数。
+#tex(\[ cosh(x) = \cosh x \])
+--シグネチャ:~
+---MathEx.cosh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tanh メソッド &aname(MathEx-tanh);~
+ 双曲線正接関数。
+#tex(\[ tanh(x) = \tanh x \])
+--シグネチャ:~
+---MathEx.tanh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.asinh メソッド &aname(MathEx-asinh);~
+ 逆双曲線正弦関数。
+#tex(\[ tanh(x) = \sinh^{-1}x \])
+--シグネチャ:~
+---MathEx.tanh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.acosh メソッド &aname(MathEx-acosh);~
+ 逆双曲線余弦関数。
+#tex(\[ acosh(x) = \cosh^{-1}x \])
+--シグネチャ:~
+---MathEx.acosh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.atanh メソッド &aname(MathEx-atanh);~
+ 逆双曲線正接関数。
+#tex(\[ atanh(x) = \tanh^{-1}x \])
+--シグネチャ:~
+---MathEx.atanh(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.pow メソッド &aname(MathEx-pow);~
+ 指数関数。
+#tex(\[ pow(a, x) = a^x \])
+--シグネチャ:~
+---MathEx.pow(a, x)~
+--引数:~
+---a~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.pow10 メソッド &aname(MathEx-pow10);~
+ 10 を底とする指数関数。
+#tex(\[ pow10(x) = 10^x \])
+--シグネチャ:~
+---MathEx.pow10(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.pow2 メソッド &aname(MathEx-pow2);~
+ 2 を底とする指数関数。
+#tex(\[ pow2(x) = 2^x \])
+--シグネチャ:~
+---MathEx.pow2(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.exp メソッド &aname(MathEx-exp);~
+ e を底とする指数関数。
+#tex(\[ exp(x) = e^x \])
+--シグネチャ:~
+---MathEx.exp(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.log メソッド &aname(MathEx-log);~
+ 自然対数。
+#tex(\[ log(x) = \ln{x} \])
+--シグネチャ:~
+---MathEx.log(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ln メソッド &aname(MathEx-ln);~
+ MathEx.log メソッドに同じ。
+
+--------------------------------------------------------------------------------
+-MathEx.log10 メソッド &aname(MathEx-log10);~
+ 常用対数。
+#tex(\[ log(x) = \log_{10}x \])
+--シグネチャ:~
+---MathEx.log10(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.lc メソッド &aname(MathEx-lc);~
+ MathEx.log10 メソッドに同じ。
+
+--------------------------------------------------------------------------------
+-MathEx.log2 メソッド &aname(MathEx-log2);~
+ 二進対数。
+#tex(\[ log(x) = \log_{2}x \])
+--シグネチャ:~
+---MathEx.log10(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.lg メソッド &aname(MathEx-lg);~
+ MathEx.log2 メソッドに同じ。
+
+--------------------------------------------------------------------------------
+-MathEx.logN メソッド &aname(MathEx-logN);~
+ 対数関数。
+#tex(\[ logN(a, x) = \log_{a}x \])
+--シグネチャ:~
+---MathEx.logN(a, x)~
+--引数:~
+---a~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.powm1 メソッド &aname(MathEx-powm1);~
+#tex(\[ powm1(a, x) = a^x-1 \])
+--シグネチャ:~
+---MathEx.powm1(a, x)~
+--引数:~
+---a~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.expm1 メソッド &aname(MathEx-expm1);~
+#tex(\[ expm1(x) = e^x-1 \])
+--シグネチャ:~
+---MathEx.expm1(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.log1P メソッド &aname(MathEx-log1P);~
+#tex(\[ log1P(x) = \ln{(1+x)} \])
+--シグネチャ:~
+---MathEx.log1P(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tgamma メソッド &aname(MathEx-tgamma);~
+ ガンマ関数。
+ または非正則な第２種不完全ガンマ関数。
+#tex(\[ tgamma(z) = \Gamma(z) = \int_{0}^{\infty}t^{z-1}e^{-t}dt \])
+#tex(\[ tgamma(a, z) = \Gamma(a, z)  = \int_{z}^{\infty}t^{a-1}e^{-t}dt \])
+--シグネチャ:~
+---MathEx.tgamma(z)~
+---MathEx.tgamma(a, z)~
+--引数:~
+---a~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tgamma1Pm1 メソッド &aname(MathEx-tgamma1Pm1);~
+#tex(\[ tgamma1Pm1(dz) = \Gamma(dz+1)-1 \])
+--シグネチャ:~
+---MathEx.tgamma1Pm1(dz)~
+--引数:~
+---dz~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.lgamma メソッド &aname(MathEx-lgamma);~
+ ガンマ関数の対数。
+#tex(\[ lgamma(z) = \ln{|\Gamma(z)|} \])
+--シグネチャ:~
+---MathEx.lgamma(z)~
+--引数:~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.digamma メソッド &aname(MathEx-digamma);~
+ ディガンマ関数（ガンマ関数の対数の一階微分）。
+#tex(\[ digamma(x) = \psi(x) = \frac{d}{dx}\ln{\Gamma(z)} = \frac{\Gamma'(x)}{\Gamma(x)} \])
+--シグネチャ:~
+---MathEx.digamma(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tgammaRatio メソッド &aname(MathEx-tgammaRatio);~
+ ガンマ関数の比。
+#tex(\[ tgammaRatio(a, b) = \frac{\Gamma(a)}{\Gamma(b)} \])
+--シグネチャ:~
+---MathEx.tgammaRatio(a, b)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tgammaDeltaRatio メソッド &aname(MathEx-tgammaDeltaRatio);~
+ ガンマ関数の比。
+#tex(\[ tgammaDeltaRatio(a, delta) = \frac{\Gamma(a)}{\Gamma(a+delta)} \])
+--シグネチャ:~
+---MathEx.tgammaDeltaRatio(a, delta)~
+--引数:~
+---a~
+実数。~
+---delta~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaP メソッド &aname(MathEx-gammaP);~
+ 正則化された第１種不完全ガンマ関数。
+#tex(\[ gammaP(a, z) = P(a, z) = \frac{\gamma(a, z)}{\Gamma(a)} = \frac{1}{\Gamma(a)}\int_{0}^{z}t^{a-1}e^{-t}dt \])
+--シグネチャ:~
+---MathEx.gammaP(a, z)~
+--引数:~
+---a~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaQ メソッド &aname(MathEx-gammaQ);~
+ 正則化された第２種不完全ガンマ関数。
+#tex(\[ gammaQ(a, z) = Q(a, z) = \frac{\Gamma(a, z)}{\Gamma(a)} = \frac{1}{\Gamma(a)}\int_{z}^{\infty}t^{a-1}e^{-t}dt \])
+--シグネチャ:~
+---MathEx.gammaQ(a, z)~
+--引数:~
+---a~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tgammaLower メソッド &aname(MathEx-tgammaLower);~
+ 非正則な第１種不完全ガンマ関数。
+#tex(\[ tgammaLower(a, z) = \gamma(a, z) = \int_{0}^{z}t^{a-1}e^{-t}dt \])
+--シグネチャ:~
+---MathEx.tgammaLower(a, z)~
+--引数:~
+---a~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaPInv メソッド &aname(MathEx-gammaPInv);~
+ 第１種不完全ガンマ関数の逆関数。
+#tex(\[ p = P(a, z) \])
+--シグネチャ:~
+---MathEx.gammaPInv(a, z)~
+--引数:~
+---a~
+実数。(a > 0)~
+---p~
+実数。(0 <= p <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaQInv メソッド &aname(MathEx-gammaQInv);~
+ 第２種不完全ガンマ関数の逆関数。
+#tex(\[ q = Q(a, z) \])
+--シグネチャ:~
+---MathEx.gammaQInv(a, z)~
+--引数:~
+---a~
+実数。(a > 0)~
+---q~
+実数。(0 <= q <= 1)
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaPInva メソッド &aname(MathEx-gammaPInva);~
+ 第１種不完全ガンマ関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ p = P(a, z) \])
+--シグネチャ:~
+---MathEx.gammaPInva(a, z)~
+--引数:~
+---a~
+実数。(a > 0)~
+---p~
+実数。(0 <= p <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaQInva メソッド &aname(MathEx-gammaQInva);~
+ 第２種不完全ガンマ関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ q = Q(a, z) \])
+--シグネチャ:~
+---MathEx.gammaQInva(a, z)~
+--引数:~
+---a~
+実数。(a > 0)~
+---q~
+実数。(0 <= q <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gammaPDerivative メソッド &aname(MathEx-gammaPDerivative);~
+ 不完全ガンマ関数の導関数。
+#tex(\[ gammaPDerivative(a, z) = \frac{\partial}{\partial z}P(a, z) = \frac{e^{-z}z^{a-1}}{\Gamma(a)} \])
+--シグネチャ:~
+---MathEx.gammaPDerivative(a, z)~
+--引数:~
+---a~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.beta メソッド &aname(MathEx-beta);~
+ ベータ関数。
+ または非正則な不完全ベータ関数。
+#tex(\[ beta(a, b) = B(a, b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)} \])
+#tex(\[ beta(a, b, z) = B_z(a, b) = \int_{0}^{z}t^{a-1}(1-t)^{b-1}dt \])
+--シグネチャ:~
+---MathEx.beta(a, b)~
+---MathEx.beta(a, b, z)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+---z~
+実数。(0 <= z <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibeta メソッド &aname(MathEx-ibeta);~
+ 正則化された不完全ベータ関数。
+#tex(\[ ibeta(a, b, z) = I_z(a, b) = \frac{1}{B(a, b)}\int_{0}^{z}t^{a-1}(1-t)^{b-1}dt \])
+--シグネチャ:~
+---MathEx.ibeta(a, b, z)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+---z~
+実数。(0 <= z <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetac メソッド &aname(MathEx-ibetac);~
+ 正則化された不完全ベータ関数の相補関数。
+#tex(\[ ibetac(a, b, z) = 1-I_z(a, b) = I_{1-z}(b, a) \])
+--シグネチャ:~
+---MathEx.ibetac(a, b, z)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+---z~
+実数。(0 <= z <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.betac メソッド &aname(MathEx-betac);~
+ 非正則な不完全ベータ関数の相補関数。
+#tex(\[ betac(a, b, z) = 1-B_z(a, b) = B_{1-z}(b, a) \])
+--シグネチャ:~
+---MathEx.betac(a, b, z)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+---z~
+実数。(0 <= z <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetaInv メソッド &aname(MathEx-ibetaInv);~
+ 不完全ベータ関数の逆関数。
+#tex(\[ p = I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetaInv(a, b, p)~
+--引数:~
+---a~
+実数。(a > 0)~
+---b~
+実数。(b > 0)~
+---p~
+実数。(0 <= p <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetacInv メソッド &aname(MathEx-ibetacInv);~
+ 不完全ベータ関数の相補関数の逆関数。
+#tex(\[ q = 1-I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetacInv(a, b, q)~
+--引数:~
+---a~
+実数。(a > 0)~
+---b~
+実数。(b > 0)~
+---q~
+実数。(0 <= q <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetaInva メソッド &aname(MathEx-ibetaInva);~
+ 不完全ベータ関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ p = I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetaInva(a, b, p)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。(b > 0)~
+---p~
+実数。(0 <= p <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetacInva メソッド &aname(MathEx-ibetacInva);~
+ 不完全ベータ関数の相補関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ q = 1-I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetacInva(a, b, q)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。(b > 0)~
+---q~
+実数。(0 <= q <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetaInvb メソッド &aname(MathEx-ibetaInvb);~
+ 不完全ベータ関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ p = I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetaInvb(a, b, p)~
+--引数:~
+---a~
+実数。(a > 0)~
+---b~
+実数。~
+---p~
+実数。(0 <= p <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetacInvb メソッド &aname(MathEx-ibetacInvb);~
+ 不完全ベータ関数の相補関数の逆関数。
+ ブルートフォース（総当たり）的手法での実装。
+#tex(\[ q = 1-I_z(a, b) \])
+--シグネチャ:~
+---MathEx.ibetacInvb(a, b, q)~
+--引数:~
+---a~
+実数。(a > 0)~
+---b~
+実数。~
+---q~
+実数。(0 <= q <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ibetaDerivative メソッド &aname(MathEx-ibetaDerivative);~
+ 不完全ベータ関数の導関数。
+#tex(\[ ibetaDerivative(a, b, z) = \frac{\partial}{\partial z}I_z(a, b) = \frac{(1-z)^{b-1}z^{a-1}}{B(a, b)} \])
+--シグネチャ:~
+---MathEx.ibetaDerivative(a, b, z)~
+--引数:~
+---a~
+実数。~
+---b~
+実数。~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.erf メソッド &aname(MathEx-erf);~
+ 誤差関数。
+#tex(\[ erf(z) = \frac{2}{\sqrt{\pi}}\int_{0}^{z}e^{-t^2}dt \])
+--シグネチャ:~
+---MathEx.erf(z)~
+--引数:~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.erfc メソッド &aname(MathEx-erfc);~
+ 相補誤差関数。
+#tex(\[ erfc(z) = 1-\mathrm{erf}(z) \])
+--シグネチャ:~
+---MathEx.erfc(z)~
+--引数:~
+---z~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.erfInv メソッド &aname(MathEx-erfInv);~
+ 誤差関数の逆関数。
+#tex(\[ p = \mathrm{erf}(z) \])
+--シグネチャ:~
+---MathEx.erfInv(p)~
+--引数:~
+---p~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.erfcInv メソッド &aname(MathEx-erfcInv);~
+ 相補誤差関数の逆関数。
+#tex(\[ p = \mathrm{erfc}(z) \])
+--シグネチャ:~
+---MathEx.erfcInv(p)~
+--引数:~
+---p~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.legendreP メソッド &aname(MathEx-legendreP);~
+ ルジャンドル多項式。
+ またはルジャンドル陪関数。
+#tex(\[ legendreP(l, x) = P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2-1)^l \])
+#tex(\[ legendreP(l, m, x) = P_l^m(x) = (-1)^m(1-x^2)^{\frac{m}{2}}\frac{d^mP_l(x)}{dx^m} \])
+--シグネチャ:~
+---MathEx.legendreP(l, x)~
+---MathEx.legendreP(l, m, x)~
+--引数:~
+---l~
+整数。~
+---m~
+整数。~
+---x~
+実数。(-1 <= x <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.legendreQ メソッド &aname(MathEx-legendreQ);~
+ 第２種ルジャンドル関数。
+#tex(\[ legendreQ(0, x) = Q_0(x) = \frac{1}{2}\ln{\left(\frac{1+x}{1-x}\right)} \])
+#tex(\[ legendreQ(1, x) = Q_1(x) = \frac{x}{2}\ln{\left(\frac{1+x}{1-x}\right)}-1 \])
+#tex(\[ legendreQ(2, x) = Q_2(x) = \frac{3x^2-1}{4}\ln{\left(\frac{1+x}{1-x}\right)}-\frac{3x}{2} \])
+#tex(\[ ... \])
+--シグネチャ:~
+---MathEx.legendreQ(l, x)~
+--引数:~
+---l~
+正数。(l >= 0)~
+---x~
+実数。(-1 <= x <= 1)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.legendreNext メソッド &aname(MathEx-legendreNext);~
+ 次数(l)と次数(l-1)の値から次数(l+1)のルジャンドル多項式の値を求める漸化式。
+ または次数(l)と次数(l-1)の値から次数(l+1)のルジャンドル陪関数の値を求める漸化式。
+#tex(\[ P_{l+1}(x) = \frac{(2l+1)x P_l(x)-l P_{l-1}(x)}{l+1} \])
+#tex(\[ P_{l+1}^m(x) = \frac{(2l+1)x P_l^m(x)-(l+m+1)P_{l-1}^m(x)}{l-m+1} \])
+--シグネチャ:~
+---MathEx.legendreNext(l, x, pl, plm1)~
+---MathEx.legendreNext(l, m, x, pl, plm1)~
+--引数:~
+---l~
+正数。~
+---m~
+正数。~
+---x~
+実数。~
+---pl~
+次数(l)のルジャンドル多項式（またはルジャンドル陪関数）の値。~
+---plm1~
+次数(l-1)のルジャンドル多項式（またはルジャンドル陪関数）の値。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.laguerre メソッド &aname(MathEx-laguerre);~
+ ラゲール多項式。
+ またはラゲール陪多項式。
+#tex(\[ laguerre(n, x) = L_n(x) = \frac{e^x}{n!}\frac{d^n}{dx^n}(x^n e^{-x}) \])
+#tex(\[ laguerre(n, m, x) = L_n^m(x) = (-1)^m\frac{d^m}{dx^m}L_{n+m}(x) \])
+--シグネチャ:~
+---MathEx.laguerre(n, x)~
+---MathEx.laguerre(n, m, x)~
+--引数:~
+---n~
+整数。~
+---m~
+整数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.laguerreNext メソッド &aname(MathEx-laguerreNext);~
+ 次数(n)と次数(n-1)の値から次数(n+1)のラゲール多項式の値を求める漸化式。
+ または次数(n)と次数(n-1)の値から次数(n+1)のラゲール陪多項式の値を求める漸化式。
+#tex(\[ L_{n+1}(x) = \frac{(2n+1-x)L_n(x)-n L_{n-1}(x)}{n+1} \])
+#tex(\[ L_{n+1}^m(x) = \frac{m+2n+1-x}{n+1}L_n^m(x)-\frac{m+n}{n+1}L_{n-1}^m(x) \])
+--シグネチャ:~
+---MathEx.laguerreNext(n, x, ln, lnm1)~
+---MathEx.laguerreNext(n, m, x, ln, lnm1)~
+--引数:~
+---n~
+正数。~
+---m~
+正数。~
+---x~
+実数。~
+---ln~
+次数(n)のラゲール多項式（またはラゲール陪多項式）の値。~
+---lnm1~
+次数(n-1)のラゲール多項式（またはラゲール陪多項式）の値。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.hermite メソッド &aname(MathEx-hermite);~
+ エルミート多項式。
+#tex(\[ hermite(n, x) = H_n(x) = (-1)^n e^{x^2}\frac{d^2}{dx^2}e^{-x^2} \])
+--シグネチャ:~
+---MathEx.hermite(n, x)~
+--引数:~
+---n~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.hermiteNext メソッド &aname(MathEx-hermiteNext);~
+ 次数(n)と次数(n-1)の値から次数(n+1)のエルミート多項式の値を求める漸化式。
+#tex(\[ H_{n+1}(x) = 2x H_n(x)-2n H_{n-1}(x) \])
+--シグネチャ:~
+---MathEx.hermiteNext(n, x, hn, hnm1)~
+--引数:~
+---n~
+正数。~
+---x~
+実数。~
+---hn~
+次数(n)のエルミート多項式の値。~
+---hnm1~
+次数(n-1)のエルミート多項式の値。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphericalHarmonic メソッド &aname(MathEx-sphericalHarmonic);~
+ 球面調和関数。
+#tex(\[ sphericalHarmonic(n, m, \theta, \phi) = Y_n^m(\theta, \phi) = \sqrt{\frac{2n+1}{4\pi}\frac{(n-m)!}{(n+m)!}}P_n^m(\cos \theta)e^{im\phi} \])
+--シグネチャ:~
+---MathEx.sphericalHarmonic(n, m, theta, phi)~
+--引数:~
+---n~
+正数。~
+---m~
+整数。~
+---theta~
+実数。~
+---phi~
+実数。~
+--返値:~
+---Array~
+計算結果の複素数を表わす配列。 [Re, Im]~
+
+--------------------------------------------------------------------------------
+-MathEx.sphericalHarmonicR メソッド &aname(MathEx-sphericalHarmonicR);~
+ 球面調和関数の実数部。
+#tex(\[ sphericalHarmonicR(n, m, \theta, \phi) = Re\left(Y_n^m(\theta, \phi)\right) = \sqrt{\frac{2n+1}{4\pi}\frac{(n-m)!}{(n+m)!}}P_n^m(\cos \theta)\cos(m\phi) \])
+--シグネチャ:~
+---MathEx.sphericalHarmonicR(n, m, theta, phi)~
+--引数:~
+---n~
+正数。~
+---m~
+整数。~
+---theta~
+実数。~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphericalHarmonicI メソッド &aname(MathEx-sphericalHarmonicI);~
+ 球面調和関数の虚数部。
+#tex(\[ sphericalHarmonicI(n, m, \theta, \phi) = Im\left(Y_n^m(\theta, \phi)\right) = \sqrt{\frac{2n+1}{4\pi}\frac{(n-m)!}{(n+m)!}}P_n^m(\cos \theta)\sin(m\phi) \])
+--シグネチャ:~
+---MathEx.sphericalHarmonicI(n, m, theta, phi)~
+--引数:~
+---n~
+正数。~
+---m~
+整数。~
+---theta~
+実数。~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselJ メソッド &aname(MathEx-cylBesselJ);~
+ 第１種ベッセル関数。
+#tex(\[ cylBesselJ(v, x) = J_v(x) = \left(\frac{x}{2}\right)^v \sum_{k=0}^\infty \frac{\left(\frac{x^2}{4}\right)^k}{k!\Gamma(v+k+1)} \])
+--シグネチャ:~
+---MathEx.cylBesselJ(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylNeumann メソッド &aname(MathEx-cylNeumann);~
+ 第２種ベッセル関数。
+#tex(\[ cylNeumann(v, x) = Y_v(x) = \frac{J_v(x)\cos(v\pi)-J_{-v}(x)}{\sin(v\pi)} \])
+--シグネチャ:~
+---MathEx.cylNeumann(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselI メソッド &aname(MathEx-cylBesselI);~
+ 第１種変形ベッセル関数。
+#tex(\[ cylBesselI(v, x) = I_v(x) = \left(\frac{x}{2}\right)^v \sum_{k=0}^\infty \frac{\left(-\frac{x^2}{4}\right)^k}{k!\Gamma(v+k+1)} \])
+--シグネチャ:~
+---MathEx.cylBesselI(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselK メソッド &aname(MathEx-cylBesselK);~
+ 第２種変形ベッセル関数。
+#tex(\[ cylBesselK(v, x) = K_v(x) = \frac{\pi}{2}\cdot\frac{I_{-v}(x)-I_v(x)}{\sin(v\pi)} \])
+--シグネチャ:~
+---MathEx.cylBesselK(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphBessel メソッド &aname(MathEx-sphBessel);~
+ 第１種球ベッセル関数。
+#tex(\[ sphBessel(v, x) = j_v(x) = \sqrt{\frac{\pi}{2x}}J_{v+\frac{1}{2}}(x) \])
+--シグネチャ:~
+---MathEx.sphBessel(v, x)~
+--引数:~
+---v~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphNeumann メソッド &aname(MathEx-sphNeumann);~
+ 第２種球ベッセル関数。
+#tex(\[ sphNeumann(v, x) = y_v(x) = \sqrt{\frac{\pi}{2x}}Y_{v+\frac{1}{2}}(x) \])
+--シグネチャ:~
+---MathEx.sphNeumann(v, x)~
+--引数:~
+---v~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylHankel1 メソッド &aname(MathEx-cylHankel1);~
+ 第１種ハンケル関数。
+#tex(\[ cylHankel1(v, x) = H_v^{(1)}(x) = J_v(x)+iY_v(x) \])
+--シグネチャ:~
+---MathEx.cylHankel1(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果の複素数を格納した配列。~
+ [
+    real_part, /* 実数部 */
+    imag_part  /* 虚数部 */
+ ]
+
+--------------------------------------------------------------------------------
+-MathEx.cylHankel2 メソッド &aname(MathEx-cylHankel2);~
+ 第２種ハンケル関数。
+#tex(\[ cylHankel2(v, x) = H_v^{(2)}(x) = J_v(x)-iY_v(x) \])
+--シグネチャ:~
+---MathEx.cylHankel2(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果の複素数を格納した配列。~
+ [
+    real_part, /* 実数部 */
+    imag_part  /* 虚数部 */
+ ]
+
+--------------------------------------------------------------------------------
+-MathEx.sphHankel1 メソッド &aname(MathEx-sphHankel1);~
+ 第１種球ハンケル関数。
+#tex(\[ sphHankel1(v, x) = \sqrt{\frac{\pi}{2x}}H_{v+\frac{1}{2}}^{(1)}(x) \])
+--シグネチャ:~
+---MathEx.sphHankel1(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果の複素数を格納した配列。~
+ [
+    real_part, /* 実数部 */
+    imag_part  /* 虚数部 */
+ ]
+
+--------------------------------------------------------------------------------
+-MathEx.sphHankel2 メソッド &aname(MathEx-sphHankel2);~
+ 第２種球ハンケル関数。
+#tex(\[ sphHankel1(v, x) = \sqrt{\frac{\pi}{2x}}H_{v+\frac{1}{2}}^{(2)}(x) \])
+--シグネチャ:~
+---MathEx.sphHankel2(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Array~
+計算結果の複素数を格納した配列。~
+ [
+    real_part, /* 実数部 */
+    imag_part  /* 虚数部 */
+ ]
+
+--------------------------------------------------------------------------------
+-MathEx.airyAi メソッド &aname(MathEx-airyAi);~
+ エアリー関数 Ai。
+#tex(\[ airyAi(0) = Ai(0) = \frac{1}{3^{\frac{2}{3}}\Gamma\left(\frac{2}{3}\right)} \])
+#tex(\[ airyAi(x) = Ai(x) = \frac{1}{x}\sqrt{\frac{x}{3}}K_{\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right) \])
+#tex(\[ airyAi(-x) = Ai(-x) = \frac{\sqrt{x}}{3}\left(J_{\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)+J_{-\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+--シグネチャ:~
+---MathEx.airyAi(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.airyBi メソッド &aname(MathEx-airyBi);~
+ エアリー関数 Bi。
+#tex(\[ airyBi(0) = Bi(0) = \frac{1}{3^{\frac{1}{6}}\Gamma\left(\frac{2}{3}\right)} \])
+#tex(\[ airyBi(x) = Bi(x) = \frac{\sqrt{x}}{3}\left(I_{\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)+I_{-\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+#tex(\[ airyBi(-x) = Bi(-x) = \frac{\sqrt{x}}{3}\left(J_{-\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)-J_{\frac{1}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+--シグネチャ:~
+---MathEx.airyBi(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.airyAiPrime メソッド &aname(MathEx-airyAiPrime);~
+ エアリー関数の微分 Ai'。
+#tex(\[ airyAiPrime(0) = Ai'(0) = -\frac{1}{3^{\frac{1}{3}}\Gamma\left(\frac{1}{3}\right)} \])
+#tex(\[ airyAiPrime(x) = Ai'(x) = \frac{x}{\pi\sqrt{3}}K_{\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right) \])
+#tex(\[ airyAiPrime(-x) = Ai'(-x) = \frac{\sqrt{x}}{3}\left(J_{\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)-J_{-\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+--シグネチャ:~
+---MathEx.airyAiPrime(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.airyBiPrime メソッド &aname(MathEx-airyBiPrime);~
+ エアリー関数の微分 Bi'。
+#tex(\[ airyBiPrime(0) = Bi'(0) = \frac{3^{\frac{1}{6}}}{\Gamma\left(\frac{1}{3}\right)} \])
+#tex(\[ airyBiPrime(x) = Bi'(x) = \frac{x}{\pi\sqrt{3}}\left(I_{\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)+I_{-\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+#tex(\[ airyBiPrime(-x) = Bi'(-x) = \frac{x}{\pi\sqrt{3}}\left(J_{-\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)+J_{\frac{2}{3}}\left(\frac{2}{3}x^{\frac{3}{2}}\right)\right) \])
+--シグネチャ:~
+---MathEx.airyBiPrime(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.zeta メソッド &aname(MathEx-zeta);~
+ ゼータ関数。
+#tex(\[ zeta(s) = \zeta(s) = \sum_{k=1}^{\infty}\frac{1}{k^s} \])
+--シグネチャ:~
+---MathEx.zeta(s)~
+--引数:~
+---s~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sincPi メソッド &aname(MathEx-sincPi);~
+ 非正規化シンク関数。
+#tex(\[ sincPi(x) = \mathrm{sinc}(x) = \frac{\sin x}{x} \])
+--シグネチャ:~
+---MathEx.sincPi(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sinhcPi メソッド &aname(MathEx-sinhcPi);~
+ 非正規化双曲線シンク関数。
+#tex(\[ sinhcPi(x) = \mathrm{sinhc}(x) = \frac{\sinh x}{x} \])
+--シグネチャ:~
+---MathEx.sinhcPi(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.owensT メソッド &aname(MathEx-owensT);~
+ オーウェンのT関数。
+#tex(\[ owensT(h, a) = \frac{1}{2\pi}\int_{0}^{a}\frac{e^{-\frac{1}{2}h^2(1+x^2)}}{1+x^2}dx \])
+--シグネチャ:~
+---MathEx.owensT(h, a)~
+--引数:~
+---h~
+実数。~
+---a~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellintRf メソッド &aname(MathEx-ellintRf);~
+ 第１種カールソン楕円積分。
+#tex(\[ ellintRf(x, y, z) = R_F(x, y, z) = \frac{1}{2}\int_{0}^{\infty}[(t+x)(t+y)(t+z)]^{-\frac{1}{2}}dt \])
+--シグネチャ:~
+---MathEx.ellintRf(x, y, z)~
+--引数:~
+---x~
+実数。(x >= 0)~
+---y~
+実数。(y >= 0)~
+---z~
+実数。(z >= 0)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellintRd メソッド &aname(MathEx-ellintRd);~
+ 第２種カールソン楕円積分。
+#tex(\[ ellintRd(x, y, z) = R_D(x, y, z) = \frac{3}{2}\int_{0}^{\infty}[(t+x)(t+y)]^{-\frac{1}{2}}(t+z)^{-\frac{3}{2}}dt \])
+--シグネチャ:~
+---MathEx.ellintRd(x, y, z)~
+--引数:~
+---x~
+実数。(x >= 0)~
+---y~
+実数。(y >= 0)~
+---z~
+実数。(z >= 0)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellintRj メソッド &aname(MathEx-ellintRj);~
+ 第３種カールソン楕円積分。
+#tex(\[ ellintRj(x, y, z, p) = R_J(x, y, z, p) = \frac{3}{2}\int_{0}^{\infty}(t+p)^{-1}[(t+x)(t+y)(t+z)]^{-\frac{1}{2}}dt \])
+--シグネチャ:~
+---MathEx.ellintRj(x, y, z, p)~
+--引数:~
+---x~
+実数。(x >= 0)~
+---y~
+実数。(y >= 0)~
+---z~
+実数。(z >= 0)~
+---p~
+実数。(p != 0)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellintRc メソッド &aname(MathEx-ellintRc);~
+ カールソン楕円積分。
+#tex(\[ ellintRc(x, y) = R_C(x, y) = \frac{1}{2}\int_{0}^{\infty}(t+x)^{-\frac{1}{2}}(t+y)^{-1}dt \])
+--シグネチャ:~
+---MathEx.ellintRc(x, y)~
+--引数:~
+---x~
+実数。(x >= 0)~
+---y~
+実数。(y != 0)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellint1 メソッド &aname(MathEx-ellint1);~
+ 第１種ルジャンドル不完全楕円積分。
+ または第１種ルジャンドル完全楕円積分。
+#tex(\[ ellint1(k, \phi) = F(\phi, k) = \int_{0}^{\phi}\frac{d\theta}{\sqrt{1-k^2\sin^2\theta}} \])
+#tex(\[ ellint1(k) = K(k) = F\left(\frac{\pi}{2}, k\right) = \int_{0}^{\frac{\pi}{2}}\frac{d\theta}{\sqrt{1-k^2\sin^2\theta}} \])
+--シグネチャ:~
+---MathEx.ellint1(k, phi)~
+---MathEx.ellint1(k)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellint2 メソッド &aname(MathEx-ellint2);~
+ 第２種ルジャンドル不完全楕円積分。
+ または第２種ルジャンドル完全楕円積分。
+#tex(\[ ellint2(k, \phi) = E(\phi, k) = \int_{0}^{\phi}\sqrt{1-k^2\sin^2\theta}d\theta \])
+#tex(\[ ellint2(k) = E(k) = E\left(\frac{\pi}{2}, k\right) = \int_{0}^{\frac{\pi}{2}}\sqrt{1-k^2\sin^2\theta}d\theta \])
+--シグネチャ:~
+---MathEx.ellint2(k, phi)~
+---MathEx.ellint2(k)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellint3 メソッド &aname(MathEx-ellint3);~
+ 第３種ルジャンドル不完全楕円積分。
+ または第３種ルジャンドル完全楕円積分。
+#tex(\[ ellint3(k, n, \phi) = \Pi(n, \phi, k) = \int_{0}^{\phi}\frac{d\theta}{(1-n\sin^2\theta)\sqrt{1-k^2\sin^2\theta}} \])
+#tex(\[ ellint3(k, n) = \Pi(n, k) = \Pi\left(n, \frac{\pi}{2}, k\right) = \int_{0}^{\frac{\pi}{2}}\frac{d\theta}{(1-n\sin^2\theta)\sqrt{1-k^2\sin^2\theta}} \])
+--シグネチャ:~
+---MathEx.ellint3(k, n, phi)~
+---MathEx.ellint3(k, n)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
+---n~
+実数。(n < 1/sin^2(phi) または n < 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiElliptic メソッド &aname(MathEx-jacobiElliptic);~
+ ヤコビの楕円関数の sn, cn, dn。
+#tex(\[ u = \int_{0}^{\phi}\frac{d\theta}{\sqrt{1-k^2\sin^2\theta}} \])
+#tex(\[ sn(k, u) = \sin\phi \])
+#tex(\[ cn(k, u) = \cos\phi \])
+#tex(\[ dn(k, u) = \sqrt{1-k^2\sin^2\theta} \])
+--シグネチャ:~
+---MathEx.jacobiElliptic(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Array~
+計算結果の各パートを格納した配列。~
+ [
+    sn, /* sn(k, u) の結果 */
+    cn, /* cn(k, u) の結果 */
+    dn  /* dn(k, u) の結果 */
+ ]
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiCd メソッド &aname(MathEx-jacobiCd);~
+ ヤコビの楕円関数の cd。
+#tex(\[ jacobiCd(k, u) = \frac{cn(k,u)}{dn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiCd(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiCn メソッド &aname(MathEx-jacobiCn);~
+ ヤコビの楕円関数の cn。
+#tex(\[ jacobiCn(k, u) = cn(k,u) \])
+--シグネチャ:~
+---MathEx.jacobiCn(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiCs メソッド &aname(MathEx-jacobiCs);~
+ ヤコビの楕円関数の cs。
+#tex(\[ jacobiCs(k, u) = \frac{cn(k,u)}{sn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiCs(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiDc メソッド &aname(MathEx-jacobiDc);~
+ ヤコビの楕円関数の dc。
+#tex(\[ jacobiDc(k, u) = \frac{dn(k,u)}{cn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiDc(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiDn メソッド &aname(MathEx-jacobiDn);~
+ ヤコビの楕円関数 dn。
+#tex(\[ jacobiDn(k, u) = dn(k,u) \])
+--シグネチャ:~
+---MathEx.jacobiDn(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiDs メソッド &aname(MathEx-jacobiDs);~
+ ヤコビの楕円関数の ds。
+#tex(\[ jacobiDs(k, u) = \frac{dn(k,u)}{sn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiDs(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiNc メソッド &aname(MathEx-jacobiNc);~
+ ヤコビの楕円関数の nc。
+#tex(\[ jacobiNc(k, u) = nc(k,u) \])
+--シグネチャ:~
+---MathEx.jacobiNc(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiNd メソッド &aname(MathEx-jacobiNd);~
+ ヤコビの楕円関数の nd。
+#tex(\[ jacobiNd(k, u) = \frac{1}{dn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiNd(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiNs メソッド &aname(MathEx-jacobiNs);~
+ ヤコビの楕円関数の sn。
+#tex(\[ jacobiNs(k, u) = \frac{1}{sn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiNs(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiSc メソッド &aname(MathEx-jacobiSc);~
+ ヤコビの楕円関数の sc。
+#tex(\[ jacobiSc(k, u) = \frac{sn(k,u)}{cn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiSc(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiSd メソッド &aname(MathEx-jacobiSd);~
+ ヤコビの楕円関数の sd。
+#tex(\[ jacobiSd(k, u) = \frac{sn(k,u)}{dn(k,u)} \])
+--シグネチャ:~
+---MathEx.jacobiSd(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiSn メソッド &aname(MathEx-jacobiSn);~
+ ヤコビの楕円関数の sn。
+#tex(\[ jacobiSn(k, u) = sn(k,u) \])
+--シグネチャ:~
+---MathEx.jacobiSn(k, u)~
+--引数:~
+---k~
+実数。~
+---u~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.expint メソッド &aname(MathEx-expint);~
+ 指数積分。
+#tex(\[ expint(n, x) = E_n(x) = \int_{1}^{\infty}\frac{e^{-xt}dt}{t^n} \])
+#tex(\[ expint(x) = E_i(x) = -E_1(-x) = \int_{-x}^{\infty}\frac{e^{-t}dt}{t} \])
+--シグネチャ:~
+---MathEx.expint(n, x)~
+---MathEx.expint(x)~
+--引数:~
+---n~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.factorial メソッド &aname(MathEx-factorial);~
+ 階乗。
+#tex(\[ factorial(i) = i! \])
+--シグネチャ:~
+---MathEx.factorial(i)~
+--引数:~
+---i~
+正数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.doubleFactorial メソッド &aname(MathEx-doubleFactorial);~
+ 二重階乗。
+#tex(\[ doubleFactorial(i) = i!! \])
+--シグネチャ:~
+---MathEx.doubleFactorial(i)~
+--引数:~
+---i~
+正数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.risingFactorial メソッド &aname(MathEx-risingFactorial);~
+ 上昇階乗。
+#tex(\[ risingFactorial(x, i) = \frac{\Gamma(x+i)}{\Gamma(x)} \])
+--シグネチャ:~
+---MathEx.risingFactorial(i)~
+--引数:~
+---i~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.fallingFactorial メソッド &aname(MathEx-fallingFactorial);~
+ 下降階乗。
+#tex(\[ fallingFactorial(x, i) = \frac{\Gamma(x+1)}{\Gamma(x-i+1)} \])
+--シグネチャ:~
+---MathEx.fallingFactorial(i)~
+--引数:~
+---i~
+正数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.binomialCoefficient メソッド &aname(MathEx-binomialCoefficient);~
+ 二項係数。
+#tex(\[ binomialCoefficient(n, k) = {}_nC_k \])
+--シグネチャ:~
+---MathEx.binomialCoefficient(n, k)~
+--引数:~
+---n~
+正数。~
+---k~
+正数。(k <= n)~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.gcd メソッド &aname(MathEx-gcd);~
+ 最大公約数。
+#tex(\[ gcd(a, b) = \mathrm{gcd}(a, b) \])
+--シグネチャ:~
+---MathEx.gcd(a, b)~
+--引数:~
+---a~
+整数。~
+---b~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.lcm メソッド &aname(MathEx-lcm);~
+ 最小公倍数。
+#tex(\[ lcm(a, b) = \mathrm{lcm}(a, b) \])
+--シグネチャ:~
+---MathEx.lcm(a, b)~
+--引数:~
+---a~
+整数。~
+---b~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.min メソッド &aname(MathEx-min);~
+ 引数のうち最小の実数を返す。
+--シグネチャ:~
+---MathEx.min(params*)~
+--引数:~
+---params*~
+実数。~
+--返値:~
+---Real~
+最小の実数。~
+
+--------------------------------------------------------------------------------
+-MathEx.max メソッド &aname(MathEx-max);~
+ 引数のうち最大の実数を返す。
+--シグネチャ:~
+---MathEx.max(params*)~
+--引数:~
+---params*~
+実数。~
+--返値:~
+---Real~
+最大の実数。~
+
+--------------------------------------------------------------------------------
+-MathEx.random メソッド &aname(MathEx-random);~
+ [0..1] 範囲の実数を返す乱数。
+--シグネチャ:~
+---MathEx.random()~
+--引数:~
+---(なし)~
+--返値:~
+---Real~
+乱数。~
+
+--------------------------------------------------------------------------------
+-MathEx.randomDevice メソッド &aname(MathEx-randomDevice);~
+ [0..1] 範囲の実数を返す、外部デバイスを入力にとる非決定論的乱数。
+--シグネチャ:~
+---MathEx.randomDevice()~
+--引数:~
+---(なし)~
+--返値:~
+---Real~
+乱数。~
+
+--------------------------------------------------------------------------------
+-MathEx.PI プロパティ &aname(MathEx-PI);~
+ 円周率πを返す。 (getter)
+#tex(\[ \pi \])
+
+--------------------------------------------------------------------------------
+-MathEx.E プロパティ &aname(MathEx-E);~
+ ネイピア数 e を返す。 (getter)
+#tex(\[ e \])
+
+--------------------------------------------------------------------------------
+-MathEx.LN10 プロパティ &aname(MathEx-LN10);~
+ 10 の自然対数を返す。 (getter)
+#tex(\[ \ln{10} \])
+
+--------------------------------------------------------------------------------
+-MathEx.LN2 プロパティ &aname(MathEx-LN2);~
+ 2 の自然対数を返す。 (getter)
+#tex(\[ \ln{2} \])
+
+--------------------------------------------------------------------------------
+-MathEx.LOG10E プロパティ &aname(MathEx-LOG10E);~
+ e の常用対数を返す。 (getter)
+#tex(\[ \log_{10}e \])
+
+--------------------------------------------------------------------------------
+-MathEx.LOG2E プロパティ &aname(MathEx-LOG2E);~
+ e の二進対数を返す。 (getter)
+#tex(\[ \log_{2}e \])
+
+--------------------------------------------------------------------------------
+-MathEx.SQRT2 プロパティ &aname(MathEx-SQRT2);~
+ 2 の平方根を返す。 (getter)
+#tex(\[ \sqrt{2} \])
+
+--------------------------------------------------------------------------------
+-MathEx.SQRT1_2 プロパティ &aname(MathEx-SQRT1_2);~
+ 1/2 の平方根を返す。 (getter)
+#tex(\[ \sqrt{\frac{1}{2}} \])
+
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,67 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_splash_window.dll（または ktl_splash_window-d.dll）~
+
+-スクリプト~
+--[[ktl/SplashWindow.tjs]]~
+
+-クラス~
+--SplashWindow クラス~
+
+
+
+*スプラッシュスクリーン
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/SplashWindow.tjs");
+ 
+ /* SplashWindow のインスタンス作成 */
+ var splash = new SplashWindow();
+ 
+ /* 600×450サイズのウィンドウを作成 */
+ splash.initialize(600, 450);
+ 
+ /* splash.png からイメージをロード */
+ splash.loadImages("splash.png");
+ 
+ /* 最前面にする */
+ splash.topMost = true;
+ 
+ /* スプラッシュスクリーンを表示 */
+ splash.visible = true;
+ 
+ /*
+     いろいろKAGの初期化処理など
+ *
+ 
+ /* スプラッシュスクリーンを消去 */
+ invalidate splash;
+
+-SplashWindow クラス~
+--Adobe製品や、PCゲームではFate／stay nightなどにあるような、~
+起動時に表示されるウィンドウ（スプラッシュスクリーン）を使うためのクラス。~
+--このインスタンスが破棄（invalidate）されるとき、ウィンドウやリソースは正しく解放される。~
+
+-SplashWindow.initialize メソッド~
+--シグネチャ:~
+---SplashWindow.initialize(width, height, identity)~
+--インスタンスを生成してから最初に呼び出す。~
+--これは自動的にデスクトップ領域に対してセンタリングを行う。~
+
+-SplashWindow.loadImages メソッド~
+--シグネチャ:~
+---SplashWindow.loadImages(storage)~
+--スプラッシュに表示される画像イメージをロードする。~
+--現在、PNG形式のみ対応。なおアルファ値は単に無視される。~
+--画像とスクリーンサイズが違った場合、イメージはスクリーンにフィットするようストレッチ（引き延ばし）される。~
+
+-SplashWindow.visible プロパティ~
+--スプラッシュの表示状態を設定／取得する。~
+
+-SplashWindow.topMost プロパティ(2010/07/07 追加)~
+--スプラッシュが最前面かどうか設定／取得する。~
+

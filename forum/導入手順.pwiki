@@ -1,0 +1,79 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#outlines-]
+ここでは、KTL をあなたのプロジェクトに導入するための簡単な導入手順を示します。~
+
+
+
+*手順 [#process-]
++&color(red){''ダウンロード''};~
+以下を''ダウンロード''してください。~
+--[[ktl.zip:http://www.boleros.x0.com/data/ktl.zip]] (スクリプト)~
+--[[plugin.zip:http://www.boleros.x0.com/data/plugin.zip]] (DLL)~
+--[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]] (外部DLL)~
+~
++&color(red){''解凍''};~
+ダウンロードした''圧縮ファイルを解凍''してください。~
+それぞれ以下のような構成のフォルダができます。~
+  ktl/
+  └── *.tjs
+ 
+  plugin/
+  ├── ktl_*.dll
+  └── debug/
+  　　　 └── ktl_*-d.dll
+ 
+  ICU/
+  └── *.dll
+~
++&color(red){''スクリプトをプロジェクトに配置する''};~
+解凍した ''ktl フォルダ''を、あなたのプロジェクトの「''自動検索パスに含まれる場所''」に''フォルダ丸ごと''放りこんでください。~
+ここでいう「自動検索パスに含まれる場所」とは、例えば~
+ (krkr.eXeのあるフォルダ)/data/
+などです。~
+つまり、この場合~
+  ├── krkr.eXe
+  └── data/
+  　　　 └── ktl/
+  　　　 　　　 └── *.tjs
+というようなフォルダ構成になればOKです。~
+~
++&color(red){''DLLをプロジェクトに配置する''};~
+解凍した ''plugin フォルダの中身''を、あなたのプロジェクトの''プラグインフォルダ''に放りこんでください。~
+プラグインフォルダについて詳しくは公式ドキュメントの [[プラグインについて:http://devdoc.kikyou.info/tvp/docs/kr2doc/contents/Plugins.html]] を参照ください。~
+例えば~
+  ├── krkr.eXe
+  └── plugin/
+  　　　 └── ktl_*.dll
+というようなフォルダ構成になればOKです。~
+~
+機能ごとに必要となるDLLは [[DLLについて>KTLWiki#dll-]] のDLL一覧を参照ください。~
+例えばネットワーク機能を使いたい場合は ktl_network.dll をプラグインフォルダに追加してください。~
+plugin/debug/ 以下にあるデバッグ版DLLは、特に必要がなければ無視してください。~
+~
+もし実行してみて "ktl_*.dll が見つかりません" というようなエラーメッセージが出た場合、当該のDLLを追加してください。~
+~
++&color(red){''外部DLLをプロジェクトに配置する''};~
+解凍した ''ICU フォルダの中身''を、もし必要ならば、あなたのプロジェクトの''krkr.eXeのあるフォルダ''に放りこんでください。~
+つまり~
+  ├── krkr.eXe
+  └── *.dll
+というようなフォルダ構成になればOKです。~
+ICU が必要になるのは、Encoding および Ptree の機能を使う場合です。~
+~
+もし実行してみて "*.dll が見つかりません" というようなエラーメッセージが出た場合、当該のDLLを追加してください。~
+~
++&color(red){''スクリプトをロードする''};~
+例えばネットワーク機能を使いたい場合は~
+ Scripts.execStorage("ktl/Network.tjs");
+というように、該当するスクリプトをあなたのコードから実行してください。~
+~
++&color(red){''完了''};~
+以上で導入は完了です。~
+~
+もし書いてある手順どおりにやって上手くいかなかった場合、宜しければ [[E-Mail:contact-lib@boleros.x0.com]] または~
+Twitter[[@bolero_MURAKAMI:https://twitter.com/#!/bolero_MURAKAMI]] まで連絡ください。~
+

@@ -1,0 +1,906 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 構造化データの読み書きや操作など。
+-パス:~
+--[[ktl/PTree.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_ptree.dll / ktl_ptree-d.dll(デバッグ版)~
+-外部DLL~
+--icudt46.dll~
+--icuuc46.dll~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[PTree クラス>#PTree]]~
+
+--------------------------------------------------------------------------------
+
+**PTree クラス [#PTree]
+ 構造化データの読み書きや操作を行うクラス。XML, JSON, INFO, YAML, HTML(読込のみ) 形式に対応。
+-メソッド:~
+--[[PTree メソッド>#PTree-PTree]]~
+
+> (アクセス)~
+
+--[[get メソッド>#PTree-get]]~
+--[[getKey メソッド>#PTree-getKey]]~
+--[[put メソッド>#PTree-put]]~
+--[[erase メソッド>#PTree-erase]]~
+--[[exist メソッド>#PTree-exist]]~
+--[[size メソッド>#PTree-size]]~
+--[[count メソッド>#PTree-count]]~
+--[[clear メソッド>#PTree-clear]]~
+--[[sort メソッド>#PTree-sort]]~
+--[[reverse メソッド>#PTree-reverse]]~
+
+> (複製・割り当て)~
+
+--[[clone メソッド>#PTree-clone]]~
+--[[assign メソッド>#PTree-assign]]~
+
+> (読み込み)~
+
+--[[readXML メソッド>#PTree-readXML]]~
+--[[readStorageXML メソッド>#PTree-readStorageXML]]~
+--[[readJSON メソッド>#PTree-readJSON]]~
+--[[readStorageJSON メソッド>#PTree-readStorageJSON]]~
+--[[readINI メソッド>#PTree-readINI]]~
+--[[readStorageINI メソッド>#PTree-readStorageINI]]~
+--[[readINFO メソッド>#PTree-readINFO]]~
+--[[readStorageINFO メソッド>#PTree-readStorageINFO]]~
+--[[readYAML メソッド>#PTree-readYAML]]~
+--[[readStorageYAML メソッド>#PTree-readStorageYAML]]~
+--[[readHTML メソッド>#PTree-readHTML]]~
+--[[readStorageHTML メソッド>#PTree-readStorageHTML]]~
+
+> (書き出し)~
+
+--[[writeXMLToString メソッド>#PTree-writeXMLToString]]~
+--[[writeXMLToOctet メソッド>#PTree-writeXMLToOctet]]~
+--[[writeStorageXML メソッド>#PTree-writeStorageXML]]~
+--[[writeJSONToString メソッド>#PTree-writeJSONToString]]~
+--[[writeJSONToOctet メソッド>#PTree-writeJSONToOctet]]~
+--[[writeStorageJSON メソッド>#PTree-writeStorageJSON]]~
+--[[writeINIToString メソッド>#PTree-writeINIToString]]~
+--[[writeINIToOctet メソッド>#PTree-writeINIToOctet]]~
+--[[writeStorageINI メソッド>#PTree-writeStorageINI]]~
+--[[writeINFOToString メソッド>#PTree-writeINFOToString]]~
+--[[writeINFOToOctet メソッド>#PTree-writeINFOToOctet]]~
+--[[writeStorageINFO メソッド>#PTree-writeStorageINFO]]~
+--[[writeYAMLToString メソッド>#PTree-writeYAMLToString]]~
+--[[writeYAMLToOctet メソッド>#PTree-writeYAMLToOctet]]~
+--[[writeStorageYAML メソッド>#PTree-writeStorageYAML]]~
+
+> (フォーマット)~
+
+--[[trimXML メソッド>#PTree-trimXML]]~
+--[[stratifyINI メソッド>#PTree-stratifyINI]]~
+--[[unstratifyINI メソッド>#PTree-unstratifyINI]]~
+-プロパティ:~
+--[[pathSeparator プロパティ>#PTree-pathSeparator]]~
+--[[pathSharp プロパティ>#PTree-pathSharp]]~
+-スタティックプロパティ:~
+--[[pfXMLNoConcatText プロパティ>#PTree-pfXMLNoConcatText]]~
+--[[pfXMLNoComments プロパティ>#PTree-pfXMLNoComments]]~
+--[[pfXMLTrimWhitespace プロパティ>#PTree-pfXMLTrimWhitespace]]~
+--[[pfYAMLMultiDocument プロパティ>#PTree-pfYAMLMultiDocument]]~
+--[[efYAMLMultiDocument プロパティ>#PTree-efYAMLMultiDocument]]~
+--[[efYAMLInsertEndOfDocument プロパティ>#PTree-efYAMLInsertEndOfDocument]]~
+--[[pfHTMLNoConcatText プロパティ>#PTree-pfHTMLNoConcatText]]~
+--[[pfHTMLNoComments プロパティ>#PTree-pfHTMLNoComments]]~
+--[[pfHTMLTrimWhitespace プロパティ>#PTree-pfHTMLTrimWhitespace]]~
+
+--------------------------------------------------------------------------------
+-PTree.PTree メソッド &aname(PTree-PTree);~
+ コンストラクタ。
+--シグネチャ:~
+---PTree()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTree.get メソッド &aname(PTree-get);~
+ パスの指す要素の値(文字列)を返す。
+--シグネチャ:~
+---PTree.get(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---String~
+パスの指す要素の値。~
+---void~
+パスの指す要素が存在しなかった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.getKey メソッド &aname(PTree-getKey);~
+ パスの指す要素のキー(文字列)を返す。
+--シグネチャ:~
+---PTree.getKey(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---String~
+パスの指す要素のキー。~
+---void~
+パスの指す要素が存在しなかった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.put メソッド &aname(PTree-put);~
+ パスの指す要素の値(文字列)を設定する。
+--シグネチャ:~
+---PTree.put(path_insertable, data)~
+--引数:~
+---path_insertable~
+挿入可能パス文字列。~
+---data~
+設定する要素の値。~
+--返値:~
+---true~
+設定に成功した場合。~
+---false~
+不正なパス文字列だった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.erase メソッド &aname(PTree-erase);~
+ パスの指す要素を除去する。
+--シグネチャ:~
+---PTree.erase(path_exists)~
+---PTree.erase(path_exists, key)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+---key~
+指定したパスの子要素を除去する場合のキー。~
+--返値:~
+---String~
+パスの指す要素のキー。~
+---void~
+パスの指す要素が存在しなかった場合。~
+--注記:~
+キーを指定した場合、パスの指す要素から指定したキーの要素を全て除去する。~
+
+--------------------------------------------------------------------------------
+-PTree.exist メソッド &aname(PTree-exist);~
+ パスの指す要素が存在するかを返す。
+--シグネチャ:~
+---PTree.exist(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---true~
+パスの指す要素が存在した場合。~
+---false~
+パスの指す要素が存在しない場合。~
+
+--------------------------------------------------------------------------------
+-PTree.size メソッド &aname(PTree-size);~
+ パスの指す要素の子要素の総数を返す。
+--シグネチャ:~
+---PTree.size(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---正値~
+子要素の総数。~
+---負値~
+パスの指す要素が存在しなかった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.count メソッド &aname(PTree-count);~
+ パスの指す要素の子要素のうち、指定したキーの要素の数を返す。
+--シグネチャ:~
+---PTree.count(path_exists, key)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+---key~
+子要素のキー。~
+--返値:~
+---正値~
+指定したキーの子要素の総数。~
+---負値~
+パスの指す要素が存在しなかった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.clear メソッド &aname(PTree-clear);~
+ パスの指す要素の子要素をクリアする。
+--シグネチャ:~
+---PTree.clear(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---true~
+クリアに成功した場合。~
+---false~
+不正なパス文字列だった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.sort メソッド &aname(PTree-sort);~
+ パスの指す要素の子要素を、要素のキーでソートする。
+--シグネチャ:~
+---PTree.sort(path_exists, comp = void, stable = false)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+---comp~
+キーの比較方法を示す文字列。~
+"+" または "a" ならば昇順、"-" または "z" ならば降順。~
+"ia" ならば大文字小文字を区別しない昇順、"iz" ならば大文字小文字を区別しない降順。~
+---stable~
+安定ソートを行うか。~
+--返値:~
+---true~
+ソートに成功した場合。~
+---false~
+不正なパス文字列だった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.reverse メソッド &aname(PTree-reverse);~
+ パスの指す要素の子要素の並びを反転する。
+--シグネチャ:~
+---PTree.reverse(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---true~
+反転に成功した場合。~
+---false~
+不正なパス文字列だった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.clone メソッド &aname(PTree-clone);~
+ パスの指す要素を切り出し、新しいインスタンスを生成して返す。
+--シグネチャ:~
+---PTree.clone(path_exists)~
+--引数:~
+---path_exists~
+参照パス文字列。~
+--返値:~
+---PTree~
+新しいインスタンス。~
+---null~
+パスの指す要素が存在しなかった場合。~
+
+--------------------------------------------------------------------------------
+-PTree.assign メソッド &aname(PTree-assign);~
+ パスの指す要素へ、他のインスタンスを代入する。
+--シグネチャ:~
+---PTree.assign(path_insertable, obj)~
+--引数:~
+---path_insertable~
+挿入可能パス文字列。~
+---obj~
+PTree クラスのインスタンス。~
+--返値:~
+---true~
+代入に成功した場合。~
+---false~
+代入に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readXML メソッド &aname(PTree-readXML);~
+ 文字列またはオクテット列から、XML を読み込む。
+--シグネチャ:~
+---PTree.readXML(str, flag = 0)~
+---PTree.readXML(octet, code, flag = 0)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+---flag~
+XML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageXML メソッド &aname(PTree-readStorageXML);~
+ ローカルストレージから、XML を読み込む。
+--シグネチャ:~
+---PTree.readStorageXML(storage, flag = 0)~
+---PTree.readStorageXML(storage, code, flag = 0)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+---flag~
+XML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.readJSON メソッド &aname(PTree-readJSON);~
+ 文字列またはオクテット列から、JSON を読み込む。
+--シグネチャ:~
+---PTree.readJSON(str)~
+---PTree.readJSON(octet, code)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageJSON メソッド &aname(PTree-readStorageJSON);~
+ ローカルストレージから、JSON を読み込む。
+--シグネチャ:~
+---PTree.readStorageJSON(storage)~
+---PTree.readStorageJSON(storage, code)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.readINI メソッド &aname(PTree-readINI);~
+ 文字列またはオクテット列から、INI を読み込む。
+--シグネチャ:~
+---PTree.readINI(str)~
+---PTree.readINI(octet, code)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageINI メソッド &aname(PTree-readStorageINI);~
+ ローカルストレージから、INI を読み込む。
+--シグネチャ:~
+---PTree.readStorageINI(storage)~
+---PTree.readStorageINI(storage, code)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.readINFO メソッド &aname(PTree-readINFO);~
+ 文字列またはオクテット列から、INFO を読み込む。
+--シグネチャ:~
+---PTree.readINFO(str)~
+---PTree.readINFO(octet, code)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageINFO メソッド &aname(PTree-readStorageINFO);~
+ ローカルストレージから、INFO を読み込む。
+--シグネチャ:~
+---PTree.readStorageINFO(storage)~
+---PTree.readStorageINFO(storage, code)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.readYAML メソッド &aname(PTree-readYAML);~
+ 文字列またはオクテット列から、YAML を読み込む。
+--シグネチャ:~
+---PTree.readYAML(str, flag = 0)~
+---PTree.readYAML(octet, code, flag = 0)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+---flag~
+YAML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageYAML メソッド &aname(PTree-readStorageYAML);~
+ ローカルストレージから、YAML を読み込む。
+--シグネチャ:~
+---PTree.readStorageYAML(storage, flag = 0)~
+---PTree.readStorageYAML(storage, code, flag = 0)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+---flag~
+YAML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.readHTML メソッド &aname(PTree-readHTML);~
+ 文字列またはオクテット列から、HTML を読み込む。
+--シグネチャ:~
+---PTree.readHTML(str, flag = 0)~
+---PTree.readHTML(octet, code, flag = 0)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---octet~
+ソースとなるオクテット列。~
+---code~
+オクテット列が表現する文字コード名。~
+---flag~
+HTML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注釈:~
+コメントや属性は、XML と互換性のある木構造で読み込む~
+
+--------------------------------------------------------------------------------
+-PTree.readStorageHTML メソッド &aname(PTree-readStorageHTML);~
+ ローカルストレージから、HTML を読み込む。
+--シグネチャ:~
+---PTree.readStorageHTML(storage, flag = 0)~
+---PTree.readStorageHTML(storage, code, flag = 0)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+ストレージの内容の文字コード名。~
+---flag~
+HTML 読み込みフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+文字コードを指定しない場合、UTF-16LE または Shift_JIS として読み込む。~
+--注釈:~
+コメントや属性は、XML と互換性のある木構造で読み込む~
+
+--------------------------------------------------------------------------------
+-PTree.writeXMLToString メソッド &aname(PTree-writeXMLToString);~
+ 木構造を XML で、文字列へ書き出す。
+--シグネチャ:~
+---PTree.writeXMLToString(indent_char = #" ", indent_count = 4)~
+--引数:~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---String~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeXMLToOctet メソッド &aname(PTree-writeXMLToOctet);~
+ 木構造を XML で、オクテット列へ書き出す。
+--シグネチャ:~
+---PTree.writeXMLToOctet(code, indent_char = #" ", indent_count = 4)~
+--引数:~
+---code~
+エンコードする文字コード名。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---Octet~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeStorageXML メソッド &aname(PTree-writeStorageXML);~
+ 木構造を XML で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---PTree.writeXMLToOctet(storage, code = "UTF-16", indent_char = #" ", indent_count = 4)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+エンコードする文字コード名。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeJSONToString メソッド &aname(PTree-writeJSONToString);~
+ 木構造を JSON で、文字列へ書き出す。
+--シグネチャ:~
+---PTree.writeJSONoString(pretty = true)~
+--引数:~
+---pretty~
+読みやすいインデントで出力するか。~
+--返値:~
+---String~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeJSONToOctet メソッド &aname(PTree-writeJSONToOctet);~
+ 木構造を JSON で、オクテット列へ書き出す。
+--シグネチャ:~
+---PTree.writeJSONToOctet(code, pretty = true)~
+--引数:~
+---code~
+エンコードする文字コード名。~
+---pretty~
+読みやすいインデントで出力するか。~
+--返値:~
+---Octet~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeStorageJSON メソッド &aname(PTree-writeStorageJSON);~
+ 木構造を JSON で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---PTree.writeJSONToOctet(storage, code = "UTF-16", pretty = true)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+エンコードする文字コード名。~
+---pretty~
+読みやすいインデントで出力するか。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeINIToString メソッド &aname(PTree-writeINIToString);~
+ 木構造を INI で、文字列へ書き出す。
+--シグネチャ:~
+---PTree.writeINIoString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeINIToOctet メソッド &aname(PTree-writeINIToOctet);~
+ 木構造を INI で、オクテット列へ書き出す。
+--シグネチャ:~
+---PTree.writeINIToOctet(code)~
+--引数:~
+---code~
+エンコードする文字コード名。~
+--返値:~
+---Octet~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeStorageINI メソッド &aname(PTree-writeStorageINI);~
+ 木構造を INI で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---PTree.writeINIToOctet(storage, code = "UTF-16")~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+エンコードする文字コード名。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeINFOToString メソッド &aname(PTree-writeINFOToString);~
+ 木構造を INFO で、文字列へ書き出す。
+--シグネチャ:~
+---PTree.writeINFOToString(indent_char = #" ", indent_count = 4)~
+--引数:~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---String~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeINFOToOctet メソッド &aname(PTree-writeINFOToOctet);~
+ 木構造を INFO で、オクテット列へ書き出す。
+--シグネチャ:~
+---PTree.writeINFOToOctet(code, indent_char = #" ", indent_count = 4)~
+--引数:~
+---code~
+エンコードする文字コード名。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---Octet~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeStorageINFO メソッド &aname(PTree-writeStorageINFO);~
+ 木構造を INFO で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---PTree.writeINFOToOctet(storage, code = "UTF-16", indent_char = #" ", indent_count = 4)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+エンコードする文字コード名。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeYAMLToString メソッド &aname(PTree-writeYAMLToString);~
+ 木構造を YAML で、文字列へ書き出す。
+--シグネチャ:~
+---PTree.writeYAMLoString(flag = 0)~
+--引数:~
+---flag~
+YAML 書き出しフラグ。~
+--返値:~
+---String~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeYAMLToOctet メソッド &aname(PTree-writeYAMLToOctet);~
+ 木構造を YAML で、オクテット列へ書き出す。
+--シグネチャ:~
+---PTree.writeYAMLToOctet(code, flag = 0)~
+--引数:~
+---code~
+エンコードする文字コード名。~
+---flag~
+YAML 書き出しフラグ。~
+--返値:~
+---Octet~
+書き出された結果。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.writeStorageYAML メソッド &aname(PTree-writeStorageYAML);~
+ 木構造を YAML で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---PTree.writeYAMLToOctet(storage, code = "UTF-16", flag = 0)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---code~
+エンコードする文字コード名。~
+---flag~
+YAML 書き出しフラグ。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.trimXML メソッド &aname(PTree-trimXML);~
+ 一般的に不要な XML の情報を除去する。
+--シグネチャ:~
+---PTree.trimXML()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--注記:~
+具体的には、"<xmlcomment>"要素の除去、"<xmltext>"要素の文字列データを親に付け替え、~
+および終端ノードの要素以外の文字列データを除去を行う。~
+
+--------------------------------------------------------------------------------
+-PTree.stratifyINI メソッド &aname(PTree-stratifyINI);~
+ 読み込んだ INI のセクション名をセパレータで区切って階層構造化する。
+--シグネチャ:~
+---PTree.stratifyINI(path_separator = pathSeparator)~
+--引数:~
+---path_separator~
+トークンを区切るセパレータ。~
+デフォルトで pathSeparator プロパティが使用される。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.unstratifyINI メソッド &aname(PTree-unstratifyINI);~
+ 木の階層構造をセパレータで区切られたセクション名に変換して INI 形式で保存できるようにする。
+--シグネチャ:~
+---PTree.unstratifyINI(path_separator = pathSeparator)~
+--引数:~
+---path_separator~
+トークンを区切るセパレータ。~
+デフォルトで pathSeparator プロパティが使用される。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTree.pathSeparator プロパティ &aname(PTree-pathSeparator);~
+ トークンを区切るセパレータを設定、取得する。 (setter/getter)
+--注記:~
+文字列でなく、１文字の文字コードを表わす。~
+デフォルトで"."~
+PTree のインスタンス毎に設定される~
+
+--------------------------------------------------------------------------------
+-PTree.pathSharp プロパティ &aname(PTree-pathSharp);~
+ トークンの特殊な指定子のための文字を設定、取得する。 (setter/getter)
+--注記:~
+文字列でなく、１文字の文字コードを表わす。~
+デフォルトで"#"~
+PTree のインスタンス毎に設定される~
+
+--------------------------------------------------------------------------------
+-PTree.pfXMLNoConcatText プロパティ &aname(PTree-pfXMLNoConcatText);~
+ XML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+素の文字列データを"<xmltext>"要素の子として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.pfXMLNoComments プロパティ &aname(PTree-pfXMLNoComments);~
+ XML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+デフォルトでXMLコメントもパースされる動作を抑制する。~
+これを指定しなかった場合、XMLコメントは"<xmlcomment>"要素の子として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.pfXMLTrimWhitespace プロパティ &aname(PTree-pfXMLTrimWhitespace);~
+ XML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+素の文字列データの前後のスペースを除去する。~
+
+--------------------------------------------------------------------------------
+-PTree.pfYAMLMultiDocument プロパティ &aname(PTree-pfYAMLMultiDocument);~
+ YAML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+YAML は"---"で区切られた一つまたは複数のドキュメントを含むことができるが、これを指定した場合それらが YAML のシーケンスであるかのように読み込む。~
+これを指定しなかった場合、複数のドキュメントを含む場合最初のドキュメントのみを読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.efYAMLMultiDocument プロパティ &aname(PTree-efYAMLMultiDocument);~
+ YAML 書き出しフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+ルートの直接の子要素をそれぞれ、"---"で区切られた複数のドキュメントとして書き出す。~
+この場合ルートの直接の子要素は、キーと要素の値を持っていてはならない。~
+
+--------------------------------------------------------------------------------
+-PTree.efYAMLInsertEndOfDocument プロパティ &aname(PTree-efYAMLInsertEndOfDocument);~
+ YAML 書き出しフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+YAML のドキュメント終了マーク"..."を書き込む。~
+
+--------------------------------------------------------------------------------
+-PTree.pfHTMLNoConcatText プロパティ &aname(PTree-pfHTMLNoConcatText);~
+ HTML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+素の文字列データを"<xmltext>"要素の子として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.pfHTMLNoComments プロパティ &aname(PTree-pfHTMLNoComments);~
+ HTML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+デフォルトでHTMLコメントもパースされる動作を抑制する。~
+これを指定しなかった場合、HTMLコメントは"<xmlcomment>"要素の子として読み込む。~
+
+--------------------------------------------------------------------------------
+-PTree.pfHTMLTrimWhitespace プロパティ &aname(PTree-pfHTMLTrimWhitespace);~
+ HTML 読み込みフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+素の文字列データの前後のスペースを除去する。~
+
+--------------------------------------------------------------------------------
+

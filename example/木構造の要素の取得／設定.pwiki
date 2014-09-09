@@ -1,0 +1,72 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*要素の値の取得
+ /* root.title の取得 */
+ var path = "root.title";
+ var data = ptree.get(path);
+ if (data !== void) {
+     Debug.message(path + ": data=" + data); // root.title: data=foobar
+ } else {
+     Debug.message("要素が存在しません。");
+ }
+
+-PTree.get メソッド~
+--シグネチャ:~
+---PTree.get(path_exists)~
+--パスの指す要素の値(文字列)を返す。~
+--パスの指す要素が存在しなかった場合、void を返す。~
+
+
+
+*要素のキーの取得
+ /* root.item#0.1# の取得 */
+ var path = "root.item#0.1#";
+ var key = ptree.getKey(path);
+ if (data !== void) {
+     Debug.message(path + ": key=" + data); // root.item#0.1#: key=index
+ } else {
+     Debug.message("要素が存在しません。");
+ }
+
+-PTree.getKey メソッド~
+--シグネチャ:~
+---PTree.getKey(path_exists)~
+--パスの指す要素のキー(文字列)を返す。~
+--パスの指す要素が存在しなかった場合、void を返す。~
+
+
+
+*要素の値の設定
+ /* root.inserted#+ へ設定 */
+ var path = "root.inserted#+";
+ var succeeded = ptree.put(path, "foobar");
+ if (!succeeded) {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.put メソッド~
+--シグネチャ:~
+---PTree.put(path_insertable, data)~
+--パスの指す要素の値(文字列)を設定する。~
+--要素が存在しなかった場合、トークンの指定に従って要素が挿入される。~
+--成功した場合は true、不正なパス文字列だった場合は false を返す。~
+

@@ -1,0 +1,142 @@
+*目次 [#contents-]
+#contents
+
+
+
+*プラグイン別 [#plugins-]
+
+　　各 DLL のビルドには、それぞれ以下のライブラリが必要となります。~
+　　[[サードパーティライブラリ一覧>3rdparty/サードパーティライブラリ一覧]] も併せてお読みください。~
+~
+--KTL.Utils~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.Network~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　OpenSSL~
+~
+--KTL.LocalFiles~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.StorageStream~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.Compression~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　zlib~
+~
+--KTL.Bzip2~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　libbzip2~
+~
+--KTL.Checksum~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　Hamigaki~
+~
+--KTL.OctetBuilder~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.Encoding~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　ICU~
+~
+--KTL.PTree~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　ICU~
+　　yaml-cpp~
+　　htmlcxx~
+~
+--KTL.PTime~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.VariateRandom~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.BigInt~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　NTL~
+~
+--KTL.MathEx~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.SplashWindow~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　zlib~
+　　libpng~
+~
+--KTL.Serialization~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.SpriteCoord~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.Functor~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
+--KTL.Sprites~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+　　DirectX SDK~
+~
+--KTL.OSVersion~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~

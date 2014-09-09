@@ -1,0 +1,95 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*JSON読み込み
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/PTree.tjs");
+ 
+ /* PTree のインスタンス作成 */
+ var ptree = new PTree();
+ 
+ /* settings.json の読み込み */
+ ptree.readStorageJSON(System.exePath + "settings.json", "UTF-8");
+
+-PTree クラス~
+--XML,JSON等のような構造化データの読み書きや操作を行う。~
+
+-PTree.readJSON メソッド~
+--シグネチャ:~
+---PTree.readJSON(str)~
+---PTree.readJSON(octet, code)~
+--文字列またはオクテット列から、JSONを読み込む。~
+--第１引数にはソースとなる文字列またはオクテット列を渡す。~
+--ソースがオクテット列の場合、第２引数にはオクテット列が表現する文字コード名を渡す。~
+--処理に成功した場合はtrue、失敗した場合はfalseを返す。~
+
+-PTree.readStorageJSON メソッド~
+--シグネチャ:~
+---PTree.readStorageJSON(storage)~
+---PTree.readStorageJSON(storage, code)~
+--ローカルストレージから、JSONを読み込む。~
+--第１引数にはストレージのパス文字列を渡す。~
+--第２引数にはストレージの内容が表現する文字コード名を渡すことができる。~
+--処理に成功した場合はtrue、失敗した場合はfalseを返す。~
+
+
+
+*JSON読み込みの挙動
+-型~
+--JSONの型とは無関係に、全て文字列として読み込まれる。~
+ {
+    "int": 123,
+    "float": 3.14,
+    "string": "foobar"
+ }
+↓~
+ {
+     int 123
+     float 3.14
+     string foobar
+ }
+
+-配列~
+--配列は、要素名のない木構造のノードとして扱われる。~
+ [
+    { "name": "value" },
+    { "name": "value" }
+ ]
+↓~
+ {
+     ""
+     {
+         name value
+     }
+     ""
+     {
+         name value
+     }
+ }
+
+-エスケープ~
+--エスケープシーケンスは、対応した文字へ適切に変換される。~
+ {
+    "node": "\u0030\u0031\u0032"
+ }
+↓
+ node 012
+

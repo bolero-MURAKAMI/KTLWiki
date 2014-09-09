@@ -1,0 +1,122 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ OS のバージョンチェックなど。
+-パス:~
+--[[ktl/OSVersion.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_os_version.dll / ktl_os_version-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[OSVersion クラス>#OSVersion]]~
+
+--------------------------------------------------------------------------------
+
+**OSVersion クラス [#OSVersion]
+ OS のバージョンチェックを行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+--[[checkVersion メソッド>#OSVersion-checkVersion]]~
+-スタティックプロパティ:~
+--[[majorVersion プロパティ>#OSVersion-majorVersion]]~
+--[[minorVersion プロパティ>#OSVersion-minorVersion]]~
+--[[buildNumber プロパティ>#OSVersion-buildNumber]]~
+--[[platformId プロパティ>#OSVersion-platformId]]~
+--[[CSDVersion プロパティ>#OSVersion-CSDVersion]]~
+--[[servicePackMajor プロパティ>#OSVersion-servicePackMajor]]~
+--[[servicePackMinor プロパティ>#OSVersion-servicePackMinor]]~
+--[[suiteMask プロパティ>#OSVersion-suiteMask]]~
+--[[productType プロパティ>#OSVersion-productType]]~
+--[[versionFlag プロパティ>#OSVersion-versionFlag]]~
+--[[vfWindows2000 プロパティ>#OSVersion-vfWindows2000]]~
+--[[vfWindowsXP プロパティ>#OSVersion-vfWindowsXP]]~
+--[[vfWindowsVista プロパティ>#OSVersion-vfWindowsVista]]~
+--[[vfWindows7 プロパティ>#OSVersion-vfWindows7]]~
+
+--------------------------------------------------------------------------------
+-OSVersion.checkVersion メソッド &aname(OSVersion-checkVersion);~
+ バージョンチェックの結果を返す。
+--シグネチャ:~
+---OSVersion.checkVersion(flag)~
+--引数:~
+---flag~
+バージョンフラグ。~
+--返値:~
+---0~
+実行環境の OS のバージョンが指定バージョンと一致した場合。
+---正値~
+実行環境の OS のバージョンが指定バージョンより新しい場合。
+---負値~
+実行環境の OS のバージョンが指定バージョンより古い場合。
+--使用例:~
+ /* 実行環境の OS が Windows XP 以上であるかチェック */
+ if (OSVersion.checkVersion(OSVersion.vfWindowsXP) >= 0) {
+     Debug.message("OS は Windows XP 以上です。");
+ }
+
+--------------------------------------------------------------------------------
+-OSVersion.majorVersion プロパティ &aname(OSVersion-majorVersion);~
+ 実行環境の OS のメジャーバージョンを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.minorVersion プロパティ &aname(OSVersion-minorVersion);~
+ 実行環境の OS のマイナーバージョンを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.buildNumber プロパティ &aname(OSVersion-buildNumber);~
+ 実行環境の OS のビルド番号を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.platformId プロパティ &aname(OSVersion-platformId);~
+ 実行環境の OS のプラットフォーム識別値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.CSDVersion プロパティ &aname(OSVersion-CSDVersion);~
+ 実行環境の OS のサービスパックの情報文字列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.servicePackMajor プロパティ &aname(OSVersion-servicePackMajor);~
+ 実行環境の OS のサービスパックのメジャーバージョンを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.servicePackMinor プロパティ &aname(OSVersion-servicePackMinor);~
+ 実行環境の OS のサービスパックのマイナーバージョンを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.suiteMask プロパティ &aname(OSVersion-suiteMask);~
+ 実行環境の OS の利用可能な製品スイートを表すビットマスクを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.productType プロパティ &aname(OSVersion-productType);~
+ 実行環境の OS のシステムに関する追加情報を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.versionFlag プロパティ &aname(OSVersion-versionFlag);~
+ 実行環境の OS のバージョンフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindows2000 プロパティ &aname(OSVersion-vfWindows2000);~
+ バージョンフラグ。Windows 2000 を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindowsXP プロパティ &aname(OSVersion-vfWindowsXP);~
+ バージョンフラグ。Windows XP を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindowsVista プロパティ &aname(OSVersion-vfWindowsVista);~
+ バージョンフラグ。Windows Vista を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindows7 プロパティ &aname(OSVersion-vfWindows7);~
+ バージョンフラグ。Windows 7 を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+

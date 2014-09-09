@@ -1,0 +1,122 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列へ挿入
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* 64bit 整数の挿入 */
+ oct.insert(bytes_offinsert, 37564, OctetBuilder.vtfInt64);
+ Debug.message("size = " + oct.size); // size = 4
+ 
+ /* 倍精度浮動小数点数の挿入 */
+ oct.insert(bytes_offinsert, 3.14159265, OctetBuilder.vtfDouble);
+ Debug.message("size = " + oct.size); // size = 12
+ 
+ /* オクテット列の挿入 */
+ oct.insert(bytes_offinsert, <% DE AD BE AF %>, OctetBuilder.vtfOctet);
+ Debug.message("size = " + oct.size); // size = 16
+ 
+ /* BOM付き文字列の挿入 */
+ oct.insert(bytes_offinsert, "\xFEFFfoobar", OctetBuilder.vtfString);
+ Debug.message("size = " + oct.size); // size = 30
+ 
+ /* ローカルストレージの内容の挿入 */
+ oct.insertStorage(bytes_offinsert, System.exePath + "foobar.txt");
+
+-OctetBuilder.insert メソッド~
+--シグネチャ:~
+---OctetBuilder.insert(pos, v, flag = OctetBuilder.vtfByte)~
+--バッファへ値を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入される値を渡す。~
+--第３引数には、値のデータ型やエンディアンを指定するフラグを渡すことができる(デフォルト=1byte 値)。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.insertByte メソッド~
+--シグネチャ:~
+---OctetBuilder.insertByte(pos, size, b)~
+--バッファへ、1byte 値を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には連続して挿入するサイズを渡す。~
+--第３引数には挿入される値を渡す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.insertBuilder メソッド~
+--シグネチャ:~
+---OctetBuilder.insertBuilder(pos, obj)~
+---OctetBuilder.insertBuilder(pos, obj, spos)~
+---OctetBuilder.insertBuilder(pos, obj, spos, ssize)~
+--バッファへ OctetBuilder インスタンスの内容を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入される OctetBuilder インスタンスを渡す。~
+--第３引数に数値を指定すると、挿入されるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ挿入される。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.insertOctet メソッド~
+--シグネチャ:~
+---OctetBuilder.insertOctet(pos, octet)~
+---OctetBuilder.insertOctet(pos, octet, spos)~
+---OctetBuilder.insertOctet(pos, octet, spos, ssize)~
+--バッファへオクテット列を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入されるオクテット列を渡す。~
+--第３引数に数値を指定すると、挿入されるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ挿入される。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.insertString メソッド~
+--シグネチャ:~
+---OctetBuilder.insertString(pos, str)~
+---OctetBuilder.insertString(pos, str, spos)~
+---OctetBuilder.insertString(pos, str, spos, ssize)~
+--バッファへ文字列を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入される文字列（UTF-16LE）を渡す。~
+--第３引数に数値を指定すると、挿入されるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ挿入される。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+-OctetBuilder.insertNarrowString メソッド~
+--シグネチャ:~
+---OctetBuilder.insertNarrowString(pos, str)~
+---OctetBuilder.insertNarrowString(pos, str, spos)~
+---OctetBuilder.insertNarrowString(pos, str, spos, ssize)~
+--バッファへ文字列を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入される文字列（Shift_JIS）を渡す。~
+--第３引数に数値を指定すると、挿入されるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ挿入される。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）は挿入されない。~
+
+-OctetBuilder.insertStorage メソッド~
+--シグネチャ:~
+---OctetBuilder.insertStorage(pos, storage)~
+---OctetBuilder.insertStorage(pos, storage, spos)~
+---OctetBuilder.insertStorage(pos, storage, spos, ssize)~
+--バッファへローカルストレージの内容を挿入する。~
+--第１引数には挿入するオフセットのバイト数を渡す。~
+--第２引数には挿入されるストレージのパスを渡す。~
+--第３引数に数値を指定すると、挿入されるバイト列のオフセットとして扱われる。~
+--第４引数に数値を指定すると、そのバイト数だけ挿入される。~
+--バッファは必要なサイズまで自動的に拡張される。~

@@ -1,0 +1,2198 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ ネットワーク通信のための機能など。
+-パス:~
+--[[ktl/Network.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+--[[ktl/OSVersion.tjs]]~
+---["ktl", "dll", "network", "nocheck_os_version"] オプションが設定されている場合、インポートされない。~
+-インポートDLL:~
+--ktl_network.dll / ktl_network-d.dll(デバッグ版)~
+--ktl_network-v500.dll / ktl_network-v500-d.dll (デバッグ版)~
+---OS バージョンチェックが有効で、実行環境が Windows 2000 の場合、代わりに読み込まれる。~
+--ktl_os_version.dll / ktl_os_version-d.dll (デバッグ版)~
+---["ktl", "dll", "network", "nocheck_os_version"] オプションが設定されている場合、インポートされない。~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Downloader クラス>#Downloader]]~
+--[[Socket クラス>#Socket]]~
+--[[Acceptor クラス>#Acceptor]]~
+--[[Network クラス>#Network]]~
+
+--------------------------------------------------------------------------------
+
+**Downloader クラス [#Downloader]
+ HTTPダウンロードを行うクラス。SSL接続（HTTPS）に対応。同期／非同期処理に対応。
+-メソッド:~
+--[[Downloader メソッド>#Downloader-Downloader]]~
+--[[reset メソッド>#Downloader-reset]]~
+
+> (ダウンロード)~
+
+--[[downloadHTTP メソッド>#Downloader-downloadHTTP]]~
+--[[asyncDownloadHTTP メソッド>#Downloader-asyncDownloadHTTP]]~
+--[[cancel メソッド>#Downloader-cancel]]~
+
+> (バッファダウンロード)~
+
+--[[downloadHTTPToBuffer メソッド>#Downloader-downloadHTTPToBuffer]]~
+--[[asyncDownloadHTTPToBuffer メソッド>#Downloader-asyncDownloadHTTPToBuffer]]~
+--[[clearBuffer メソッド>#Downloader-clearBuffer]]~
+
+> (バッファ取得)~
+
+--[[getBufferAsOctet メソッド>#Downloader-getBufferAsOctet]]~
+--[[getBufferAsString メソッド>#Downloader-getBufferAsString]]~
+--[[getBufferAsNarrowString メソッド>#Downloader-getBufferAsNarrowString]]~
+
+> (タイムアウト)~
+
+--[[waitTimeoutFromNow メソッド>#Downloader-waitTimeoutFromNow]]~
+--[[waitTimeoutAt メソッド>#Downloader-waitTimeoutAt]]~
+--[[asyncWaitTimeoutFromNow メソッド>#Downloader-asyncWaitTimeoutFromNow]]~
+--[[asyncWaitTimeoutAt メソッド>#Downloader-asyncWaitTimeoutAt]]~
+--[[cancelTimeout メソッド>#Downloader-cancelTimeout]]~
+
+> (待機)~
+
+--[[join メソッド>#Downloader-join]]~
+
+> (データポスト)~
+
+--[[addPostDataEncoded メソッド>#Downloader-addPostDataEncoded]]~
+--[[clearPostData メソッド>#Downloader-clearPostData]]~
+--[[setCustomHeader メソッド>#Downloader-setCustomHeader]]~
+--[[clearCustomHeader メソッド>#Downloader-clearCustomHeader]]~
+
+> (情報)~
+
+--[[getField メソッド>#Downloader-getField]]~
+-プロパティ:~
+--[[isProcessing プロパティ>#Downloader-isProcessing]]~
+--[[failed プロパティ>#Downloader-failed]]~
+--[[cancelled プロパティ>#Downloader-cancelled]]~
+--[[transferredSize プロパティ>#Downloader-transferredSize]]~
+--[[contentLength プロパティ>#Downloader-contentLength]]~
+--[[bufferEnable プロパティ>#Downloader-bufferEnable]]~
+--[[bufferSize プロパティ>#Downloader-bufferSize]]~
+--[[isWaitingTimeout プロパティ>#Downloader-isWaitingTimeout]]~
+--[[expiresTimeoutFromNow プロパティ>#Downloader-expiresTimeoutFromNow]]~
+--[[expiresTimeoutAt プロパティ>#Downloader-expiresTimeoutAt]]~
+--[[postDataEnable プロパティ>#Downloader-postDataEnable]]~
+--[[postDataSize プロパティ>#Downloader-postDataSize]]~
+--[[hostName プロパティ>#Downloader-hostName]]~
+--[[serviceName プロパティ>#Downloader-serviceName]]~
+--[[contentPath プロパティ>#Downloader-contentPath]]~
+--[[URL プロパティ>#Downloader-URL]]~
+--[[storageLocalName プロパティ>#Downloader-storageLocalName]]~
+--[[HTTPVersion プロパティ>#Downloader-HTTPVersion]]~
+--[[statusCode プロパティ>#Downloader-statusCode]]~
+--[[reasonPhrase プロパティ>#Downloader-reasonPhrase]]~
+--[[onFinished プロパティ>#Downloader-onFinished]]~
+--[[processStatusCodeError プロパティ>#Downloader-processStatusCodeError]]~
+-スタティックプロパティ:~
+--[[dhfAnalyHTTPHeader プロパティ>#Downloader-dhfAnalyHTTPHeader]]~
+
+--------------------------------------------------------------------------------
+-Downloader.Downloader メソッド &aname(Downloader-Downloader);~
+ コンストラクタ。
+--シグネチャ:~
+---Downloader()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Downloader.reset メソッド &aname(Downloader-reset);~
+ ダウンロード結果の、エラー情報やプロパティをリセットする。ダウンロードデータはそのまま。
+--シグネチャ:~
+---Downloader.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+リセットに成功した場合。~
+---false~
+非同期処理が実行中で、リセットに失敗した場合。~
+--注記:~
+このメソッドを非同期処理が実行中のとき呼ぶと、常に失敗を返す。（ダウンロードはそのまま正常に続行される）~
+
+--------------------------------------------------------------------------------
+-Downloader.downloadHTTP メソッド &aname(Downloader-downloadHTTP);~
+ 同期ダウンロードを実行する。
+--シグネチャ:~
+---Downloader.downloadHTTP(url, storage, flag = 0)~
+--引数:~
+---url~
+ダウンロード元のURL。~
+---storage~
+ダウンロード先のストレージパス。~
+---flag~
+ダウンロードオプション。~
+--返値:~
+---true~
+ダウンロードに成功した場合。~
+---false~
+ダウンロードに失敗した場合。~
+--使用例:~
+ var down = new Downloader();
+ if (!down.downloadHTTP("http://xxx.xx/foo.txt", System.dataPath + "foo.txt")) {
+     Debug.message("ダウンロードに失敗しました。");
+ }
+--注記:~
+このメソッドは処理完了（または失敗）して戻るまで制御を返さない。~
+なので、大きなファイルをダウンロードするなど時間がかかる場合、実行が一時停止する。~
+停止させずにメイン処理を続行させたい場合、非同期ダウンロードを行うべき。~
+
+--------------------------------------------------------------------------------
+-Downloader.asyncDownloadHTTP メソッド &aname(Downloader-asyncDownloadHTTP);~
+ 非同期ダウンロードを実行する。
+--シグネチャ:~
+---Downloader.asyncDownloadHTTP(url, storage, flag = 0)~
+--引数:~
+---url~
+ダウンロード元のURL。~
+---storage~
+ダウンロード先のストレージパス。~
+---flag~
+ダウンロードオプション。~
+--返値:~
+---true~
+ダウンロード開始に成功した場合。~
+---false~
+ダウンロード開始に失敗した場合。~
+--使用例:~
+ var down = new Downloader();
+ if (!down.asyncDownloadHTTP("http://xxx.xx/foo.txt", System.dataPath + "foo.txt")) {
+     Debug.message("ダウンロード開始に失敗しました。");
+ }
+--注記:~
+非同期処理はすぐに制御を返し、バックグラウンドで処理を進める。~
+なので、メソッドが制御を返した時点では、ダウンロードは完了していない。~
+処理が終わったか、成功したか否かは Continuous ハンドラから監視するなどの方法がある。~
+その時点ですぐダウンロードデータを必要とする場合、同期ダウンロードを行うべき。~
+
+--------------------------------------------------------------------------------
+-Downloader.cancel メソッド &aname(Downloader-cancel);~
+ 非同期処理をキャンセルする。
+--シグネチャ:~
+---Downloader.cancel()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+非同期処理が実行中だった場合。~
+---false~
+非同期処理が実行中でなかった場合。~
+--注記:~
+このメソッドは停止フラグを立ててすぐに制御を返すが、その時点で非同期処理が確実に停止するわけではない。~
+既に受信された分のデータ（不完全なファイル）はそのまま残る。~
+
+--------------------------------------------------------------------------------
+-Downloader.downloadHTTPToBuffer メソッド &aname(Downloader-downloadHTTPToBuffer);~
+ 同期ダウンロードを実行する。データは Downloader クラスインスタンスの内部バッファへ格納される。
+--シグネチャ:~
+---Downloader.downloadHTTPToBuffer(url, flag = 0)~
+--引数:~
+---url~
+ダウンロード元のURL。~
+---flag~
+ダウンロードオプション。~
+--返値:~
+---true~
+ダウンロードに成功した場合。~
+---false~
+ダウンロードに失敗した場合。~
+--注記:~
+[[Downloader.downloadHTTP メソッド>#Downloader-downloadHTTP]] を参照。~
+
+--------------------------------------------------------------------------------
+-Downloader.asyncDownloadHTTPToBuffer メソッド &aname(Downloader-asyncDownloadHTTPToBuffer);~
+ 非同期ダウンロードを実行する。データは Downloader クラスインスタンスの内部バッファへ格納される。
+--シグネチャ:~
+---Downloader.asyncDownloadHTTPToBuffer(url, flag = 0)~
+--引数:~
+---url~
+ダウンロード元のURL。~
+---flag~
+ダウンロードオプション。~
+--返値:~
+---true~
+ダウンロード開始に成功した場合。~
+---false~
+ダウンロード開始に失敗した場合。~
+--注記:~
+[[Downloader.asyncDownloadHTTP メソッド>#Downloader-asyncDownloadHTTP]] を参照。~
+
+--------------------------------------------------------------------------------
+-Downloader.clearBuffer メソッド &aname(Downloader-clearBuffer);~
+ ダウンロードされた内部バッファの内容をクリアする。
+--シグネチャ:~
+---Downloader.clearBuffer()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+非同期処理が実行中だった場合。~
+--注記:~
+内部バッファの内容は、次にダウンロードメソッドを呼んだときに自動でクリアされる。~
+
+--------------------------------------------------------------------------------
+-Downloader.getBufferAsOctet メソッド &aname(Downloader-getBufferAsOctet);~
+ 内部バッファの内容をオクテット列として取得する。
+--シグネチャ:~
+---Downloader.getBufferAsOctet()~
+---Downloader.getBufferAsOctet(pos)~
+---Downloader.getBufferAsOctet(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+--Octet~
+内部バッファが存在した場合。~
+--void~
+内部バッファが存在しなかった場合。~
+--注記:~
+このメソッドは非同期処理が実行中の場合も、安全に実行される。~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+
+--------------------------------------------------------------------------------
+-Downloader.getBufferAsString メソッド &aname(Downloader-getBufferAsString);~
+ 内部バッファの内容を文字列として取得する。
+--シグネチャ:~
+---Downloader.getBufferAsString()~
+---Downloader.getBufferAsString(pos)~
+---Downloader.getBufferAsString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+--String~
+内部バッファが存在した場合。~
+--void~
+内部バッファが存在しなかった場合。~
+--注記:~
+このメソッドは非同期処理が実行中の場合も、安全に実行される。~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは UTF-16LE ワイド文字列であることを前提とする。~
+
+--------------------------------------------------------------------------------
+-Downloader.getBufferAsNarrowString メソッド &aname(Downloader-getBufferAsNarrowString);~
+ 内部バッファの内容をナロー文字列として取得する。
+--シグネチャ:~
+---Downloader.getBufferAsNarrowString()~
+---Downloader.getBufferAsNarrowString(pos)~
+---Downloader.getBufferAsNarrowString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+--String~
+内部バッファが存在した場合。~
+--void~
+内部バッファが存在しなかった場合。~
+--注記:~
+このメソッドは非同期処理が実行中の場合も、安全に実行される。~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは ANSI ナロー文字列であることを前提とする。~
+吉里吉里実行エンジンの仕様上、ANSI 定義外のデータが含まれていた場合内部例外が発生し、それ以降このインスタンスの正常な動作は保証されない。~
+ [deprecated] このメソッドは推奨されません。
+
+--------------------------------------------------------------------------------
+-Downloader.waitTimeoutFromNow メソッド &aname(Downloader-waitTimeoutFromNow);~
+ 現在進行中の処理の同期タイムアウト待ちを実行する。
+--シグネチャ:~
+---Downloader.waitTimeoutFromNow(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+現時点からタイムアウトまでの期間指定。ミリ秒単位。~
+--返値:~
+---true~
+処理がタイムアウトでキャンセルされた場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した、または処理がタイムアウトせず完了した場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.waitTimeoutAt メソッド &aname(Downloader-waitTimeoutAt);~
+ 現在進行中の処理の同期タイムアウト待ちを実行する。期限をエポック時間で指定。
+--シグネチャ:~
+---Downloader.waitTimeoutAt(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+タイムアウト期限のエポック時間指定。ミリ秒単位。~
+--返値:~
+---true~
+処理がタイムアウトでキャンセルされた場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した、または処理がタイムアウトせず完了した場合。~
+--注記:~
+現在のエポック時間を取得するには [[Network.getClockTime メソッド>#Network-getClockTime]] が使える。
+
+--------------------------------------------------------------------------------
+-Downloader.asyncWaitTimeoutFromNow メソッド &aname(Downloader-asyncWaitTimeoutFromNow);~
+ 現在進行中の処理の非同期タイムアウト待ちを実行する。
+--シグネチャ:~
+---Downloader.asyncWaitTimeoutFromNow(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+現時点からタイムアウトまでの期間指定。ミリ秒単位。~
+--返値:~
+---true~
+タイムアウトが設定された場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した場合。~
+--注記:~
+処理がタイムアウトせず完了した場合、タイムアウト設定は自動的に解除される。~
+
+--------------------------------------------------------------------------------
+-Downloader.asyncWaitTimeoutAt メソッド &aname(Downloader-asyncWaitTimeoutAt);~
+ 現在進行中の処理の非同期タイムアウト待ちを実行する。期限をエポック時間で指定。
+--シグネチャ:~
+---Downloader.asyncWaitTimeoutAt(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+タイムアウト期限のエポック時間指定。ミリ秒単位。~
+--返値:~
+---true~
+タイムアウトが設定された場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した場合。~
+--注記:~
+処理がタイムアウトせず完了した場合、タイムアウト設定は自動的に解除される。~
+現在のエポック時間を取得するには [[Network.getClockTime メソッド>#Network-getClockTime]] が使える。
+
+--------------------------------------------------------------------------------
+-Downloader.cancelTimeout メソッド &aname(Downloader-cancelTimeout);~
+ 非同期タイムアウト待ちをキャンセルする。
+--シグネチャ:~
+---Downloader.cancelTimeout()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+正常にキャンセルされた場合。~
+---false~
+タイムアウト待ちが実行中でなかった、またはキャンセルに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.join メソッド &aname(Downloader-join);~
+ 非同期処理の完了を待機する。
+--シグネチャ:~
+---Downloader.join()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+進行中の処理を完了した場合。~
+---false~
+進行中の処理がなかった場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.addPostDataEncoded メソッド &aname(Downloader-addPostDataEncoded);~
+ POST用バッファにデータを追加する。データは適切な形式（URLエンコード等）にエンコード済である必要がある。
+--シグネチャ:~
+---Downloader.addPostDataEncoded(str)~
+---Downloader.addPostDataEncoded(octet)~
+--引数:~
+---str~
+エンコード済の文字列。~
+---octet~
+エンコード済のオクテット列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+非同期処理が実行中だった場合。~
+--注記:~
+ダウンロード処理が開始するとき、POST用バッファの有無によって GET または POST メソッドが選択される。~
+ダウンロードが終了したとき、POST用バッファは自動的にクリアされる。~
+
+--------------------------------------------------------------------------------
+-Downloader.clearPostData メソッド &aname(Downloader-clearPostData);~
+ POST用バッファをクリアする。
+--シグネチャ:~
+---Downloader.clearPostData()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+非同期処理が実行中だった場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.setCustomHeader メソッド &aname(Downloader-setCustomHeader);~
+ HTTPリクエストに独自のヘッダ行を追加する。文字列は適切な改行（CRLF）が付加されている必要がある。
+--シグネチャ:~
+---Downloader.setCustomHeader(str)~
+--引数:~
+---str~
+ヘッダ文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+非同期処理が実行中だった場合。~
+--注記:~
+ダウンロード処理が開始するとき、GET または POST メソッドにこのメソッドで設定したヘッダ行が付加される。~
+ダウンロードが終了したとき、設定した内容は自動的にクリアされる。~
+
+--------------------------------------------------------------------------------
+-Downloader.clearCustomHeader メソッド &aname(Downloader-clearCustomHeader);~
+ 独自のヘッダ行をクリアする。
+--シグネチャ:~
+---Downloader.clearCustomHeader()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+非同期処理が実行中だった場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.getField メソッド &aname(Downloader-getField);~
+ サーバから返されたHTTPレスポンスヘッダで、指定したフィールド名からフィールド値を取得する。
+--シグネチャ:~
+---Downloader.getField(name)~
+--引数:~
+---name~
+フィールド名文字列。~
+--返値:~
+--String~
+フィールド値文字列。~
+--void~
+存在しないフィールド名を指定した場合。~
+
+--------------------------------------------------------------------------------
+-Downloader.isProcessing プロパティ &aname(Downloader-isProcessing);~
+ 非同期処理が実行中であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.failed プロパティ &aname(Downloader-failed);~
+ ダウンロードに失敗した（またはキャンセルで処理が中止された）なら true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.cancelled プロパティ &aname(Downloader-cancelled);~
+ ダウンロードがキャンセルされたならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.transferredSize プロパティ &aname(Downloader-transferredSize);~
+ ダウンロード中または完了後、ダウンロードされたデータサイズを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.contentLength プロパティ &aname(Downloader-contentLength);~
+ ダウンロード中または完了後、サーバの返すデータ長（Content-Length）を返す。 (getter)
+ Content-Length が返されなかった場合、常に 0 を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.chunked プロパティ &aname(Downloader-chunked);~
+ サーバ側の転送コーディング（Transfer-Encoding）が chunked であるかを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.bufferEnable プロパティ &aname(Downloader-bufferEnable);~
+ 内部バッファへのダウンロードが行われたならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.bufferSize プロパティ &aname(Downloader-bufferSize);~
+ 内部バッファにダウンロード済のデータサイズを返す。 (getter)
+ 内部バッファへのダウンロードでない場合、負値が返る。
+
+--------------------------------------------------------------------------------
+-Downloader.isWaitingTimeout プロパティ &aname(Downloader-isWaitingTimeout);~
+ 非同期タイムアウト待ちが実行中であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.expiresTimeoutFromNow プロパティ &aname(Downloader-expiresTimeoutFromNow);~
+ タイムアウト指定期限までの現在からの残り時間（ミリ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.expiresTimeoutAt プロパティ &aname(Downloader-expiresTimeoutAt);~
+ タイムアウト指定期限のエポック時間（ミリ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.postDataEnable プロパティ &aname(Downloader-postDataEnable);~
+ POST用バッファにデータがあるならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Downloader.postDataSize プロパティ &aname(Downloader-postDataSize);~
+ POST用バッファのデータサイズを返す。 (getter)
+ データがない場合、負値が返る。
+
+--------------------------------------------------------------------------------
+-Downloader.hostName プロパティ &aname(Downloader-hostName);~
+ ダウンロード元のURLのホスト名を返す。 (getter)
+ 不正なURLを渡して失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.serviceName プロパティ &aname(Downloader-serviceName);~
+ ダウンロード元のURLのサービス名を返す。 (getter)
+ 不正なURLを渡して失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.contentPath プロパティ &aname(Downloader-contentPath);~
+ ダウンロード元のURLのコンテンツへのパスを返す。 (getter)
+ 不正なURLを渡して失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.URL プロパティ &aname(Downloader-URL);~
+ ダウンロード元のURLを返す。 (getter)
+ 不正なURLを渡して失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.storageLocalName プロパティ &aname(Downloader-storageLocalName);~
+ ダウンロードファイル保存先のパス（ローカルファイル名）を返す。 (getter)
+ 内部ダウンロードの場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.HTTPVersion プロパティ &aname(Downloader-HTTPVersion);~
+ ダウンロード元のサーバからのHTTPレスポンスの、HTTPバージョンを返す。 (getter)
+ レスポンス取得より前に失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.statusCode プロパティ &aname(Downloader-statusCode);~
+ ダウンロード元のサーバからのHTTPレスポンスの、ステータスコードを返す。 (getter)
+ レスポンス取得より前に失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.reasonPhrase プロパティ &aname(Downloader-reasonPhrase);~
+ ダウンロード元のサーバからのHTTPレスポンスの、説明句を返す。 (getter)
+ レスポンス取得より前に失敗した場合、空文字列を返す。
+
+--------------------------------------------------------------------------------
+-Downloader.onFinished プロパティ &aname(Downloader-onFinished);~
+ ダウンロード処理終了時にコールバックされる関数を設定/取得する。 (setter/getter)
+ コールバックは処理の成功/失敗にかかわらず呼ばれる。
+ このプロパティは、コールバックされる時点で自動的に void に設定される。
+--注記:~
+設定されたコールバックが呼び出されるタイミングは、処理終了後吉里吉里に制御が戻ってからタイムラグがあるかもしれないことに注意。~
+~
+コールバック関数の中から、次の非同期処理を実行しても問題ない。
+コールバック関数の中から onFinished プロパティを再設定した場合、次の非同期処理のコールバックとして使われる。~
+
+--------------------------------------------------------------------------------
+-Downloader.processStatusCodeError プロパティ &aname(Downloader-processStatusCodeError);~
+ レスポンスのHTTPステータスコードがエラーを返したとき解析を中断するかどうかを設定/取得する。 (setter/getter)
+ このプロパティはデフォルトで true である。
+ このプロパティは、ダウンロード処理終了時に自動的に true に設定される。
+
+--------------------------------------------------------------------------------
+-Downloader.dhfAnalyHTTPHeader プロパティ &aname(Downloader-dhfAnalyHTTPHeader);~
+ ダウンロードオプション。HTTPヘッダを解析するフラグを返す。 (getter)
+ [deprecated] このフラグの指定にかかわらず、HTTPヘッダは常に解析される。
+
+--------------------------------------------------------------------------------
+
+**Socket クラス [#Socket]
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+-メソッド:~
+--[[Socket メソッド>#Socket-Socket]]~
+--[[reset メソッド>#Socket-reset]]~
+--[[cancel メソッド>#Socket-cancel]]~
+--[[close メソッド>#Socket-close]]~
+
+> (名前解決)~
+
+--[[resolve メソッド>#Socket-resolve]]~
+--[[asyncResolve メソッド>#Socket-asyncResolve]]~
+--[[getEndpointList メソッド>#Socket-getEndpointList]]~
+
+> (接続)~
+
+--[[connect メソッド>#Socket-connect]]~
+--[[connectSSL メソッド>#Socket-connectSSL]]~
+--[[connectLoopback メソッド>#Socket-connectLoopback]]~
+--[[connectLoopbackSSL メソッド>#Socket-connectLoopback]]~
+--[[asyncConnect メソッド>#Socket-asyncConnect]]~
+--[[asyncConnectSSL メソッド>#Socket-asyncConnectSSL]]~
+--[[asyncConnectLoopback メソッド>#Socket-asyncConnectLoopback]]~
+--[[asyncConnectLoopbackSSL メソッド>#Socket-asyncConnectLoopbackSSL]]~
+
+> (接続待ち)~
+
+--[[accept メソッド>#Socket-accept]]~
+--[[acceptSSL メソッド>#Socket-acceptSSL]]~
+--[[asyncAccept メソッド>#Socket-asyncAccept]]~
+--[[asyncAcceptSSL メソッド>#Socket-asyncAcceptSSL]]~
+
+> (ハンドシェイク)~
+
+--[[handshake メソッド>#Socket-handshake]]~
+--[[asyncHandshake メソッド>#Socket-asyncHandshake]]~
+
+> (送信)~
+
+--[[pushString メソッド>#Socket-pushString]]~
+--[[pushNarrowString メソッド>#Socket-pushNarrowString]]~
+--[[pushOctet メソッド>#Socket-pushOctet]]~
+--[[pushLine メソッド>#Socket-pushLine]]~
+--[[write メソッド>#Socket-write]]~
+--[[asyncWrite メソッド>#Socket-asyncWrite]]~
+
+> (送信バッファ操作)~
+
+--[[getWritingBufferAsOctet メソッド>#Socket-getWritingBufferAsOctet]]~
+--[[getWritingBufferAsString メソッド>#Socket-getWritingBufferAsString]]~
+--[[getWritingBufferAsNarrowString メソッド>#Socket-getWritingBufferAsNarrowString]]~
+--[[consumeWritingBuffer メソッド>#Socket-consumeWritingBuffer]]~
+
+> (受信)~
+
+--[[popString メソッド>#Socket-popString]]~
+--[[popNarrowString メソッド>#Socket-popNarrowString]]~
+--[[popOctet メソッド>#Socket-popOctet]]~
+--[[popLine メソッド>#Socket-popLine]]~
+--[[read メソッド>#Socket-read]]~
+--[[readUntilByte メソッド>#Socket-readUntilByte]]~
+--[[readUntilString メソッド>#Socket-readUntilString]]~
+--[[readUntilNarrowString メソッド>#Socket-readUntilNarrowString]]~
+--[[readUntilOctet メソッド>#Socket-readUntilOctet]]~
+--[[readUntil メソッド>#Socket-readUntil]]~
+--[[readUntilRegex メソッド>#Socket-readUntilRegex]]~
+--[[asyncRead メソッド>#Socket-asyncRead]]~
+--[[asyncReadUntilByte メソッド>#Socket-asyncReadUntilByte]]~
+--[[asyncReadUntilString メソッド>#Socket-asyncReadUntilString]]~
+--[[asyncReadUntilNarrowString メソッド>#Socket-asyncReadUntilNarrowString]]~
+--[[asyncReadUntilOctet メソッド>#Socket-asyncReadUntilOctet]]~
+--[[asyncReadUntil メソッド>#Socket-asyncReadUntil]]~
+--[[asyncReadUntilRegex メソッド>#Socket-asyncReadUntilRegex]]~
+
+> (受信バッファ操作)~
+
+--[[getReadingBufferAsOctet メソッド>#Socket-getReadingBufferAsOctet]]~
+--[[getReadingBufferAsString メソッド>#Socket-getReadingBufferAsString]]~
+--[[getReadingBufferAsNarrowString メソッド>#Socket-getReadingBufferAsNarrowString]]~
+--[[consumeReadingBuffer メソッド>#Socket-consumeReadingBuffer]]~
+
+> (タイムアウト待ち)~
+
+--[[waitTimeoutFromNow メソッド>#Socket-waitTimeoutFromNow]]~
+--[[waitTimeoutAt メソッド>#Socket-waitTimeoutAt]]~
+--[[asyncWaitTimeoutFromNow メソッド>#Socket-asyncWaitTimeoutFromNow]]~
+--[[asyncWaitTimeoutAt メソッド>#Socket-asyncWaitTimeoutAt]]~
+--[[cancelTimeout メソッド>#Socket-cancelTimeout]]~
+
+> (待機)~
+
+--[[join メソッド>#Socket-join]]~
+
+-プロパティ:~
+--[[cancelled プロパティ>#Socket-cancelled]]~
+--[[resolvingFinished プロパティ>#Socket-resolvingFinished]]~
+--[[resolvingSucceeded プロパティ>#Socket-resolvingSucceeded]]~
+--[[connectingFinished プロパティ>#Socket-connectingFinished]]~
+--[[connectingSucceeded プロパティ>#Socket-connectingSucceeded]]~
+--[[acceptingFinished プロパティ>#Socket-acceptingFinished]]~
+--[[acceptingSucceeded プロパティ>#Socket-acceptingSucceeded]]~
+--[[handshakingFinished プロパティ>#Socket-handshakingFinished]]~
+--[[handshakingSucceeded プロパティ>#Socket-handshakingSucceeded]]~
+--[[writingFinished プロパティ>#Socket-writingFinished]]~
+--[[writingSucceeded プロパティ>#Socket-writingSucceeded]]~
+--[[writingBufferSize プロパティ>#Socket-writingBufferSize]]~
+--[[readingFinished プロパティ>#Socket-readingFinished]]~
+--[[readingSucceeded プロパティ>#Socket-readingSucceeded]]~
+--[[eof プロパティ>#Socket-eof]]~
+--[[readingBufferSize プロパティ>#Socket-readingBufferSize]]~
+--[[isWaitingTimeout プロパティ>#Socket-isWaitingTimeout]]~
+--[[expiresTimeoutFromNow プロパティ>#Socket-expiresTimeoutFromNow]]~
+--[[expiresTimeoutAt プロパティ>#Socket-expiresTimeoutAt]]~
+--[[isProcessing プロパティ>#Socket-isProcessing]]~
+--[[isOpen プロパティ>#Socket-isOpen]]~
+--[[isSSL プロパティ>#Socket-isSSL]]~
+--[[onFinished プロパティ>#Socket-onFinished]]~
+
+-スタティックプロパティ:~
+--[[pfIPv4 プロパティ>#Socket-pfIPv4]]~
+--[[pfIPv6 プロパティ>#Socket-pfIPv6]]~
+--[[ccfTransferAtLeast プロパティ>#Socket-ccfTransferAtLeast]]~
+--[[ccfTransferExactly プロパティ>#Socket-ccfTransferExactly]]~
+
+--------------------------------------------------------------------------------
+-Socket.Socket メソッド &aname(Socket-Socket);~
+ コンストラクタ。
+--シグネチャ:~
+---Socket()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Socket.reset メソッド &aname(Socket-reset);~
+ エラー情報やプロパティ、送受信バッファをリセットする。
+--シグネチャ:~
+---Socket.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+リセットに成功した場合。~
+---false~
+非同期処理が実行中で、リセットに失敗した場合。~
+--注記:~
+このメソッドを非同期処理が実行中のとき呼ぶと、常に失敗を返す。（処理はそのまま正常に続行される）~
+
+--------------------------------------------------------------------------------
+-Socket.cancel メソッド &aname(Socket-cancel);~
+ 実行中の非同期処理をキャンセルする。
+--シグネチャ:~
+---Socket.cancel()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+キャンセルに成功した場合。~
+---false~
+非同期処理が実行中でない、またはキャンセルに失敗した場合。~
+--注記:~
+このメソッドが処理を返した時点から、確実に非同期処理が停止するまで、時間差が生じる場合がある。~
+
+--------------------------------------------------------------------------------
+-Socket.close メソッド &aname(Socket-close);~
+ 開かれているソケットを閉じる。
+--シグネチャ:~
+---Socket.close()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+クローズに成功した場合。~
+---false~
+ソケットが開かれていない、またはクローズに失敗した場合。~
+--注記:~
+非同期処理が実行中だった場合、非同期処理はキャンセルされる。~
+
+--------------------------------------------------------------------------------
+-Socket.resolve メソッド &aname(Socket-resolve);~
+ 名前解決（IP アドレスを求める）を実行する。
+--シグネチャ:~
+---Socket.resolve(host_name, service_name)~
+--引数:~
+---host_name~
+ホスト名。~
+---service_name~
+サービス名。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncResolve メソッド &aname(Socket-asyncResolve);~
+ 名前解決（IP アドレスを求める）を実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncResolve(host_name, service_name)~
+--引数:~
+---host_name~
+ホスト名。~
+---service_name~
+サービス名。~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.getEndpointList メソッド &aname(Socket-getEndpointList);~
+ 名前解決されたエンドポイントの情報を返す。
+--シグネチャ:~
+---Socket.getEndpointList()~
+--引数:~
+---(なし)~
+--返値:~
+---Dictionary~
+---Array~
+エンドポイントの情報を格納した辞書配列の配列。~
+ [
+    %[
+        protocol, /* プロトコル (IPv4/IPv6) */
+        address,  /* IPアドレス */
+        port      /* ポート番号 */
+    ], ...
+ ]
+---void~
+名前解決に成功していない場合。~
+
+--------------------------------------------------------------------------------
+-Socket.connect メソッド &aname(Socket-connect);~
+ アドレスへ接続を実行する。
+--シグネチャ:~
+---Socket.connect()~
+---Socket.connect(address, port)~
+--引数:~
+---address~
+IPv4 や IPv6 アドレスを表わす文字列またはオクテット、あるいは IPv4 アドレスを表わす整数。~
+---port~
+ポート番号を表わす整数。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中、あるいはアドレスが未確定だった場合。~
+--注記:~
+このメソッドを引数なしで呼んだ場合、名前解決によって得られたアドレスに接続する。~
+
+--------------------------------------------------------------------------------
+-Socket.connectSSL メソッド &aname(Socket-connectSSL);~
+ アドレスへSSL接続を実行する。
+--シグネチャ:~
+---Socket.connectSSL()~
+---Socket.connectSSL(address, port)~
+--引数:~
+---address~
+IPv4 や IPv6 アドレスを表わす文字列またはオクテット、あるいは IPv4 アドレスを表わす整数。~
+---port~
+ポート番号を表わす整数。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中、あるいはアドレスが未確定だった場合。~
+--注記:~
+このメソッドを引数なしで呼んだ場合、名前解決によって得られたアドレスに接続する。~
+
+--------------------------------------------------------------------------------
+-Socket.connectLoopback メソッド &aname(Socket-connectLoopback);~
+ ループバックアドレスへ接続を実行する。
+--シグネチャ:~
+---Socket.connectLoopback(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+ループバックアドレスは、自分自身を示すアドレスである。~
+
+--------------------------------------------------------------------------------
+-Socket.connectLoopbackSSL メソッド &aname(Socket-connectLoopbackSSL);~
+ ループバックアドレスへSSL接続を実行する。
+--シグネチャ:~
+---Socket.connectLoopbackSSL(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+ループバックアドレスは、自分自身を示すアドレスである。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncConnect メソッド &aname(Socket-asyncConnect);~
+ アドレスへ接続を実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncConnect()~
+---Socket.asyncConnect(address, port)~
+--引数:~
+---address~
+IPv4 や IPv6 アドレスを表わす文字列またはオクテット、あるいは IPv4 アドレスを表わす整数。~
+---port~
+ポート番号を表わす整数。~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中、あるいはアドレスが未確定だった場合。~
+--注記:~
+このメソッドを引数なしで呼んだ場合、名前解決によって得られたアドレスに接続する。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncConnectSSL メソッド &aname(Socket-asyncConnectSSL);~
+ アドレスへSSL接続を実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncConnectSSL()~
+---Socket.asyncConnectSSL(address, port)~
+--引数:~
+---address~
+IPv4 や IPv6 アドレスを表わす文字列またはオクテット、あるいは IPv4 アドレスを表わす整数。~
+---port~
+ポート番号を表わす整数。~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中、あるいはアドレスが未確定だった場合。~
+--注記:~
+このメソッドを引数なしで呼んだ場合、名前解決によって得られたアドレスに接続する。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncConnectLoopback メソッド &aname(Socket-asyncConnectLoopback);~
+ ループバックアドレスへ接続を実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncConnectLoopback(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+ループバックアドレスは、自分自身を示すアドレスである。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncConnectLoopbackSSL メソッド &aname(Socket-asyncConnectLoopbackSSL);~
+ ループバックアドレスへSSL接続を実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncConnectLoopbackSSL(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+ループバックアドレスは、自分自身を示すアドレスである。~
+
+--------------------------------------------------------------------------------
+-Socket.accept メソッド &aname(Socket-accept);~
+ 接続待ちを実行する。
+--シグネチャ:~
+---Socket.accept(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.acceptSSL メソッド &aname(Socket-acceptSSL);~
+ SSL接続待ちを実行する。
+--シグネチャ:~
+---Socket.acceptSSL(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncAccept メソッド &aname(Socket-asyncAccept);~
+ 接続待ちを実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncAccept(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncAcceptSSL メソッド &aname(Socket-asyncAcceptSSL);~
+ SSL接続待ちを実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncAcceptSSL(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.handshake メソッド &aname(Socket-handshake);~
+ ハンドシェイクを実行する。
+--シグネチャ:~
+---Socket.handshake()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+SSL通信の場合はこれを呼ぶ。~
+connectSSL の後か acceptSSL の後かによって、クライアント側のハンドシェイクかサーバ側のハンドシェイクかが自動的に選択される。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncHandshake メソッド &aname(Socket-asyncHandshake);~
+ ハンドシェイクを実行する。非同期処理。
+--シグネチャ:~
+---Socket.asyncHandshake()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+SSL通信の場合はこれを呼ぶ。~
+connectSSL の後か acceptSSL の後かによって、クライアント側のハンドシェイクかサーバ側のハンドシェイクかが自動的に選択される。~
+
+--------------------------------------------------------------------------------
+-Socket.pushString メソッド &aname(Socket-pushString);~
+ 送信用バッファに文字列を追加する。
+--シグネチャ:~
+---Socket.pushString(source)~
+--引数:~
+---source~
+ソース文字列。~
+--返値:~
+---(なし)~
+--注記:~
+文字列は UTF-16LE ワイド文字列として書き込まれる。~
+
+--------------------------------------------------------------------------------
+-Socket.pushNarrowString メソッド &aname(Socket-pushNarrowString);~
+ 送信用バッファにナロー文字列を追加する。
+--シグネチャ:~
+---Socket.pushNarrowString(source)~
+--引数:~
+---source~
+ソース文字列。~
+--返値:~
+---(なし)~
+--注記:~
+文字列は ANSI ナロー文字列として書き込まれる。~
+
+--------------------------------------------------------------------------------
+-Socket.pushOctet メソッド &aname(Socket-pushOctet);~
+ 送信用バッファにオクテット列を追加する。
+--シグネチャ:~
+---Socket.pushOctet(source)~
+--引数:~
+---source~
+ソースオクテット列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Socket.pushLine メソッド &aname(Socket-pushLine);~
+ 送信用バッファに行を追加する。
+--シグネチャ:~
+---Socket.pushLine(source)~
+--引数:~
+---source~
+ソース文字列。~
+--返値:~
+---(なし)~
+--注記:~
+文字列は Shift_JIS にエンコードされ、末尾に改行コード（\r\n）が挿入される。~
+
+--------------------------------------------------------------------------------
+-Socket.write メソッド &aname(Socket-write);~
+ 送信用バッファの内容を接続先へ書き込み（送信）する。
+--シグネチャ:~
+---Socket.write()~
+--引数:~
+---(なし)~
+--返値:~
+---正値~
+処理に成功した場合、書き込まれたバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+書き込まれた分の送信用バッファの内容はクリアされる。
+
+--------------------------------------------------------------------------------
+-Socket.asyncWrite メソッド &aname(Socket-asyncWrite);~
+ 送信用バッファの内容を接続先へ書き込み（送信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncWrite()~
+--引数:~
+---(なし)~
+--返値:~
+---正値~
+処理が開始した場合、書き込まれるべきバイト数。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+書き込まれた分の送信用バッファの内容はクリアされる。
+
+--------------------------------------------------------------------------------
+-Socket.getWritingBufferAsString メソッド &aname(Socket-getWritingBufferAsString);~
+ 送信用バッファから文字列を取得する。
+--シグネチャ:~
+---Socket.getWritingBufferAsString()~
+---Socket.getWritingBufferAsString(pos)~
+---Socket.getWritingBufferAsString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---String~
+取得された文字列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは UTF-16LE ワイド文字列であることを前提とする。~
+
+--------------------------------------------------------------------------------
+-Socket.getWritingBufferAsNarrowString メソッド &aname(Socket-getWritingBufferAsNarrowString);~
+ 送信用バッファからナロー文字列を取得する。
+--シグネチャ:~
+---Socket.getWritingBufferAsNarrowString()~
+---Socket.getWritingBufferAsNarrowString(pos)~
+---Socket.getWritingBufferAsNarrowString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---String~
+取得された文字列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは ANSI ナロー文字列であることを前提とする。~
+吉里吉里実行エンジンの仕様上、ANSI 定義外のデータが含まれていた場合内部例外が発生し、それ以降このインスタンスの正常な動作は保証されない。~
+ [deprecated] このメソッドは推奨されません。
+
+--------------------------------------------------------------------------------
+-Socket.getWritingBufferAsOctet メソッド &aname(Socket-getWritingBufferAsOctet);~
+ 送信用バッファからオクテット列を取得する。
+--シグネチャ:~
+---Socket.getWritingBufferAsOctet()~
+---Socket.getWritingBufferAsOctet(pos)~
+---Socket.getWritingBufferAsOctet(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---Octet~
+取得されたオクテット列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.consumeWritingBuffer メソッド &aname(Socket-consumeWritingBuffer);~
+ 送信用バッファの内容をクリアする。
+--シグネチャ:~
+---Socket.consumeWritingBuffer()~
+---Socket.consumeWritingBuffer(size)~
+--引数:~
+---size~
+バッファからクリアするサイズ。~
+--返値:~
+---正値~
+実際にクリアされたバイト数。~
+
+--------------------------------------------------------------------------------
+-Socket.popString メソッド &aname(Socket-popString);~
+ 受信用バッファから文字列を取出する。
+--シグネチャ:~
+---Socket.popString()~
+---Socket.popString(size)~
+--引数:~
+---size~
+取出するバイト数。~
+--返値:~
+---String~
+取出された文字列。~
+--注記:~
+読み出された分の受信用バッファの内容はクリアされる。~
+エンコーディングは UTF-16LE ワイド文字列であることを前提とする。~
+
+--------------------------------------------------------------------------------
+-Socket.popNarrowString メソッド &aname(Socket-popNarrowString);~
+ 受信用バッファからナロー文字列を取出する。
+--シグネチャ:~
+---Socket.popNarrowString()~
+---Socket.popNarrowString(size)~
+--引数:~
+---size~
+取出するバイト数。~
+--返値:~
+---String~
+取出された文字列。~
+--注記:~
+読み出された分の受信用バッファの内容はクリアされる。~
+エンコーディングは ANSI ナロー文字列であることを前提とする。~
+吉里吉里実行エンジンの仕様上、ANSI 定義外のデータが含まれていた場合内部例外が発生し、それ以降このインスタンスの正常な動作は保証されない。~
+ [deprecated] このメソッドは推奨されません。
+
+--------------------------------------------------------------------------------
+-Socket.popOctet メソッド &aname(Socket-popOctet);~
+ 受信用バッファからオクテット列を取出する。
+--シグネチャ:~
+---Socket.popOctet()~
+---Socket.popOctet(size)~
+--引数:~
+---size~
+取出するバイト数。~
+--返値:~
+---Octet~
+取出されたオクテット列。~
+--注記:~
+読み出された分の受信用バッファの内容はクリアされる。~
+
+--------------------------------------------------------------------------------
+-Socket.popLine メソッド &aname(Socket-popLine);~
+ 受信用バッファからナロー文字列を改行コードまたは終端まで取出する。
+--シグネチャ:~
+---Socket.popLine()~
+--引数:~
+---size~
+取出するバイト数。~
+--返値:~
+---String~
+取出された文字列。~
+--注記:~
+読み出された分の受信用バッファの内容はクリアされる。~
+エンコーディングは ANSI ナロー文字列であることを前提とする。~
+吉里吉里実行エンジンの仕様上、ANSI 定義外のデータが含まれていた場合内部例外が発生し、それ以降このインスタンスの正常な動作は保証されない。~
+ [deprecated] このメソッドは推奨されません。
+
+--------------------------------------------------------------------------------
+-Socket.read メソッド &aname(Socket-read);~
+ 受信用バッファへ接続先から読み込み（受信）する。
+--シグネチャ:~
+---Socket.read()~
+---Socket.read(size, complete_condition_flag = Socket.ccfTransferAtLeast)~
+--引数:~
+---size~
+読み込むバイト数の指定。省略すると終端まで。~
+---complete_condition_flag~
+受信の完了条件を指定するフラグ。~
+デフォルトで「少なくとも指定バイト数まで」。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+完了条件が「少なくとも指定バイト数まで」の場合、指定サイズ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntilByte メソッド &aname(Socket-readUntilByte);~
+ 受信用バッファへ接続先から指定デリミタ（1byte 値）まで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntilByte(delim)~
+--引数:~
+---delim~
+デリミタ（1byte 値）。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたデリミタまでのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntilString メソッド &aname(Socket-readUntilString);~
+ 受信用バッファへ接続先から指定デリミタ（文字列）まで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntilString(delim)~
+--引数:~
+---delim~
+デリミタ（文字列）。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたデリミタまでのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は UTF-16LE ワイド文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntilNarrowString メソッド &aname(Socket-readUntilNarrowString);~
+ 受信用バッファへ接続先から指定デリミタ（ナロー文字列）まで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntilNarrowString(delim)~
+--引数:~
+---delim~
+デリミタ（ナロー文字列）。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたデリミタまでのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntilOctet メソッド &aname(Socket-readUntilOctet);~
+ 受信用バッファへ接続先から指定デリミタ（オクテット列）まで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntilOctet(delim)~
+--引数:~
+---delim~
+デリミタ（オクテット列）。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたデリミタまでのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntil メソッド &aname(Socket-readUntil);~
+ 受信用バッファへ接続先から指定デリミタまで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntil(delim)~
+--引数:~
+---delim~
+デリミタ文字列。~
+--返値:~
+---正値~
+処理に成功した場合、読み込まれたデリミタまでのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.readUntilRegex メソッド &aname(Socket-readUntilRegex);~
+ 受信用バッファへ接続先から指定正規表現にマッチするまで読み込み（受信）する。
+--シグネチャ:~
+---Socket.readUntilRegex(expr)~
+--引数:~
+---expr~
+正規表現文字列（RegExp クラスではない）。~
+--返値:~
+---正値~
+処理に成功した場合、正規表現のマッチ部分までのバイト数。~
+---負値~
+処理に失敗または非同期処理中だった場合。~
+--注記:~
+マッチ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncRead メソッド &aname(Socket-asyncRead);~
+ 受信用バッファへ接続先から読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncRead()~
+---Socket.asyncRead(size, complete_condition_flag = Socket.ccfTransferAtLeast)~
+--引数:~
+---size~
+読み込むバイト数の指定。省略すると終端まで。~
+---complete_condition_flag~
+受信の完了条件を指定するフラグ。~
+デフォルトで「少なくとも指定バイト数まで」。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+完了条件が「少なくとも指定バイト数まで」の場合、指定サイズ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntilByte メソッド &aname(Socket-asyncReadUntilByte);~
+ 受信用バッファへ接続先から指定デリミタ（1byte 値）まで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntilByte(delim)~
+--引数:~
+---delim~
+デリミタ（1byte 値）。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntilString メソッド &aname(Socket-asyncReadUntilString);~
+ 受信用バッファへ接続先から指定デリミタ（文字列）まで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntilString(delim)~
+--引数:~
+---delim~
+デリミタ（文字列）。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は UTF-16LE ワイド文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntilNarrowString メソッド &aname(Socket-asyncReadUntilNarrowString);~
+ 受信用バッファへ接続先から指定デリミタ（ナロー文字列）まで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntilNarrowString(delim)~
+--引数:~
+---delim~
+デリミタ（ナロー文字列）。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntilOctet メソッド &aname(Socket-asyncReadUntilOctet);~
+ 受信用バッファへ接続先から指定デリミタ（オクテット列）まで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntilOctet(delim)~
+--引数:~
+---delim~
+デリミタ（オクテット列）。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntil メソッド &aname(Socket-asyncReadUntil);~
+ 受信用バッファへ接続先から指定デリミタまで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntil(delim)~
+--引数:~
+---delim~
+デリミタ文字列。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+指定デリミタ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncReadUntilRegex メソッド &aname(Socket-asyncReadUntilRegex);~
+ 受信用バッファへ接続先から指定正規表現にマッチするまで読み込み（受信）する。非同期処理。
+--シグネチャ:~
+---Socket.asyncReadUntilRegex(expr)~
+--引数:~
+---expr~
+正規表現文字列（RegExp クラスではない）。~
+--返値:~
+---0~
+処理が開始した場合。~
+---負値~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+マッチ以降のデータまで読み込まれる場合もある。~
+文字列は Shift_JIS ナロー文字列として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.getReadingBufferAsString メソッド &aname(Socket-getReadingBufferAsString);~
+ 受信用バッファから文字列を取得する。
+--シグネチャ:~
+---Socket.getReadingBufferAsString()~
+---Socket.getReadingBufferAsString(pos)~
+---Socket.getReadingBufferAsString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---String~
+取得された文字列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは UTF-16LE ワイド文字列であることを前提とする。~
+
+--------------------------------------------------------------------------------
+-Socket.getReadingBufferAsNarrowString メソッド &aname(Socket-getReadingBufferAsNarrowString);~
+ 受信用バッファからナロー文字列を取得する。
+--シグネチャ:~
+---Socket.getReadingBufferAsNarrowString()~
+---Socket.getReadingBufferAsNarrowString(pos)~
+---Socket.getReadingBufferAsNarrowString(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---String~
+取得された文字列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+エンコーディングは ANSI ナロー文字列であることを前提とする。~
+吉里吉里実行エンジンの仕様上、ANSI 定義外のデータが含まれていた場合内部例外が発生し、それ以降このインスタンスの正常な動作は保証されない。~
+ [deprecated] このメソッドは推奨されません。
+
+--------------------------------------------------------------------------------
+-Socket.getReadingBufferAsOctet メソッド &aname(Socket-getReadingBufferAsOctet);~
+ 受信用バッファからオクテット列を取得する。
+--シグネチャ:~
+---Socket.getReadingBufferAsOctet()~
+---Socket.getReadingBufferAsOctet(pos)~
+---Socket.getReadingBufferAsOctet(pos, size)~
+--引数:~
+---pos~
+バッファ先頭からのオフセット。~
+---size~
+バッファから読み出すサイズ。~
+--返値:~
+---Octet~
+取得されたオクテット列。~
+--注記:~
+指定した範囲がバッファの範囲外だった場合、空の範囲として扱われる。~
+
+--------------------------------------------------------------------------------
+-Socket.consumeReadingBuffer メソッド &aname(Socket-consumeReadingBuffer);~
+ 受信用バッファの内容をクリアする。
+--シグネチャ:~
+---Socket.consumeReadingBuffer()~
+---Socket.consumeReadingBuffer(size)~
+--引数:~
+---size~
+バッファからクリアするサイズ。~
+--返値:~
+---正値~
+実際にクリアされたバイト数。~
+
+--------------------------------------------------------------------------------
+-Socket.waitTimeoutFromNow メソッド &aname(Socket-waitTimeoutFromNow);~
+ 現在進行中の処理の同期タイムアウト待ちを実行する。
+--シグネチャ:~
+---Socket.waitTimeoutFromNow(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+現時点からタイムアウトまでの期間指定。ミリ秒単位。~
+--返値:~
+---true~
+処理がタイムアウトでキャンセルされた場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した、または処理がタイムアウトせず完了した場合。~
+
+--------------------------------------------------------------------------------
+-Socket.waitTimeoutAt メソッド &aname(Socket-waitTimeoutAt);~
+ 現在進行中の処理の同期タイムアウト待ちを実行する。期限をエポック時間で指定。
+--シグネチャ:~
+---Socket.waitTimeoutAt(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+タイムアウト期限のエポック時間指定。ミリ秒単位。~
+--返値:~
+---true~
+処理がタイムアウトでキャンセルされた場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した、または処理がタイムアウトせず完了した場合。~
+--注記:~
+現在のエポック時間を取得するには [[Network.getClockTime メソッド>#Network-getClockTime]] が使える。
+
+--------------------------------------------------------------------------------
+-Socket.asyncWaitTimeoutFromNow メソッド &aname(Socket-asyncWaitTimeoutFromNow);~
+ 現在進行中の処理の非同期タイムアウト待ちを実行する。
+--シグネチャ:~
+---Socket.asyncWaitTimeoutFromNow(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+現時点からタイムアウトまでの期間指定。ミリ秒単位。~
+--返値:~
+---true~
+タイムアウトが設定された場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した場合。~
+--注記:~
+処理がタイムアウトせず完了した場合、タイムアウト設定は自動的に解除される。~
+
+--------------------------------------------------------------------------------
+-Socket.asyncWaitTimeoutAt メソッド &aname(Socket-asyncWaitTimeoutAt);~
+ 現在進行中の処理の非同期タイムアウト待ちを実行する。期限をエポック時間で指定。
+--シグネチャ:~
+---Socket.asyncWaitTimeoutAt(expiry_time_millisec)~
+--引数:~
+---expiry_time_millisec~
+タイムアウト期限のエポック時間指定。ミリ秒単位。~
+--返値:~
+---true~
+タイムアウトが設定された場合。~
+---false~
+進行中の処理がなかった、またはタイムアウト設定に失敗した場合。~
+--注記:~
+処理がタイムアウトせず完了した場合、タイムアウト設定は自動的に解除される。~
+現在のエポック時間を取得するには [[Network.getClockTime メソッド>#Network-getClockTime]] が使える。
+
+--------------------------------------------------------------------------------
+-Socket.cancelTimeout メソッド &aname(Socket-cancelTimeout);~
+ 非同期タイムアウト待ちをキャンセルする。
+--シグネチャ:~
+---Socket.cancelTimeout()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+正常にキャンセルされた場合。~
+---false~
+タイムアウト待ちが実行中でなかった、またはキャンセルに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Socket.join メソッド &aname(Socket-join);~
+ 非同期処理の完了を待機する。
+--シグネチャ:~
+---Socket.join()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+進行中の処理を完了した場合。~
+---false~
+進行中の処理がなかった場合。~
+
+--------------------------------------------------------------------------------
+-Socket.cancelled プロパティ &aname(Socket-cancelled);~
+ 非同期処理がキャンセルされたならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.resolvingFinished プロパティ &aname(Socket-resolvingFinished);~
+ 名前解決の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.resolvingSucceeded プロパティ &aname(Socket-resolvingSucceeded);~
+ 名前解決の処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.connectingFinished プロパティ &aname(Socket-connectingFinished);~
+ 接続の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.connectingSucceeded プロパティ &aname(Socket-connectingSucceeded);~
+ 接続の処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.acceptingFinished プロパティ &aname(Socket-acceptingFinished);~
+ 接続待ちの処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.acceptingSucceeded プロパティ &aname(Socket-acceptingSucceeded);~
+ 接続待ちの処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.handshakingFinished プロパティ &aname(Socket-handshakingFinished);~
+ ハンドシェイクの処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.handshakingSucceeded プロパティ &aname(Socket-handshakingSucceeded);~
+ ハンドシェイクの処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.writingFinished プロパティ &aname(Socket-writingFinished);~
+ 送信の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.writingSucceeded プロパティ &aname(Socket-writingSucceeded);~
+ 送信の処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.writingBufferSize プロパティ &aname(Socket-writingBufferSize);~
+ 送信用バッファに格納されているバイト数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.readingFinished プロパティ &aname(Socket-readingFinished);~
+ 受信の処理が（成功失敗問わず）終わったならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.readingSucceeded プロパティ &aname(Socket-readingSucceeded);~
+ 受信の処理が成功したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.eof プロパティ &aname(Socket-eof);~
+ データの終端まで受信したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.readingBufferSize プロパティ &aname(Socket-readingBufferSize);~
+ 受信用バッファに格納されているバイト数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.isWaitingTimeout プロパティ &aname(Socket-isWaitingTimeout);~
+ 非同期タイムアウト待ちが実行中であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.expiresTimeoutFromNow プロパティ &aname(Socket-expiresTimeoutFromNow);~
+ タイムアウト指定期限までの現在からの残り時間（ミリ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.expiresTimeoutAt プロパティ &aname(Socket-expiresTimeoutAt);~
+ タイムアウト指定期限のエポック時間（ミリ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.isProcessing プロパティ &aname(Socket-isProcessing);~
+ 非同期処理が実行中であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.isOpen プロパティ &aname(Socket-isOpen);~
+ ソケットが開かれていれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.isSSL プロパティ &aname(Socket-isSSL);~
+ SSL通信であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Socket.onFinished プロパティ &aname(Socket-onFinished);~
+ 処理終了時にコールバックされる関数を設定/取得する。 (setter/getter)
+ コールバックは処理の成功/失敗にかかわらず呼ばれる。
+ このプロパティは、コールバックされる時点で自動的に void に設定される。
+--注記:~
+設定されたコールバックが呼び出されるタイミングは、処理終了後吉里吉里に制御が戻ってからタイムラグがあるかもしれないことに注意。~
+~
+コールバック関数の中から、次の非同期処理を実行しても問題ない。
+コールバック関数の中から onFinished プロパティを再設定した場合、次の非同期処理のコールバックとして使われる。~
+
+--------------------------------------------------------------------------------
+-Socket.pfIPv4 プロパティ &aname(Socket-pfIPv4);~
+ IPv4 を表わすプロトコルフラグ。 (getter)
+--注記:~
+ソケットの状態を示すものではなく、メソッドに接続方法を渡すために使用する。~
+[[Network.pfIPv4 プロパティ>#Network-pfIPv4]] と同様。~
+
+--------------------------------------------------------------------------------
+-Socket.pfIPv6 プロパティ &aname(Socket-pfIPv6);~
+ IPv6 を表わすプロトコルフラグ。 (getter)
+--注記:~
+ソケットの状態を示すものではなく、メソッドに接続方法を渡すために使用する。~
+[[Network.pfIPv6 プロパティ>#Network-pfIPv6]] と同様。~
+
+--------------------------------------------------------------------------------
+-Socket.ccfTransferAtLeast プロパティ &aname(Socket-ccfTransferAtLeast);~
+ 「少なくとも指定バイト数まで」受信を表わす完了条件フラグ。 (getter)
+--注記:~
+[[Network.ccfTransferAtLeast プロパティ>#Network-ccfTransferAtLeast]] と同様。~
+
+--------------------------------------------------------------------------------
+-Socket.ccfTransferExactly プロパティ &aname(Socket-ccfTransferExactly);~
+ 「丁度指定バイト数まで」受信を表わす完了条件フラグ。 (getter)
+--注記:~
+[[Network.ccfTransferExactly プロパティ>#Network-ccfTransferExactly]] と同様。~
+
+--------------------------------------------------------------------------------
+
+**Acceptor クラス [#Acceptor]
+ ソケット通信のための接続待ちを行うクラス。SSL接続に対応。
+-メソッド:~
+--[[Acceptor メソッド>#Acceptor-Acceptor]]~
+--[[reset メソッド>#Acceptor-reset]]~
+--[[cancel メソッド>#Acceptor-cancel]]~
+--[[close メソッド>#Acceptor-close]]~
+
+> (ポート監視)~
+
+--[[monitor メソッド>#Acceptor-monitor]]~
+--[[monitorSSL メソッド>#Acceptor-monitorSSL]]~
+--[[popAccepted メソッド>#Acceptor-popAccepted]]~
+
+-プロパティ:~
+--[[cancelled プロパティ>#Acceptor-cancelled]]~
+--[[isProcessing プロパティ>#Acceptor-isProcessing]]~
+--[[acceptedCount プロパティ>#Acceptor-acceptedCount]]~
+--[[onFinished プロパティ>#Acceptor-onFinished]]~
+
+--------------------------------------------------------------------------------
+-Acceptor.Acceptor メソッド &aname(Acceptor-Acceptor);~
+ コンストラクタ。
+--シグネチャ:~
+---Acceptor()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Acceptor.reset メソッド &aname(Acceptor-reset);~
+ エラー情報やプロパティ、キューが保持する接続済みソケットをリセットする。
+--シグネチャ:~
+---Acceptor.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+リセットに成功した場合。~
+---false~
+非同期処理が実行中で、リセットに失敗した場合。~
+--注記:~
+このメソッドを非同期処理が実行中のとき呼ぶと、常に失敗を返す。（処理はそのまま正常に続行される）~
+
+--------------------------------------------------------------------------------
+-Acceptor.cancel メソッド &aname(Acceptor-cancel);~
+ 実行中の非同期処理をキャンセルする。
+--シグネチャ:~
+---Acceptor.cancel()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+キャンセルに成功した場合。~
+---false~
+非同期処理が実行中でない、またはキャンセルに失敗した場合。~
+--注記:~
+このメソッドが処理を返した時点から、確実に非同期処理が停止するまで、時間差が生じる場合がある。~
+
+--------------------------------------------------------------------------------
+-Acceptor.close メソッド &aname(Acceptor-close);~
+ キューが保持する接続済みソケットを閉じる。
+--シグネチャ:~
+---Acceptor.close()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+クローズに成功した場合。~
+---false~
+クローズに失敗した場合。~
+--注記:~
+非同期処理が実行中だった場合、非同期処理はキャンセルされる。~
+
+--------------------------------------------------------------------------------
+-Acceptor.monitor メソッド &aname(Acceptor-monitor);~
+ 接続待ちのポート監視を実行する。非同期処理。
+--シグネチャ:~
+---Acceptor.monitor(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+接続が行われたとき、開かれた接続済みソケットはキューに追加され、自動的に接続待ちが再開される。~
+
+--------------------------------------------------------------------------------
+-Acceptor.monitorSSL メソッド &aname(Acceptor-monitorSSL);~
+ SSL接続待ちのポート監視を実行する。非同期処理。
+--シグネチャ:~
+---Acceptor.monitorSSL(port, protocol_flag = Network.pfIPv4)~
+--引数:~
+---port~
+ポート番号を表わす整数。~
+---protocol_flag~
+プロトコルを表わすフラグ。IPv4 または IPv6.~
+デフォルトで IPv4.~
+--返値:~
+---true~
+処理が開始した場合。~
+---false~
+処理の開始に失敗または非同期処理中だった場合。~
+--注記:~
+接続が行われたとき、開かれた接続済みソケットはキューに追加され、自動的に接続待ちが再開される。~
+
+--------------------------------------------------------------------------------
+-Acceptor.popAccepted メソッド &aname(Acceptor-popAccepted);~
+ キューが保持する接続済みソケットのうち先頭の一つを取り出して返す。
+--シグネチャ:~
+---Acceptor.popAccepted()~
+--引数:~
+---(なし)~
+--返値:~
+---Socket クラス~
+接続済みソケットがあった場合。~
+---void~
+接続済みソケットがなかった場合。~
+
+--------------------------------------------------------------------------------
+-Acceptor.cancelled プロパティ &aname(Acceptor-cancelled);~
+ 非同期処理がキャンセルされたならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Acceptor.isProcessing プロパティ &aname(Acceptor-isProcessing);~
+ 非同期処理が実行中であれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Acceptor.acceptedCount プロパティ &aname(Acceptor-acceptedCount);~
+ キューが保持する接続済みソケットの数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Acceptor.onFinished プロパティ &aname(Acceptor-onFinished);~
+ 処理終了時にコールバックされる関数を設定/取得する。 (setter/getter)
+ コールバックは処理の成功/失敗にかかわらず呼ばれる。
+ このプロパティは、コールバックされる時点で自動的に void に設定される。
+--注記:~
+設定されたコールバックが呼び出されるタイミングは、処理終了後吉里吉里に制御が戻ってからタイムラグがあるかもしれないことに注意。~
+~
+コールバック関数の中から、次の非同期処理を実行しても問題ない。
+コールバック関数の中から onFinished プロパティを再設定した場合、次の非同期処理のコールバックとして使われる。~
+
+--------------------------------------------------------------------------------
+
+**Network クラス [#Network]
+ ネットワーク処理のグローバルな設定などを行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+--[[run メソッド>#Network-run]]~
+--[[runWithHardwareConcurrency メソッド>#Network-runWithHardwareConcurrency]]~
+--[[runAtLeast メソッド>#Network-runAtLeast]]~
+--[[runAtMost メソッド>#Network-runAtMost]]~
+--[[finish メソッド>#Network-finish]]~
+--[[stop メソッド>#Network-stop]]~
+--[[getClockTime メソッド>#Network-getClockTime]]~
+--[[downloadHTTP メソッド>#Network-downloadHTTP]]~
+-スタティックプロパティ:~
+--[[threadCount プロパティ>#Network-threadCount]]~
+--[[threadHardwareConcurrency プロパティ>#Network-threadHardwareConcurrency]]~
+--[[internetConnetionState プロパティ>#Network-internetConnetionState]]~
+--[[isInternetConnected プロパティ>#Network-isInternetConnected]]~
+--[[hostName プロパティ>#Network-hostName]]~
+--[[cifModem プロパティ>#Network-cifModem]]~
+--[[cifLAN プロパティ>#Network-cifLAN]]~
+--[[cifProxy プロパティ>#Network-cifProxy]]~
+--[[cifModemBusy プロパティ>#Network-cifModemBusy]]~
+--[[cifRASInstalled プロパティ>#Network-cifRASInstalled]]~
+--[[cifOffline プロパティ>#Network-cifOffline]]~
+--[[cifConfigured プロパティ>#Network-cifConfigured]]~
+--[[pfIPv4 プロパティ>#Network-pfIPv4]]~
+--[[pfIPv6 プロパティ>#Network-pfIPv6]]~
+--[[ccfTransferAtLeast プロパティ>#Network-ccfTransferAtLeast]]~
+--[[ccfTransferExactly プロパティ>#Network-ccfTransferExactly]]~
+
+--------------------------------------------------------------------------------
+-Network.run メソッド &aname(Network-run);~
+ 非同期処理の処理ループを駆動させる。
+--シグネチャ:~
+---Network.run()~
+---Network.run(new_thread_count)~
+--引数:~
+---new_thread_count~
+非同期処理のためのスレッド数。~
+--返値:~
+---(なし)~
+--注記:~
+既に駆動していた場合何もしない。~
+処理ループが駆動していないとき、非同期処理はふたたび駆動まで待機される。~
+現在の仕様では、初期状態で駆動状態にある。~
+なお、スレッド数にかかわらず非同期処理はマルチタスクで全て並行して処理される。~
+指定した new_thread_count が現在のスレッド数より少ない場合、長時間制御が返らない場合がある。~
+ new_thread_count [deprecated] スレッド数の指定は Network.runAtLeast メソッドを呼ぶべき。
+[[Network.runAtLeast メソッド>#Network-runAtLeast]] を参照。~
+
+--------------------------------------------------------------------------------
+-Network.runWithHardwareConcurrency メソッド &aname(Network-runWithHardwareConcurrency);~
+ 非同期処理の処理ループを、ハードウェアの CPU コアの使用可能な並列実行数に基づいて駆動させる。
+--シグネチャ:~
+---Network.runWithHardwareConcurrency()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+--注記:~
+既に指定スレッド数以上が駆動していた場合何もしない。~
+ハードウェア情報が不明だった場合 1 で駆動させる。~
+
+--------------------------------------------------------------------------------
+-Network.runAtLeast メソッド &aname(Network-runAtLeast);~
+ 非同期処理の処理ループを、少なくとも指定スレッド数以上で駆動させる。
+--シグネチャ:~
+---Network.runAtLeast(new_thread_count)~
+--引数:~
+---new_thread_count~
+非同期処理のためのスレッド数。~
+--返値:~
+---(なし)~
+--注記:~
+既に指定スレッド数以上が駆動していた場合何もしない。~
+
+--------------------------------------------------------------------------------
+-Network.runAtMost メソッド &aname(Network-runAtMost);~
+ 非同期処理の処理ループを、多くとも指定スレッド数以下で駆動させる。
+--シグネチャ:~
+---Network.runAtMost(new_thread_count)~
+--引数:~
+---new_thread_count~
+非同期処理のためのスレッド数。~
+--返値:~
+---(なし)~
+--注記:~
+既に指定スレッド数以下で駆動していた場合何もしない。~
+指定した new_thread_count が現在のスレッド数より少ない場合、長時間制御が返らない場合がある。~
+ new_thread_count [deprecated] スレッド数の指定は Network.runAtLeast メソッドを呼ぶべき。
+[[Network.runAtLeast メソッド>#Network-runAtLeast]] を参照。~
+
+--------------------------------------------------------------------------------
+-Network.finish メソッド &aname(Network-finish);~
+ 非同期処理の処理ループを停止する。
+--シグネチャ:~
+---Network.finish()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+--注記:~
+このメソッドは、現在進行中の非同期処理の終了を待機する。~
+もしサーバのような常時駆動の処理があった場合、いつまでも制御が返らないので注意。~
+
+--------------------------------------------------------------------------------
+-Network.stop メソッド &aname(Network-stop);~
+ 非同期処理の処理ループを停止する。
+--シグネチャ:~
+---Network.stop()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+--注記:~
+このメソッドは、現在進行中の非同期処理へ中止を促す。~
+
+--------------------------------------------------------------------------------
+-Network.getClockTime メソッド &aname(Network-getClockTime);~
+ 現在のエポック時間を取得する。
+--シグネチャ:~
+---Network.getClockTime()~
+--引数:~
+---(なし)~
+--返値:~
+---整数~
+現在のエポック時間。ミリ秒単位。~
+---void~
+取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+
+-Network.downloadHTTP メソッド &aname(Network-downloadHTTP);~
+ 同期ダウンロードを実行する。
+--シグネチャ:~
+---Network.downloadHTTP(url, storage)~
+--引数:~
+---url~
+ダウンロード元のURL。~
+---storage~
+ダウンロード先のストレージパス。~
+--返値:~
+---true~
+ダウンロードに成功した場合。~
+---false~
+ダウンロードに失敗した場合。~
+--注記:~
+ [deprecated] このメソッドは古いものです。Downloader.downloadHTTP メソッドを使用してください。
+[[Downloader.downloadHTTP メソッド>#Downloader-downloadHTTP]] を参照。~
+
+--------------------------------------------------------------------------------
+-Network.threadCount プロパティ &aname(Network-threadCount);~
+ 現在駆動中の非同期処理のためのスレッド数を返す。 (getter)
+ 0 ならば処理ループは停止している。
+
+--------------------------------------------------------------------------------
+-Network.threadHardwareConcurrency プロパティ &aname(Network-threadHardwareConcurrency);~
+ ハードウェアの CPU コアの使用可能な並列実行数を返す。 (getter)
+ 不明な場合は 0 を返す。
+
+--------------------------------------------------------------------------------
+-Network.internetConnetionState プロパティ &aname(Network-internetConnetionState);~
+ クライアントのインターネット接続状態を返す。 (getter)
+ 値はインターネット接続フラグの組み合わせになる。
+
+--------------------------------------------------------------------------------
+-Network.isInternetConnected プロパティ &aname(Network-isInternetConnected);~
+ クライアントのインターネット接続が確立されているかを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.hostName プロパティ &aname(Network-hostName);~
+ クライアントのホスト名を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifModem プロパティ &aname(Network-cifModem);~
+ インターネット接続フラグ。モデムを使用した接続を示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifLAN プロパティ &aname(Network-cifLAN);~
+ インターネット接続フラグ。LAN を使用した接続を示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifProxy プロパティ &aname(Network-cifProxy);~
+ インターネット接続フラグ。プロクシサーバを使用した接続を示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifModemBusy プロパティ &aname(Network-cifModemBusy);~
+ インターネット接続フラグ。このフラグは現在使用されていない。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifRASInstalled プロパティ &aname(Network-cifRASInstalled);~
+ インターネット接続フラグ。RAS がインストールされていることを示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifOffline プロパティ &aname(Network-cifOffline);~
+ インターネット接続フラグ。オフライン状態を示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.cifConfigured プロパティ &aname(Network-cifConfigured);~
+ インターネット接続フラグ。有効な接続があるが現在接続されていないことを示すフラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.pfIPv4 プロパティ &aname(Network-pfIPv4);~
+ IPv4 を表わすプロトコルフラグ。 (getter)
+--注記:~
+ソケットの状態を示すものではなく、メソッドに接続方法を渡すために使用する。~
+
+--------------------------------------------------------------------------------
+-Network.pfIPv6 プロパティ &aname(Network-pfIPv6);~
+ IPv6 を表わすプロトコルフラグ。 (getter)
+--注記:~
+ソケットの状態を示すものではなく、メソッドに接続方法を渡すために使用する。~
+
+--------------------------------------------------------------------------------
+-Network.ccfTransferAtLeast プロパティ &aname(Network-ccfTransferAtLeast);~
+ 「少なくとも指定バイト数まで」受信を表わす完了条件フラグ。 (getter)
+
+--------------------------------------------------------------------------------
+-Network.ccfTransferExactly プロパティ &aname(Network-ccfTransferExactly);~
+ 「丁度指定バイト数まで」受信を表わす完了条件フラグ。 (getter)
+
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,55 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_encoding.dll (または ktl_encoding-d.dll)~
+
+-外部DLL~
+--icudt46.dll~
+--icuuc46.dll~
+--icuin46.dll~
+
+-スクリプト~
+--[[ktl/Encoding.tjs]]~
+
+-クラス~
+--[[Encoding クラス>ktl/Encoding.tjs#Encoding]]~
+ 文字コード変換やエンコード、文字コード検出などを行うクラス。
+
+
+
+*文字コード変換
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Encoding.tjs");
+ 
+ var str = "foobarほげほげ";
+ 
+ /* 文字列を任意の文字コードへ変換 */
+ var oct_utf8 = Encoding.encodeToOctet("utf-8", str);
+ var oct_sjis = Encoding.encodeToOctet("shift_jis", str);
+ 
+ /* オクテット列から任意の文字コードへ変換 */
+ if (oct_sjis === Encoding.encodeToOctet("shift_jis", oct_utf8, "utf-8")) {
+     Debug.message("等しいshift_jisコードです（データの欠落等はありません）");
+ }
+ if (oct_utf8 === Encoding.encodeToOctet("utf-8", oct_sjis, "shift_jis")) {
+     Debug.message("等しいutf-8コードです（データの欠落等はありません）");
+ }
+ 
+ /* オクテット列から文字列へ変換（復号する） */
+ if (str === Encoding.encodeToString(oct_utf8, "utf-8")) {
+     Debug.message("文字列はutf-8から正しく復号されました");
+ }
+ if (str === Encoding.encodeToString(oct_sjis, "shift_jis")) {
+     Debug.message("文字列はshift_jisから正しく復号されました");
+ }
+
+-[[Encoding.encodeToOctet メソッド>ktl/Encoding.tjs#Encoding-encodeToOctet]]~
+ 任意の文字コードへ変換する。
+
+-[[Encoding.encodeToString メソッド>ktl/Encoding.tjs#Encoding-encodeToString]]~
+ 任意の文字コードから文字列へ変換する。
+

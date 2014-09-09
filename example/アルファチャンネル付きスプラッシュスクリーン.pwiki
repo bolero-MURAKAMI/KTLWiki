@@ -1,0 +1,81 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_splash_window.dll（または ktl_splash_window-d.dll）~
+
+-スクリプト~
+--[[ktl/SplashWindow.tjs]]~
+
+-クラス~
+--LayeredSplashWindow クラス~
+
+
+
+*アルファチャンネル付きスプラッシュスクリーン
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/SplashWindow.tjs");
+ 
+ /* LayeredSplashWindow のインスタンス作成 */
+ var splash = new LayeredSplashWindow();
+ 
+ /* ウィンドウを作成 */
+ splash.initialize();
+ 
+ /* splash.png からイメージをロード */
+ splash.loadImages("splash.png");
+ 
+ /* センタリングしてウィンドウを更新 */
+ splash.updateToCenter();
+ 
+ /* 最前面にする */
+ splash.topMost = true;
+ 
+ /* スプラッシュスクリーンを表示 */
+ splash.visible = true;
+ 
+ /*
+     いろいろKAGの初期化処理など
+ *
+ 
+ /* スプラッシュスクリーンを消去 */
+ invalidate splash;
+
+-LayeredSplashWindow クラス~
+--アルファチャンネル付き画像を扱えるスプラッシュスクリーンを使うためのクラス。~
+--このインスタンスが破棄（invalidate）されるとき、ウィンドウやリソースは正しく解放される。~
+
+-LayeredSplashWindow.initialize メソッド~
+--シグネチャ:~
+---LayeredSplashWindow.initialize(identity)~
+--インスタンスを生成してから最初に呼び出す。~
+--SplashWindow.initialize と異なり、サイズを渡す必要はない。~
+
+-LayeredSplashWindow.loadImages メソッド~
+--シグネチャ:~
+---LayeredSplashWindow.loadImages(storage)~
+--スプラッシュに表示される画像イメージをロードする。~
+--現在、PNG形式のみ対応。アルファ値がある場合アルファ値が利用される。~
+--SplashWindow と異なり、スクリーンサイズはイメージと同じに変更される。~
+
+-LayeredSplashWindow.update メソッド~
+--シグネチャ:~
+---LayeredSplashWindow.update(left, top, opacity)~
+--スプラッシュの表示を更新する。~
+--SplashWindow と異なり、イメージ画像をロードしてから update または updateToCenter を呼ぶまでは更新されない。~
+
+-LayeredSplashWindow.updateToCenter メソッド~
+--シグネチャ:~
+---LayeredSplashWindow.updateToCenter(opacity)~
+--スプラッシュの表示を更新する。~
+--これは自動的にデスクトップ領域に対してセンタリングを行う。~
+
+-LayeredSplashWindow.visible プロパティ~
+--スプラッシュの表示状態を設定／取得する。~
+
+-LayeredSplashWindow.topMost プロパティ(2010/07/07 追加)~
+--スプラッシュが最前面かどうか設定／取得する。~
+

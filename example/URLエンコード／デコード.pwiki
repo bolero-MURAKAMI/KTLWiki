@@ -1,0 +1,63 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_encoding.dll (または ktl_encoding-d.dll)~
+
+-外部DLL~
+--icudt46.dll~
+--icuuc46.dll~
+--icuin46.dll~
+
+-スクリプト~
+--[[ktl/Encoding.tjs]]~
+
+-クラス~
+--[[Encoding クラス>ktl/Encoding.tjs#Encoding]]~
+ 文字コード変換やエンコード、文字コード検出などを行うクラス。
+
+
+
+*URLエンコード／デコード
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Encoding.tjs");
+ 
+ var str = "foobarほげほげ";
+ 
+ /* 文字列を任意の文字コードでURLエンコード */
+ var url_encoded = Encoding.URLEncodeToString("utf-8", str);
+ if (url_encoded === "foobar%E3%81%BB%E3%81%92%E3%81%BB%E3%81%92") {
+     Debug.message("正常にURLエンコードされました。");
+ }
+ 
+ /* URLエンコードされたものをデコード */
+ var url_decoded = Encoding.URLDecodeToString("utf-8", url_encoded);
+ if (url_decoded === str) {
+     Debug.message("正常にデコードされました。");
+ }
+
+-[[Encoding.URLEncodeToAsciiOctet メソッド>ktl/Encoding.tjs#Encoding-URLEncodeToAsciiOctet]]~
+ 文字列から任意の文字コードでURLエンコードされたASCII表現のオクテット列を返す。
+ またはバイナリ表現のオクテット列からURLエンコードされたASCII表現のオクテット列を返す。
+
+-[[Encoding.URLEncodeToString メソッド>ktl/Encoding.tjs#Encoding-URLEncodeToString]]~
+ 文字列から任意の文字コードでURLエンコードされた文字列を返す。
+ またはバイナリ表現のオクテット列からURLエンコードされた文字列を返す。
+
+-[[Encoding.uefSpaceToPlus プロパティ>ktl/Encoding.tjs#Encoding-uefSpaceToPlus]]~
+ URLエンコードオプション。" "(半角スペース)を"+"に変換するフラグを返す。 (getter)
+ ビット演算で他のフラグと組み合わせることができる。
+
+-[[Encoding.uefEncodeTilde プロパティ>ktl/Encoding.tjs#Encoding-uefEncodeTilde]]~
+ URLエンコードオプション。%xx形式に変換する文字に、"~"(チルダ)を含めるフラグを返す。 (getter)
+ ビット演算で他のフラグと組み合わせることができる。
+
+-[[Encoding.URLDecodeToOctetData メソッド>ktl/Encoding.tjs#Encoding-URLDecodeToOctetData]]~
+ URLエンコードされたオクテット列または文字列から、デコードしたバイナリ表現のオクテット列を返す。
+
+-[[Encoding.URLDecodeToString メソッド>ktl/Encoding.tjs#Encoding-URLDecodeToString]]~
+ 任意の文字コードでURLエンコードされたオクテット列または文字列から、デコードした文字列を返す。
+

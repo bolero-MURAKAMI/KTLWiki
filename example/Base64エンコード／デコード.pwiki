@@ -1,0 +1,48 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_encoding.dll (または ktl_encoding-d.dll)~
+
+-外部DLL~
+--icudt46.dll~
+--icuuc46.dll~
+--icuin46.dll~
+
+-スクリプト~
+--[[ktl/Encoding.tjs]]~
+
+-クラス~
+--[[Encoding クラス>ktl/Encoding.tjs#Encoding]]~
+ 文字コード変換やエンコード、文字コード検出などを行うクラス。
+
+
+
+*Base64エンコード／デコード
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Encoding.tjs");
+ 
+ var oct = <% DE AD BE AF %>;
+ var encoded;
+ 
+ /* オクテット列をBase64エンコード */
+ encoded = Encoding.base64EncodeToString(oct);
+ Debug.message("Base64エンコード : " + encoded);
+ 
+ /* Base64エンコードされた文字列をデコード */
+ if (Encoding.base64DecodeToOctetData(encoded) === oct) {
+     Debug.message("正常にデコードされました。");
+ }
+
+-[[Encoding.base64EncodeToAsciiOctet メソッド>ktl/Encoding.tjs#Encoding-base64EncodeToAsciiOctet]]~
+ Base64エンコードされたASCII表現のオクテット列を返す。
+
+-[[Encoding.base64EncodeToString メソッド>ktl/Encoding.tjs#Encoding-base64EncodeToString]]~
+ Base64エンコードされた文字列を返す。
+
+-[[Encoding.base64DecodeToOctetData メソッド>ktl/Encoding.tjs#Encoding-base64DecodeToOctetData]]~
+ Base64エンコードされたオクテット列または文字列から、デコードしたオクテット列を返す。
+

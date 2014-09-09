@@ -1,0 +1,482 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ スプライト表示のための座標計算など。
+-パス:~
+--[[ktl/SpriteCoord.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_sprite_coord.dll / ktl_sprite_coord-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[SpriteCoord クラス>#SpriteCoord]]~
+
+--------------------------------------------------------------------------------
+
+**SpriteCoord クラス [#SpriteCoord]
+ スプライト表示のための座標計算を行うクラス。
+-メソッド:~
+--[[SpriteCoord メソッド>#SpriteCoord-SpriteCoord]]~
+--[[saveCoordTransByText メソッド>#SpriteCoord-saveCoordTransByText]]~
+--[[loadCoordTransByText メソッド>#SpriteCoord-loadCoordTransByText]]~
+--[[saveCoordTransByXML メソッド>#SpriteCoord-saveCoordTransByXML]]~
+--[[loadCoordTransByXML メソッド>#SpriteCoord-loadCoordTransByXML]]~
+--[[saveCoordTransByBinary メソッド>#SpriteCoord-saveCoordTransByBinary]]~
+--[[loadCoordTransByBinary メソッド>#SpriteCoord-loadCoordTransByBinary]]~
+--[[update メソッド>#SpriteCoord-update]]~
+--[[setScaling メソッド>#SpriteCoord-setScaling]]~
+--[[setRotationメソッド>#SpriteCoord-setRotation]]~
+--[[setTranslation メソッド>#SpriteCoord-setTranslation]]~
+--[[setRect メソッド>#SpriteCoord-setRect]]~
+--[[setCenter メソッド>#SpriteCoord-setCenter]]~
+-プロパティ:~
+--[[scalingX プロパティ>#SpriteCoord-scalingX]]~
+--[[scalingY プロパティ>#SpriteCoord-scalingY]]~
+--[[rotation プロパティ>#SpriteCoord-rotation]]~
+--[[translationX プロパティ>#SpriteCoord-translationX]]~
+--[[translationY プロパティ>#SpriteCoord-translationY]]~
+--[[rectLeft プロパティ>#SpriteCoord-rectLeft]]~
+--[[rectRight プロパティ>#SpriteCoord-rectRight]]~
+--[[rectTop プロパティ>#SpriteCoord-rectTop]]~
+--[[rectBottom プロパティ>#SpriteCoord-rectBottom]]~
+--[[centerX プロパティ>#SpriteCoord-centerX]]~
+--[[centerY プロパティ>#SpriteCoord-scalingX]]~
+--[[sizeX プロパティ>#SpriteCoord-sizeX]]~
+--[[sizeY プロパティ>#SpriteCoord-sizeY]]~
+--[[points0X プロパティ>#SpriteCoord-points0X]]~
+--[[points0Y プロパティ>#SpriteCoord-points0Y]]~
+--[[points1X プロパティ>#SpriteCoord-points1X]]~
+--[[points1Y プロパティ>#SpriteCoord-points1Y]]~
+--[[points2X プロパティ>#SpriteCoord-points2X]]~
+--[[points2Y プロパティ>#SpriteCoord-points2Y]]~
+--[[points3X プロパティ>#SpriteCoord-points3X]]~
+--[[points3Y プロパティ>#SpriteCoord-points3Y]]~
+--[[transformedPoints0X プロパティ>#SpriteCoord-transformedPoints0X]]~
+--[[transformedPoints0Y プロパティ>#SpriteCoord-transformedPoints0Y]]~
+--[[transformedPoints1X プロパティ>#SpriteCoord-transformedPoints1X]]~
+--[[transformedPoints1Y プロパティ>#SpriteCoord-transformedPoints1Y]]~
+--[[transformedPoints2X プロパティ>#SpriteCoord-transformedPoints2X]]~
+--[[transformedPoints2Y プロパティ>#SpriteCoord-transformedPoints2Y]]~
+--[[transformedPoints3X プロパティ>#SpriteCoord-transformedPoints3X]]~
+--[[transformedPoints3Y プロパティ>#SpriteCoord-transformedPoints3Y]]~
+--[[enclosedPoints0X プロパティ>#SpriteCoord-enclosedPoints0X]]~
+--[[enclosedPoints0Y プロパティ>#SpriteCoord-enclosedPoints0Y]]~
+--[[enclosedPoints1X プロパティ>#SpriteCoord-enclosedPoints1X]]~
+--[[enclosedPoints1Y プロパティ>#SpriteCoord-enclosedPoints1Y]]~
+--[[enclosedPoints2X プロパティ>#SpriteCoord-enclosedPoints2X]]~
+--[[enclosedPoints2Y プロパティ>#SpriteCoord-enclosedPoints2Y]]~
+--[[enclosedPoints3X プロパティ>#SpriteCoord-enclosedPoints3X]]~
+--[[enclosedPoints3Y プロパティ>#SpriteCoord-enclosedPoints3Y]]~
+--[[enclosedRectLeft プロパティ>#SpriteCoord-enclosedRectLeft]]~
+--[[enclosedRectRight プロパティ>#SpriteCoord-enclosedRectRight]]~
+--[[enclosedRectTop プロパティ>#SpriteCoord-enclosedRectTop]]~
+--[[enclosedRectBottom プロパティ>#SpriteCoord-enclosedRectBottom]]~
+--[[enclosedSizeX プロパティ>#SpriteCoord-enclosedSizeX]]~
+--[[enclosedSizeY プロパティ>#SpriteCoord-enclosedSizeY]]~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.SpriteCoord メソッド &aname(SpriteCoord-SpriteCoord);~
+ コンストラクタ。
+--シグネチャ:~
+---SpriteCoord()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.saveCoordTransByText メソッド &aname(SpriteCoord-saveCoordTransByText);~
+ 情報を文字列でシリアライズする。
+--シグネチャ:~
+---SpriteCoord.saveCoordTransByText()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+シリアライズされた文字列。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.loadCoordTransByText メソッド &aname(SpriteCoord-loadCoordTransByText);~
+ 情報を文字列からデシリアライズする。
+--シグネチャ:~
+---SpriteCoord.loadCoordTransByText(data)~
+--引数:~
+---data~
+シリアライズされた文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.saveCoordTransByXML メソッド &aname(SpriteCoord-saveCoordTransByXML);~
+ 情報を XML 文字列でシリアライズする。
+--シグネチャ:~
+---SpriteCoord.saveCoordTransByXML()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+シリアライズされた XML 文字列。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.loadCoordTransByXML メソッド &aname(SpriteCoord-loadCoordTransByXML);~
+ 情報を XML 文字列からデシリアライズする。
+--シグネチャ:~
+---SpriteCoord.loadCoordTransByXML(data)~
+--引数:~
+---data~
+シリアライズされた XML 文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.saveCoordTransByBinary メソッド &aname(SpriteCoord-saveCoordTransByBinary);~
+ 情報をオクテット列でシリアライズする。
+--シグネチャ:~
+---SpriteCoord.saveCoordTransByBinary()~
+--引数:~
+---(なし)~
+--返値:~
+---Octet~
+シリアライズされたオクテット列。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.loadCoordTransByBinary メソッド &aname(SpriteCoord-loadCoordTransByBinary);~
+ 情報をオクテット列からデシリアライズする。
+--シグネチャ:~
+---SpriteCoord.loadCoordTransByBinary(data)~
+--引数:~
+---data~
+シリアライズされたオクテット列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.update メソッド &aname(SpriteCoord-update);~
+ 設定されている座標値と座標変換パラメータから、変換後の座標値を計算する。
+--シグネチャ:~
+---SpriteCoord.update()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.update メソッド &aname(SpriteCoord-update);~
+ 設定されている座標値と座標変換パラメータから、変換後の座標値を計算する。
+--シグネチャ:~
+---SpriteCoord.update()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.setScaling メソッド &aname(SpriteCoord-setScaling);~
+ スケーリング率を設定する。
+--シグネチャ:~
+---SpriteCoord.setScaling(x, y)~
+--引数:~
+---x~
+X 方向のスケーリング率。~
+---y~
+Y 方向のスケーリング率。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.setRotation メソッド &aname(SpriteCoord-setRotation);~
+ 回転角度（ラジアン）を設定する。
+--シグネチャ:~
+---SpriteCoord.setRotation(t)~
+--引数:~
+---t~
+回転角度（ラジアン）。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.setTranslation メソッド &aname(SpriteCoord-setTranslation);~
+ 移動を設定する。
+--シグネチャ:~
+---SpriteCoord.setTranslation(x, y)~
+--引数:~
+---x~
+X 方向の移動。~
+---y~
+Y 方向の移動。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.setRect メソッド &aname(SpriteCoord-setRect);~
+ 表示矩形領域を設定する。
+--シグネチャ:~
+---SpriteCoord.setRect(left, top, right, bottom)~
+--引数:~
+---left~
+左端 X 座標。~
+---top~
+上端 Y 座標。~
+---right~
+右端 X 座標。~
+---bottom~
+下端 Y 座標。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.setCenter メソッド &aname(SpriteCoord-setCenter);~
+ スプライトの中心点（スケーリング、回転、移動の基準点）を設定する。
+--シグネチャ:~
+---SpriteCoord.setCenter(x, y)~
+--引数:~
+---x~
+基準点 X 座標。~
+---y~
+基準点 Y 座標。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.scalingX プロパティ &aname(SpriteCoord-scalingX);~
+ X 方向のスケーリング率を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.scalingY プロパティ &aname(SpriteCoord-scalingY);~
+ Y 方向のスケーリング率を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.rotation プロパティ &aname(SpriteCoord-rotation);~
+ 回転角度（ラジアン）を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.translationX プロパティ &aname(SpriteCoord-translationX);~
+ X 方向の移動を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.translationY プロパティ &aname(SpriteCoord-translationY);~
+ Y 方向の移動を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.rectLeft プロパティ &aname(SpriteCoord-rectLeft);~
+ 表示矩形領域の左端 X 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.rectRight プロパティ &aname(SpriteCoord-rectRight);~
+ 表示矩形領域の右端 X 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.rectTop プロパティ &aname(SpriteCoord-rectTop);~
+ 表示矩形領域の上端 Y 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.rectBottom プロパティ &aname(SpriteCoord-rectBottom);~
+ 表示矩形領域の下端 Y 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.centerX プロパティ &aname(SpriteCoord-centerX);~
+ スプライトの中心点 X 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.centerY プロパティ &aname(SpriteCoord-centerY);~
+ スプライトの中心点 Y 座標を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-SpriteCoord.sizeX プロパティ &aname(SpriteCoord-sizeX);~
+ 表示矩形領域の X 方向サイズを取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.sizeY プロパティ &aname(SpriteCoord-sizeY);~
+ 表示矩形領域の Y 方向サイズを取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points0X プロパティ &aname(SpriteCoord-points0X);~
+ 座標変換前の左上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points0Y プロパティ &aname(SpriteCoord-points0Y);~
+ 座標変換前の左上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points1X プロパティ &aname(SpriteCoord-points1X);~
+ 座標変換前の右上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points1Y プロパティ &aname(SpriteCoord-points1Y);~
+ 座標変換前の右上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points2X プロパティ &aname(SpriteCoord-points2X);~
+ 座標変換前の左下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points2Y プロパティ &aname(SpriteCoord-points2Y);~
+ 座標変換前の左下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points3X プロパティ &aname(SpriteCoord-points3X);~
+ 座標変換前の右下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.points3Y プロパティ &aname(SpriteCoord-points3Y);~
+ 座標変換前の右下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints0X プロパティ &aname(SpriteCoord-transformedPoints0X);~
+ 座標変換後の左上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints0Y プロパティ &aname(SpriteCoord-transformedPoints0Y);~
+ 座標変換後の左上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints1X プロパティ &aname(SpriteCoord-transformedPoints1X);~
+ 座標変換後の右上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints1Y プロパティ &aname(SpriteCoord-transformedPoints1Y);~
+ 座標変換後の右上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints2X プロパティ &aname(SpriteCoord-transformedPoints2X);~
+ 座標変換後の左下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints2Y プロパティ &aname(SpriteCoord-transformedPoints2Y);~
+ 座標変換後の左下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints3X プロパティ &aname(SpriteCoord-transformedPoints3X);~
+ 座標変換後の右下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.transformedPoints3Y プロパティ &aname(SpriteCoord-transformedPoints3Y);~
+ 座標変換後の右下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints0X プロパティ &aname(SpriteCoord-enclosedPoints0X);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、左上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints0Y プロパティ &aname(SpriteCoord-enclosedPoints0Y);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、左上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints1X プロパティ &aname(SpriteCoord-enclosedPoints1X);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、右上隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints1Y プロパティ &aname(SpriteCoord-enclosedPoints1Y);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、右上隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints2X プロパティ &aname(SpriteCoord-enclosedPoints2X);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、左下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints2Y プロパティ &aname(SpriteCoord-enclosedPoints2Y);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、左下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints3X プロパティ &aname(SpriteCoord-enclosedPoints3X);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、右下隅の X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedPoints3Y プロパティ &aname(SpriteCoord-enclosedPoints3Y);~
+ 座標変換後のスプライトをちょうど内包する矩形領域に対する、右下隅の Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedRectLeft プロパティ &aname(SpriteCoord-enclosedRectLeft);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、左端 X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedRectRight プロパティ &aname(SpriteCoord-enclosedRectRight);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、右端 X 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedRectTop プロパティ &aname(SpriteCoord-enclosedRectTop);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、上端 Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedRectBottom プロパティ &aname(SpriteCoord-enclosedRectBottom);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、下端 Y 座標を取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedSizeX プロパティ &aname(SpriteCoord-enclosedSizeX);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、X 方向サイズを取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+-SpriteCoord.enclosedSizeY プロパティ &aname(SpriteCoord-enclosedSizeY);~
+ 座標変換後のスプライトをちょうど内包する矩形領域の、Y 方向サイズを取得する。 (getter)
+--注記:~
+このプロパティは、[[SpriteCoord.update メソッド>#SpriteCoord-update]] を呼ぶまで更新されない。~
+
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,122 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列へ末尾追加
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* 64bit 整数の末尾追加 */
+ oct.add(37564, OctetBuilder.vtfInt64);
+ Debug.message("size = " + oct.size); // size = 4
+ 
+ /* 倍精度浮動小数点数の末尾追加 */
+ oct.add(3.14159265, OctetBuilder.vtfDouble);
+ Debug.message("size = " + oct.size); // size = 8
+ 
+ /* オクテット列の末尾追加 */
+ oct.add(<% DE AD BE AF %>, OctetBuilder.vtfOctet);
+ Debug.message("size = " + oct.size); // size = 4
+ 
+ /* BOM付き文字列の末尾追加 */
+ oct.add("\xFEFFfoobar", OctetBuilder.vtfString);
+ Debug.message("size = " + oct.size); // size = 14
+ 
+ /* ローカルストレージの内容の末尾追加 */
+ oct.addStorage(System.exePath + "foobar.txt");
+
+-OctetBuilder.add メソッド~
+--シグネチャ:~
+---OctetBuilder.add(v, flag = OctetBuilder.vtfByte)~
+--バッファへ値を末尾追加する。~
+--第１引数には末尾追加される値を渡す。~
+--第２引数には、値のデータ型やエンディアンを指定するフラグを渡すことができる(デフォルト=1byte 値)。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.addByte メソッド~
+--シグネチャ:~
+---OctetBuilder.addByte(size, b)~
+--バッファへ、1byte 値を末尾追加する。~
+--第１引数には連続して末尾追加するサイズを渡す。~
+--第２引数には末尾追加される値を渡す。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.addBuilder メソッド~
+--シグネチャ:~
+---OctetBuilder.addBuilder(obj)~
+---OctetBuilder.addBuilder(obj, spos)~
+---OctetBuilder.addBuilder(obj, sssize)~
+--バッファへ OctetBuilder インスタンスの内容を末尾追加する。~
+--第１引数には末尾追加される OctetBuilder インスタンスを渡す。~
+--第２引数に数値を指定すると、末尾追加されるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ末尾追加される。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.addOctet メソッド~
+--シグネチャ:~
+---OctetBuilder.addOctet(octet)~
+---OctetBuilder.addOctet(octet, spos)~
+---OctetBuilder.addOctet(octet, sssize)~
+--バッファへオクテット列を末尾追加する。~
+--第１引数には末尾追加されるオクテット列を渡す。~
+--第２引数に数値を指定すると、末尾追加されるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ末尾追加される。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+
+-OctetBuilder.addString メソッド~
+--シグネチャ:~
+---OctetBuilder.addString(str)~
+---OctetBuilder.addString(str, spos)~
+---OctetBuilder.addString(str, sssize)~
+--バッファへ文字列を末尾追加する。~
+--第１引数には末尾追加される文字列（UTF-16LE）を渡す。~
+--第２引数に数値を指定すると、末尾追加されるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ末尾追加される。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+-OctetBuilder.addNarrowString メソッド~
+--シグネチャ:~
+---OctetBuilder.addNarrowString(str)~
+---OctetBuilder.addNarrowString(str, spos)~
+---OctetBuilder.addNarrowString(str, sssize)~
+--バッファへ文字列を末尾追加する。~
+--第１引数には末尾追加される文字列（Shift_JIS）を渡す。~
+--第２引数に数値を指定すると、末尾追加されるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ末尾追加される。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~
+--なお、終端文字（"\0"）は挿入されない。~
+
+-OctetBuilder.addStorage メソッド~
+--シグネチャ:~
+---OctetBuilder.addStorage(storage)~
+---OctetBuilder.addStorage(storage, spos)~
+---OctetBuilder.addStorage(storage, sssize)~
+--バッファへローカルストレージの内容を末尾追加する。~
+--第１引数には末尾追加されるストレージのパスを渡す。~
+--第２引数に数値を指定すると、末尾追加されるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ末尾追加される。~
+--追加される前のバイト数を返す。~
+--バッファは必要なサイズまで自動的に拡張される。~

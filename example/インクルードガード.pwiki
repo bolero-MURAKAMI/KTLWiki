@@ -1,0 +1,67 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--（なし）~
+
+-スクリプト~
+--[[ktl/Sources.tjs]]~
+
+-クラス~
+--SourcesObject クラス~
+
+-グローバル変数~
+--Sources インスタンス~
+
+
+
+*インクルードガード
+ /*
+     Sample.tjs ファイルの内容
+ */
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Sources.tjs");
+ 
+ /* Sample.tjs が既に読み込まれていたら、すぐに return する */
+ if (Sources.guard("Sample.tjs")) return;
+ 
+ /* Sample2.tjs の読み込み */
+ Sources.include("Sample2.tjs");
+
+-SourcesObject クラス~
+--KAG の system/Initialize.tjs で定義される KAGLoadScriptOnce メソッドを少し強化したような~
+スクリプトのインクルードガード付ロード機能などを提供する。~
+--通常、Sources インスタンスから利用する。
+
+-Sources.include メソッド~
+--シグネチャ:~
+---Sources.include(storage, once = false)~
+--Scripts.execStorage と同じようにスクリプトの読み込み（評価）を行う。~
+--インクルードガードが施されたスクリプトは、最初の一度しか読み込まない。~
+--第２引数に真（true）を渡した場合、例えインクルードガードが施されていなくとも~
+既に Sources.include で読み込まれていた場合、読み込みを行わない。~
+
+-Sources.guard メソッド~
+--シグネチャ:~
+---Sources.guard(storage)~
+--インクルードガードを施す。~
+--具体的には、ストレージ名を鍵としたマッピングの「インクルード済」フラグを真に設定する。~
+--引数には対象となるスクリプトのパスを渡す。~
+--上記サンプルのようにファイルの先頭で使用された場合、たとえ Scripts.execStorage によって読み込まれたとしても~
+スクリプトの内容（インクルードガード以降）は確実に最初の一度しか評価されない。~
+--KTLのTJSスクリプトは、基本的にすべてこのインクルードガードが施されている。~
+--パスは統一ストレージ名に変換して処理されるため、見かけ上異なるパス~
+（例えば"Sample.tjs"と System.exePath+"data/Sample.tjs"）であっても同じファイルを指すものであれば
+同じパスとして識別されるため、ファイルが混同されることはない。~
+--指定したファイルが既に読み込まれていた場合はtrue、でなければfalseを返す。
+--これはC/C++の以下のようなインクルードガードと同等と考えていい。
+ #ifndef SAMPLE_H_INCLUDED
+ #define SAMPLE_H_INCLUDED
+ /*
+     ヘッダの定義
+ */
+ #endif // SAMPLE_H_INCLUDED
+

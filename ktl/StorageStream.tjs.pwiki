@@ -1,0 +1,327 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ ローカルストレージ（ファイル）への I/O など。
+-パス:~
+--[[ktl/StorageStream.tjs]]~
+-インポートスクリプト:~
+--[[ktl/StorageStream.tjs]]~
+-インポートDLL:~
+--ktl_storage_stream.dll / ktl_storage_stream-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[StorageStream クラス>#StorageStream]]~
+
+--------------------------------------------------------------------------------
+
+**StorageStream クラス [#StorageStream]
+ ローカルストレージ（ファイル）への I/O を行うクラス。
+-メソッド:~
+--[[StorageStream メソッド>#StorageStream-StorageStream]]~
+
+> (開閉)~
+
+--[[open メソッド>#StorageStream-open]]~
+--[[close メソッド>#StorageStream-close]]~
+
+> (書込)~
+
+--[[readOctet メソッド>#StorageStream-readOctet]]~
+--[[readString メソッド>#StorageStream-readString]]~
+--[[readNarrowString メソッド>#StorageStream-readNarrowString]]~
+
+> (読込)~
+
+--[[writeOctet メソッド>#StorageStream-writeOctet]]~
+--[[writeString メソッド>#StorageStream-writeString]]~
+--[[writeNarrowString メソッド>#StorageStream-writeNarrowString]]~
+--[[writeBlock メソッド>#StorageStream-writeBlock]]~
+--[[writeBytes メソッド>#StorageStream-writeBytes]]~
+
+> (シーク)~
+
+--[[seek メソッド>#StorageStream-seek]]~
+-プロパティ:~
+--[[isOpen プロパティ>#StorageStream-isOpen]]~
+--[[current プロパティ>#StorageStream-current]]~
+--[[size プロパティ>#StorageStream-size]]~
+-スタティックプロパティ:~
+--[[afRead プロパティ>#StorageStream-afRead]]~
+--[[afWrite プロパティ>#StorageStream-afWrite]]~
+--[[afAppend プロパティ>#StorageStream-afAppend]]~
+--[[afUpdate プロパティ>#StorageStream-afUpdate]]~
+--[[sfSet プロパティ>#StorageStream-sfSet]]~
+--[[sfCur プロパティ>#StorageStream-sfCur]]~
+--[[sfEnd プロパティ>#StorageStream-sfEnd]]~
+
+--------------------------------------------------------------------------------
+-StorageStream.StorageStream メソッド &aname(StorageStream-StorageStream);~
+ コンストラクタ。
+--シグネチャ:~
+---StorageStream()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-StorageStream.open メソッド &aname(StorageStream-open);~
+ ローカルストレージを開く。
+--シグネチャ:~
+---StorageStream.open(storage, flag)~
+--引数:~
+---storage~
+ストレージパス文字列。~
+---flag~
+オープンモードフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-StorageStream.close メソッド &aname(StorageStream-close);~
+ ローカルストレージを閉じる。
+--シグネチャ:~
+---StorageStream.close()~
+--引数:~
+---storage~
+ストレージパス文字列。~
+---flag~
+オープンモードフラグ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した、または開かれていなかった場合。~
+
+--------------------------------------------------------------------------------
+-StorageStream.readOctet メソッド &aname(StorageStream-readOctet);~
+ オクテット列として読み込む。
+--シグネチャ:~
+---StorageStream.readOctet()~
+---StorageStream.readOctet(size)~
+--引数:~
+---size~
+読み込むサイズ。~
+--返値:~
+---Octet~
+読み込んだオクテット列。~
+---void~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-StorageStream.readString メソッド &aname(StorageStream-readString);~
+ 文字列として読み込む。
+--シグネチャ:~
+---StorageStream.readString()~
+---StorageStream.readString(size)~
+--引数:~
+---size~
+読み込むサイズ。~
+--返値:~
+---String~
+読み込んだ文字列。~
+---void~
+処理に失敗した場合。~
+--注記:~
+エンコーディングは UTF-16LE(BOM無し) ワイド文字列で読み込まれる。~
+指定サイズは文字単位でなくバイト単位とする。~
+
+--------------------------------------------------------------------------------
+-StorageStream.readNarrowString メソッド &aname(StorageStream-readNarrowString);~
+ ナロー文字列として読み込む。
+--シグネチャ:~
+---StorageStream.readNarrowString()~
+---StorageStream.readNarrowString(size)~
+--引数:~
+---size~
+読み込むサイズ。~
+--返値:~
+---String~
+読み込んだナロー文字列。~
+---void~
+処理に失敗した場合。~
+--注記:~
+エンコーディングは Shift_JIS (Windows-31J) ナロー文字列で読み込まれる。~
+指定サイズは文字単位でなくバイト単位とする。~
+
+--------------------------------------------------------------------------------
+-StorageStream.writeOctet メソッド &aname(StorageStream-writeOctet);~
+ オクテット列を書き込む。
+--シグネチャ:~
+---StorageStream.writeOctet(octet)~
+---StorageStream.writeOctet(octet, spos)~
+---StorageStream.writeOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+書き込むオクテット列。~
+---spos~
+オクテット列のオフセット。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+実際に書き込まれたサイズ。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-StorageStream.writeString メソッド &aname(StorageStream-writeString);~
+ 文字列を書き込む。
+--シグネチャ:~
+---StorageStream.writeString(str)~
+---StorageStream.writeString(str, spos)~
+---StorageStream.writeString(str, spos, ssize)~
+--引数:~
+---str~
+書き込む文字列。~
+---spos~
+文字列のオフセット。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+実際に書き込まれたサイズ。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+エンコーディングは UTF-16LE(BOM無し) ワイド文字列で書き込まれる。~
+指定サイズは文字単位でなくバイト単位とする。~
+
+--------------------------------------------------------------------------------
+-StorageStream.writeNarrowString メソッド &aname(StorageStream-writeNarrowString);~
+ ナロー文字列を書き込む。
+--シグネチャ:~
+---StorageStream.writeNarrowString(str)~
+---StorageStream.writeNarrowString(str, spos)~
+---StorageStream.writeNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+書き込むナロー文字列。~
+---spos~
+ナロー文字列のオフセット。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+実際に書き込まれたサイズ。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+エンコーディングは Shift_JIS (Windows-31J) ナロー文字列で書き込まれる。~
+指定サイズは文字単位でなくバイト単位とする。~
+
+--------------------------------------------------------------------------------
+-StorageStream.writeBlock メソッド &aname(StorageStream-writeBlock);~
+ ポインタの範囲から書き込む。
+--シグネチャ:~
+---StorageStream.writeBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+実際に書き込まれたサイズ。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-StorageStream.writeBytes メソッド &aname(StorageStream-writeBytes);~
+ ポインタから書き込む。
+--シグネチャ:~
+---StorageStream.writeBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+実際に書き込まれたサイズ。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-StorageStream.seek メソッド &aname(StorageStream-seek);~
+ ナロー文字列を書き込む。
+--シグネチャ:~
+---StorageStream.seek(offset, flag)~
+--引数:~
+---offset~
+シーク位置。~
+---flag~
+シークフラグ。~
+--返値:~
+---正値~
+新しいシーク位置（絶対位置）。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+指定シーク位置の値の意味は、シークフラグによって決まる。~
+
+--------------------------------------------------------------------------------
+-StorageStream.isOpen プロパティ &aname(StorageStream-isOpen);~
+ ファイルが開かれていれば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-StorageStream.current プロパティ &aname(StorageStream-current);~
+ 現在のシーク位置を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-StorageStream.size プロパティ &aname(StorageStream-size);~
+ 開かれているファイル全体のサイズを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-StorageStream.afRead プロパティ &aname(StorageStream-afRead);~
+ オープンモードフラグを返す。読み込み専用モード。 (getter)
+--注記:~
+ファイルが既に存在した場合、シーク位置は開始点に設定される。~
+ファイルが存在しない場合、失敗する。~
+
+--------------------------------------------------------------------------------
+-StorageStream.afWrite プロパティ &aname(StorageStream-afWrite);~
+ オープンモードフラグを返す。書き込み専用モード。 (getter)
+--注記:~
+ファイルが既に存在した場合、ファイルは初期化される。~
+ファイルが存在しない場合、ファイルを作成する。~
+
+--------------------------------------------------------------------------------
+-StorageStream.afAppend プロパティ &aname(StorageStream-afAppend);~
+ オープンモードフラグを返す。追加書き込み専用モード。 (getter)
+--注記:~
+ファイルが既に存在した場合、シーク位置は終端に設定される。~
+ファイルが存在しない場合、失敗する。~
+
+--------------------------------------------------------------------------------
+-StorageStream.afUpdate プロパティ &aname(StorageStream-afUpdate);~
+ オープンモードフラグを返す。更新モード（読み書き可能）。 (getter)
+--注記:~
+ファイルが既に存在した場合、シーク位置は開始点に設定される。~
+ファイルが存在しない場合、失敗する。~
+
+--------------------------------------------------------------------------------
+-StorageStream.sfSet プロパティ &aname(StorageStream-sfSet);~
+ シークモードフラグを返す。ファイルの先頭からの絶対位置を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-StorageStream.sfCur プロパティ &aname(StorageStream-sfCur);~
+ シークモードフラグを返す。現在位置からのオフセット指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-StorageStream.sfEnd プロパティ &aname(StorageStream-sfEnd);~
+ シークモードフラグを返す。ファイルの末尾からのオフセット指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+

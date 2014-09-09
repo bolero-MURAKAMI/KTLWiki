@@ -1,0 +1,128 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_checksum.dll（または ktl_checksum-d.dll）~
+
+-スクリプト~
+--[[ktl/Checksum.tjs]]~
+
+-クラス~
+--CRC_16 クラス~
+--CRC_CCITT クラス~
+--CRC_XMODEM クラス~
+--CRC_32 クラス~
+--MD5 クラス~
+--SHA1 クラス~
+
+
+
+*チェックサム計算
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Checksum.tjs");
+ 
+ /* MD5 のインスタンス作成 */
+ var md5 = new MD5();
+ 
+ /* 文字列（ワイド文字列）の追加 */
+ md5.processString("The quick brown fox jumps over the lazy dog");
+ 
+ /* チェックサムの計算結果をオクテット列で取得 */
+ if (md5.checksumOctet() === <% B0 98 6A E6 EE 1E EF EE 8A 4A 39 90 90 12 68 37 %>) {
+     Debug.message("チェックサムは正しく計算されました。");
+ }
+ 
+ /* CRC_CCITT のインスタンス作成 */
+ var crc1 = new CRC_CCITT();
+ var crc2 = new CRC_CCITT();
+ 
+ /* xxx1.dat と xxx2.dat のストレージの内容をそれぞれ追加 */
+ crc1.processStorage("xxx1.dat");
+ crc2.processStorage("xxx2.dat");
+ 
+ /* チェックサムの計算結果を比較 */
+ if (crc1.checksum() === crc2.checksum()) {
+     Debug.message("２つのファイルのチェックサムは一致しました。");
+ }
+
+-CRC_16 クラス~
+-CRC_CCITT クラス~
+-CRC_XMODEM クラス~
+-CRC_32 クラス~
+-MD5 クラス~
+-SHA1 クラス~
+--それぞれの方法でチェックサムを計算するクラス。~
+--これらはほぼ同じインタフェースを持つ。~
+--以下のメンバの説明の<Checksum>はそれぞれのクラス名前に置き換える。~
+
+-<Checksum>.reset メソッド~
+--シグネチャ:~
+---<Checksum>.reset()~
+--チェックサム計算をリセットする。~
+
+-%%<Checksum>.process メソッド%%(2010/08/12 メンバ削除)~
+
+-<Checksum>.processByte メソッド(2010/08/12 追加)~
+--シグネチャ:~
+---<Checksum>.processByte(byte)~
+--計算に1byte値を追加。~
+
+-<Checksum>.processStorage メソッド~
+--シグネチャ:~
+---<Checksum>.processStorage(storage)~
+---<Checksum>.processStorage(storage, spos)~
+---<Checksum>.processStorage(storage, spos, ssize)~
+--計算にストレージの内容を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-<Checksum>.processOctet メソッド(2010/08/12 仕様追加)~
+--シグネチャ:~
+---<Checksum>.processOctet(octet)~
+---<Checksum>.processOctet(octet, spos)~
+---<Checksum>.processOctet(octet, spos, ssize)~
+--計算にオクテット列を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-<Checksum>.processString メソッド(2010/08/12 仕様追加)~
+--シグネチャ:~
+---<Checksum>.processString(str)~
+---<Checksum>.processString(str, spos)~
+---<Checksum>.processString(str, spos, ssize)~
+--計算に文字列（ワイド文字列）を追加。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-<Checksum>.processNarrowString メソッド(2010/08/12 仕様追加)~
+--シグネチャ:~
+---<Checksum>.processNarrowString(str)~
+---<Checksum>.processNarrowString(str, spos)~
+---<Checksum>.processNarrowString(str, spos, ssize)~
+--計算に文字列（マルチバイト文字列）を追加。~
+--吉里吉里は文字列をワイド文字列で扱うが、このメソッドは内部でマルチバイト文字列に変換して処理する。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ追加される。~
+
+-<Checksum>.checksum メソッド~
+--シグネチャ:~
+---<Checksum>.checksum()~
+--チェックサムの計算結果を返す。~
+--CRC系の場合整数値として、MD5とSHA1の場合はオクテット列が返る。~
+
+-<Checksum>.checksumOctet メソッド~
+--シグネチャ:~
+---<Checksum>.checksumOctet()~
+--チェックサムの計算結果を返す。~
+--このメソッドは必ずオクテット列が返る。~
+
+-<Checksum>.checksumHex メソッド(2010/07/19 追加)~
+--シグネチャ:~
+---<Checksum>.checksumHex(upper = false)~
+--チェックサムの計算結果を返す。~
+--このメソッドは16進文字列が返る。~
+--第１引数にtrueを渡した場合、アルファベットは大文字で表わされる（デフォルトで小文字）。~
+

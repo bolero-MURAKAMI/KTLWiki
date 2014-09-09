@@ -1,0 +1,810 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ Deflate アルゴリズムによるデータ圧縮／展開など。
+-パス:~
+--[[ktl/Compression.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_compression.dll / ktl_compression-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Deflate クラス>#Deflate]]~
+--[[Inflate クラス>#Inflate]]~
+
+--------------------------------------------------------------------------------
+
+**Deflate クラス [#Deflate]
+ Deflate アルゴリズムによるデータ圧縮を行うクラス。
+-メソッド:~
+--[[Deflate メソッド>#Deflate-Deflate]]~
+
+> (セットアップ)~
+
+--[[reset メソッド>#Deflate-reset]]~
+--[[setup メソッド>#Deflate-setup]]~
+--[[finish メソッド>#Deflate-finish]]~
+--[[flush メソッド>#Deflate-flush]]~
+
+> (データ処理)~
+
+--[[processBlock メソッド>#Deflate-processBlock]]~
+--[[processBytes メソッド>#Deflate-processBytes]]~
+--[[processByte メソッド>#Deflate-processByte]]~
+--[[processOctet メソッド>#Deflate-processOctet]]~
+--[[processString メソッド>#Deflate-processString]]~
+--[[processNarrowString メソッド>#Deflate-processNarrowString]]~
+--[[processStorage メソッド>#Deflate-processStorage]]~
+
+> (結果取得)~
+
+--[[asOctet メソッド>#Deflate-asOctet]]~
+--[[saveStorage メソッド>#Deflate-saveStorage]]~
+-プロパティ:~
+--[[setupCompleted プロパティ>#Deflate-setupCompleted]]~
+--[[level プロパティ>#Deflate-level]]~
+--[[method プロパティ>#Deflate-method]]~
+--[[windowBits プロパティ>#Deflate-windowBits]]~
+--[[memLevel プロパティ>#Deflate-memLevel]]~
+--[[strategy プロパティ>#Deflate-strategy]]~
+--[[noHeader プロパティ>#Deflate-noHeader]]~
+--[[calculateCRC プロパティ>#Deflate-calculateCRC]]~
+--[[CRC プロパティ>#Deflate-CRC]]~
+--[[originalSize プロパティ>#Deflate-originalSize]]~
+--[[size プロパティ>#Deflate-size]]~
+-スタティックプロパティ:~
+--[[clfNoCompression プロパティ>#Deflate-clfNoCompression]]~
+--[[clfBestSpeed プロパティ>#Deflate-clfBestSpeed]]~
+--[[clfBestCompression プロパティ>#Deflate-clfBestCompression]]~
+--[[clfDefaultCompression プロパティ>#Deflate-clfDefaultCompression]]~
+--[[cmfDeflated プロパティ>#Deflate-cmfDeflated]]~
+--[[csfDefaultStrategy プロパティ>#Deflate-csfDefaultStrategy]]~
+--[[csfFiltered プロパティ>#Deflate-csfFiltered]]~
+--[[csfHuffmanOnly プロパティ>#Deflate-csfHuffmanOnly]]~
+
+--------------------------------------------------------------------------------
+-Deflate.Deflate メソッド &aname(Deflate-Deflate);~
+ コンストラクタ。
+--シグネチャ:~
+---Deflate()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Deflate.reset メソッド &aname(Deflate-reset);~
+ 圧縮処理設定およびバッファをリセットする。
+--シグネチャ:~
+---Deflate.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Deflate.setup メソッド &aname(Deflate-setup);~
+ 設定された圧縮処理設定をもとに、圧縮処理をセットアップする。
+--シグネチャ:~
+---Deflate.setup()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+セットアップに成功した場合。~
+---false~
+セットアップに失敗した場合。~
+--注記:~
+圧縮処理設定は、このメソッドが実行される前に設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Deflate.finish メソッド &aname(Deflate-finish);~
+ 圧縮処理を完了する。
+--シグネチャ:~
+---Deflate.finish()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+圧縮処理に成功した場合。~
+---false~
+圧縮処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.flush メソッド &aname(Deflate-flush);~
+ バッファを確実にフラッシュする。
+--シグネチャ:~
+---Deflate.flush()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+フラッシュに成功した場合。~
+---false~
+フラッシュに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.processBlock メソッド &aname(Deflate-processBlock);~
+ 圧縮処理にポインタの範囲を追加。
+--シグネチャ:~
+---Deflate.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Deflate.processBytes メソッド &aname(Deflate-processBytes);~
+ 圧縮処理にポインタの範囲を追加。
+--シグネチャ:~
+---Deflate.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Deflate.processByte メソッド &aname(Deflate-processByte);~
+ 圧縮処理に 1byte 値を追加。
+--シグネチャ:~
+---Deflate.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.processOctet メソッド &aname(Deflate-processOctet);~
+ 圧縮処理にオクテット列を追加。
+--シグネチャ:~
+---Deflate.processOctet(octet)~
+---Deflate.processOctet(octet, spos)~
+---Deflate.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.processString メソッド &aname(Deflate-processString);~
+ 圧縮処理に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---Deflate.processString(str)~
+---Deflate.processString(str, spos)~
+---Deflate.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.processNarrowString メソッド &aname(Deflate-processNarrowString);~
+ 圧縮処理にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---Deflate.processNarrowString(str)~
+---Deflate.processNarrowString(str, spos)~
+---Deflate.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.processStorage メソッド &aname(Deflate-processStorage);~
+ 圧縮処理にローカルストレージの内容を追加。
+--シグネチャ:~
+---Deflate.processStorage(storage)~
+---Deflate.processStorage(storage, spos)~
+---Deflate.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.asOctet メソッド &aname(Deflate-asOctet);~
+ 圧縮データをオクテット列として返す。
+--シグネチャ:~
+---Deflate.asOctet()~
+---Deflate.asOctet(pos)~
+---Deflate.asOctet(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---Octet~
+圧縮データの値。~
+---void~
+圧縮処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.saveStorage メソッド &aname(Deflate-saveStorage);~
+ 圧縮データをローカルストレージへ保存する。
+--シグネチャ:~
+---Deflate.saveStorage(storage)~
+---Deflate.saveStorage(storage, pos)~
+---Deflate.saveStorage(storage, pos, size)~
+--引数:~
+---storage~
+保存するストレージのパス。~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、保存されたバイト数。~
+---負値~
+圧縮処理が完了していない、または保存に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Deflate.setupCompleted プロパティ &aname(Deflate-setupCompleted);~
+ セットアップが正常に完了したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Deflate.level プロパティ &aname(Deflate-level);~
+ 圧縮処理設定。圧縮レベルオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Deflate.method プロパティ &aname(Deflate-method);~
+ 圧縮処理設定。圧縮メソッドオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Deflate.windowBits プロパティ &aname(Deflate-windowBits);~
+ 圧縮処理設定。履歴バッファの大きさを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 8～15 。~
+
+--------------------------------------------------------------------------------
+-Deflate.memLevel プロパティ &aname(Deflate-memLevel);~
+ 圧縮処理設定。圧縮処理の内部状態を保持するためのメモリの大きさを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 1～9 。~
+
+--------------------------------------------------------------------------------
+-Deflate.strategy プロパティ &aname(Deflate-strategy);~
+ 圧縮処理設定。圧縮ストラテジーオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Deflate.noHeader プロパティ &aname(Deflate-noHeader);~
+ 圧縮処理設定。パラメータを記録するためのヘッダを出力するか設定／取得する。 (setter/getter)
+--注記:~
+ヘッダを圧縮データに含めない場合、データ展開時に明示的にパラメータを設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Deflate.calculateCRC プロパティ &aname(Deflate-calculateCRC);~
+ 圧縮処理設定。処理されたデータから CRC チェックサムを計算するか設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Deflate.CRC プロパティ &aname(Deflate-CRC);~
+ オリジナルデータ（圧縮前）の CRC 値を符号無し整数として返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Deflate.originalSize プロパティ &aname(Deflate-originalSize);~
+ オリジナルデータ（圧縮前）のサイズを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Deflate.size プロパティ &aname(Deflate-size);~
+ 圧縮データを格納したバッファサイズを返す。 (getter)
+ 圧縮処理が完了していない場合、0 を返す。
+
+--------------------------------------------------------------------------------
+-Deflate.clfNoCompression プロパティ &aname(Deflate-clfNoCompression);~
+ 圧縮レベルオプションを返す。無圧縮を指定する場合。 (getter)
+--注記:~
+[[Deflate.level プロパティ>#Deflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.clfBestSpeed プロパティ &aname(Deflate-clfBestSpeed);~
+ 圧縮レベルオプションを返す。速度優先を指定する場合。 (getter)
+--注記:~
+[[Deflate.level プロパティ>#Deflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.clfBestCompression プロパティ &aname(Deflate-clfBestCompression);~
+ 圧縮レベルオプションを返す。圧縮率優先を指定する場合。 (getter)
+--注記:~
+[[Deflate.level プロパティ>#Deflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.clfDefaultCompression プロパティ &aname(Deflate-clfDefaultCompression);~
+ 圧縮レベルオプションを返す。デフォルト設定を指定する場合。 (getter)
+--注記:~
+[[Deflate.level プロパティ>#Deflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.cmfDeflated プロパティ &aname(Deflate-cmfDeflated);~
+ 圧縮メソッドオプションを返す。現在これのみ。 (getter)
+--注記:~
+[[Deflate.method プロパティ>#Deflate-method]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.csfDefaultStrategy プロパティ &aname(Deflate-csfDefaultStrategy);~
+ 圧縮ストラテジーオプションを返す。デフォルト設定を指定する場合。 (getter)
+--注記:~
+[[Deflate.strategy プロパティ>#Deflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.csfFiltered プロパティ &aname(Deflate-csfFiltered);~
+ 圧縮ストラテジーオプションを返す。
+ 小さい値がある程度ランダムに分布しているデータに最適を指定する場合。 (getter)
+--注記:~
+[[Deflate.strategy プロパティ>#Deflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+-Deflate.csfHuffmanOnly プロパティ &aname(Deflate-csfHuffmanOnly);~
+ 圧縮ストラテジーオプションを返す。ハフマン符号化のみを指定する場合。 (getter)
+--注記:~
+[[Deflate.strategy プロパティ>#Deflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+
+**Inflate クラス [#Inflate]
+ Deflate アルゴリズムによって圧縮されたデータの展開を行うクラス。
+-メソッド:~
+--[[Inflate メソッド>#Inflate-Inflate]]~
+
+> (セットアップ)~
+
+--[[reset メソッド>#Inflate-reset]]~
+--[[setup メソッド>#Inflate-setup]]~
+--[[finish メソッド>#Inflate-finish]]~
+--[[flush メソッド>#Inflate-flush]]~
+
+> (データ処理)~
+
+--[[processBlock メソッド>#Inflate-processBlock]]~
+--[[processBytes メソッド>#Inflate-processBytes]]~
+--[[processByte メソッド>#Inflate-processByte]]~
+--[[processOctet メソッド>#Inflate-processOctet]]~
+--[[processStorage メソッド>#Inflate-processStorage]]~
+--[[asOctet メソッド>#Inflate-asOctet]]~
+--[[asString メソッド>#Inflate-asString]]~
+
+> (結果取得)~
+
+--[[asNarrowString メソッド>#Inflate-asNarrowString]]~
+--[[asString メソッド>#Inflate-asString]]~
+--[[asNarrowString メソッド>#Inflate-asNarrowString]]~
+--[[saveStorage メソッド>#Inflate-saveStorage]]~
+-プロパティ:~
+--[[setupCompleted プロパティ>#Inflate-setupCompleted]]~
+--[[level プロパティ>#Inflate-level]]~
+--[[method プロパティ>#Inflate-method]]~
+--[[windowBits プロパティ>#Inflate-windowBits]]~
+--[[memLevel プロパティ>#Inflate-memLevel]]~
+--[[strategy プロパティ>#Inflate-strategy]]~
+--[[noHeader プロパティ>#Inflate-noHeader]]~
+--[[calculateCRC プロパティ>#Inflate-calculateCRC]]~
+--[[CRC プロパティ>#Inflate-CRC]]~
+--[[originalSize プロパティ>#Inflate-originalSize]]~
+--[[size プロパティ>#Inflate-size]]~
+--[[clfNoCompression プロパティ>#Inflate-clfNoCompression]]~
+--[[clfBestSpeed プロパティ>#Inflate-clfBestSpeed]]~
+--[[clfBestCompression プロパティ>#Inflate-clfBestCompression]]~
+--[[clfDefaultCompression プロパティ>#Inflate-clfDefaultCompression]]~
+--[[cmfInflated プロパティ>#Inflate-cmfInflated]]~
+--[[csfDefaultStrategy プロパティ>#Inflate-csfDefaultStrategy]]~
+--[[csfFiltered プロパティ>#Inflate-csfFiltered]]~
+--[[csfHuffmanOnly プロパティ>#Inflate-csfHuffmanOnly]]~
+
+--------------------------------------------------------------------------------
+-Inflate.Inflate メソッド &aname(Inflate-Inflate);~
+ コンストラクタ。
+--シグネチャ:~
+---Inflate()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Inflate.reset メソッド &aname(Inflate-reset);~
+ 展開処理設定およびバッファをリセットする。
+--シグネチャ:~
+---Inflate.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Inflate.setup メソッド &aname(Inflate-setup);~
+ 設定された展開処理設定をもとに、展開処理をセットアップする。
+--シグネチャ:~
+---Inflate.setup()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+セットアップに成功した場合。~
+---false~
+セットアップに失敗した場合。~
+--注記:~
+展開処理設定は、このメソッドが実行される前に設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Inflate.finish メソッド &aname(Inflate-finish);~
+ 展開処理を完了する。
+--シグネチャ:~
+---Inflate.finish()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+展開処理に成功した場合。~
+---false~
+展開処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.flush メソッド &aname(Inflate-flush);~
+ バッファを確実にフラッシュする。
+--シグネチャ:~
+---Inflate.flush()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+フラッシュに成功した場合。~
+---false~
+フラッシュに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.processBlock メソッド &aname(Inflate-processBlock);~
+ 展開処理にポインタの範囲を追加。
+--シグネチャ:~
+---Inflate.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Inflate.processBytes メソッド &aname(Inflate-processBytes);~
+ 展開処理にポインタの範囲を追加。
+--シグネチャ:~
+---Inflate.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Inflate.processByte メソッド &aname(Inflate-processByte);~
+ 展開処理に 1byte 値を追加。
+--シグネチャ:~
+---Inflate.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.processOctet メソッド &aname(Inflate-processOctet);~
+ 展開処理にオクテット列を追加。
+--シグネチャ:~
+---Inflate.processOctet(octet)~
+---Inflate.processOctet(octet, spos)~
+---Inflate.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.processStorage メソッド &aname(Inflate-processStorage);~
+ 展開処理にローカルストレージの内容を追加。
+--シグネチャ:~
+---Inflate.processStorage(storage)~
+---Inflate.processStorage(storage, spos)~
+---Inflate.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.asOctet メソッド &aname(Inflate-asOctet);~
+ 展開データをオクテット列として返す。
+--シグネチャ:~
+---Inflate.asOctet()~
+---Inflate.asOctet(pos)~
+---Inflate.asOctet(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---Octet~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.asString メソッド &aname(Inflate-asString);~
+ 展開データを文字列（UTF-16LE）として返す。
+--シグネチャ:~
+---Inflate.asString()~
+---Inflate.asString(pos)~
+---Inflate.asString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.asNarrowString メソッド &aname(Inflate-asNarrowString);~
+ 展開データをナロー文字列（Shift_JIS）として返す。
+--シグネチャ:~
+---Inflate.asNarrowString()~
+---Inflate.asNarrowString(pos)~
+---Inflate.asNarrowString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.asString メソッド &aname(Inflate-asString);~
+ 展開データを文字列（UTF-16LE）として返す。
+--シグネチャ:~
+---Inflate.asString()~
+---Inflate.asString(pos)~
+---Inflate.asString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.asNarrowString メソッド &aname(Inflate-asNarrowString);~
+ 展開データをナロー文字列（Shift_JIS）として返す。
+--シグネチャ:~
+---Inflate.asNarrowString()~
+---Inflate.asNarrowString(pos)~
+---Inflate.asNarrowString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.saveStorage メソッド &aname(Inflate-saveStorage);~
+ 展開データをローカルストレージへ保存する。
+--シグネチャ:~
+---Inflate.saveStorage(storage)~
+---Inflate.saveStorage(storage, pos)~
+---Inflate.saveStorage(storage, pos, size)~
+--引数:~
+---storage~
+保存するストレージのパス。~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、保存されたバイト数。~
+---負値~
+展開処理が完了していない、または保存に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Inflate.setupCompleted プロパティ &aname(Inflate-setupCompleted);~
+ セットアップが正常に完了したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Inflate.level プロパティ &aname(Inflate-level);~
+ 展開処理設定。展開レベルオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Inflate.method プロパティ &aname(Inflate-method);~
+ 展開処理設定。展開メソッドオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Inflate.windowBits プロパティ &aname(Inflate-windowBits);~
+ 展開処理設定。履歴バッファの大きさを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 8～15 。~
+
+--------------------------------------------------------------------------------
+-Inflate.memLevel プロパティ &aname(Inflate-memLevel);~
+ 展開処理設定。展開処理の内部状態を保持するためのメモリの大きさを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 1～9 。~
+
+--------------------------------------------------------------------------------
+-Inflate.strategy プロパティ &aname(Inflate-strategy);~
+ 展開処理設定。展開ストラテジーオプションを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Inflate.noHeader プロパティ &aname(Inflate-noHeader);~
+ 展開処理設定。パラメータを記録するためのヘッダを出力するか設定／取得する。 (setter/getter)
+--注記:~
+ヘッダを展開データに含めない場合、データ展開時に明示的にパラメータを設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Inflate.calculateCRC プロパティ &aname(Inflate-calculateCRC);~
+ 展開処理設定。処理されたデータから CRC チェックサムを計算するか設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Inflate.CRC プロパティ &aname(Inflate-CRC);~
+ オリジナルデータ（展開前）の CRC 値を符号無し整数として返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Inflate.originalSize プロパティ &aname(Inflate-originalSize);~
+ オリジナルデータ（展開前）のサイズを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Inflate.size プロパティ &aname(Inflate-size);~
+ 展開データを格納したバッファサイズを返す。 (getter)
+ 展開処理が完了していない場合、0 を返す。
+
+--------------------------------------------------------------------------------
+-Inflate.clfNoCompression プロパティ &aname(Inflate-clfNoCompression);~
+ 圧縮レベルオプションを返す。無圧縮を指定する場合。 (getter)
+--注記:~
+[[Inflate.level プロパティ>#Inflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.clfBestSpeed プロパティ &aname(Inflate-clfBestSpeed);~
+ 圧縮レベルオプションを返す。速度優先を指定する場合。 (getter)
+--注記:~
+[[Inflate.level プロパティ>#Inflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.clfBestCompression プロパティ &aname(Inflate-clfBestCompression);~
+ 圧縮レベルオプションを返す。圧縮率優先を指定する場合。 (getter)
+--注記:~
+[[Inflate.level プロパティ>#Inflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.clfDefaultCompression プロパティ &aname(Inflate-clfDefaultCompression);~
+ 圧縮レベルオプションを返す。デフォルト設定を指定する場合。 (getter)
+--注記:~
+[[Inflate.level プロパティ>#Inflate-level]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.cmfInflated プロパティ &aname(Inflate-cmfInflated);~
+ 圧縮メソッドオプションを返す。現在これのみ。 (getter)
+--注記:~
+[[Inflate.method プロパティ>#Inflate-method]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.csfDefaultStrategy プロパティ &aname(Inflate-csfDefaultStrategy);~
+ 圧縮ストラテジーオプションを返す。デフォルト設定を指定する場合。 (getter)
+--注記:~
+[[Inflate.strategy プロパティ>#Inflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.csfFiltered プロパティ &aname(Inflate-csfFiltered);~
+ 圧縮ストラテジーオプションを返す。
+ 小さい値がある程度ランダムに分布しているデータに最適を指定する場合。 (getter)
+--注記:~
+[[Inflate.strategy プロパティ>#Inflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+-Inflate.csfHuffmanOnly プロパティ &aname(Inflate-csfHuffmanOnly);~
+ 圧縮ストラテジーオプションを返す。ハフマン符号化のみを指定する場合。 (getter)
+--注記:~
+[[Inflate.strategy プロパティ>#Inflate-strategy]] を参照。~
+
+--------------------------------------------------------------------------------
+

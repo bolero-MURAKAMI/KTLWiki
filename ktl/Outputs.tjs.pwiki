@@ -1,0 +1,675 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ ログ出力のための簡易フレームワーク。
+-パス:~
+--[[ktl/Outputs.tjs]]~
+-インポートスクリプト:~
+--[[ktl/ktl.tjs]]~
+-インポートDLL:~
+--(なし)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Indentation クラス>#Indentation]]~
+--[[Indent クラス>#Indent]]~
+--[[Section クラス>#Section]]~
+--[[EmptyIndent クラス>#EmptyIndent]]~
+--[[EmptySection クラス>#EmptySection]]~
+--[[OutputsObject クラス>#OutputsObject]]~
+--[[Outputter クラス>#Outputter]]~
+
+--------------------------------------------------------------------------------
+
+**Indentation クラス [#Indentation]
+ インデント管理クラス。
+-メソッド:~
+--[[Indentation メソッド>#Indentation-Indentation]]~
+--[[push メソッド>#Indentation-push]]~
+--[[pop メソッド>#Indentation-pop]]~
+-プロパティ:~
+--[[defaultTab プロパティ>#Indentation-defaultTab]]~
+--[[defaultTab プロパティ>#Indentation-defaultTab]]~
+--[[tabs プロパティ>#Indentation-tabs]]~
+--[[depth プロパティ>#Indentation-depth]]~
+
+--------------------------------------------------------------------------------
+-Indentation.Indentation メソッド &aname(Indentation-Indentation);~
+ コンストラクタ。
+--シグネチャ:~
+---Indentation(defaultTab = "&nbsp;&nbsp;&nbsp;&nbsp;"/*半角スペース×4*/)~
+--引数:~
+---defaultTab~
+デフォルトで使われるタブ文字列。~
+
+--------------------------------------------------------------------------------
+-Indentation.push メソッド &aname(Indentation-push);~
+ インデントをプッシュする。
+--シグネチャ:~
+---push(tab = defaultTab)~
+--引数:~
+---tab~
+追加するタブ文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Indentation.pop メソッド &aname(Indentation-pop);~
+ インデントをポップする。
+--シグネチャ:~
+---pop()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Indentation.defaultTab プロパティ &aname(Indentation-defaultTab);~
+ デフォルトのタブ文字列を設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Indentation.tabs プロパティ &aname(Indentation-tabs);~
+ タブ文字列の配列を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Indentation.tab プロパティ &aname(Indentation-tab);~
+ 結合されたタブ文字列を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Indentation.depth プロパティ &aname(Indentation-depth);~
+ インデントの深さを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+
+**Indent クラス [#Indent]
+ インデント生成クラス。
+-メソッド:~
+--[[Indent メソッド>#Indent-Indent]]~
+--[[finalize メソッド>#Indent-finalize]]~
+-プロパティ:~
+--[[indentation プロパティ>#Indent-indentation]]~
+--[[depth プロパティ>#Indent-depth]]~
+
+--------------------------------------------------------------------------------
+-Indent.Indent メソッド &aname(Indent-Indent);~
+ コンストラクタ。インデントをプッシュする。
+--シグネチャ:~
+---Indent(indentation, tab)~
+--引数:~
+---indentation~
+管理クラスのインスタンス。~
+---tab
+追加するタブ文字列。（void ならば管理クラスのデフォルトを使う）~
+
+--------------------------------------------------------------------------------
+-Indent.finalize メソッド &aname(Indent-finalize);~
+ ファイナライザ。インデントをポップする。
+--シグネチャ:~
+---finalize()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Indent.indentation プロパティ &aname(Indent-indentation);~
+ 管理クラスのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Indent.depth プロパティ &aname(Indent-depth);~
+ インデントの深さを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+
+**Section クラス [#Section]
+ セクション生成クラス。
+-メソッド:~
+--[[Section メソッド>#Section-Section]]~
+--[[finalize メソッド>#Section-finalize]]~
+-プロパティ:~
+--[[indentation プロパティ>#Section-indentation]]~
+--[[name プロパティ>#Section-name]]~
+--[[indent プロパティ>#Section-indent]]~
+--[[outputFunc プロパティ>#Section-outputFunc]]~
+
+--------------------------------------------------------------------------------
+-Section.Section メソッド &aname(Section-Section);~
+ コンストラクタ。セクション開始を出力し、インデントを生成する。
+--シグネチャ:~
+---Section(indentation, name, tab, outputFunc = Debug.message)~
+--引数:~
+---indentation
+管理クラスのインスタンス。~
+---name
+セクション名。~
+---tab
+追加するタブ文字列。（void ならば管理クラスのデフォルトを使う）~
+---outputFunc
+出力関数。~
+
+--------------------------------------------------------------------------------
+-Section.finalize メソッド &aname(Section-finalize);~
+ ファイナライザ。インデントを破棄し、セクション終了を出力する。
+--シグネチャ:~
+---finalize()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Section.indentation プロパティ &aname(Section-indentation);~
+ 管理クラスのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Section.name プロパティ &aname(Section-name);~
+ セクション名を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Section.indent プロパティ &aname(Section-indent);~
+ インデントのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-Section.outputFunc プロパティ &aname(Section-outputFunc);~
+ 出力関数を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+
+**EmptyIndent クラス [#EmptyIndent]
+ 空のインデント生成クラス。
+-メソッド:~
+--[[EmptyIndent メソッド>#EmptyIndent-EmptyIndent]]~
+-プロパティ:~
+--[[indentation プロパティ>#EmptyIndent-indentation]]~
+--[[depth プロパティ>#EmptyIndent-depth]]~
+
+--------------------------------------------------------------------------------
+-EmptyIndent.EmptyIndent メソッド &aname(EmptyIndent-EmptyIndent);~
+ コンストラクタ。
+--シグネチャ:~
+---EmptyIndent(indentation)~
+--引数:~
+---indentation~
+管理クラスのインスタンス。~
+
+--------------------------------------------------------------------------------
+-EmptyIndent.indentation プロパティ &aname(EmptyIndent-indentation);~
+ 管理クラスのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-EmptyIndent.depth プロパティ &aname(EmptyIndent-depth);~
+ インデントの深さを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+
+**EmptySection クラス [#EmptySection]
+ 空のセクション生成クラス。
+-メソッド:~
+--[[EmptySection メソッド>#EmptySection-EmptySection]]~
+-プロパティ:~
+--[[indentation プロパティ>#EmptySection-indentation]]~
+--[[name プロパティ>#EmptySection-name]]~
+
+--------------------------------------------------------------------------------
+-EmptySection.EmptySection メソッド &aname(EmptySection-EmptySection);~
+ コンストラクタ。
+--シグネチャ:~
+---EmptySection(indentation)~
+--引数:~
+---indentation
+管理クラスのインスタンス。~
+
+--------------------------------------------------------------------------------
+-EmptySection.indentation プロパティ &aname(EmptySection-indentation);~
+ 管理クラスのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-EmptySection.name プロパティ &aname(EmptySection-name);~
+ 常に void を返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**OutputsObject クラス [#OutputsObject]
+ ログ出力管理オブジェクトのクラス。
+-メソッド:~
+--[[OutputsObject メソッド>#OutputsObject-OutputsObject]]~
+--[[outputForce メソッド>#OutputsObject-outputForce]]~
+--[[addOutput メソッド>#OutputsObject-addOutput]]~
+--[[removeOutput メソッド>#OutputsObject-removeOutput]]~
+--[[output メソッド>#OutputsObject-output]]~
+--[[message メソッド>#OutputsObject-message]]~
+--[[messageComment メソッド>#OutputsObject-messageComment]]~
+--[[messageValue メソッド>#OutputsObject-messageValue]]~
+--[[newIndent メソッド>#OutputsObject-newIndent]]~
+--[[newSection メソッド>#OutputsObject-newSection]]~
+--[[inv メソッド>#OutputsObject-inv]]~
+--[[cleanup メソッド>#OutputsObject-cleanup]]~
+--[[under メソッド>#OutputsObject-under]]~
+--[[over メソッド>#OutputsObject-over]]~
+-プロパティ:~
+--[[indentation プロパティ>#OutputsObject-indentation]]~
+--[[outputFunc プロパティ>#OutputsObject-outputFunc]]~
+--[[outputFuncs プロパティ>#OutputsObject-outputFuncs]]~
+--[[enable プロパティ>#OutputsObject-enable]]~
+
+--------------------------------------------------------------------------------
+-OutputsObject.OutputsObject メソッド &aname(OutputsObject-OutputsObject);~
+ コンストラクタ。インデント管理クラスを生成する。
+--シグネチャ:~
+---OutputsObject(outputFunc = Debug.message, enable = true)~
+--引数:~
+---outputFunc~
+出力関数。~
+---enable~
+有効フラグ。~
+
+--------------------------------------------------------------------------------
+-OutputsObject.outputForce メソッド &aname(OutputsObject-outputForce);~
+ プロパティに関わらず強制出力。
+--シグネチャ:~
+---outputForce(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OutputsObject.addOutput メソッド &aname(OutputsObject-addOutput);~
+ 出力関数を追加。同じ関数は二つ以上追加されない。
+--シグネチャ:~
+---addOutput(outputFunc)~
+--引数:~
+---outputFunc~
+出力関数。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OutputsObject.removeOutput メソッド &aname(OutputsObject-removeOutput);~
+ 出力関数を削除。
+--シグネチャ:~
+---removeOutput(outputFunc)~
+---outputFunc~
+出力関数。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OutputsObject.output メソッド &aname(OutputsObject-output);~
+ プレーン出力。
+--シグネチャ:~
+---output(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--使用例:~
+ ko.output("message."); // Console: "message."
+
+--------------------------------------------------------------------------------
+-OutputsObject.message メソッド &aname(OutputsObject-message);~
+ インデント付メッセージ出力。
+--シグネチャ:~
+---message(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--使用例:~
+ ko.message("message."); // Console: "message."
+
+--------------------------------------------------------------------------------
+-OutputsObject.messageComment メソッド &aname(OutputsObject-messageComment);~
+ インデント付コメントメッセージ出力。
+--シグネチャ:~
+---messageComment(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--使用例:~
+ ko.messageComment("message."); // Console: "<!-- message. -->"
+
+--------------------------------------------------------------------------------
+-OutputsObject.messageValue メソッド &aname(OutputsObject-messageValue);~
+ インデント付値メッセージ出力。
+--シグネチャ:~
+---messageValue(name, value)~
+--引数:~
+---name~
+セクション名。~
+---value~
+出力値。~
+--返値:~
+---(なし)~
+--使用例:~
+ ko.messageValue("sec", "value"); // Console: "<sec>value</sec>"
+
+--------------------------------------------------------------------------------
+-OutputsObject.newIndent メソッド &aname(OutputsObject-newIndent);~
+ インデント生成。
+--シグネチャ:~
+---newIndent(tab)~
+--引数:~
+---tab
+追加するタブ文字列。（void ならば管理クラスのデフォルトを使う）~
+--返値:~
+---Indent~
+有効フラグが真の場合。~
+---EmptyIndent~
+有効フラグが偽の場合。~
+-使用例:~
+ {
+     var i = ko.newIndent();
+     ko.messageValue("sec", "value"); // Console: "    <sec>value</sec>"
+     ko.inv(i);
+ }
+
+--------------------------------------------------------------------------------
+-OutputsObject.newSection メソッド &aname(OutputsObject-newSection);~
+ セクション生成。
+--シグネチャ:~
+---newSection(name, tab)~
+--引数:~
+---name~
+セクション名。~
+---tab~
+追加するタブ文字列（void ならば管理クラスのデフォルトを使う）。~
+--返値:~
+---Section~
+有効フラグが真の場合。~
+---EmptySection~
+有効フラグが偽の場合。~
+-使用例:~
+ {
+     var s = ko.newSection("S");      // Console: "<S>"
+     ko.messageValue("sec", "value"); // Console: "    <sec>value</sec>"
+     ko.inv(s);                       // Console: "</S>"
+ }
+
+--------------------------------------------------------------------------------
+-OutputsObject.inv メソッド &aname(OutputsObject-inv);~
+ 生成インスタンスの破棄。
+--シグネチャ:~
+---inv(obj)~
+--引数:~
+---obj~
+生成されたインスタンス。~
+--返値:~
+---true~
+インスタンスが正常に破棄された場合。~
+---false~
+不正なインスタンスだった場合。~
+
+--------------------------------------------------------------------------------
+-OutputsObject.cleanup メソッド &aname(OutputsObject-cleanup);~
+ 異常系フローで正しく破棄されなかった生成インスタンスをクリーンアップする。
+--シグネチャ:~
+---cleanup(obj)~
+--引数:~
+---obj~
+現在のインスタンス。~
+--返値:~
+---true~
+正常にクリーンアップされた場合。~
+---false~
+不正なインスタンスだった場合。~
+
+--------------------------------------------------------------------------------
+-OutputsObject.under メソッド &aname(OutputsObject-under);~
+ セクション名の配列を返す。
+--シグネチャ:~
+---under(obj)~
+--引数:~
+---obj~
+現在のインスタンス。~
+--返値:~
+---Array~
+セクション名の配列。~
+---void~
+不正なインスタンスだった場合。~
+
+--------------------------------------------------------------------------------
+-OutputsObject.over メソッド &aname(OutputsObject-over);~
+ 異常系フローのセクション名の配列を返す。
+--シグネチャ:~
+---over(obj)~
+--引数:~
+---obj~
+現在のインスタンス。~
+--返値:~
+---Array~
+セクション名の配列。~
+---void~
+不正なインスタンスだった場合。~
+
+--------------------------------------------------------------------------------
+-OutputsObject.indentation プロパティ &aname(OutputsObject-indentation);~
+ 管理クラスのインスタンスを取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-OutputsObject.outputFunc プロパティ &aname(OutputsObject-outputFunc);~
+ 出力関数を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-OutputsObject.outputFuncs プロパティ &aname(OutputsObject-outputFuncs);~
+ 追加出力関数の配列を取得する。 (getter)
+
+--------------------------------------------------------------------------------
+-OutputsObject.enable プロパティ &aname(OutputsObject-enable);~
+ 有効フラグを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+
+**Outputter クラス [#Outputter]
+ ユーザ用ログ出力クラス。
+-メソッド:~
+--[[Outputter メソッド>#Outputter-Outputter]]~
+--[[out メソッド>#Outputter-out]]~
+--[[m メソッド>#Outputter-m]]~
+--[[mc メソッド>#Outputter-mc]]~
+--[[mv メソッド>#Outputter-mv]]~
+--[[ni メソッド>#Outputter-ni]]~
+--[[ns メソッド>#Outputter-ns]]~
+--[[inv メソッド>#Outputter-inv]]~
+-プロパティ:~
+--[[enable プロパティ>#Outputter-enable]]~
+
+--------------------------------------------------------------------------------
+-Outputter.Outputter メソッド &aname(Outputter-Outputter);~
+ コンストラクタ。
+--シグネチャ:~
+---Outputter(enable = true)~
+--引数:~
+---enable~
+出力を有効にするかどうか。~
+
+--------------------------------------------------------------------------------
+-Outputter.out メソッド &aname(Outputter-out);~
+ プレーン出力。
+--シグネチャ:~
+---Outputter.out(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--注記:~
+出力が無効ならば実行されない。~
+[[OutputsObject.output メソッド>#OutputsObject-output]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.m メソッド &aname(Outputter-m);~
+ インデント付メッセージ出力。
+--シグネチャ:~
+---m(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--注記:~
+出力が無効ならば実行されない。~
+[[OutputsObject.message メソッド>#OutputsObject-message]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.mc メソッド &aname(Outputter-mc);~
+ インデント付コメントメッセージ出力。
+--シグネチャ:~
+---mc(message)~
+--引数:~
+---message~
+メッセージ文字列。~
+--返値:~
+---(なし)~
+--注記:~
+出力が無効ならば実行されない。~
+[[OutputsObject.messageComment メソッド>#OutputsObject-messageComment]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.mv メソッド &aname(Outputter-mv);~
+ インデント付値メッセージ出力。
+--シグネチャ:~
+---mv(name, value)~
+--引数:~
+---name~
+セクション名。~
+---value~
+出力値。~
+--返値:~
+---(なし)~
+--注記:~
+出力が無効ならば実行されない。~
+[[OutputsObject.messageValue メソッド>#OutputsObject-messageValue]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.ni メソッド &aname(Outputter-ni);~
+ インデント生成。
+--シグネチャ:~
+---ni(tab)~
+--引数:~
+---tab
+追加するタブ文字列。（void ならば管理クラスのデフォルトを使う）~
+--返値:~
+---Indent~
+有効フラグが真の場合。~
+---null~
+有効フラグが偽の場合。~
+--注記:~
+出力が無効ならば常に null を返す。~
+[[OutputsObject.newIndent メソッド>#OutputsObject-newIndent]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.ns メソッド &aname(Outputter-ns);~
+ セクション生成。
+--シグネチャ:~
+---ns(name, tab)~
+--引数:~
+---name~
+セクション名。~
+---tab~
+追加するタブ文字列（void ならば管理クラスのデフォルトを使う）。~
+--返値:~
+---Section~
+有効フラグが真の場合。~
+---null~
+有効フラグが偽の場合。~
+--注記:~
+出力が無効ならば常に null を返す。~
+[[OutputsObject.newSection メソッド>#OutputsObject-newSection]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.inv メソッド &aname(Outputter-inv);~
+ 生成インスタンスの破棄。
+--シグネチャ:~
+---inv(obj)~
+--引数:~
+---obj~
+生成されたインスタンスまたは null。~
+--返値:~
+---(なし)~
+--注記:~
+出力が無効ならば実行されない。~
+[[OutputsObject.inv メソッド>#OutputsObject-inv]] を参照。~
+
+--------------------------------------------------------------------------------
+-Outputter.enable プロパティ &aname(Outputter-enable);~
+ 出力の有効フラグを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+
+
+
+*グローバル変数 [#var-]
+-変数:~
+--[[Outputs 変数>#Outputs]]~
+--[[ko 変数>#ko]]~
+--[[kout 変数>#kout]]~
+--[[kom 変数>#kom]]~
+--[[komc 変数>#komc]]~
+--[[komv 変数>#komv]]~
+--[[koni 変数>#koni]]~
+--[[kons 変数>#kons]]~
+--[[koinv 変数>#koinv]]~
+
+--------------------------------------------------------------------------------
+-Outputs 変数 &aname(Outputs);~
+ OutputsObject クラスのインスタンス。
+--注記:~
+[[OutputsObject クラス>#OutputsObject]] を参照。~
+
+--------------------------------------------------------------------------------
+-ko 変数 &aname(ko);~
+ Output 変数に同じ。
+--注記:~
+[[Outputs 変数>#Outputs]] を参照。~
+
+--------------------------------------------------------------------------------
+-kout 変数 &aname(kout);~
+ Outputs.output メソッドに同じ。
+--注記:~
+[[OutputsObject.output メソッド>#OutputsObject-output]] を参照。~
+
+--------------------------------------------------------------------------------
+-kom 変数 &aname(kom);~
+ Outputs.message メソッドに同じ。
+--注記:~
+[[OutputsObject.message メソッド>#OutputsObject-message]] を参照。~
+
+--------------------------------------------------------------------------------
+-komc 変数 &aname(komc);~
+ Outputs.messageComment メソッドに同じ。
+--注記:~
+[[OutputsObject.messageComment メソッド>#OutputsObject-messageComment]] を参照。~
+
+--------------------------------------------------------------------------------
+-komv 変数 &aname(komv);~
+ Outputs.messageValue メソッドに同じ。
+--注記:~
+[[OutputsObject.messageValue メソッド>#OutputsObject-messageValue]] を参照。~
+
+--------------------------------------------------------------------------------
+-koni 変数 &aname(koni);~
+ Outputs.newIndent メソッドに同じ。
+--注記:~
+[[OutputsObject.newIndent メソッド>#OutputsObject-newIndent]] を参照。~
+
+--------------------------------------------------------------------------------
+-kons 変数 &aname(kons);~
+ Outputs.newSection メソッドに同じ。
+--注記:~
+[[OutputsObject.newSection メソッド>#OutputsObject-newSection]] を参照。~
+
+--------------------------------------------------------------------------------
+-koinv 変数 &aname(koinv);~
+ Outputs.inv メソッドに同じ。
+--注記:~
+[[OutputsObject.inv メソッド>#OutputsObject-inv]] を参照。~
+
+--------------------------------------------------------------------------------
+

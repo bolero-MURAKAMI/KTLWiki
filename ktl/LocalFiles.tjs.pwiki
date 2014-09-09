@@ -1,0 +1,878 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ OS ネイティブのファイル操作など。
+-パス:~
+--[[ktl/LocalFiles.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_local_files.dll / ktl_local_files-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[LocalFiles クラス>#LocalFiles]]~
+
+--------------------------------------------------------------------------------
+
+**LocalFiles クラス [#LocalFiles]
+ OS ネイティブのファイル操作などを行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+
+> (ファイルコピー)~
+
+--[[copy メソッド>#LocalFiles-copy]]~
+--[[copyDirectory メソッド>#LocalFiles-copyDirectory]]~
+--[[copyFile メソッド>#LocalFiles-copyFile]]~
+--[[copySymlink メソッド>#LocalFiles-copySymlink]]~
+
+> (ファイル作成)~
+
+--[[createDirectories メソッド>#LocalFiles-createDirectories]]~
+--[[createDirectory メソッド>#LocalFiles-createDirectory]]~
+--[[createDirectorySymlink メソッド>#LocalFiles-createDirectorySymlink]]~
+--[[createHardLink メソッド>#LocalFiles-createHardLink]]~
+--[[createSymlink メソッド>#LocalFiles-createSymlink]]~
+
+> (ファイル情報)~
+
+--[[exists メソッド>#LocalFiles-exists]]~
+--[[equivalent メソッド>#LocalFiles-equivalent]]~
+--[[fileSize メソッド>#LocalFiles-fileSize]]~
+--[[hardLinkCount メソッド>#LocalFiles-hardLinkCount]]~
+--[[isDirectory メソッド>#LocalFiles-isDirectory]]~
+--[[isEmpty メソッド>#LocalFiles-isEmpty]]~
+--[[isOther メソッド>#LocalFiles-isOther]]~
+--[[isRegularFile メソッド>#LocalFiles-isRegularFile]]~
+--[[isSymlink メソッド>#LocalFiles-isSymlink]]~
+--[[getLastWriteTime メソッド>#LocalFiles-getLastWriteTime]]~
+--[[setLastWriteTime メソッド>#LocalFiles-setLastWriteTime]]~
+--[[permissions メソッド>#LocalFiles-permissions]]~
+--[[readSymlink メソッド>#LocalFiles-readSymlink]]~
+
+> (ファイル削除)~
+
+--[[remove メソッド>#LocalFiles-remove]]~
+--[[removeAll メソッド>#LocalFiles-removeAll]]~
+
+> (ファイル変更)~
+
+--[[rename メソッド>#LocalFiles-rename]]~
+--[[resizeFile メソッド>#LocalFiles-resizeFile]]~
+
+> (ディスク容量)~
+
+--[[space メソッド>#LocalFiles-space]]~
+--[[spaceCapacity メソッド>#LocalFiles-spaceCapacity]]~
+--[[spaceFree メソッド>#LocalFiles-spaceFree]]~
+--[[spaceAvailable メソッド>#LocalFiles-spaceAvailable]]~
+
+> (ファイルステータス)~
+
+--[[status メソッド>#LocalFiles-status]]~
+--[[statusType メソッド>#LocalFiles-statusType]]~
+--[[statusPermissions メソッド>#LocalFiles-statusPermissions]]~
+--[[statusKnown メソッド>#LocalFiles-statusKnown]]~
+--[[symlinkStatus メソッド>#LocalFiles-symlinkStatus]]~
+--[[symlinkStatusType メソッド>#LocalFiles-symlinkStatusType]]~
+--[[symlinkStatusPermissions メソッド>#LocalFiles-symlinkStatusPermissions]]~
+
+> (ファイル取得)~
+
+--[[uniquePath メソッド>#LocalFiles-uniquePath]]~
+--[[enumDirectoryEntry メソッド>#LocalFiles-enumDirectoryEntry]]~
+-スタティックプロパティ:~
+--[[tempDirectoryPath プロパティ>#LocalFiles-tempDirectoryPath]]~
+
+> (ファイルタイプフラグ)~
+
+--[[ftfStatusError プロパティ>#LocalFiles-ftfStatusError]]~
+--[[ftfFileNotFound プロパティ>#LocalFiles-ftfFileNotFound]]~
+--[[ftfRegularFile プロパティ>#LocalFiles-ftfRegularFile]]~
+--[[ftfDirectoryFile プロパティ>#LocalFiles-ftfDirectoryFile]]~
+--[[ftfSymlinkFile プロパティ>#LocalFiles-ftfSymlinkFile]]~
+--[[ftfBlockFile プロパティ>#LocalFiles-ftfBlockFile]]~
+--[[ftfCharacterFile プロパティ>#LocalFiles-ftfCharacterFile]]~
+--[[ftfFIFOFile プロパティ>#LocalFiles-ftfFIFOFile]]~
+--[[ftfSocketFile プロパティ>#LocalFiles-ftfSocketFile]]~
+--[[ftfReparseFile プロパティ>#LocalFiles-ftfReparseFile]]~
+--[[ftfTypeUnknown プロパティ>#LocalFiles-ftfTypeUnknown]]~
+
+> (パーミッションフラグ)~
+
+--[[pfNoPerms プロパティ>#LocalFiles-pfNoPerms]]~
+--[[pfOwnerRead プロパティ>#LocalFiles-pfOwnerRead]]~
+--[[pfOwnerWrite プロパティ>#LocalFiles-pfOwnerWrite]]~
+--[[pfOwnerExe プロパティ>#LocalFiles-pfOwnerExe]]~
+--[[pfOwnerAll プロパティ>#LocalFiles-pfOwnerAll]]~
+--[[pfGroupRead プロパティ>#LocalFiles-pfGroupRead]]~
+--[[pfGroupWrite プロパティ>#LocalFiles-pfGroupWrite]]~
+--[[pfGroupExe プロパティ>#LocalFiles-pfGroupExe]]~
+--[[pfGroupAll プロパティ>#LocalFiles-pfGroupAll]]~
+--[[pfOthersRead プロパティ>#LocalFiles-pfOthersRead]]~
+--[[pfOthersWrite プロパティ>#LocalFiles-pfOthersWrite]]~
+--[[pfOthersExe プロパティ>#LocalFiles-pfOthersExe]]~
+--[[pfOthersAll プロパティ>#LocalFiles-pfOthersAll]]~
+--[[pfAllAll プロパティ>#LocalFiles-pfAllAll]]~
+--[[pfUIDOnExe プロパティ>#LocalFiles-pfUIDOnExe]]~
+--[[pfGIDOnExe プロパティ>#LocalFiles-pfGIDOnExe]]~
+--[[pfStickyBit プロパティ>#LocalFiles-pfStickyBit]]~
+--[[pfPermsMask プロパティ>#LocalFiles-pfPermsMask]]~
+--[[pfPermsNotKnown プロパティ>#LocalFiles-pfPermsNotKnown]]~
+--[[pfAddPerms プロパティ>#LocalFiles-pfAddPerms]]~
+--[[pfRemovePerms プロパティ>#LocalFiles-pfRemovePerms]]~
+--[[pfSymlinkPerms プロパティ>#LocalFiles-pfSymlinkPerms]]~
+
+--------------------------------------------------------------------------------
+-LocalFiles.copy メソッド &aname(LocalFiles-copy);~
+ ローカルファイルやディレクトリをコピーする。
+--シグネチャ:~
+---LocalFiles.copy(from, to)~
+--引数:~
+---from~
+コピー元のローカルファイルパス。~
+---to~
+コピー先のローカルファイルパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.copyDirectory メソッド &aname(LocalFiles-copyDirectory);~
+ ローカルディレクトリをコピーする。
+--シグネチャ:~
+---LocalFiles.copyDirectory(from, to)~
+--引数:~
+---from~
+コピー元のローカルファイルパス。~
+---to~
+コピー先のローカルファイルパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.copyFile メソッド &aname(LocalFiles-copyFile);~
+ ローカルファイルをコピーする。
+--シグネチャ:~
+---LocalFiles.copyFile(from, to)~
+--引数:~
+---from~
+コピー元のローカルファイルパス。~
+---to~
+コピー先のローカルファイルパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.copySymlink メソッド &aname(LocalFiles-copySymlink);~
+ シンボリックリンクをコピーする。
+--シグネチャ:~
+---LocalFiles.copySymlink(existing_symlink, new_symlink)~
+--引数:~
+---existing_symlink~
+コピー元のシンボリックリンクパス。~
+---new_symlink~
+コピー先のシンボリックリンクパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.createDirectories メソッド &aname(LocalFiles-createDirectories);~
+ ローカルディレクトリを作成する。
+--シグネチャ:~
+---LocalFiles.createDirectories(p)~
+--引数:~
+---p~
+作成するローカルファイルパス。~
+--返値:~
+---true~
+ディレクトリが作成された場合。~
+---false~
+ディレクトリが既に存在した場合。~
+--例外:~
+---操作に失敗した場合~
+--注記:~
+親ディレクトリが存在しない場合、親ディレクトリも作成される。~
+
+--------------------------------------------------------------------------------
+-LocalFiles.createDirectory メソッド &aname(LocalFiles-createDirectory);~
+ ローカルディレクトリを作成する。
+--シグネチャ:~
+---LocalFiles.createDirectories(p)~
+--引数:~
+---p~
+作成するローカルファイルパス。~
+--返値:~
+---true~
+ディレクトリが作成された場合。~
+---false~
+ディレクトリが既に存在した場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.createDirectorySymlink メソッド &aname(LocalFiles-createDirectorySymlink);~
+ ローカルディレクトリのシンボリックリンクを作成する。
+--シグネチャ:~
+---LocalFiles.createDirectorySymlink(to, new_symlink)~
+---to~
+参照先のローカルファイルパス。~
+---new_symlink~
+作成するシンボリックリンクパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.createHardLink メソッド &aname(LocalFiles-createHardLink);~
+ ハードリンクを作成する。
+--シグネチャ:~
+---LocalFiles.createHardLink(to, new_hard_link)~
+---to~
+参照先のローカルファイルパス。~
+---new_symlink~
+作成するハードリンクパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.createSymlink メソッド &aname(LocalFiles-createSymlink);~
+ シンボリックリンクを作成する。
+--シグネチャ:~
+---LocalFiles.createSymlink(to, new_symlink)~
+---to~
+参照先のローカルファイルパス。~
+---new_symlink~
+作成するシンボリックリンクパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.exists メソッド &aname(LocalFiles-exists);~
+ ローカルファイルが存在するか返す。
+--シグネチャ:~
+---LocalFiles.exists(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+ローカルファイルが存在する場合。~
+---false~
+ローカルファイルが存在しない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.equivalent メソッド &aname(LocalFiles-equivalent);~
+ ２つのローカルファイルパスが同じ対象を参照しているか返す。
+--シグネチャ:~
+---LocalFiles.equivalent(p1, p2)~
+--引数:~
+---p1~
+ローカルファイルパス。~
+---p2~
+ローカルファイルパス。~
+--返値:~
+---true~
+同じ対象を参照している場合。~
+---false~
+同じ対象を参照していない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.fileSize メソッド &aname(LocalFiles-fileSize);~
+ ファイルサイズを返す。
+--シグネチャ:~
+---LocalFiles.fileSize(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+ファイルサイズ。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.hardLinkCount メソッド &aname(LocalFiles-hardLinkCount);~
+ ハードリンクの参照数を返す。
+--シグネチャ:~
+---LocalFiles.hardLinkCount(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+ハードリンクの参照数。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.isDirectory メソッド &aname(LocalFiles-isDirectory);~
+ ローカルファイルパスがディレクトリであるか返す。
+--シグネチャ:~
+---LocalFiles.isDirectory(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+ディレクトリである場合。~
+---false~
+ディレクトリでない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.isEmpty メソッド &aname(LocalFiles-isEmpty);~
+ ローカルファイルパスが空のディレクトリであるか返す。
+--シグネチャ:~
+---LocalFiles.isEmpty(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+空のディレクトリである場合。~
+---false~
+空のディレクトリでない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.isOther メソッド &aname(LocalFiles-isOther);~
+ ローカルファイルパスが通常以外のファイルであるか返す。
+--シグネチャ:~
+---LocalFiles.isOther(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+通常以外のファイルである場合。~
+---false~
+通常以外のファイルでない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.isRegularFile メソッド &aname(LocalFiles-isRegularFile);~
+ ローカルファイルパスが通常のファイルであるか返す。
+--シグネチャ:~
+---LocalFiles.isRegularFile(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+通常のファイルである場合。~
+---false~
+通常のファイルでない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.isSymlink メソッド &aname(LocalFiles-isSymlink);~
+ ローカルファイルパスがシンボリックリンクであるか返す。
+--シグネチャ:~
+---LocalFiles.isRegularFile(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---true~
+シンボリックリンクである場合。~
+---false~
+シンボリックリンクでない場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.getLastWriteTime メソッド &aname(LocalFiles-getLastWriteTime);~
+ ローカルファイルの更新日時を返す。
+--シグネチャ:~
+---LocalFiles.getLastWriteTime(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+更新日時（1970 年 1 月 1 日 0:00 からの経過秒数）~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.setLastWriteTime メソッド &aname(LocalFiles-setLastWriteTime);~
+ ローカルファイルの更新日時を設定する。
+--シグネチャ:~
+---LocalFiles.setLastWriteTime(p, new_time)~
+--引数:~
+---p~
+ローカルファイルパス。~
+---new_time~
+更新日時（1970 年 1 月 1 日 0:00 からの経過秒数）~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.permissions メソッド &aname(LocalFiles-permissions);~
+ ローカルファイルのパーミッションを設定する。
+--シグネチャ:~
+---LocalFiles.permissions(p, perm)~
+--引数:~
+---p~
+ローカルファイルパス。~
+---perm~
+パーミッションフラグ。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+--注記:~
+[[LocalFiles.pfAddPerms プロパティ>#LocalFiles-pfAddPerms]] [[LocalFiles.pfRemovePerms プロパティ>#LocalFiles-pfRemovePerms]] [[LocalFiles.pfSymlinkPerms プロパティ>#LocalFiles-pfSymlinkPerms]] を参照。~
+
+--------------------------------------------------------------------------------
+-LocalFiles.readSymlink メソッド &aname(LocalFiles-readSymlink);~
+ シンボリックリンクが参照する実体のパスを返す。
+--シグネチャ:~
+---LocalFiles.readSymlink(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---String~
+シンボリックリンクが参照する実体のパス。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.remove メソッド &aname(LocalFiles-remove);~
+ ローカルファイルを削除する。
+--シグネチャ:~
+---LocalFiles.remove(p)~
+--引数:~
+---p~
+削除するローカルファイルパス。~
+--返値:~
+---true~
+ローカルファイルが削除された場合。~
+---false~
+ディレクトリが存在しなかった場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.removeAll メソッド &aname(LocalFiles-removeAll);~
+ ディレクトリ内のローカルファイルを全て削除する。
+--シグネチャ:~
+---LocalFiles.removeAll(p)~
+--引数:~
+---p~
+削除するローカルディレクトリパス。~
+--返値:~
+---Integer~
+削除されたローカルファイルの総数。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.rename メソッド &aname(LocalFiles-rename);~
+ ローカルファイルをリネームする。
+--シグネチャ:~
+---LocalFiles.rename(old_p, new_p)~
+--引数:~
+---old_p~
+変更前のローカルファイルパス。~
+---new_p~
+変更後のローカルファイルパス。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.resizeFile メソッド &aname(LocalFiles-resizeFile);~
+ ローカルファイルをリサイズする。
+--シグネチャ:~
+---LocalFiles.rename(p, new_size)~
+--引数:~
+---p~
+ローカルファイルパス。~
+---new_size~
+変更するサイズ。~
+--返値:~
+---(なし)~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.space メソッド &aname(LocalFiles-space);~
+ ローカルディレクトリのあるディスク容量情報を返す。
+--シグネチャ:~
+---LocalFiles.space(p)~
+--引数:~
+---p~
+ローカルディレクトリパス。~
+--返値:~
+---Dictionary~
+ディスク容量情報を格納した辞書配列。~
+ %[
+    capacity, /* 総容量 */
+    free,     /* 空き容量 */
+    available /* 非特権プロセスに使用可能な空き領域 */
+ ]
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.spaceCapacity メソッド &aname(LocalFiles-spaceCapacity);~
+ ローカルディレクトリのあるディスクの総容量を返す。
+--シグネチャ:~
+---LocalFiles.spaceCapacity(p)~
+--引数:~
+---p~
+ローカルディレクトリパス。~
+--返値:~
+---Integer~
+ディスクの総容量。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.spaceFree メソッド &aname(LocalFiles-spaceFree);~
+ ローカルディレクトリのあるディスクの空き容量を返す。
+--シグネチャ:~
+---LocalFiles.spaceFree(p)~
+--引数:~
+---p~
+ローカルディレクトリパス。~
+--返値:~
+---Integer~
+ディスクの空き容量。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.spaceAvailable メソッド &aname(LocalFiles-spaceAvailable);~
+ ローカルディレクトリのあるディスクの非特権プロセスに使用可能な空き領域を返す。
+--シグネチャ:~
+---LocalFiles.spaceAvailable(p)~
+--引数:~
+---p~
+ローカルディレクトリパス。~
+--返値:~
+---Integer~
+ディスクの非特権プロセスに使用可能な空き領域。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.status メソッド &aname(LocalFiles-status);~
+ ローカルファイルのファイル情報を返す。
+--シグネチャ:~
+---LocalFiles.status(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Dictionary~
+ファイル情報を格納した辞書配列。~
+ %[
+    type,       /* ファイルタイプフラグ */
+    permissions /* パーミッションフラグ */
+ ]
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.statusType メソッド &aname(LocalFiles-statusType);~
+ ローカルファイルのファイルタイプを返す。
+--シグネチャ:~
+---LocalFiles.statusType(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+ファイルタイプフラグ。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.statusPermissions メソッド &aname(LocalFiles-statusPermissions);~
+ ローカルファイルのパーミッションを返す。
+--シグネチャ:~
+---LocalFiles.statusPermissions(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+パーミッションフラグ。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.statusKnown メソッド &aname(LocalFiles-statusKnown);~
+ ファイルタイプが不明でないか返す。
+--シグネチャ:~
+---LocalFiles.statusKnown(s)~
+--引数:~
+---s~
+ファイルタイプフラグ。~
+--返値:~
+---true~
+ファイルタイプが不明でない場合。~
+---false~
+ファイルタイプが不明である場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.symlinkStatus メソッド &aname(LocalFiles-symlinkStatus);~
+ シンボリックリンクのファイル情報を返す。
+--シグネチャ:~
+---LocalFiles.symlinkStatus(p)~
+--引数:~
+---p~
+シンボリックリンクパス。~
+--返値:~
+---Dictionary~
+ファイル情報を格納した辞書配列。~
+ %[
+    type,       /* ファイルタイプフラグ */
+    permissions /* パーミッションフラグ */
+ ]
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.symlinkStatusType メソッド &aname(LocalFiles-symlinkStatusType);~
+ シンボリックリンクのファイルタイプを返す。
+--シグネチャ:~
+---LocalFiles.symlinkStatusType(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+ファイルタイプフラグ。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.symlinkStatusPermissions メソッド &aname(LocalFiles-symlinkStatusPermissions);~
+ シンボリックリンクのパーミッションを返す。
+--シグネチャ:~
+---LocalFiles.symlinkStatusPermissions(p)~
+--引数:~
+---p~
+ローカルファイルパス。~
+--返値:~
+---Integer~
+パーミッションフラグ。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.uniquePath メソッド &aname(LocalFiles-uniquePath);~
+ 一意なファイル名を生成する。
+--シグネチャ:~
+---LocalFiles.uniquePath(model = "&#x25;&#x25;&#x25;&#x25;-&#x25;&#x25;&#x25;&#x25;-&#x25;&#x25;&#x25;&#x25;-&#x25;&#x25;&#x25;&#x25;")~
+--引数:~
+---model~
+書式指定。~
+--返値:~
+---String~
+生成されたファイル名。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.enumDirectoryEntry メソッド &aname(LocalFiles-enumDirectoryEntry);~
+ ディレクトリエントリを列挙する。
+--シグネチャ:~
+---LocalFiles.enumDirectoryEntry(p, sort_comp = void, recurse = false, level_max = -1, symlink_recurse = false)~
+--引数:~
+---p~
+ディレクトリパス。~
+---sort_comp~
+結果をソートする場合の比較方法を示す文字列。~
+void の場合はソートしない。~
+"+" または "a" ならば昇順、"-" または "z" ならば降順。~
+"ia" ならば大文字小文字を区別しない昇順、"iz" ならば大文字小文字を区別しない降順。~
+---recurse~
+ディレクトリを再帰的に列挙するか。~
+---level_max~
+再帰する場合の深さの制限。~
+負数ならば無制限。~
+---symlink_recurse~
+再帰する場合、ディレクトリのシンボリックリンクを再帰的に列挙するか。~
+--返値:~
+---Array~
+ディレクトリエントリのパスの配列。~
+---void~
+不正な比較指定を渡した場合。~
+--例外:~
+---操作に失敗した場合~
+
+--------------------------------------------------------------------------------
+-LocalFiles.tempDirectoryPath プロパティ &aname(LocalFiles-tempDirectoryPath);~
+ テンポラリディレクトリのパスを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfStatusError プロパティ &aname(LocalFiles-ftfStatusError);~
+ ファイルタイプフラグ。ステータスエラーを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfFileNotFound プロパティ &aname(LocalFiles-ftfFileNotFound);~
+ ファイルタイプフラグ。ファイルが見つからないことを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfRegularFile プロパティ &aname(LocalFiles-ftfRegularFile);~
+ ファイルタイプフラグ。通常のファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfDirectoryFile プロパティ &aname(LocalFiles-ftfDirectoryFile);~
+ ファイルタイプフラグ。ディレクトリを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfSymlinkFile プロパティ &aname(LocalFiles-ftfSymlinkFile);~
+ ファイルタイプフラグ。シンボリックリンク・ファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfBlockFile プロパティ &aname(LocalFiles-ftfBlockFile);~
+ ファイルタイプフラグ。ブロックファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfCharacterFile プロパティ &aname(LocalFiles-ftfCharacterFile);~
+ ファイルタイプフラグ。キャラクタファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfFIFOFile プロパティ &aname(LocalFiles-ftfFIFOFile);~
+ ファイルタイプフラグ。FIFO ファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfSocketFile プロパティ &aname(LocalFiles-ftfSocketFile);~
+ ファイルタイプフラグ。ソケットファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfReparseFile プロパティ &aname(LocalFiles-ftfReparseFile);~
+ ファイルタイプフラグ。再解析ファイルを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.ftfTypeUnknown プロパティ &aname(LocalFiles-ftfTypeUnknown);~
+ ファイルタイプフラグ。不明なタイプを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfNoPerms プロパティ &aname(LocalFiles-pfNoPerms);~
+ パーミッションフラグ。権限が設定されていないことを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOwnerRead プロパティ &aname(LocalFiles-pfOwnerRead);~
+ パーミッションフラグ。所有者の読み取り権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOwnerWrite プロパティ &aname(LocalFiles-pfOwnerWrite);~
+ パーミッションフラグ。所有者の書き込み権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOwnerExe プロパティ &aname(LocalFiles-pfOwnerExe);~
+ パーミッションフラグ。所有者の実行/検索権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOwnerAll プロパティ &aname(LocalFiles-pfOwnerAll);~
+ パーミッションフラグ。所有者の読み/書き/実行/検索を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfGroupRead プロパティ &aname(LocalFiles-pfGroupRead);~
+ パーミッションフラグ。グループの読み取り権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfGroupWrite プロパティ &aname(LocalFiles-pfGroupWrite);~
+ パーミッションフラグ。グループの書き込み権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfGroupExe プロパティ &aname(LocalFiles-pfGroupExe);~
+ パーミッションフラグ。グループの実行/検索権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfGroupAll プロパティ &aname(LocalFiles-pfGroupAll);~
+ パーミッションフラグ。グループの読み/書き/実行/検索を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOthersRead プロパティ &aname(LocalFiles-pfOthersRead);~
+ パーミッションフラグ。その他の読み取り権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOthersWrite プロパティ &aname(LocalFiles-pfOthersWrite);~
+ パーミッションフラグ。その他の書き込み権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOthersExe プロパティ &aname(LocalFiles-pfOthersExe);~
+ パーミッションフラグ。その他の実行/検索権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfOthersAll プロパティ &aname(LocalFiles-pfOthersAll);~
+ パーミッションフラグ。その他の読み/書き/実行/検索権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfAllAll プロパティ &aname(LocalFiles-pfAllAll);~
+ パーミッションフラグ。所有者/グループ/その他の、読み/書き/実行/検索権限を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfUIDOnExe プロパティ &aname(LocalFiles-pfUIDOnExe);~
+ パーミッションフラグ。Set-user-ID を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfGIDOnExe プロパティ &aname(LocalFiles-pfGIDOnExe);~
+ パーミッションフラグ。Set-group-ID を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfStickyBit プロパティ &aname(LocalFiles-pfStickyBit);~
+ パーミッションフラグ。スティッキー・ビットを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfPermsMask プロパティ &aname(LocalFiles-pfPermsMask);~
+ パーミッションフラグのビットマスクを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfPermsNotKnown プロパティ &aname(LocalFiles-pfPermsNotKnown);~
+ パーミッションフラグ。不明なパーミッションを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfAddPerms プロパティ &aname(LocalFiles-pfAddPerms);~
+ パーミッションフラグと組み合わせる指定フラグ。既存に対するパーミッションの追加を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfRemovePerms プロパティ &aname(LocalFiles-pfRemovePerms);~
+ パーミッションフラグと組み合わせる指定フラグ。既存に対するパーミッションの削除を示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LocalFiles.pfSymlinkPerms プロパティ &aname(LocalFiles-pfSymlinkPerms);~
+ パーミッションフラグと組み合わせる指定フラグ。シンボリックリンクを解決しないことを示すフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+

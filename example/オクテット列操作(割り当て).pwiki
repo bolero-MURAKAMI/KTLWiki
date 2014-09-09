@@ -1,0 +1,115 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列へ割り当て
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* 64bit 整数の割り当て */
+ oct.assign(37564, OctetBuilder.vtfInt64);
+ Debug.message("size = " + oct.size); // size = 4
+ 
+ /* 倍精度浮動小数点数の割り当て */
+ oct.assign(3.14159265, OctetBuilder.vtfDouble);
+ Debug.message("size = " + oct.size); // size = 8
+ 
+ /* オクテット列の割り当て */
+ oct.assign(<% DE AD BE AF %>, OctetBuilder.vtfOctet);
+ Debug.message("size = " + oct.size); // size = 4
+ 
+ /* BOM付き文字列の割り当て */
+ oct.assign("\xFEFFfoobar", OctetBuilder.vtfString);
+ Debug.message("size = " + oct.size); // size = 14
+ 
+ /* ローカルストレージの内容の割り当て */
+ oct.assignStorage(System.exePath + "foobar.txt");
+
+-OctetBuilder.assign メソッド~
+--シグネチャ:~
+---OctetBuilder.assign(v, flag = OctetBuilder.vtfByte)~
+--バッファへ値を割り当てる。~
+--第１引数には割り当てられる値を渡す。~
+--第２引数には、値のデータ型やエンディアンを指定するフラグを渡すことができる(デフォルト=1byte 値)。~
+--バッファは割り当てられたサイズに調整される。~
+
+-OctetBuilder.assignByte メソッド~
+--シグネチャ:~
+---OctetBuilder.assignByte(size, b)~
+--バッファへ、1byte 値を割り当てる。~
+--第１引数には連続して割り当てるサイズを渡す。~
+--第２引数には割り当てられる値を渡す。~
+--バッファは割り当てられたサイズに調整される。~
+
+-OctetBuilder.assignBuilder メソッド~
+--シグネチャ:~
+---OctetBuilder.assignBuilder(obj)~
+---OctetBuilder.assignBuilder(obj, spos)~
+---OctetBuilder.assignBuilder(obj, sssize)~
+--バッファへ OctetBuilder インスタンスの内容を割り当てる。~
+--第１引数には割り当てられる OctetBuilder インスタンスを渡す。~
+--第２引数に数値を指定すると、割り当てられるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ割り当てられる。~
+--バッファは割り当てられたサイズに調整される。~
+
+-OctetBuilder.assignOctet メソッド~
+--シグネチャ:~
+---OctetBuilder.assignOctet(octet)~
+---OctetBuilder.assignOctet(octet, spos)~
+---OctetBuilder.assignOctet(octet, sssize)~
+--バッファへオクテット列を割り当てる。~
+--第１引数には割り当てられるオクテット列を渡す。~
+--第２引数に数値を指定すると、割り当てられるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ割り当てられる。~
+--バッファは割り当てられたサイズに調整される。~
+
+-OctetBuilder.assignString メソッド~
+--シグネチャ:~
+---OctetBuilder.assignString(str)~
+---OctetBuilder.assignString(str, spos)~
+---OctetBuilder.assignString(str, sssize)~
+--バッファへ文字列を割り当てる。~
+--第１引数には割り当てられる文字列（UTF-16LE）を渡す。~
+--第２引数に数値を指定すると、割り当てられるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ割り当てられる。~
+--バッファは割り当てられたサイズに調整される。~
+--なお、終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+-OctetBuilder.assignNarrowString メソッド~
+--シグネチャ:~
+---OctetBuilder.assignNarrowString(str)~
+---OctetBuilder.assignNarrowString(str, spos)~
+---OctetBuilder.assignNarrowString(str, sssize)~
+--バッファへ文字列を割り当てる。~
+--第１引数には割り当てられる文字列（Shift_JIS）を渡す。~
+--第２引数に数値を指定すると、割り当てられるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ割り当てられる。~
+--バッファは割り当てられたサイズに調整される。~
+--なお、終端文字（"\0"）は挿入されない。~
+
+-OctetBuilder.assignStorage メソッド~
+--シグネチャ:~
+---OctetBuilder.assignStorage(storage)~
+---OctetBuilder.assignStorage(storage, spos)~
+---OctetBuilder.assignStorage(storage, sssize)~
+--バッファへローカルストレージの内容を割り当てる。~
+--第１引数には割り当てられるストレージのパスを渡す。~
+--第２引数に数値を指定すると、割り当てられるバイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ割り当てられる。~
+--バッファは割り当てられたサイズに調整される。~

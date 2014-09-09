@@ -1,0 +1,302 @@
+*目次 [#contents-]
+#contents
+
+
+
+*これは何？ [#about-]
+◇ ''KTL'' (KiriKiri Trivial Library)~
+◇ スクリプト言語 TJS2 の実行エンジン 吉里吉里2/吉里吉里Z のための''拡張機能ライブラリ''。~
+◇ 主に、KAG に依存しない''様々なスクリプトのための汎用機能''の実装を目的としている。~
+
+-はじめに~
+--KTL をはじめて導入する場合、【 [[''導入手順''>forum/導入手順]] 】を参照ください。~
+
+-「吉里吉里」本家サイト~
+--[[吉里吉里 ダウンロードページ:http://kikyou.info/tvp/]]~
+---[[TJS2 ドキュメント:http://devdoc.kikyou.info/tvp/docs/tjs2doc/contents/]]~
+---[[吉里吉里2 ドキュメント:http://devdoc.kikyou.info/tvp/docs/kr2doc/contents/]]~
+---[[KAG3 ドキュメント:http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/]]~
+--[[吉里吉里Z:http://krkrz.github.io/]]~
+---[[吉里吉里Z ドキュメント:http://krkrz.github.io/docs/kirikiriz/j/contents/index.html]]~
+
+-Bolero's website~
+--[[http://www.boleros.x0.com/:http://www.boleros.x0.com/]]~
+
+-最新のライブラリ更新~
+--スクリプト - &color(red,white){[2012.04.30]};~
+--DLL Ver 0.2.9.x - &color(red,white){[2014.04.30]};~
+
+
+
+*リファレンス [#reference-]
+-スクリプト~
+--[[ktl/ktl.tjs]] - すべての KTL スクリプトに先行する~
+--[[ktl/Outputs.tjs]] - ログ出力のための簡易フレームワーク~
+--[[ktl/Sources.tjs]] - スクリプトのインポート管理~
+--[[ktl/Utils.tjs]] - 様々なユーティリティ~
+--[[ktl/Network.tjs]] - ネットワーク通信のための機能~
+--[[ktl/LocalFiles.tjs]] - OS ネイティブのファイル操作~
+--[[ktl/StorageStream.tjs]] - ローカルストレージ（ファイル）への I/O ~
+--[[ktl/Compression.tjs]] - Deflate アルゴリズムによるデータ圧縮／展開~
+--[[ktl/Bzip2.tjs]] - Bzip2 によるデータ圧縮／展開~
+--[[ktl/Checksum.tjs]] - チェックサム計算~
+--[[ktl/OctetBuilder.tjs]] - オクテット列操作~
+--[[ktl/Encoding.tjs]] - 文字コード変換やエンコード~
+--[[ktl/PTree.tjs]] - 構造化データの読み書きや操作~
+--[[ktl/PTime.tjs]] - 日付と時刻の計算~
+--[[ktl/VariateRandom.tjs]] - 様々な乱数生成エンジンと確率分布~
+--[[ktl/BigInt.tjs]] - 多倍長整数~
+--[[ktl/MathEx.tjs]] - 様々な数学計算~
+--[[ktl/SplashWindow.tjs]] - スプラッシュスクリーン~
+--[[ktl/SpriteCoord.tjs]] - スプライト表示のための座標計算~
+--[[ktl/OSVersion.tjs]] - OS のバージョンチェック~
+--[[ktl/OverrideMethod.tjs]] - メンバメソッドの上書き~
+--[[ktl/MethodOverrider.tjs]] - メンバメソッドの上書き~
+
+
+
+*使用例 [#example-]
+-''ネットワークI/O''~
+--[[HTTPダウンロード>example/HTTPダウンロード]]~
+--[[HTTPダウンロード(内部バッファ版)>example/HTTPダウンロード(内部バッファ版)]]~
+--[[HTTPダウンロード(HTTPヘッダのチェック)>example/HTTPダウンロード(HTTPヘッダのチェック)]]~
+--[[ソケット通信(通信の確立まで)>example/ソケット通信(通信の確立まで)]]~
+--[[ソケット通信(データ送受信)>example/ソケット通信(データ送受信)]]~
+--[[ソケット通信(送受信バッファ操作)>example/ソケット通信(送受信バッファ操作)]]~
+--[[非同期処理にコールバックを設定する>example/非同期処理にコールバックを設定する]]~
+--[[ネットワーク通信管理>example/ネットワーク通信管理]]~
+--[[サーバサンプル>example/サーバサンプル]]~
+
+-''構造化データ解析''~
+--[[XML読み込み>example/XML読み込み]]~
+--[[JSON読み込み>example/JSON読み込み]]~
+--[[INFO読み込み>example/INFO読み込み]]~
+--[[YAML読み込み>example/YAML読み込み]]~
+--[[木構造の要素を指す「パス」について>example/木構造の要素を指す「パス」について]]~
+--[[木構造の要素の取得／設定>example/木構造の要素の取得／設定]]~
+--[[木構造の要素の確認／操作>example/木構造の要素の確認／操作]]~
+--[[木構造の要素の切り出し／代入>example/木構造の要素の切り出し／代入]]~
+--[[XML書き出し>example/XML書き出し]]~
+--[[JSON書き出し>example/JSON書き出し]]~
+--[[INFO書き出し>example/INFO書き出し]]~
+--[[YAML書き出し>example/YAML書き出し]]~
+
+-''ローカルストレージI/O''~
+--[[ファイルストリーム>example/ファイルストリーム]]~
+
+-''エンコーディング''~
+--[[文字コード変換>example/文字コード変換]]~
+--[[URLエンコード／デコード>example/URLエンコード／デコード]]~
+--[[Base64エンコード／デコード>example/Base64エンコード／デコード]]~
+
+-''オクテット列操作''~
+--[[オクテット列操作(概要)>example/オクテット列操作(概要)]]~
+--[[オクテット列操作(書き込み)>example/オクテット列操作(書き込み)]]~
+--[[オクテット列操作(割り当て)>example/オクテット列操作(割り当て)]]~
+--[[オクテット列操作(挿入)>example/オクテット列操作(挿入)]]~
+--[[オクテット列操作(追加)>example/オクテット列操作(追加)]]~
+--[[オクテット列操作(削除など)>example/オクテット列操作(削除など)]]~
+--[[オクテット列操作(変換／保存)>example/オクテット列操作(変換／保存)]]~
+--[[オクテット列操作(ビット演算)>example/オクテット列操作(ビット演算)]]~
+
+-''データ圧縮／展開''~
+--[[Deflateアルゴリズム(圧縮)>example/Deflateアルゴリズム(圧縮)]]~
+--[[Deflateアルゴリズム(展開)>example/Deflateアルゴリズム(展開)]]~
+--[[bzip2(圧縮)>example/bzip2(圧縮)]]~
+--[[bzip2(展開)>example/bzip2(展開)]]~
+
+-''データ検証''~
+--[[チェックサム>example/チェックサム]]~
+--[[チェックサム(直接計算)>example/チェックサム(直接計算)]]~
+
+-''起動時処理''~
+--[[スプラッシュスクリーン>example/スプラッシュスクリーン]]~
+--[[アルファチャンネル付きスプラッシュスクリーン>example/アルファチャンネル付きスプラッシュスクリーン]]~
+
+-''スクリプト管理''~
+--[[インクルードガード>example/インクルードガード]]~
+
+
+
+*Tips [#tips-]
+-実践的なサンプル~
+--[[HMAC計算>tips/HMAC計算]]~
+
+
+
+*環境 [#environment-]
+-環境別動作テスト~
+--[[環境別動作テスト>environment/環境別動作テスト]] - 各 OS による動作テストの結果~
+
+-ユーザ環境への依存~
+--[[ユーザ環境への依存>environment/ユーザ環境への依存]] - 実行に必要となるランタイムと、その解決法~
+
+-外部DLLについて~
+--[[外部DLLについて>environment/外部DLLについて]] - 外部DLLの扱いについて~
+
+
+
+*更新 [#update-]
+-2014/04/30~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.1f から 1.0.1g へアップデート。~
+--スクリプト[[ktl/SystemInfo.tjs]]追加。~
+--DLL ktl_system_info.dll, ktl_system_info-d.dll 追加。~
+---実行環境のシステム情報を提供する SystemInfo クラスを実装。~
+--DLL VC12(VC++2013)ビルド版を公開。~
+---■[[plugin-vc12.zip:http://www.boleros.x0.com/data/plugin-vc12.zip]]~
+---VC12版DLLは、あくまで実験的なものです。~
+
+-2014/02/07~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスにエアリー関数、ヤコビの楕円関数を追加。~
+
+-2014/02/05~
+&color(red){Ver 0.2.9};~
+--DLL すべて更新。~
+---Boost を Boost 1.54 から Boost 1.55 へアップデート。~
+--DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
+---libpng を libpng 1.6.5 から libpng 1.6.8 へアップデート。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---OpenSSL を OpenSSL 1.0.1e から 1.0.1f へアップデート。~
+--スクリプト更新。~
+---Copyright(C) を表記。~
+
+-2014/01/23~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+--DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
+---Downloader, Socket, Acceptor クラスの onFinished ハンドラの中から呼出元インスタンスのメンバにアクセスした場合、デッドロックが発生する可能性があった問題を修正。~
+---Downloader, Socket, Acceptor クラスの onFinished プロパティが void に設定されるタイミングを、ハンドラ呼出後から呼出時点に変更。~
+これによって、ハンドラの中から次の非同期処理で使われるハンドラを再設定できるようになった。~
+---Downloader, Socket クラスの waitTimeoutFromNow, waitTimeoutAt メソッドで、非同期処理の完了如何に関わらず指定時間まで待機していたのを、非同期処理が完了した時点で返るように修正。~
+---Downloader, Socket クラスに、単に非同期処理の完了を待機する join メソッドを追加。~
+---Network クラスに、非同期処理をハードウェアの CPU コアの使用可能な並列実行数に基づいて駆動させる runWithHardwareConcurrency メソッドを追加。~
+---Network クラスに、ハードウェアの CPU コアの使用可能な並列実行数を取得する threadHardwareConcurrency プロパティ を追加。~
+
+-2013/07/03~
+&color(red){Ver 0.2.8};~
+--DLL すべて更新。~
+---Boost を Boost 1.53 から Boost 1.54 へアップデート。~
+
+-(全ての更新)~
+--[[更新履歴>history/更新履歴]]~
+
+
+
+*DLLについて [#dll-]
+-DLL ソース~
+--[[Github:https://github.com/bolero-MURAKAMI/KTL]]~
+　ソースコードおよび MSVC 用プロジェクトが含まれています。~
+　サードパーティ製ライブラリは含まれていません。~
+　複製／改変／再配布は自由です。自己責任で行ってください。~
+
+-謝辞~
+--[[サードパーティライブラリ一覧>3rdparty/サードパーティライブラリ一覧]]~
+　KTL は上記サードパーティライブラリを利用しています。~
+　有用なライブラリを公開されている方々に感謝いたします。~
+--[[プラグイン別サードパーティライブラリ>3rdparty/プラグイン別サードパーティライブラリ]]~
+　各 DLL のビルドには、それぞれ以上のライブラリが必要となります。~
+
+-DLL一覧~
+|LEFT:120|LEFT:150|LEFT:150|LEFT:200|c
+| モジュール    | リリース版             | デバッグ版               | 概要                             |h
+| Utils         | ktl_utils.dll          | ktl_utils-d.dll          | 様々なユーティリティ             |
+| Network       | ktl_network.dll        | ktl_network-d.dll        | ネットワークI/O                  |
+|~|               ktl_network-v500.dll   | ktl_network-v500-d.dll   | (Windows 2000 対応版)            |
+| LocalFiles    | ktl_local_files.dll    | ktl_local_files-d.dll    | OS ネイティブのファイル操作      |
+| StorageStream | ktl_storage_stream.dll | ktl_storage_stream-d.dll | ローカルストレージI/O            |
+| Compression   | ktl_compression.dll    | ktl_compression-d.dll    | データ圧縮／展開                 |
+| Bzip2         | ktl_bzip2.dll          | ktl_bzip2-d.dll          | bzip2 によるデータ圧縮／展開     |
+| Checksum      | ktl_checksum.dll       | ktl_checksum-d.dll       | チェックサム計算                 |
+| OctetBuilder  | ktl_octet_builder.dll  | ktl_octet_builder-d.dll  | オクテット列操作                 |
+| Encoding      | ktl_encoding.dll       | ktl_encoding-d.dll       | 文字コード変換やエンコード       |
+| PTree         | ktl_ptree.dll          | ktl_ptree-d.dll          | 構造化データの読み書きや操作     |
+| PTime         | ktl_ptime.dll          | ktl_ptime-d.dll          | 日付と時刻の計算                 |
+| VariateRandom | ktl_variate_random.dll | ktl_variate_random-d.dll | 様々な乱数生成エンジンと確率分布 |
+| BigInt        | ktl_big_int.dll        | ktl_big_int-d.dll        | 多倍長整数                       |
+| MathEx        | ktl_math_ex.dll        | ktl_math_ex-d.dll        | 様々な数学計算                   |
+| SplashWindow  | ktl_splash_window.dll  | ktl_splash_window-d.dll  | スプラッシュスクリーン           |
+| Serialization | ktl_serialization.dll  | ktl_serialization-d.dll  | シリアライゼーション             |
+| SpriteCoord   | ktl_sprite_coord.dll   | ktl_sprite_coord-d.dll   | スプライト表示のための座標計算   |
+| Functor       | ktl_functor.dll        | ktl_functor-d.dll        | 関数オブジェクト                 |
+| Sprites       | ktl_sprites.dll        | ktl_sprites-d.dll        | DirectX によるスプライト         |
+| OSVersion     | ktl_os_version.dll     | ktl_os_version-d.dll     | OS のバージョンチェック          |
+| SystemInfo    | ktl_system_info.dll    | ktl_system_info-d.dll    | システム情報の取得               |
+
+
+
+*ダウンロード [#downloads-]
+-スクリプト~
+--[[ktl.zip:http://www.boleros.x0.com/data/ktl.zip]]~
+-DLL~
+--[[plugin.zip:http://www.boleros.x0.com/data/plugin.zip]]~
+-外部DLL~
+--[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]]~
+　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+--[[Microsoft.VC90.CRT.zip:http://www.boleros.x0.com/data/Microsoft.VC90.CRT.zip]]~
+　( &#169; Microsoft Corporation.  All rights reserved. )~
+--------------------------------------------------------------------------------
+　　　----他ビルド版----~
+-DLL~
+--[[plugin-vc8.zip:http://www.boleros.x0.com/data/plugin-vc8.zip]]~
+--[[plugin-vc10.zip:http://www.boleros.x0.com/data/plugin-vc10.zip]]~
+--[[plugin-vc11.zip:http://www.boleros.x0.com/data/plugin-vc11.zip]]~
+--[[plugin-vc12.zip:http://www.boleros.x0.com/data/plugin-vc12.zip]]~
+--------------------------------------------------------------------------------
+　　　----最新版以外----~
+-DLL~
+--[[plugin-0.2.8.zip:http://www.boleros.x0.com/data/plugin-0.2.8.zip]]~
+--[[plugin-0.2.7.zip:http://www.boleros.x0.com/data/plugin-0.2.7.zip]]~
+--[[plugin-0.2.6.zip:http://www.boleros.x0.com/data/plugin-0.2.6.zip]]~
+--[[plugin-0.2.5.zip:http://www.boleros.x0.com/data/plugin-0.2.5.zip]]~
+--[[plugin-0.2.4.zip:http://www.boleros.x0.com/data/plugin-0.2.4.zip]]~
+--[[plugin-0.2.3.zip:http://www.boleros.x0.com/data/plugin-0.2.3.zip]]~
+--[[plugin-0.2.2.zip:http://www.boleros.x0.com/data/plugin-0.2.2.zip]]~
+-外部DLL~
+--[[ICU-4.6.zip:http://www.boleros.x0.com/data/ICU-4.6.zip]]~
+　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+--[[ICU-4.5.2.zip:http://www.boleros.x0.com/data/ICU-4.5.2.zip]]~
+　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+--[[ICU-4.5.1.zip:http://www.boleros.x0.com/data/ICU-4.5.1.zip]]~
+　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+--[[ICU-4.4.zip:http://www.boleros.x0.com/data/ICU-4.4.zip]]~
+　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+--[[libbzip2-1.0.6.zip:http://www.boleros.x0.com/data/libbzip2-1.0.6.zip]]~
+　( Copyright (C) 1996-2007, Julian R Seward. All Rights Reserved. )~
+--[[libbzip2-1.0.5.zip:http://www.boleros.x0.com/data/libbzip2-1.0.5.zip]]~
+　( Copyright (C) 1996-2007, Julian R Seward. All Rights Reserved. )~
+--[[Microsoft.VC90.CRT-msvcr90_only.zip:http://www.boleros.x0.com/data/Microsoft.VC90.CRT-msvcr90_only.zip]]~
+　( &#169; Microsoft Corporation.  All rights reserved. )~
+
+
+
+*フォーラム [#forums-]
+-サポート~
+--[[導入手順>forum/導入手順]] - KTL の導入手順について~
+--[[FAQ>forum/FAQ]] - KTL 全般について~
+--[[サポート>forum/サポート]] - 質問や要望・バグ報告はこちら~
+
+
+
+*著作権等 [#copyrights-]
+-著作権~
+当サイトで公開されるテキスト、制作物等の著作権はとくに記載がない場合 Bolero MURAKAMI が保持します。~
+他の著作者によるものを引用、再配布している場合は著作権表示に従います。~
+-免責~
+万一当サイトの利用によって損害等が生じたとしても管理人は一切責任を負いません。~
+
+
+
+*管理人 [#Author-]
+
+Bolero MURAKAMI~
+--Website: http://www.boleros.x0.com/~
+--Twitter: https://twitter.com/bolero_murakami~
+--Facebook: http://www.facebook.com/genya.murakami~
+--Blog: http://d.hatena.ne.jp/boleros/~
+--Github: https://github.com/bolero-MURAKAMI~
+--SlideShare: http://www.slideshare.net/GenyaMurakami~
+--Mail: contact-lib@boleros.x0.com~
+

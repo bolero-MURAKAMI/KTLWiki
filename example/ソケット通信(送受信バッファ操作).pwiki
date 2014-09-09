@@ -1,0 +1,74 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Socket クラス>ktl/Network.tjs#Socket]]~
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+
+
+
+*送信用バッファの内容取得
+ /* sock.writingBufferSize == 300 と仮定する */
+ Debug.message(sock.writingBufferSize); // Console: 300
+ 
+ /* 送信用バッファの内容をオクテット列として取得 */
+ var oct = sock.getWritingBufferAsOctet(0, 100);
+ Debug.message(oct.length);             // Console: 100
+ Debug.message(sock.writingBufferSize); // Console: 300
+ 
+ /* 送信用バッファの内容をクリア */
+ var bytes = sock.consumeWritingBuffer(100);
+ Debug.message(bytes);                  // Console: 100
+ Debug.message(sock.writingBufferSize); // Console: 200
+
+-[[Socket.getWritingBufferAsString メソッド>ktl/Network.tjs#Socket-getWritingBufferAsString]]~
+ 送信用バッファから文字列を取得する。
+
+-[[Socket.getWritingBufferAsNarrowString メソッド>ktl/Network.tjs#Socket-getWritingBufferAsNarrowString]]~
+ 送信用バッファからナロー文字列を取得する。
+
+-[[Socket.getWritingBufferAsOctet メソッド>ktl/Network.tjs#Socket-getWritingBufferAsOctet]]~
+ 送信用バッファからオクテット列を取得する。
+
+-[[Socket.consumeWritingBuffer メソッド>ktl/Network.tjs#Socket-consumeWritingBuffer]]~
+ 送信用バッファの内容をクリアする。
+
+
+
+*受信用バッファの内容取得
+ /* sock.writingBufferSize == 300 と仮定する */
+ Debug.message(sock.writingBufferSize); // Console: 300
+ 
+ /* 受信用バッファの内容をオクテット列として取得 */
+ var oct = sock.getReadingBufferAsOctet(0, 100);
+ Debug.message(oct.length);             // Console: 100
+ Debug.message(sock.writingBufferSize); // Console: 300
+ 
+ /* 受信用バッファの内容をクリア */
+ var bytes = sock.consumeReadingBuffer(100);
+ Debug.message(bytes);                  // Console: 100
+ Debug.message(sock.writingBufferSize); // Console: 200
+
+-[[Socket.getReadingBufferAsString メソッド>ktl/Network.tjs#Socket-getReadingBufferAsString]]~
+ 受信用バッファから文字列を取得する。
+
+-[[Socket.getReadingBufferAsNarrowString メソッド>ktl/Network.tjs#Socket-getReadingBufferAsNarrowString]]~
+ 受信用バッファからナロー文字列を取得する。
+
+-[[Socket.getReadingBufferAsOctet メソッド>ktl/Network.tjs#Socket-getReadingBufferAsOctet]]~
+ 受信用バッファからオクテット列を取得する。
+
+-[[Socket.consumeReadingBuffer メソッド>ktl/Network.tjs#Socket-consumeReadingBuffer]]~
+ 受信用バッファの内容をクリアする。
+

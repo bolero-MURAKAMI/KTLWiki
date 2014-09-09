@@ -1,0 +1,254 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ スクリプトのインポート管理。
+-パス:~
+--[[ktl/Sources.tjs]]~
+-インポートスクリプト:~
+--[[ktl/ktl.tjs]]~
+--[[ktl/Outputs.tjs]]~
+-インポートDLL:~
+--(なし)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[SourcesObject クラス>#SourcesObject]]~
+
+--------------------------------------------------------------------------------
+
+**SourcesObject クラス [#SourcesObject]
+ ソース情報管理クラス。
+-メソッド:~
+--[[SourcesObject メソッド>#SourcesObject-SourcesObject]]~
+--[[getSourcesInfo メソッド>#SourcesObject-getSourcesInfo]]~
+--[[isOnce メソッド>#SourcesObject-isOnce]]~
+--[[setOnce メソッド>#SourcesObject-setOnce]]~
+--[[isIncluded メソッド>#SourcesObject-isIncluded]]~
+--[[setIncluded メソッド>#SourcesObject-setIncluded]]~
+--[[guard メソッド>#SourcesObject-guard]]~
+--[[isIncludable メソッド>#SourcesObject-isIncludable]]~
+--[[include メソッド>#SourcesObject-include]]~
+--[[eval メソッド>#SourcesObject-eval]]~
+--[[evalStorage メソッド>#SourcesObject-evalStorage]]~
+--[[exec メソッド>#SourcesObject-exec]]~
+--[[execStorage メソッド>#SourcesObject-execStorage]]~
+-プロパティ:~
+--[[args プロパティ>#SourcesObject-args]]~
+
+--------------------------------------------------------------------------------
+-SourcesObject.SourcesObject メソッド &aname(SourcesObject-SourcesObject);~
+ コンストラクタ。
+--シグネチャ:~
+---SourcesObject()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SourcesObject.getSourcesInfo メソッド &aname(SourcesObject-getSourcesInfo);~
+ ソースの管理情報を返す。
+--シグネチャ:~
+---SourcesObject.getSourcesInfo(storage)~
+--引数:~
+---storage~
+ストレージパス。~
+--返値:~
+---Dictionary~
+ソースの管理情報の辞書配列。~
+---void~
+ストレージを発見できなかった場合。~
+
+--------------------------------------------------------------------------------
+-SourcesObject.isOnce メソッド &aname(SourcesObject-isOnce);~
+ ソースの単一読み込み指定を返す。
+--シグネチャ:~
+---SourcesObject.isOnce(storage)~
+--引数:~
+---storage~
+ストレージパス。~
+--返値:~
+---true~
+ソースが単一読み込み指定されていた場合。~
+---false~
+ソースが単一読み込み指定されていない場合。~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.setOnce メソッド &aname(SourcesObject-setOnce);~
+ ソースの単一読み込み指定を設定する。
+--シグネチャ:~
+---SourcesObject.setOnce(storage, v = true)~
+--引数:~
+---storage~
+ストレージパス。~
+---v~
+単一読み込み指定。~
+--返値:~
+---(なし)~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.isIncluded メソッド &aname(SourcesObject-isIncluded);~
+ ソースのインクルード済み指定を返す。
+--シグネチャ:~
+---SourcesObject.isIncluded(storage)~
+--引数:~
+---storage~
+ストレージパス。~
+--返値:~
+---true~
+ソースがインクルード済み指定されていた場合。~
+---false~
+ソースがインクルード済み指定されていない場合。~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.setIncluded メソッド &aname(SourcesObject-setIncluded);~
+ ソースのインクルード済み指定を設定する。
+--シグネチャ:~
+---SourcesObject.setIncluded(storage, v = true)~
+--引数:~
+---storage~
+ストレージパス。~
+---v~
+インクルード済み指定。~
+--返値:~
+---(なし)~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.guard メソッド &aname(SourcesObject-guard);~
+ インクルードガードを実行。
+--シグネチャ:~
+---SourcesObject.guard(storage)~
+--引数:~
+---storage~
+ストレージ文字列（パス）。~
+--返値:~
+---true~
+インクルードガードがすでに実行されていた場合。~
+---false~
+インクルードガードがまだ実行されていない場合。~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.isIncludable メソッド &aname(SourcesObject-isIncludable);~
+ ソースの管理情報から、インクルードすべきかを返す。
+--シグネチャ:~
+---SourcesObject.isIncludable(storage, once = false)~
+--引数:~
+---storage~
+ストレージパス。~
+---once~
+ソースの単一読み込み指定に係わらず、単一読み込みとすべきか。~
+--返値:~
+---true~
+インクルードすべき場合。~
+---false~
+インクルードすべきでない場合。~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.include メソッド &aname(SourcesObject-include);~
+ ソースの管理情報から、インクルードを実行する。
+--シグネチャ:~
+---SourcesObject.include(storage, once = false)~
+--引数:~
+---storage~
+ストレージパス。~
+---once~
+ソースの単一読み込み指定に係わらず、単一読み込みとすべきか。~
+--返値:~
+---true~
+ソースが読み込まれた場合。~
+---false~
+ソースが読み込まれない場合。~
+--例外:~
+---ストレージを発見できなかった場合~
+
+--------------------------------------------------------------------------------
+-SourcesObject.eval メソッド &aname(SourcesObject-eval);~
+ 文字列を TJS 式として評価する。
+--シグネチャ:~
+---SourcesObject.eval(str, params*)~
+--引数:~
+---str~
+TJS 式。~
+---params~
+スタックするパラメータ。~
+--返値:~
+---Variant~
+TJS 式を評価した結果。~
+
+--------------------------------------------------------------------------------
+-SourcesObject.evalStorage メソッド &aname(SourcesObject-evalStorage);~
+ ローカルストレージを TJS ソースとして評価する。
+--シグネチャ:~
+---SourcesObject.evalStorage(storage, params*)~
+--引数:~
+---str~
+ストレージパス。~
+---params~
+スタックするパラメータ。~
+--返値:~
+---Variant~
+TJS ソースを評価した結果。~
+
+--------------------------------------------------------------------------------
+-SourcesObject.exec メソッド &aname(SourcesObject-exec);~
+ 文字列を TJS 式として実行する。
+--シグネチャ:~
+---SourcesObject.exec(str, params*)~
+--引数:~
+---str~
+TJS 式。~
+---params~
+スタックするパラメータ。~
+--返値:~
+---Variant~
+TJS 式を実行した結果。~
+
+--------------------------------------------------------------------------------
+-SourcesObject.execStorage メソッド &aname(SourcesObject-execStorage);~
+ ローカルストレージを TJS ソースとして実行する。
+--シグネチャ:~
+---SourcesObject.execStorage(storage, params*)~
+--引数:~
+---str~
+ストレージパス。~
+---params~
+スタックするパラメータ。~
+--返値:~
+---Variant~
+TJS ソースを実行した結果。~
+
+--------------------------------------------------------------------------------
+-SourcesObject.args プロパティ &aname(SourcesObject-args);~
+ 現在のスタック最上位のパラメータ配列を返す。
+
+--------------------------------------------------------------------------------
+
+
+
+*グローバル変数 [#var-]
+-変数:~
+--[[Sources 変数>#Sources]]~
+
+--------------------------------------------------------------------------------
+-Sources 変数 &aname(Sources);~
+ SourcesObject クラスのインスタンス。
+--注記:~
+[[SourcesObject クラス>#SourcesObject]] を参照。~
+
+--------------------------------------------------------------------------------
+

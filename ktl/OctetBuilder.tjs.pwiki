@@ -1,0 +1,1250 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ オクテット列操作など。
+-パス:~
+--[[ktl/OctetBuilder.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_octet_builder.dll / ktl_octet_builder-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[OctetBuilder クラス>#OctetBuilder]]~
+
+--------------------------------------------------------------------------------
+
+**OctetBuilder クラス [#OctetBuilder]
+ オクテット列操作を行うクラス。
+-メソッド:~
+--[[OctetBuilder メソッド>#OctetBuilder-OctetBuilder]]~
+--[[fromHex メソッド>#OctetBuilder-fromHex]]~
+
+> (書き込み)~
+
+--[[set メソッド>#OctetBuilder-set]]~
+--[[setByte メソッド>#OctetBuilder-setByte]]~
+--[[setBuilder メソッド>#OctetBuilder-setBuilder]]~
+--[[setOctet メソッド>#OctetBuilder-setOctet]]~
+--[[setString メソッド>#OctetBuilder-setString]]~
+--[[setNarrowString メソッド>#OctetBuilder-setNarrowString]]~
+--[[setStorage メソッド>#OctetBuilder-setStorage]]~
+--[[setBlock メソッド>#OctetBuilder-setBlock]]~
+--[[setBytes メソッド>#OctetBuilder-setBytes]]~
+
+> (割り当て)~
+
+--[[assign メソッド>#OctetBuilder-assign]]~
+--[[assignByte メソッド>#OctetBuilder-assignByte]]~
+--[[assignBuilder メソッド>#OctetBuilder-assignBuilder]]~
+--[[assignOctet メソッド>#OctetBuilder-assignOctet]]~
+--[[assignString メソッド>#OctetBuilder-assignString]]~
+--[[assignNarrowString メソッド>#OctetBuilder-assignNarrowString]]~
+--[[assignStorage メソッド>#OctetBuilder-assignStorage]]~
+--[[assignBlock メソッド>#OctetBuilder-assignBlock]]~
+--[[assignBytes メソッド>#OctetBuilder-assignBytes]]~
+
+> (挿入)~
+
+--[[insert メソッド>#OctetBuilder-insert]]~
+--[[insertByte メソッド>#OctetBuilder-insertByte]]~
+--[[insertBuilder メソッド>#OctetBuilder-insertBuilder]]~
+--[[insertOctet メソッド>#OctetBuilder-insertOctet]]~
+--[[insertString メソッド>#OctetBuilder-insertString]]~
+--[[insertNarrowString メソッド>#OctetBuilder-insertNarrowString]]~
+--[[insertStorage メソッド>#OctetBuilder-insertStorage]]~
+--[[insertBlock メソッド>#OctetBuilder-insertBlock]]~
+--[[insertBytes メソッド>#OctetBuilder-insertBytes]]~
+
+> (追加)~
+
+--[[add メソッド>#OctetBuilder-add]]~
+--[[addByte メソッド>#OctetBuilder-addByte]]~
+--[[addBuilder メソッド>#OctetBuilder-addBuilder]]~
+--[[addOctet メソッド>#OctetBuilder-addOctet]]~
+--[[addString メソッド>#OctetBuilder-addString]]~
+--[[addNarrowString メソッド>#OctetBuilder-addNarrowString]]~
+--[[addStorage メソッド>#OctetBuilder-addStorage]]~
+--[[addBlock メソッド>#OctetBuilder-addBlock]]~
+--[[addBytes メソッド>#OctetBuilder-addBytes]]~
+
+> (初期化・削除)~
+
+--[[clear メソッド>#OctetBuilder-clear]]~
+--[[erase メソッド>#OctetBuilder-erase]]~
+--[[pop メソッド>#OctetBuilder-pop]]~
+--[[shift メソッド>#OctetBuilder-shift]]~
+
+> (変換)~
+
+--[[as メソッド>#OctetBuilder-as]]~
+--[[asBuilder メソッド>#OctetBuilder-asBuilder]]~
+--[[asOctet メソッド>#OctetBuilder-asOctet]]~
+--[[asString メソッド>#OctetBuilder-asString]]~
+--[[asNarrowString メソッド>#OctetBuilder-asNarrowString]]~
+
+> (ストレージ)~
+
+--[[saveStorage メソッド>#OctetBuilder-saveStorage]]~
+
+> (演算)~
+
+--[[transformAndByte メソッド>#OctetBuilder-transformAndByte]]~
+--[[transformOrByte メソッド>#OctetBuilder-transformOrByte]]~
+--[[transformXorByte メソッド>#OctetBuilder-transformXorByte]]~
+--[[transformNotByte メソッド>#OctetBuilder-transformNotByte]]~
+
+#br
+
+--[[findByte メソッド>#OctetBuilder-findByte]]~
+--[[copy メソッド>#OctetBuilder-copy]]~
+-プロパティ:~
+--[[back プロパティ>#OctetBuilder-back]]~
+--[[front プロパティ>#OctetBuilder-front]]~
+--[[data プロパティ>#OctetBuilder-data]]~
+--[[begin プロパティ>#OctetBuilder-begin]]~
+--[[end プロパティ>#OctetBuilder-end]]~
+--[[empty プロパティ>#OctetBuilder-empty]]~
+--[[size プロパティ>#OctetBuilder-size]]~
+--[[length プロパティ>#OctetBuilder-length]]~
+--[[count プロパティ>#OctetBuilder-count]]~
+-スタティックプロパティ:~
+--[[vtfMask プロパティ>#OctetBuilder-vtfMask]]~
+--[[vtfByte プロパティ>#OctetBuilder-vtfByte]]~
+--[[vtfInt8 プロパティ>#OctetBuilder-vtfInt8]]~
+--[[vtfInt16 プロパティ>#OctetBuilder-vtfInt16]]~
+--[[vtfInt32 プロパティ>#OctetBuilder-vtfInt32]]~
+--[[vtfInt64 プロパティ>#OctetBuilder-vtfInt64]]~
+--[[vtfUInt8 プロパティ>#OctetBuilder-vtfUInt8]]~
+--[[vtfUInt16 プロパティ>#OctetBuilder-vtfUInt16]]~
+--[[vtfUInt32 プロパティ>#OctetBuilder-vtfUInt32]]~
+--[[vtfUInt64 プロパティ>#OctetBuilder-vtfUInt64]]~
+--[[vtfFloat プロパティ>#OctetBuilder-vtfFloat]]~
+--[[vtfDouble プロパティ>#OctetBuilder-vtfDouble]]~
+--[[vtfOctet プロパティ>#OctetBuilder-vtfOctet]]~
+--[[vtfString プロパティ>#OctetBuilder-vtfString]]~
+--[[vtfNarrowString プロパティ>#OctetBuilder-vtfNarrowString]]~
+--[[vtfBuilder プロパティ>#OctetBuilder-vtfBuilder]]~
+--[[vefMask プロパティ>#OctetBuilder-vefMask]]~
+--[[vefBigEndian プロパティ>#OctetBuilder-vefBigEndian]]~
+--[[vefLittleEndian プロパティ>#OctetBuilder-vefLittleEndian]]~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.OctetBuilder メソッド &aname(OctetBuilder-OctetBuilder);~
+ コンストラクタ。
+--シグネチャ:~
+---OctetBuilder()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.fromHex メソッド &aname(OctetBuilder-fromHex);~
+ 16進文字列から OctetBuilder クラスのインスタンスを生成する。
+--シグネチャ:~
+---OctetBuilder.fromHex(str)~
+--引数:~
+---str~
+ソース文字列。~
+--返値:~
+---OctetBuilder~
+生成された OctetBuilder クラスのインスタンス。~
+---null~
+不正な文字列だった場合。~
+--注記:~
+このメソッドは、インスタンスからでなくとも呼ぶことができる。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.set メソッド &aname(OctetBuilder-set);~
+ バッファへ指定データ型の値を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.set(pos, v, flag = OctetBuilder.vtfByte)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---v~
+書き込まれる値。~
+---flag~
+データ型指定フラグ。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setByte メソッド &aname(OctetBuilder-setByte);~
+ バッファへ 1byte 値を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setByte(pos, size, b)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---size~
+連続して書き込むサイズ。~
+---b~
+書き込まれる値。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setBuilder メソッド &aname(OctetBuilder-setBuilder);~
+ バッファへ OctetBuilder インスタンスの内容を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setBuilder(pos, obj)~
+---OctetBuilder.setBuilder(pos, obj, spos)~
+---OctetBuilder.setBuilder(pos, obj, spos, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---obj~
+書き込まれる OctetBuilder インスタンス。~
+---spos~
+書き込まれるバイト列のオフセット。~
+---ssize~
+書き込まれるバイト数。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setOctet メソッド &aname(OctetBuilder-setOctet);~
+ バッファへオクテット列を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setOctet(pos, octet)~
+---OctetBuilder.setOctet(pos, octet, spos)~
+---OctetBuilder.setOctet(pos, octet, spos, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---octet~
+書き込まれるオクテット列。~
+---spos~
+書き込まれるバイト列のオフセット。~
+---ssize~
+書き込まれるバイト数。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setString メソッド &aname(OctetBuilder-setString);~
+ バッファへ文字列（UTF-16LE）を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setString(pos, str)~
+---OctetBuilder.setString(pos, str, spos)~
+---OctetBuilder.setString(pos, str, spos, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---str~
+書き込まれる文字列。~
+---spos~
+書き込まれるバイト列のオフセット。~
+---ssize~
+書き込まれるバイト数。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setNarrowString メソッド &aname(OctetBuilder-setNarrowString);~
+ バッファへナロー文字列（Shift_JIS）を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setNarrowString(pos, str)~
+---OctetBuilder.setNarrowString(pos, str, spos)~
+---OctetBuilder.setNarrowString(pos, str, spos, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---str~
+書き込まれる文字列。~
+---spos~
+書き込まれるバイト列のオフセット。~
+---ssize~
+書き込まれるバイト数。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setStorage メソッド &aname(OctetBuilder-setStorage);~
+ バッファへローカルストレージの内容を書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setStorage(pos, storage)~
+---OctetBuilder.setStorage(pos, storage, spos)~
+---OctetBuilder.setStorage(pos, storage, spos, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---storage~
+書き込まれるストレージのパス。~
+---spos~
+書き込まれるバイト列のオフセット。~
+---ssize~
+書き込まれるバイト数。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setBlock メソッド &aname(OctetBuilder-setBlock);~
+ バッファへポインタの範囲から書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setBlock(pos, first, last)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.setBytes メソッド &aname(OctetBuilder-setBytes);~
+ バッファへポインタの範囲から書き込む（上書き）。
+--シグネチャ:~
+---OctetBuilder.setBytes(pos, data, ssize)~
+--引数:~
+---pos~
+書き込むオフセット。~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+書き込まれたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assign メソッド &aname(OctetBuilder-assign);~
+ バッファへ指定データ型の値を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assign(v, flag = OctetBuilder.vtfByte)~
+--引数:~
+---v~
+割り当てられる値。~
+---flag~
+データ型指定フラグ。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignByte メソッド &aname(OctetBuilder-assignByte);~
+ バッファへ 1byte 値を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignByte(size, b)~
+--引数:~
+---size~
+連続して割り当てるサイズ。~
+---b~
+割り当てられる値。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignBuilder メソッド &aname(OctetBuilder-assignBuilder);~
+ バッファへ OctetBuilder インスタンスの内容を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignBuilder(obj)~
+---OctetBuilder.assignBuilder(obj, spos)~
+---OctetBuilder.assignBuilder(obj, sssize)~
+--引数:~
+---obj~
+割り当てられる OctetBuilder インスタンス。~
+---spos~
+割り当てられるバイト列のオフセット。~
+---ssize~
+割り当てられるバイト数。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignOctet メソッド &aname(OctetBuilder-assignOctet);~
+ バッファへオクテット列を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignOctet(octet)~
+---OctetBuilder.assignOctet(octet, spos)~
+---OctetBuilder.assignOctet(octet, sssize)~
+--引数:~
+---octet~
+割り当てられるオクテット列。~
+---spos~
+割り当てられるバイト列のオフセット。~
+---ssize~
+割り当てられるバイト数。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignString メソッド &aname(OctetBuilder-assignString);~
+ バッファへ文字列（UTF-16LE）を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignString(str)~
+---OctetBuilder.assignString(str, spos)~
+---OctetBuilder.assignString(str, sssize)~
+--引数:~
+---str~
+割り当てられる文字列。~
+---spos~
+割り当てられるバイト列のオフセット。~
+---ssize~
+割り当てられるバイト数。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignNarrowString メソッド &aname(OctetBuilder-assignNarrowString);~
+ バッファへナロー文字列（Shift_JIS）を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignNarrowString(str)~
+---OctetBuilder.assignNarrowString(str, spos)~
+---OctetBuilder.assignNarrowString(str, sssize)~
+--引数:~
+---str~
+割り当てられる文字列。~
+---spos~
+割り当てられるバイト列のオフセット。~
+---ssize~
+割り当てられるバイト数。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+終端文字（"\0"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignStorage メソッド &aname(OctetBuilder-assignStorage);~
+ バッファへローカルストレージの内容を割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignStorage(storage)~
+---OctetBuilder.assignStorage(storage, spos)~
+---OctetBuilder.assignStorage(storage, sssize)~
+--引数:~
+---storage~
+割り当てられるストレージのパス。~
+---spos~
+割り当てられるバイト列のオフセット。~
+---ssize~
+割り当てられるバイト数。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignBlock メソッド &aname(OctetBuilder-assignBlock);~
+ バッファへポインタの範囲から割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.assignBytes メソッド &aname(OctetBuilder-assignBytes);~
+ バッファへポインタの範囲から割り当てる。
+--シグネチャ:~
+---OctetBuilder.assignBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+割り当てられたバイト数。~
+--注記:~
+バッファは割り当てられたサイズに調整される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insert メソッド &aname(OctetBuilder-insert);~
+ バッファへ指定データ型の値を挿入する。
+--シグネチャ:~
+---OctetBuilder.insert(pos, v, flag = OctetBuilder.vtfByte)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---v~
+挿入される値。~
+---flag~
+データ型指定フラグ。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertByte メソッド &aname(OctetBuilder-insertByte);~
+ バッファへ 1byte 値を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertByte(pos, size, b)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---size~
+連続して挿入するサイズ。~
+---b~
+挿入される値。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertBuilder メソッド &aname(OctetBuilder-insertBuilder);~
+ バッファへ OctetBuilder インスタンスの内容を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertBuilder(pos, obj)~
+---OctetBuilder.insertBuilder(pos, obj, spos)~
+---OctetBuilder.insertBuilder(pos, obj, spos, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---obj~
+挿入される OctetBuilder インスタンス。~
+---spos~
+挿入されるバイト列のオフセット。~
+---ssize~
+挿入されるバイト数。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertOctet メソッド &aname(OctetBuilder-insertOctet);~
+ バッファへオクテット列を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertOctet(pos, octet)~
+---OctetBuilder.insertOctet(pos, octet, spos)~
+---OctetBuilder.insertOctet(pos, octet, spos, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---octet~
+挿入されるオクテット列。~
+---spos~
+挿入されるバイト列のオフセット。~
+---ssize~
+挿入されるバイト数。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertString メソッド &aname(OctetBuilder-insertString);~
+ バッファへ文字列（UTF-16LE）を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertString(pos, str)~
+---OctetBuilder.insertString(pos, str, spos)~
+---OctetBuilder.insertString(pos, str, spos, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---str~
+挿入される文字列。~
+---spos~
+挿入されるバイト列のオフセット。~
+---ssize~
+挿入されるバイト数。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertNarrowString メソッド &aname(OctetBuilder-insertNarrowString);~
+ バッファへナロー文字列（Shift_JIS）を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertNarrowString(pos, str)~
+---OctetBuilder.insertNarrowString(pos, str, spos)~
+---OctetBuilder.insertNarrowString(pos, str, spos, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---str~
+挿入される文字列。~
+---spos~
+挿入されるバイト列のオフセット。~
+---ssize~
+挿入されるバイト数。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertStorage メソッド &aname(OctetBuilder-insertStorage);~
+ バッファへローカルストレージの内容を挿入する。
+--シグネチャ:~
+---OctetBuilder.insertStorage(pos, storage)~
+---OctetBuilder.insertStorage(pos, storage, spos)~
+---OctetBuilder.insertStorage(pos, storage, spos, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---storage~
+挿入されるストレージのパス。~
+---spos~
+挿入されるバイト列のオフセット。~
+---ssize~
+挿入されるバイト数。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertBlock メソッド &aname(OctetBuilder-insertBlock);~
+ バッファへポインタの範囲から挿入する。
+--シグネチャ:~
+---OctetBuilder.insertBlock(pos, first, last)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.insertBytes メソッド &aname(OctetBuilder-insertBytes);~
+ バッファへポインタの範囲から挿入する。
+--シグネチャ:~
+---OctetBuilder.insertBytes(pos, data, ssize)~
+--引数:~
+---pos~
+挿入するオフセット。~
+---data~
+データポインタ。~
+---ssize~
+挿入するサイズ。~
+--返値:~
+---正値~
+挿入されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.add メソッド &aname(OctetBuilder-add);~
+ バッファへ指定データ型の値を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.add(v, flag = OctetBuilder.vtfByte)~
+--引数:~
+---v~
+末尾追加される値。~
+---flag~
+データ型指定フラグ。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addByte メソッド &aname(OctetBuilder-addByte);~
+ バッファへ 1byte 値を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addByte(size, b)~
+--引数:~
+---size~
+連続して末尾追加するサイズ。~
+---b~
+末尾追加される値。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addBuilder メソッド &aname(OctetBuilder-addBuilder);~
+ バッファへ OctetBuilder インスタンスの内容を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addBuilder(obj)~
+---OctetBuilder.addBuilder(obj, spos)~
+---OctetBuilder.addBuilder(obj, sssize)~
+--引数:~
+---obj~
+末尾追加される OctetBuilder インスタンス。~
+---spos~
+末尾追加されるバイト列のオフセット。~
+---ssize~
+末尾追加されるバイト数。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addOctet メソッド &aname(OctetBuilder-addOctet);~
+ バッファへオクテット列を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addOctet(octet)~
+---OctetBuilder.addOctet(octet, spos)~
+---OctetBuilder.addOctet(octet, sssize)~
+--引数:~
+---octet~
+末尾追加されるオクテット列。~
+---spos~
+末尾追加されるバイト列のオフセット。~
+---ssize~
+末尾追加されるバイト数。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addString メソッド &aname(OctetBuilder-addString);~
+ バッファへ文字列（UTF-16LE）を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addString(str)~
+---OctetBuilder.addString(str, spos)~
+---OctetBuilder.addString(str, sssize)~
+--引数:~
+---str~
+末尾追加される文字列。~
+---spos~
+末尾追加されるバイト列のオフセット。~
+---ssize~
+末尾追加されるバイト数。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）や BOM（"\xFEFF"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addNarrowString メソッド &aname(OctetBuilder-addNarrowString);~
+ バッファへナロー文字列（Shift_JIS）を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addNarrowString(str)~
+---OctetBuilder.addNarrowString(str, spos)~
+---OctetBuilder.addNarrowString(str, sssize)~
+--引数:~
+---str~
+末尾追加される文字列。~
+---spos~
+末尾追加されるバイト列のオフセット。~
+---ssize~
+末尾追加されるバイト数。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+終端文字（"\0"）は挿入されない。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addStorage メソッド &aname(OctetBuilder-addStorage);~
+ バッファへローカルストレージの内容を末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addStorage(storage)~
+---OctetBuilder.addStorage(storage, spos)~
+---OctetBuilder.addStorage(storage, sssize)~
+--引数:~
+---storage~
+末尾追加されるストレージのパス。~
+---spos~
+末尾追加されるバイト列のオフセット。~
+---ssize~
+末尾追加されるバイト数。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addBlock メソッド &aname(OctetBuilder-addBlock);~
+ バッファへポインタの範囲から末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.addBytes メソッド &aname(OctetBuilder-addBytes);~
+ バッファへポインタの範囲から末尾追加する。
+--シグネチャ:~
+---OctetBuilder.addBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+末尾追加されたバイト数。~
+--注記:~
+バッファは必要なサイズまで自動的に拡張される。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.clear メソッド &aname(OctetBuilder-clear);~
+ バッファをクリアする。
+--シグネチャ:~
+---OctetBuilder.clear()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.erase メソッド &aname(OctetBuilder-erase);~
+ バッファの要素を削除する。
+--シグネチャ:~
+---OctetBuilder.erase(pos)~
+---OctetBuilder.erase(pos, size)~
+--引数:~
+---pos~
+削除するオフセット。~
+---size~
+削除するバイト数。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.pop メソッド &aname(OctetBuilder-pop);~
+ バッファの要素を後から削除する。
+--シグネチャ:~
+---OctetBuilder.pop()~
+---OctetBuilder.pop(size)~
+--引数:~
+---size~
+削除するバイト数。~
+--返値:~
+---正値~
+引数無しの場合、削除された要素の値。~
+１引数の場合、削除されたバイト数。~
+--例外:~
+---バッファが空だった場合~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.shift メソッド &aname(OctetBuilder-shift);~
+ バッファの要素を前から削除する。
+--シグネチャ:~
+---OctetBuilder.shift()~
+---OctetBuilder.shift(size)~
+--引数:~
+---size~
+削除するバイト数。~
+--返値:~
+---正値~
+引数無しの場合、削除された要素の値。~
+１引数の場合、削除されたバイト数。~
+--例外:~
+---バッファが空だった場合~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.as メソッド &aname(OctetBuilder-as);~
+ バッファから指定データ型の値へ変換する。
+--シグネチャ:~
+---OctetBuilder.as(pos, flag = OctetBuilder.vtfByte)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---flag~
+データ型指定フラグ。~
+--返値:~
+---void 以外~
+変換された値。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.asBuilder メソッド &aname(OctetBuilder-asBuilder);~
+ バッファから新しい OctetBuilder インスタンスへ変換する。
+--シグネチャ:~
+---OctetBuilder.asBuilder()~
+---OctetBuilder.asBuilder(pos)~
+---OctetBuilder.asBuilder(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+変換するバイト数。~
+--返値:~
+---OctetBuilder~
+変換された値。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.asOctet メソッド &aname(OctetBuilder-asOctet);~
+ バッファからオクテット列へ変換する。
+--シグネチャ:~
+---OctetBuilder.asOctet()~
+---OctetBuilder.asOctet(pos)~
+---OctetBuilder.asOctet(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+変換するバイト数。~
+--返値:~
+---Octet~
+変換された値。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.asString メソッド &aname(OctetBuilder-asString);~
+ バッファから文字列（UTF-16LE）へ変換する。
+--シグネチャ:~
+---OctetBuilder.asString()~
+---OctetBuilder.asString(pos)~
+---OctetBuilder.asString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+変換するバイト数。~
+--返値:~
+---String~
+変換された値。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.asNarrowString メソッド &aname(OctetBuilder-asNarrowString);~
+ バッファからナロー文字列（Shift_JIS）へ変換する。
+--シグネチャ:~
+---OctetBuilder.asNarrowString()~
+---OctetBuilder.asNarrowString(pos)~
+---OctetBuilder.asNarrowString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+変換するバイト数。~
+--返値:~
+---String~
+変換された値。~
+---void~
+変換に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.saveStorage メソッド &aname(OctetBuilder-saveStorage);~
+ バッファからローカルストレージへ保存する。
+--シグネチャ:~
+---OctetBuilder.saveStorage(storage)~
+---OctetBuilder.saveStorage(storage, pos)~
+---OctetBuilder.saveStorage(storage, pos, size)~
+--引数:~
+---storage~
+保存するストレージのパス。~
+---pos~
+バイト列のオフセット。~
+---size~
+保存するバイト数。~
+--返値:~
+---正値~
+保存されたバイト数。~
+---負値~
+保存に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.transformAndByte メソッド &aname(OctetBuilder-transformAndByte);~
+ バッファの全バイトに対して、AND 演算を適用する。
+--シグネチャ:~
+---OctetBuilder.transformAndByte(b)~
+--引数:~
+---b~
+1byte 値のオペランド。~
+--返値:~
+---正値~
+演算の適用されたバイト数。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.transformOrByte メソッド &aname(OctetBuilder-transformOrByte);~
+ バッファの全バイトに対して、OR 演算を適用する。
+--シグネチャ:~
+---OctetBuilder.transformOrByte(b)~
+--引数:~
+---b~
+1byte 値のオペランド。~
+--返値:~
+---正値~
+演算の適用されたバイト数。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.transformXorByte メソッド &aname(OctetBuilder-transformXorByte);~
+ バッファの全バイトに対して、XOR 演算を適用する。
+--シグネチャ:~
+---OctetBuilder.transformOrByte(b)~
+--引数:~
+---b~
+1byte 値のオペランド。~
+--返値:~
+---正値~
+演算の適用されたバイト数。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.transformNotByte メソッド &aname(OctetBuilder-transformNotByte);~
+ バッファの全バイトに対して、NOT 演算を適用する。
+--シグネチャ:~
+---OctetBuilder.transformNotByte()~
+--引数:~
+---(なし)~
+--返値:~
+---正値~
+演算の適用されたバイト数。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.findByte メソッド &aname(OctetBuilder-findByte);~
+ バイト列から 1byte 値を検索して出現位置を返す。
+--シグネチャ:~
+---OctetBuilder.findByte(b)~
+---OctetBuilder.findByte(b, pos)~
+---OctetBuilder.findByte(b, pos, size)~
+--引数:~
+---b~
+1byte 値の検索値。~
+---pos~
+バイト列のオフセット。~
+---size~
+検索するバイト数。~
+--返値:~
+---正値~
+オフセットを基点とした出現位置。~
+---負値~
+発見できなかった場合。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.copy メソッド &aname(OctetBuilder-copy);~
+ バイト列からポインタへコピーする。
+--シグネチャ:~
+---OctetBuilder.copy(dest, pos, size)~
+--引数:~
+---dest~
+コピー先のポインタ。~
+---pos~
+バイト列のオフセット。~
+---size~
+コピーするバイト数。~
+--返値:~
+---(なし)~
+--例外:~
+---バッファの範囲外だった場合~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.back プロパティ &aname(OctetBuilder-back);~
+ バイト列の末尾の値を返す。 (getter)
+--例外:~
+---バッファが空だった場合~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.front プロパティ &aname(OctetBuilder-front);~
+ バイト列の先頭の値を返す。 (getter)
+--例外:~
+---バッファが空だった場合~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.data プロパティ &aname(OctetBuilder-data);~
+ バイト列を指すポインタを返す。 (getter)
+ バッファが空だった場合、NULL を返す。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.begin プロパティ &aname(OctetBuilder-begin);~
+ バイト列の先頭を指すポインタを返す。 (getter)
+ バッファが空だった場合、NULL を返す。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.end プロパティ &aname(OctetBuilder-end);~
+ バイト列の終端を指すポインタを返す。 (getter)
+ バッファが空だった場合、NULL を返す。
+
+--------------------------------------------------------------------------------
+-OctetBuilder.empty プロパティ &aname(OctetBuilder-empty);~
+ バッファが空ならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.size プロパティ &aname(OctetBuilder-size);~
+ バッファサイズを設定、取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.length プロパティ &aname(OctetBuilder-length);~
+ OctetBuilder.size プロパティに同じ。
+[[OctetBuilder.size プロパティ>#OctetBuilder-size]]~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.count プロパティ &aname(OctetBuilder-count);~
+ OctetBuilder.size プロパティに同じ。
+[[OctetBuilder.size プロパティ>#OctetBuilder-size]]~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfMask プロパティ &aname(OctetBuilder-vtfMask);~
+ データ型指定フラグのビットマスクを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfByte プロパティ &aname(OctetBuilder-vtfByte);~
+ データ型指定フラグを返す。1byte 値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfInt8 プロパティ &aname(OctetBuilder-vtfInt8);~
+ データ型指定フラグを返す。8bit 符号付き整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfInt16 プロパティ &aname(OctetBuilder-vtfInt16);~
+ データ型指定フラグを返す。16bit 符号付き整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfInt32 プロパティ &aname(OctetBuilder-vtfInt32);~
+ データ型指定フラグを返す。32bit 符号付き整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfInt64 プロパティ &aname(OctetBuilder-vtfInt64);~
+ データ型指定フラグを返す。64bit 符号付き整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfUInt8 プロパティ &aname(OctetBuilder-vtfUInt8);~
+ データ型指定フラグを返す。8bit 符号無し整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfUInt16 プロパティ &aname(OctetBuilder-vtfUInt16);~
+ データ型指定フラグを返す。16bit 符号無し整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfUInt32 プロパティ &aname(OctetBuilder-vtfUInt32);~
+ データ型指定フラグを返す。32bit 符号無し整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfUInt64 プロパティ &aname(OctetBuilder-vtfUInt64);~
+ データ型指定フラグを返す。64bit 符号無し整数値を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfFloat プロパティ &aname(OctetBuilder-vtfFloat);~
+ データ型指定フラグを返す。32bit 単精度浮動小数点数値を指定する場合。 (getter)
+--注記:~
+浮動小数点数のバイナリ表現は環境によって異なる可能性があるので、異なるアプリケーションから利用される場合のあるデータには非推奨。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfDouble プロパティ &aname(OctetBuilder-vtfDouble);~
+ データ型指定フラグを返す。64bit 倍精度浮動小数点数値を指定する場合。 (getter)
+--注記:~
+浮動小数点数のバイナリ表現は環境によって異なる可能性があるので、異なるアプリケーションから利用される場合のあるデータには非推奨。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfOctet プロパティ &aname(OctetBuilder-vtfOctet);~
+ データ型指定フラグを返す。オクテット列を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfString プロパティ &aname(OctetBuilder-vtfString);~
+ データ型指定フラグを返す。文字列（UTF-16LE）を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfNarrowString プロパティ &aname(OctetBuilder-vtfNarrowString);~
+ データ型指定フラグを返す。文字列（Shift_JIS）を指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vtfBuilder プロパティ &aname(OctetBuilder-vtfBuilder);~
+ データ型指定フラグを返す。OctetBuilder クラスのインスタンスを指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vefMask プロパティ &aname(OctetBuilder-vefMask);~
+ エンディアン指定フラグのビットマスクを返す。 (getter)
+--注記:~
+エンディアン指定は通常、データ型指定フラグと組み合わせる。~
+エンディアン指定は整数および浮動小数点数以外に対しては、単に無視される。~
+エンディアン指定のない場合、ビッグエンディアンとして扱われる。~
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vefBigEndian プロパティ &aname(OctetBuilder-vefBigEndian);~
+ エンディアン指定フラグを返す。ビッグエンディアンを指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+-OctetBuilder.vefLittleEndian プロパティ &aname(OctetBuilder-vefLittleEndian);~
+ エンディアン指定フラグを返す。リトルエンディアンを指定する場合。 (getter)
+
+--------------------------------------------------------------------------------
+

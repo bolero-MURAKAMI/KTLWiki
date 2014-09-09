@@ -1,0 +1,577 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 日付と時刻の計算など。
+-パス:~
+--[[ktl/PTime.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_ptime.dll / ktl_ptime-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[PTime クラス>#PTime]]~
+
+--------------------------------------------------------------------------------
+
+**PTime クラス [#PTime]
+ 日付と時刻の計算を行うクラス。
+-メソッド:~
+--[[PTime メソッド>#PTime-PTime]]~
+
+> (割り当て)~
+
+--[[assignLocalTimeSecondClock メソッド>#PTime-assignLocalTimeSecondClock]]~
+--[[assignUniversalTimeSecondClock メソッド>#PTime-assignUniversalTimeSecondClock]]~
+--[[assignLocalTimeMicrosecClock メソッド>#PTime-assignLocalTimeMicrosecClock]]~
+--[[assignUniversalTimeMicrosecClock メソッド>#PTime-assignUniversalTimeMicrosecClock]]~
+--[[assignLocalTimeDayClock メソッド>#PTime-assignLocalTimeDayClock]]~
+--[[assignUniversalTimeDayClock メソッド>#PTime-assignUniversalTimeDayClock]]~
+--[[assignDateTime メソッド>#PTime-assignDateTime]]~
+--[[assignDate メソッド>#PTime-assignDate]]~
+--[[assignTime メソッド>#PTime-assignTime]]~
+--[[assignFromString メソッド>#PTime-assignFromString]]~
+--[[assignFromISOString メソッド>#PTime-assignFromISOString]]~
+--[[assignDateFromString メソッド>#PTime-assignDateFromString]]~
+--[[assignDateFromISOString メソッド>#PTime-assignDateFromISOString]]~
+--[[assignTimeFromString メソッド>#PTime-assignTimeFromString]]~
+--[[assignTimeFromISOString メソッド>#PTime-assignTimeFromISOString]]~
+
+> (変更)~
+
+--[[moveYears メソッド>#PTime-moveYears]]~
+--[[moveMonths メソッド>#PTime-moveMonths]]~
+--[[moveDays メソッド>#PTime-moveDays]]~
+--[[moveHours メソッド>#PTime-moveHours]]~
+--[[moveMinutes メソッド>#PTime-moveMinutes]]~
+--[[moveSeconds メソッド>#PTime-moveSeconds]]~
+--[[moveMilliseconds メソッド>#PTime-moveMilliseconds]]~
+--[[moveMicroseconds メソッド>#PTime-moveMicroseconds]]~
+
+> (文字列化)~
+
+--[[toString メソッド>#PTime-toString]]~
+--[[toISOString メソッド>#PTime-toISOString]]~
+--[[toISOExtendedString メソッド>#PTime-toISOExtendedString]]~
+--[[toDataString メソッド>#PTime-toDataString]]~
+--[[toDataISOString メソッド>#PTime-toDataISOString]]~
+--[[toDataISOExtendedString メソッド>#PTime-toDataISOExtendedString]]~
+--[[toTimeString メソッド>#PTime-toTimeString]]~
+--[[toTimeISOString メソッド>#PTime-toTimeISOString]]~
+-プロパティ:~
+--[[year プロパティ>#PTime-year]]~
+--[[month プロパティ>#PTime-month]]~
+--[[day プロパティ>#PTime-day]]~
+--[[dayOfYear プロパティ>#PTime-dayOfYear]]~
+--[[dayOfWeek プロパティ>#PTime-dayOfWeek]]~
+--[[weekNumber プロパティ>#PTime-weekNumber]]~
+--[[julianDay プロパティ>#PTime-julianDay]]~
+--[[modjulianDay プロパティ>#PTime-modjulianDay]]~
+--[[hours プロパティ>#PTime-hours]]~
+--[[minutes プロパティ>#PTime-minutes]]~
+--[[seconds プロパティ>#PTime-seconds]]~
+--[[totalSeconds プロパティ>#PTime-totalSeconds]]~
+--[[totalMilliseconds プロパティ>#PTime-totalMilliseconds]]~
+--[[totalMicroseconds プロパティ>#PTime-totalMicroseconds]]~
+--[[totalNanoseconds プロパティ>#PTime-totalNanoseconds]]~
+--[[fractionalSeconds プロパティ>#PTime-fractionalSeconds]]~
+--[[numFractionalDigits プロパティ>#PTime-numFractionalDigits]]~
+
+--------------------------------------------------------------------------------
+-PTime.PTime メソッド &aname(PTime-PTime);~
+ コンストラクタ。
+--シグネチャ:~
+---PTime()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.assignLocalTimeSecondClock メソッド &aname(PTime-assignLocalTimeSecondClock);~
+ 秒単位のタイマを使って現在の現地時間を割り当てる。
+--シグネチャ:~
+---PTime.assignLocalTimeSecondClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignUniversalTimeSecondClock メソッド &aname(PTime-assignUniversalTimeSecondClock);~
+ 秒単位のタイマを使って現在の世界標準時を割り当てる。
+--シグネチャ:~
+---PTime.assignUniversalTimeSecondClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignLocalTimeMicrosecClock メソッド &aname(PTime-assignLocalTimeMicrosecClock);~
+ マイクロ秒単位のタイマを使って現在の現地時間を割り当てる。
+--シグネチャ:~
+---PTime.assignLocalTimeMicrosecClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignUniversalTimeMicrosecClock メソッド &aname(PTime-assignUniversalTimeMicrosecClock);~
+ マイクロ秒単位のタイマを使って現在の世界標準時を割り当てる。
+--シグネチャ:~
+---PTime.assignUniversalTimeMicrosecClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignLocalTimeDayClock メソッド &aname(PTime-assignLocalTimeDayClock);~
+ 日付単位のタイマを使って現在の現地時間を割り当てる。
+--シグネチャ:~
+---PTime.assignLocalTimeDayClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignUniversalTimeDayClock メソッド &aname(PTime-assignUniversalTimeDayClock);~
+ 日付単位のタイマを使って現在の世界標準時を割り当てる。
+--シグネチャ:~
+---PTime.assignUniversalTimeDayClock()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignDateTime メソッド &aname(PTime-assignDateTime);~
+ 日付と時刻を割り当てる。
+--シグネチャ:~
+---PTime.assignDateTime(y, m = 1, d = 1, hour = 0, min = 0, sec = 0, fs = 0)~
+--引数:~
+---y~
+年の数値。~
+---m~
+月の数値。~
+---d~
+日の数値。~
+---hour~
+時の数値。~
+---min~
+分の数値。~
+---sec~
+秒の数値。~
+---fs~
+マイクロ秒の数値。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignDate メソッド &aname(PTime-assignDate);~
+ 日付のみを割り当てる。
+--シグネチャ:~
+---PTime.assignDate(y, m = 1, d = 1)~
+--引数:~
+---y~
+年の数値。~
+---m~
+月の数値。~
+---d~
+日の数値。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignTime メソッド &aname(PTime-assignTime);~
+ 時刻のみを割り当てる。
+--シグネチャ:~
+---PTime.assignTime(hour = 0, min = 0, sec = 0, fs = 0)~
+--引数:~
+---hour~
+時の数値。~
+---min~
+分の数値。
+---sec~
+秒の数値。~
+---fs~
+マイクロ秒の数値。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-PTime.assignFromString メソッド &aname(PTime-assignFromString);~
+ 日時文字列から日付と時刻を割り当てる。
+--シグネチャ:~
+---PTime.assignFromString(source)~
+--引数:~
+---source~
+"YYYY-mmm-DD HH:MM:SS.fffffffff" 形式の日時文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.assignFromISOString メソッド &aname(PTime-assignFromISOString);~
+ ISO 日時文字列から日付と時刻を割り当てる。
+--シグネチャ:~
+---PTime.assignFromISOString(source)~
+--引数:~
+---source~
+"YYYYMMDDTHHMMSS,fffffffff" 形式の日時文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.assignFromString メソッド &aname(PTime-assignFromString);~
+ 日付文字列から日付のみ割り当てる。
+--シグネチャ:~
+---PTime.assignFromString(source)~
+--引数:~
+---source~
+"YYYY-mmm-DD" 形式の日付文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.assignDateFromString メソッド &aname(PTime-assignDateFromString);~
+ ISO日付文字列から日付のみ割り当てる。
+--シグネチャ:~
+---PTime.assignDateFromString(source)~
+--引数:~
+---source~
+"YYYYMMDD" 形式の日付文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.assignTimeFromString メソッド &aname(PTime-assignTimeFromString);~
+ 時刻文字列から時刻のみ割り当てる。
+--シグネチャ:~
+---PTime.assignTimeFromString(source)~
+--引数:~
+---source~
+"HH:MM:SS.fffffffff" 形式の時刻文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.assignTimeFromISOString メソッド &aname(PTime-assignTimeFromISOString);~
+ ISO時刻文字列から時刻のみ割り当てる。
+--シグネチャ:~
+---PTime.assignTimeFromISOString(source)~
+--引数:~
+---source~
+"HHMMSS,fffffffff" 形式の時間文字列。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---不正な文字列を渡した場合~
+
+--------------------------------------------------------------------------------
+-PTime.moveYears メソッド &aname(PTime-moveYears);~
+ 年単位で移動する。
+--シグネチャ:~
+---PTime.moveYears(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveMonths メソッド &aname(PTime-moveMonths);~
+ 月単位で移動する。
+--シグネチャ:~
+---PTime.moveMonths(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveDays メソッド &aname(PTime-moveDays);~
+ 日単位で移動する。
+--シグネチャ:~
+---PTime.moveDays(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveHours メソッド &aname(PTime-moveHours);~
+ 時単位で移動する。
+--シグネチャ:~
+---PTime.moveHours(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveMinutes メソッド &aname(PTime-moveMinutes);~
+ 分単位で移動する。
+--シグネチャ:~
+---PTime.moveMinutes(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveSeconds メソッド &aname(PTime-moveSeconds);~
+ 秒単位で移動する。
+--シグネチャ:~
+---PTime.moveSeconds(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveMilliseconds メソッド &aname(PTime-moveMilliseconds);~
+ ミリ秒単位で移動する。
+--シグネチャ:~
+---PTime.moveMilliseconds(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.moveMicroseconds メソッド &aname(PTime-moveMicroseconds);~
+ マイクロ秒単位で移動する。
+--シグネチャ:~
+---PTime.moveMicroseconds(t)~
+--引数:~
+---t~
+移動する数値。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-PTime.toString メソッド &aname(PTime-toString);~
+ 日時文字列を返す。
+--シグネチャ:~
+---PTime.toString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYY-mmm-DD HH:MM:SS.fffffffff" 形式の日時文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toISOString メソッド &aname(PTime-toISOString);~
+ ISO 日時文字列を返す。
+--シグネチャ:~
+---PTime.toISOString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYYMMDDTHHMMSS,fffffffff" 形式の日時文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toISOExtendedString メソッド &aname(PTime-toISOExtendedString);~
+ ISO 拡張日時文字列を返す。
+--シグネチャ:~
+---PTime.toISOExtendedString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYY-MM-DDTHH:MM:SS,fffffffff" 形式の日時文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toDataString メソッド &aname(PTime-toDataString);~
+ 日付文字列を返す。
+--シグネチャ:~
+---PTime.toDataString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYY-mmm-DD" 形式の日付文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toDataISOString メソッド &aname(PTime-toDataISOString);~
+ ISO 日付文字列を返す。
+--シグネチャ:~
+---PTime.toDataISOString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYYMM" 形式の日付文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toDataISOExtendedString メソッド &aname(PTime-toDataISOExtendedString);~
+ ISO 拡張日付文字列を返す。
+--シグネチャ:~
+---PTime.toDataISOExtendedString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"YYYY-MM-DD" 形式の日付文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toTimeString メソッド &aname(PTime-toTimeString);~
+ 時刻文字列を返す。
+--シグネチャ:~
+---PTime.toTimeString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"HH:MM:SS.fffffffff" 形式の時刻文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.toTimeISOString メソッド &aname(PTime-toTimeISOString);~
+ ISO 時刻文字列を返す。
+--シグネチャ:~
+---PTime.toTimeISOString()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+"HHMMSS,fffffffff" 形式の時刻文字列。~
+
+--------------------------------------------------------------------------------
+-PTime.year プロパティ &aname(PTime-year);~
+ 年の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.month プロパティ &aname(PTime-month);~
+ 月の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.day プロパティ &aname(PTime-day);~
+ 日の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.dayOfYear プロパティ &aname(PTime-dayOfYear);~
+ 年通算の日数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.dayOfWeek プロパティ &aname(PTime-dayOfWeek);~
+ 曜日の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.weekNumber プロパティ &aname(PTime-weekNumber);~
+ 年通算の週数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.julianDay プロパティ &aname(PTime-julianDay);~
+ ユリウス通日の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.modjulianDay プロパティ &aname(PTime-modjulianDay);~
+ 修正ユリウス通日の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.hours プロパティ &aname(PTime-hours);~
+ 時の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.minutes プロパティ &aname(PTime-minutes);~
+ 分の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.seconds プロパティ &aname(PTime-seconds);~
+ 秒の数値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.totalSeconds プロパティ &aname(PTime-totalSeconds);~
+ 日通算の秒数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.totalMilliseconds プロパティ &aname(PTime-totalMilliseconds);~
+ 日通算のミリ秒数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.totalMicroseconds プロパティ &aname(PTime-totalMicroseconds);~
+ 日通算のマイクロ秒数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.totalNanoseconds プロパティ &aname(PTime-totalNanoseconds);~
+ 日通算のナノ秒数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.fractionalSeconds プロパティ &aname(PTime-fractionalSeconds);~
+ 秒以下の数値（マイクロ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-PTime.numFractionalDigits プロパティ &aname(PTime-numFractionalDigits);~
+ 秒以下の数値の桁数（マイクロ秒単位）を返す。 (getter)
+
+--------------------------------------------------------------------------------
+

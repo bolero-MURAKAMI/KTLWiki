@@ -1,0 +1,574 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ bzip2 によるデータ圧縮／展開など。
+-パス:~
+--[[ktl/Bzip2.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_bzip2.dll / ktl_bzip2-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Bzip2Compressor クラス>#Bzip2Compressor]]~
+--[[Bzip2Decompressor クラス>#Bzip2Decompressor]]~
+
+--------------------------------------------------------------------------------
+
+**Bzip2Compressor クラス [#Bzip2Compressor]
+ bzip2 によるデータ圧縮を行うクラス。
+-メソッド:~
+--[[Bzip2Compressor メソッド>#Bzip2Compressor-Bzip2Compressor]]~
+
+> (セットアップ)~
+
+--[[reset メソッド>#Bzip2Compressor-reset]]~
+--[[setup メソッド>#Bzip2Compressor-setup]]~
+--[[finish メソッド>#Bzip2Compressor-finish]]~
+--[[flush メソッド>#Bzip2Compressor-flush]]~
+
+> (データ処理)~
+
+--[[processBlock メソッド>#Bzip2Compressor-processBlock]]~
+--[[processBytes メソッド>#Bzip2Compressor-processBytes]]~
+--[[processByte メソッド>#Bzip2Compressor-processByte]]~
+--[[processOctet メソッド>#Bzip2Compressor-processOctet]]~
+--[[processString メソッド>#Bzip2Compressor-processString]]~
+--[[processNarrowString メソッド>#Bzip2Compressor-processNarrowString]]~
+--[[processStorage メソッド>#Bzip2Compressor-processStorage]]~
+
+> (結果取得)~
+
+--[[asOctet メソッド>#Bzip2Compressor-asOctet]]~
+--[[saveStorage メソッド>#Bzip2Compressor-saveStorage]]~
+-プロパティ:~
+--[[setupCompleted プロパティ>#Bzip2Compressor-setupCompleted]]~
+--[[blockSize プロパティ>#Bzip2Compressor-blockSize]]~
+--[[workFactor プロパティ>#Bzip2Compressor-workFactor]]~
+--[[size プロパティ>#Bzip2Compressor-size]]~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.Bzip2Compressor メソッド &aname(Bzip2Compressor-Bzip2Compressor);~
+ コンストラクタ。
+--シグネチャ:~
+---Bzip2Compressor()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.reset メソッド &aname(Bzip2Compressor-reset);~
+ 圧縮処理設定およびバッファをリセットする。
+--シグネチャ:~
+---Bzip2Compressor.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.setup メソッド &aname(Bzip2Compressor-setup);~
+ 設定された圧縮処理設定をもとに、圧縮処理をセットアップする。
+--シグネチャ:~
+---Bzip2Compressor.setup()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+セットアップに成功した場合。~
+---false~
+セットアップに失敗した場合。~
+--注記:~
+圧縮処理設定は、このメソッドが実行される前に設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.finish メソッド &aname(Bzip2Compressor-finish);~
+ 圧縮処理を完了する。
+--シグネチャ:~
+---Bzip2Compressor.finish()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+圧縮処理に成功した場合。~
+---false~
+圧縮処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.flush メソッド &aname(Bzip2Compressor-flush);~
+ バッファを確実にフラッシュする。
+--シグネチャ:~
+---Bzip2Compressor.flush()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+フラッシュに成功した場合。~
+---false~
+フラッシュに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processBlock メソッド &aname(Bzip2Compressor-processBlock);~
+ 圧縮処理にポインタの範囲を追加。
+--シグネチャ:~
+---Bzip2Compressor.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processBytes メソッド &aname(Bzip2Compressor-processBytes);~
+ 圧縮処理にポインタの範囲を追加。
+--シグネチャ:~
+---Bzip2Compressor.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processByte メソッド &aname(Bzip2Compressor-processByte);~
+ 圧縮処理に 1byte 値を追加。
+--シグネチャ:~
+---Bzip2Compressor.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processOctet メソッド &aname(Bzip2Compressor-processOctet);~
+ 圧縮処理にオクテット列を追加。
+--シグネチャ:~
+---Bzip2Compressor.processOctet(octet)~
+---Bzip2Compressor.processOctet(octet, spos)~
+---Bzip2Compressor.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processString メソッド &aname(Bzip2Compressor-processString);~
+ 圧縮処理に文字列（UTF-16LE）を追加。
+--シグネチャ:~
+---Bzip2Compressor.processString(str)~
+---Bzip2Compressor.processString(str, spos)~
+---Bzip2Compressor.processString(str, spos, ssize)~
+--引数:~
+---str~
+追加する文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processNarrowString メソッド &aname(Bzip2Compressor-processNarrowString);~
+ 圧縮処理にナロー文字列（Shift_JIS）を追加。
+--シグネチャ:~
+---Bzip2Compressor.processNarrowString(str)~
+---Bzip2Compressor.processNarrowString(str, spos)~
+---Bzip2Compressor.processNarrowString(str, spos, ssize)~
+--引数:~
+---str~
+追加するナロー文字列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.processStorage メソッド &aname(Bzip2Compressor-processStorage);~
+ 圧縮処理にローカルストレージの内容を追加。
+--シグネチャ:~
+---Bzip2Compressor.processStorage(storage)~
+---Bzip2Compressor.processStorage(storage, spos)~
+---Bzip2Compressor.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.asOctet メソッド &aname(Bzip2Compressor-asOctet);~
+ 圧縮データをオクテット列として返す。
+--シグネチャ:~
+---Bzip2Compressor.asOctet()~
+---Bzip2Compressor.asOctet(pos)~
+---Bzip2Compressor.asOctet(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---Octet~
+圧縮データの値。~
+---void~
+圧縮処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.saveStorage メソッド &aname(Bzip2Compressor-saveStorage);~
+ 圧縮データをローカルストレージへ保存する。
+--シグネチャ:~
+---Bzip2Compressor.saveStorage(storage)~
+---Bzip2Compressor.saveStorage(storage, pos)~
+---Bzip2Compressor.saveStorage(storage, pos, size)~
+--引数:~
+---storage~
+保存するストレージのパス。~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、保存されたバイト数。~
+---負値~
+圧縮処理が完了していない、または保存に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.setupCompleted プロパティ &aname(Bzip2Compressor-setupCompleted);~
+ セットアップが正常に完了したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.blockSize プロパティ &aname(Bzip2Compressor-blockSize);~
+ 圧縮処理設定。圧縮に使用するブロックサイズを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 1～9 。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.workFactor プロパティ &aname(Bzip2Compressor-workFactor);~
+ 圧縮処理設定。ワーストケースの動作コントロールを設定／取得する。 (setter/getter)
+--注記:~
+有効な値の範囲 0～250 。~
+
+--------------------------------------------------------------------------------
+-Bzip2Compressor.size プロパティ &aname(Bzip2Compressor-size);~
+ 圧縮データを格納したバッファサイズを返す。 (getter)
+ 圧縮処理が完了していない場合、0 を返す。
+
+--------------------------------------------------------------------------------
+
+**Bzip2Decompressor クラス [#Bzip2Decompressor]
+ bzip2 によって圧縮されたデータの展開を行うクラス。
+-メソッド:~
+--[[Bzip2Decompressor メソッド>#Bzip2Decompressor-Bzip2Decompressor]]~
+
+> (セットアップ)~
+
+--[[reset メソッド>#Bzip2Decompressor-reset]]~
+--[[setup メソッド>#Bzip2Decompressor-setup]]~
+--[[finish メソッド>#Bzip2Decompressor-finish]]~
+--[[flush メソッド>#Bzip2Decompressor-flush]]~
+
+> (データ処理)~
+
+--[[processBlock メソッド>#Bzip2Decompressor-processBlock]]~
+--[[processBytes メソッド>#Bzip2Decompressor-processBytes]]~
+--[[processByte メソッド>#Bzip2Decompressor-processByte]]~
+--[[processOctet メソッド>#Bzip2Decompressor-processOctet]]~
+--[[processStorage メソッド>#Bzip2Decompressor-processStorage]]~
+
+> (結果取得)~
+
+--[[asOctet メソッド>#Bzip2Decompressor-asOctet]]~
+--[[asString メソッド>#Bzip2Decompressor-asString]]~
+--[[asNarrowString メソッド>#Bzip2Decompressor-asNarrowString]]~
+--[[saveStorage メソッド>#Bzip2Decompressor-saveStorage]]~
+-プロパティ:~
+--[[setupCompleted プロパティ>#Bzip2Decompressor-setupCompleted]]~
+--[[small プロパティ>#Bzip2Decompressor-small]]~
+--[[size プロパティ>#Bzip2Decompressor-size]]~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.Bzip2Decompressor メソッド &aname(Bzip2Decompressor-Bzip2Decompressor);~
+ コンストラクタ。
+--シグネチャ:~
+---Bzip2Decompressor()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.reset メソッド &aname(Bzip2Decompressor-reset);~
+ 展開処理設定およびバッファをリセットする。
+--シグネチャ:~
+---Bzip2Decompressor.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.setup メソッド &aname(Bzip2Decompressor-setup);~
+ 設定された展開処理設定をもとに、展開処理をセットアップする。
+--シグネチャ:~
+---Bzip2Decompressor.setup()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+セットアップに成功した場合。~
+---false~
+セットアップに失敗した場合。~
+--注記:~
+展開処理設定は、このメソッドが実行される前に設定する必要がある。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.finish メソッド &aname(Bzip2Decompressor-finish);~
+ 展開処理を完了する。
+--シグネチャ:~
+---Bzip2Decompressor.finish()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+展開処理に成功した場合。~
+---false~
+展開処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.flush メソッド &aname(Bzip2Decompressor-flush);~
+ バッファを確実にフラッシュする。
+--シグネチャ:~
+---Bzip2Decompressor.flush()~
+--引数:~
+---(なし)~
+--返値:~
+---true~
+フラッシュに成功した場合。~
+---false~
+フラッシュに失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.processBlock メソッド &aname(Bzip2Decompressor-processBlock);~
+ 展開処理にポインタの範囲を追加。
+--シグネチャ:~
+---Bzip2Decompressor.processBlock(first, last)~
+--引数:~
+---first~
+開始ポインタ。~
+---last~
+終端ポインタ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.processBytes メソッド &aname(Bzip2Decompressor-processBytes);~
+ 展開処理にポインタの範囲を追加。
+--シグネチャ:~
+---Bzip2Decompressor.processBytes(data, ssize)~
+--引数:~
+---data~
+データポインタ。~
+---ssize~
+書き込むサイズ。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+--注記:~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.processByte メソッド &aname(Bzip2Decompressor-processByte);~
+ 展開処理に 1byte 値を追加。
+--シグネチャ:~
+---Bzip2Decompressor.processByte(byte)~
+--引数:~
+---byte~
+追加する 1byte 値。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.processOctet メソッド &aname(Bzip2Decompressor-processOctet);~
+ 展開処理にオクテット列を追加。
+--シグネチャ:~
+---Bzip2Decompressor.processOctet(octet)~
+---Bzip2Decompressor.processOctet(octet, spos)~
+---Bzip2Decompressor.processOctet(octet, spos, ssize)~
+--引数:~
+---octet~
+追加するオクテット列。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.processStorage メソッド &aname(Bzip2Decompressor-processStorage);~
+ 展開処理にローカルストレージの内容を追加。
+--シグネチャ:~
+---Bzip2Decompressor.processStorage(storage)~
+---Bzip2Decompressor.processStorage(storage, spos)~
+---Bzip2Decompressor.processStorage(storage, spos, ssize)~
+--引数:~
+---storage~
+追加するストレージのパス。~
+---spos~
+追加するバイト列のオフセット。~
+---ssize~
+追加するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、追加されたバイト数。~
+---負値~
+処理に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.asOctet メソッド &aname(Bzip2Decompressor-asOctet);~
+ 展開データをオクテット列として返す。
+--シグネチャ:~
+---Bzip2Decompressor.asOctet()~
+---Bzip2Decompressor.asOctet(pos)~
+---Bzip2Decompressor.asOctet(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---Octet~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.asString メソッド &aname(Bzip2Decompressor-asString);~
+ 展開データを文字列（UTF-16LE）として返す。
+--シグネチャ:~
+---Bzip2Decompressor.asString()~
+---Bzip2Decompressor.asString(pos)~
+---Bzip2Decompressor.asString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.asNarrowString メソッド &aname(Bzip2Decompressor-asNarrowString);~
+ 展開データをナロー文字列（Shift_JIS）として返す。
+--シグネチャ:~
+---Bzip2Decompressor.asNarrowString()~
+---Bzip2Decompressor.asNarrowString(pos)~
+---Bzip2Decompressor.asNarrowString(pos, size)~
+--引数:~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---String~
+展開データの値。~
+---void~
+展開処理が完了していない、または取得に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.saveStorage メソッド &aname(Bzip2Decompressor-saveStorage);~
+ 展開データをローカルストレージへ保存する。
+--シグネチャ:~
+---Bzip2Decompressor.saveStorage(storage)~
+---Bzip2Decompressor.saveStorage(storage, pos)~
+---Bzip2Decompressor.saveStorage(storage, pos, size)~
+--引数:~
+---storage~
+保存するストレージのパス。~
+---pos~
+バイト列のオフセット。~
+---size~
+取得するバイト数。~
+--返値:~
+---正値~
+処理に成功した場合、保存されたバイト数。~
+---負値~
+展開処理が完了していない、または保存に失敗した場合。~
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.setupCompleted プロパティ &aname(Bzip2Decompressor-setupCompleted);~
+ セットアップが正常に完了したならば true、でなければ false を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.small プロパティ &aname(Bzip2Decompressor-small);~
+ 展開処理設定。省メモリで動作させるか設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-Bzip2Decompressor.size プロパティ &aname(Bzip2Decompressor-size);~
+ 展開データを格納したバッファサイズを返す。 (getter)
+ 展開処理が完了していない場合、0 を返す。
+
+--------------------------------------------------------------------------------
+

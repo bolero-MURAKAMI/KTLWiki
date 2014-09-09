@@ -1,0 +1,122 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列から変換
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* ローカルストレージの内容をロード */
+ oct.asStorage(0, System.exePath + "foobar.dat");
+ 
+ /* オフセット位置 */
+ var bytes_offset = 0;
+ 
+ /* 64bit 整数へ変換 */
+ var int64 = oct.as(bytes_offset, OctetBuilder.vtfInt64);
+ Debug.message("int64 = " + int64);
+ bytes_offset += 4;
+ 
+ /* 倍精度浮動小数点数へ変換 */
+ var double = oct.as(bytes_offset, OctetBuilder.vtfDouble);
+ Debug.message("double = " + double);
+ bytes_offset += 8;
+ 
+ /* オクテット列へ変換 */
+ var octet = oct.asOctet(bytes_offset, 4);
+ //Debug.message("octet = " + octet);
+ bytes_offset += 4;
+ 
+ /* 文字列へ変換 */
+ var str = oct.asString(bytes_offset, 14);
+ Debug.message("str = " + str);
+ bytes_offset += 14;
+ 
+ /* ローカルストレージへ保存 */
+ var bytes_saved = oct.saveStorage(System.exePath + "foobar2.dat");
+ if (bytes_saved < 0) {
+     Debug.message("保存に失敗しました。");
+ } else {
+     Debug.message("保存されました。");
+ }
+
+-OctetBuilder.as メソッド~
+--シグネチャ:~
+---OctetBuilder.as(pos, flag = OctetBuilder.vtfByte)~
+--バッファから値へ変換する。~
+--第１引数には書き込むオフセットのバイト数を渡す。~
+--第２引数には、値のデータ型やエンディアンを指定するフラグを渡すことができる(デフォルト=1byte 値)。~
+--変換された値を返す。~
+--バッファの不足などで変換に失敗した場合、void が返される。~
+
+-OctetBuilder.asBuilder メソッド~
+--シグネチャ:~
+---OctetBuilder.asBuilder()~
+---OctetBuilder.asBuilder(pos)~
+---OctetBuilder.asBuilder(pos, size)~
+--バッファから新しい OctetBuilder インスタンスへ変換する。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--変換された値を返す。~
+--バッファの不足などで変換に失敗した場合、void が返される。~
+
+-OctetBuilder.asOctet メソッド~
+--シグネチャ:~
+---OctetBuilder.asOctet()~
+---OctetBuilder.asOctet(pos)~
+---OctetBuilder.asOctet(pos, size)~
+--バッファからオクテット列へ変換する。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--変換された値を返す。~
+--バッファの不足などで変換に失敗した場合、void が返される。~
+
+-OctetBuilder.asString メソッド~
+--シグネチャ:~
+---OctetBuilder.asString()~
+---OctetBuilder.asString(pos)~
+---OctetBuilder.asString(pos, size)~
+--バッファから文字列（UTF-16LE）へ変換する。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--変換された値を返す。~
+--バッファの不足などで変換に失敗した場合、void が返される。~
+
+-OctetBuilder.asNarrowString メソッド~
+--シグネチャ:~
+---OctetBuilder.asNarrowString()~
+---OctetBuilder.asNarrowString(pos)~
+---OctetBuilder.asNarrowString(pos, size)~
+--バッファから文字列（Shift_JIS）へ変換する。~
+--第１引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第２引数に数値を指定すると、そのバイト数だけ変換する。~
+--変換された値を返す。~
+--バッファの不足などで変換に失敗した場合、void が返される。~
+
+-OctetBuilder.saveStorage メソッド~
+--シグネチャ:~
+---OctetBuilder.saveStorage(storage)~
+---OctetBuilder.saveStorage(storage, pos)~
+---OctetBuilder.saveStorage(storage, pos, size)~
+--バッファからローカルストレージへ保存する。~
+--第１引数には保存するストレージのパスを渡す。~
+--第２引数に数値を指定すると、バイト列のオフセットとして扱われる。~
+--第３引数に数値を指定すると、そのバイト数だけ保存する。~
+--実際に保存されたバイト数を返す。~
+--保存に失敗した場合、負値が返される。~

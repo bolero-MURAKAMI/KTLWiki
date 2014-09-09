@@ -1,0 +1,246 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_storage_stream.dll（または ktl_storage_stream-d.dll）~
+
+-スクリプト~
+--[[ktl/StorageStream.tjs]]~
+
+-クラス~
+--StorageStream クラス~
+
+
+
+*ファイル書き込み
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/StorageStream.tjs");
+ 
+ /* StorageStream のインスタンス作成 */
+ var stream = new StorageStream();
+ 
+ /* 書き込み用にファイルを開く */
+ if (!stream.open(System.dataPath + "io.txt", StorageStream.afWrite))
+     Debug.message("ファイルオープンに失敗しました。");
+ }
+ 
+ /* 以下、[<-]をポインタ（読み書きのオフセット位置）とする */
+ /* BOMを書き込む */
+ /*
+     [BOM][<-]
+ */
+ stream.writeString("\xFEFF");
+ 
+ /* 書き込み */
+ /*
+     [BOM]hoge
+     [<-]
+ */
+ stream.writeString("hoge\r\n");
+ 
+ /* 書き込み */
+ /*
+     [BOM]hoge
+     hoge
+     [<-]
+ */
+ stream.writeString("hoge\r\n");
+ 
+ /* 書き込み */
+ /*
+     [BOM]hoge
+     hoge
+     foobar
+     [<-]
+ */
+ stream.writeString("foobar\r\n");
+ 
+ /* ポインタを絶対位置0へシーク */
+ /*
+     [<-][BOM]hoge
+     hoge
+     foobar
+ */
+ stream.seek(0, StorageStream.sfSet);
+ 
+ /* ポインタを現在位置+2へシーク */
+ /*
+     [BOM][<-]hoge
+     hoge
+     foobar
+ */
+ stream.seek(2, StorageStream.sfCur);
+ 
+ /* 書き込み */
+ /*
+     [BOM]piyo
+     [<-]hoge
+     foobar
+ */
+ stream.writeString("piyo\r\n");
+ 
+ /* ポインタを終端位置+0へシーク */
+ /*
+     [BOM]hoge
+     hoge
+     foobar
+     [<-]
+ */
+ stream.seek(0, StorageStream.sfEnd);
+ 
+ /* ストリームを閉じる */
+ stream.close();
+
+-StorageStream クラス~
+--ローカルストレージ（ファイル）へのI/Oを行う。~
+--ほぼCOMのIStreamインタフェースのラッパ。~
+
+-StorageStream.open メソッド~
+--シグネチャ:~
+---StorageStream.open(storage, flag)~
+--ファイルを開く。~
+--第２引数に指定するフラグによって挙動が異なる。~
+--処理に成功した場合はtrue、失敗した場合はfalseを返す。~
+
+-StorageStream.afRead プロパティ~
+--StorageStream.open メソッドの第２引数に渡す。~
+--読み込み専用モードで開くフラグ。~
+--ファイルが既に存在した場合、シーク位置は開始点に設定される。~
+--ファイルが存在しない場合、失敗する。~
+
+-StorageStream.afWrite プロパティ~
+--StorageStream.open メソッドの第２引数に渡す。~
+--書き込みモードで開くフラグ。~
+--ファイルが既に存在した場合、ファイルは初期化される。~
+--ファイルが存在しない場合、ファイルを作成する。~
+
+-StorageStream.afAppend プロパティ~
+--StorageStream.open メソッドの第２引数に渡す。~
+--追加モードで開くフラグ。~
+--ファイルが既に存在した場合、シーク位置は終端に設定される。~
+--ファイルが存在しない場合、失敗する。~
+
+-StorageStream.afUpdate プロパティ~
+--StorageStream.open メソッドの第２引数に渡す。~
+--更新モードで開くフラグ。~
+--ファイルが既に存在した場合、シーク位置は開始点に設定される。~
+--ファイルが存在しない場合、失敗する。~
+
+-StorageStream.close メソッド~
+--シグネチャ:~
+---StorageStream.close()~
+--ファイルを閉じる。~
+--ファイルが開かれていればtrue、でなければfalseを返す。~
+
+-StorageStream.isOpen プロパティ~
+--ファイルが開かれていればtrue、でなければfalseを返す。~
+
+-StorageStream.writeOctet メソッド~
+--シグネチャ:~
+---StorageStream.writeOctet(octet)~
+---StorageStream.writeOctet(octet, spos)~
+---StorageStream.writeOctet(octet, spos, ssize)~
+--オクテット列を書き込む。~
+--第２引数に数値を指定した場合、オクテット列のオフセットとして解釈される。~
+--第３引数に数値を指定した場合、オクテット列のオフセット以降の書き込みサイズとして解釈される。~
+
+-StorageStream.writeString メソッド~
+--シグネチャ:~
+---StorageStream.writeString(str)~
+---StorageStream.writeString(str, spos)~
+---StorageStream.writeString(str, spos, ssize)~
+--文字列を書き込む。文字コードは吉里吉里のWindows環境では、UTF-16（BOM無し）になる。~
+--第２引数に数値を指定した場合、文字列のオフセットとして解釈される。~
+--第３引数に数値を指定した場合、文字列のオフセット以降の書き込みサイズとして解釈される。~
+--なお第２、第３引数は、文字単位でなくバイト単位として扱う。
+
+-StorageStream.writeNarrowString メソッド~
+--シグネチャ:~
+---StorageStream.writeNarrowString(str)~
+---StorageStream.writeNarrowString(str, spos)~
+---StorageStream.writeNarrowString(str, spos, ssize)~
+--文字列を書き込む。文字コードは吉里吉里のWindows環境では、Shift_JIS（Windows-31J）になる。~
+--第２引数に数値を指定した場合、文字列のオフセットとして解釈される。~
+--第３引数に数値を指定した場合、文字列のオフセット以降の書き込みサイズとして解釈される。~
+--なお第２、第３引数は、文字単位でなくバイト単位として扱う。
+
+*ファイル読み込み
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/StorageStream.tjs");
+ 
+ /* StorageStream のインスタンス作成 */
+ var stream = new StorageStream();
+ 
+ /* 読み込み用にファイルを開く */
+ if (!stream.open(System.dataPath + "io.txt", StorageStream.afRead))
+     Debug.message("ファイルオープンに失敗しました。");
+ }
+ 
+ if(stream.size < 2 || stream.size % 2) {
+     Debug.message("Unicodeでない、またはBOMがありません。");
+ }
+ 
+ /* BOMを読み込む */
+ if (stream.readString(2) != "\xFEFF") {
+     Debug.message("BOMが無い、またはエンディアンが異なります。");
+ }
+ 
+ /* 文字列として読み込む */
+ var str = stream.readString();
+ Debug.message(str);
+
+-StorageStream.readOctet メソッド~
+--シグネチャ:~
+---StorageStream.readOctet()~
+---StorageStream.readOctet(size)~
+--オクテット列として読み込む。~
+--第１引数に数値を指定した場合、読み込むサイズとして解釈される。~
+--第１引数を指定しなかった場合、シーク位置以降すべてを読み込む。~
+
+-StorageStream.readString メソッド~
+--シグネチャ:~
+---StorageStream.readString()~
+---StorageStream.readString(size)~
+--文字列として読み込む。文字コードは吉里吉里のWindows環境では、UTF-16（BOM無し）になる。~
+--第１引数に数値を指定した場合、読み込むサイズとして解釈される。~
+--第１引数を指定しなかった場合、シーク位置以降すべてを読み込む。~
+--なお第１引数は、文字単位でなくバイト単位として扱う。
+
+-StorageStream.readNarrowString メソッド~
+--シグネチャ:~
+---StorageStream.readNarrowString()~
+---StorageStream.readNarrowString(size)~
+--文字列として読み込む。文字コードは吉里吉里のWindows環境では、Shift_JIS（Windows-31J）になる。~
+--第１引数に数値を指定した場合、読み込むサイズとして解釈される。~
+--第１引数を指定しなかった場合、シーク位置以降すべてを読み込む。~
+--なお第１引数は、文字単位でなくバイト単位として扱う。
+
+-StorageStream.seek メソッド~
+--シグネチャ:~
+---StorageStream.seek(offset, flag)~
+--シーク位置を設定する。~
+--第２引数に指定するフラグによって挙動が異なる。~
+--処理に成功した場合、シーク後の絶対位置を返す。~
+--処理に失敗した場合、負値を返す。~
+
+-StorageStream.sfSet プロパティ~
+--StorageStream.seek メソッドの第２引数に渡す。~
+--ファイルの先頭からの絶対位置を指定するフラグ。~
+
+-StorageStream.sfCur プロパティ~
+--StorageStream.seek メソッドの第２引数に渡す。~
+--現在位置からのオフセット指定するフラグ。~
+
+-StorageStream.sfEnd プロパティ~
+--StorageStream.seek メソッドの第２引数に渡す。~
+--ファイルの末尾からのオフセット指定するフラグ。~
+
+-StorageStream.current プロパティ~
+--現在のシーク位置を返す。~
+
+-StorageStream.size プロパティ~
+--開かれているファイル全体のサイズを返す。~
+

@@ -1,0 +1,286 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 様々なユーティリティなど。
+-パス:~
+--[[ktl/Utils.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_utils.dll / ktl_utils-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Utils クラス>#Utils]]~
+
+--------------------------------------------------------------------------------
+
+**Utils クラス [#Utils]
+ 雑多な機能を提供するクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+--[[getCii メソッド>#Utils-getCii]]~
+--[[getCount メソッド>#Utils-getCount]]~
+--[[getContext メソッド>#Utils-getContext]]~
+--[[getOctetData メソッド>#Utils-getOctetData]]~
+--[[getOctetSize メソッド>#Utils-getOctetSize]]~
+--[[beginOctet メソッド>#Utils-beginOctet]]~
+--[[endOctet メソッド>#Utils-endOctet]]~
+--[[getStringData メソッド>#Utils-getStringData]]~
+--[[getStringSize メソッド>#Utils-getStringSize]]~
+--[[beginString メソッド>#Utils-beginString]]~
+--[[endString メソッド>#Utils-endString]]~
+--[[toString メソッド>#Utils-toString]]~
+--[[toReadableString メソッド>#Utils-toReadableString]]~
+--[[loadStorageToOctet メソッド>#Utils-loadStorageToOctet]]~
+--[[saveStorageFromOctet メソッド>#Utils-saveStorageFromOctet]]~
+--[[enumMembers メソッド>#Utils-enumMembers]]~
+--[[enumMembersName メソッド>#Utils-enumMembersName]]~
+
+--------------------------------------------------------------------------------
+-Utils.getCii メソッド &aname(Utils-getCii);~
+ インスタンスオブジェクトのクラス名を返す。
+--シグネチャ:~
+---Utils.getCii(obj)~
+---Utils.getCii(obj, num)~
+--引数:~
+---obj~
+インスタンスオブジェクト。~
+---num~
+継承のインデックス。~
+--返値:~
+---String~
+クラス名。
+---void~
+オブジェクトがクラスインスタンスでない、またはインデックスが範囲外だった場合。
+
+--------------------------------------------------------------------------------
+-Utils.getCount メソッド &aname(Utils-getCount);~
+ オブジェクトのメンバ数を返す。
+--シグネチャ:~
+---Utils.getCount(obj)~
+--引数:~
+---obj~
+オブジェクト。~
+--返値:~
+---Integer~
+メンバ数。
+---void~
+オブジェクトが null だった場合。
+
+--------------------------------------------------------------------------------
+-Utils.getContext メソッド &aname(Utils-getContext);~
+ オブジェクトのコンテキストオブジェクトを返す。
+--シグネチャ:~
+---Utils.getContext(obj)~
+--引数:~
+---obj~
+オブジェクト。~
+--返値:~
+---Object~
+コンテキストオブジェクト。
+
+--------------------------------------------------------------------------------
+-Utils.getOctetData メソッド &aname(Utils-getOctetData);~
+ オクテット列のバイト列の開始アドレスを返す。
+--シグネチャ:~
+---Utils.getOctetData(octet)~
+--引数:~
+---octet~
+オクテット列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+オクテット列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.getOctetSize メソッド &aname(Utils-getOctetSize);~
+ オクテット列のバイト列のサイズを返す。
+--シグネチャ:~
+---Utils.getOctetSize(octet)~
+--引数:~
+---octet~
+オクテット列。~
+--返値:~
+---Integer~
+サイズ。
+
+--------------------------------------------------------------------------------
+-Utils.beginOctet メソッド &aname(Utils-beginOctet);~
+ オクテット列のバイト列の開始アドレスを返す。
+--シグネチャ:~
+---Utils.beginOctet(octet)~
+--引数:~
+---octet~
+オクテット列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+オクテット列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.endOctet メソッド &aname(Utils-endOctet);~
+ オクテット列のバイト列の終端アドレスを返す。
+--シグネチャ:~
+---Utils.endOctet(octet)~
+--引数:~
+---octet~
+オクテット列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+オクテット列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.getStringData メソッド &aname(Utils-getStringData);~
+ 文字列のバイト列の開始アドレスを返す。
+--シグネチャ:~
+---Utils.getStringData(octet)~
+--引数:~
+---octet~
+文字列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+文字列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.getStringSize メソッド &aname(Utils-getStringSize);~
+ 文字列のバイト列のサイズを返す。
+--シグネチャ:~
+---Utils.getStringSize(octet)~
+--引数:~
+---octet~
+文字列。~
+--返値:~
+---Integer~
+サイズ。
+
+--------------------------------------------------------------------------------
+-Utils.beginString メソッド &aname(Utils-beginString);~
+ 文字列のバイト列の開始アドレスを返す。
+--シグネチャ:~
+---Utils.beginString(octet)~
+--引数:~
+---octet~
+文字列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+文字列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.endString メソッド &aname(Utils-endString);~
+ 文字列のバイト列の終端アドレスを返す。
+--シグネチャ:~
+---Utils.endString(octet)~
+--引数:~
+---octet~
+文字列。~
+--返値:~
+---Integer~
+アドレス値。
+--注記:~
+文字列は読み取り専用です。このメソッドで得たアドレスを使って書き込んではならない。~
+ [unsafe] このメソッドはポインタを直接扱うため安全ではありません。
+
+--------------------------------------------------------------------------------
+-Utils.toString メソッド &aname(Utils-toString);~
+ 値を文字列に変換して返す。
+--シグネチャ:~
+---Utils.toString(v)~
+--引数:~
+---v~
+値。~
+--返値:~
+---String~
+文字列。
+--注記:~
+オクテット列は、リスト文字列に変換される。~
+
+--------------------------------------------------------------------------------
+-Utils.toReadableString メソッド &aname(Utils-toReadableString);~
+ 値をコンソール出力形式の文字列に変換して返す。
+--シグネチャ:~
+---Utils.toReadableString(v)~
+---Utils.toReadableString(v, max_size)~
+--引数:~
+---v~
+値。~
+---max_size~
+最大の出力文字数。~
+--返値:~
+---String~
+文字列。
+
+--------------------------------------------------------------------------------
+-Utils.loadStorageToOctet メソッド &aname(Utils-loadStorageToOctet);~
+ ローカルストレージの内容をオクテット列に読み込んで返す。
+--シグネチャ:~
+---Utils.loadStorageToOctet(storage)~
+--引数:~
+---storage~
+ストレージのパス。~
+--返値:~
+---Octet~
+読み込まれたオクテット列。
+
+--------------------------------------------------------------------------------
+-Utils.saveStorageFromOctet メソッド &aname(Utils-saveStorageFromOctet);~
+ オクテット列の内容をローカルストレージに書き出す。
+--シグネチャ:~
+---Utils.saveStorageFromOctet(storage, octet)~
+--引数:~
+---storage~
+ストレージのパス。~
+---octet~
+書き出すオクテット列。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+
+--------------------------------------------------------------------------------
+-Utils.enumMembers メソッド &aname(Utils-enumMembers);~
+ オブジェクトのメンバを辞書配列に格納して返す。
+--シグネチャ:~
+---Utils.enumMembers(obj)~
+--引数:~
+---obj~
+オブジェクト。~
+--返値:~
+---Dictionary~
+メンバが格納された辞書配列。
+---void~
+オブジェクトが null だった場合。
+
+--------------------------------------------------------------------------------
+-Utils.enumMembersName メソッド &aname(Utils-enumMembersName);~
+ オブジェクトのメンバ名を配列に格納して返す。
+--シグネチャ:~
+---Utils.enumMembersName(obj)~
+--引数:~
+---obj~
+オブジェクト。~
+--返値:~
+---Array~
+メンバ名が格納された配列。
+---void~
+オブジェクトが null だった場合。
+
+--------------------------------------------------------------------------------
+

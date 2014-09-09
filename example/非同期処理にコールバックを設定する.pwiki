@@ -1,0 +1,65 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+--[[ktl/LocalFiles.tjs]]~
+--[[ktl/Bind.tjs]]~
+
+-クラス~
+--[[Downloader クラス>ktl/Network.tjs#Downloader]]~
+ ソケット通信を行うクラス。SSL接続に対応。同期／非同期処理に対応。
+--[[LocalFiles クラス>ktl/LocalFiles.tjs#LocalFiles]]~
+ OS ネイティブのファイル操作などを行うクラス。
+
+
+
+*非同期処理にコールバックを設定する
+ // スクリプトのロード
+ Scripts.execStorage("ktl/Network.tjs");
+ Scripts.execStorage("ktl/LocalFiles.tjs");
+ Scripts.execStorage("ktl/Bind.tjs");
+ 
+ var down = new Downloader();
+ 
+ // 「ダウンロードが失敗したとき残ったファイルを削除する」コールバックを設定する
+ // bind は、メソッドに引数を束縛する機能
+ down.onFinished = bind(
+    function(downloader) {
+        if (downloader.failed) {
+            Debug.message("info: ダウンロードが失敗またはキャンセルされました");
+            if (LocalFiles.exists(downloader.storageLocalName)) {
+                Debug.message("info: ダウンロード途中のファイルを削除します");
+                LocalFiles.remove(downloader.storageLocalName);
+            }
+        }
+        } incontextof global,
+    down
+    );
+ 
+ // 大きなファイルを非同期ダウンロード
+ down.asyncDownloadHTTP("http://www.boleros.x0.com/data/plugin.zip", "plugin.zip");
+ 
+ // 1000ms でタイムアウト（途中でタイムアウトになるように）
+ down.asyncWaitTimeoutFromNow(1000);
+
+-[[Downloader.onFinished プロパティ>ktl/Network.tjs#Downloader-onFinished]]~
+ ダウンロード処理終了時にコールバックされる関数を設定/取得する。 (setter/getter)
+
+-[[Downloader.storageLocalName プロパティ>ktl/Network.tjs#Downloader-storageLocalName]]~
+ ダウンロードファイル保存先のパス（ローカルファイル名）を返す。 (getter)
+
+-[[LocalFiles.exists メソッド プロパティ>ktl/LocalFiles.tjs#LocalFiles-exists]]~
+ ローカルファイルが存在するか返す。
+
+-[[LocalFiles.remove メソッド プロパティ>ktl/LocalFiles.tjs#LocalFiles-remove]]~
+ ローカルファイルを削除する。
+

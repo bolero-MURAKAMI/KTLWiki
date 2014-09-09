@@ -1,0 +1,62 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_octet_builder.dll（または ktl_octet_builder-d.dll）~
+
+-スクリプト~
+--[[ktl/OctetBuilder.tjs]]~
+
+-クラス~
+--OctetBuilder クラス~
+
+
+
+*オクテット列のビット演算
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/OctetBuilder.tjs");
+ 
+ /* OctetBuilder のインスタンス作成 */
+ var oct = new OctetBuilder();
+ 
+ /* テストデータの割り当て */
+ oct.assignOctet(<% DE AD BE AF %>);
+ 
+ /* AND演算（ビット論理積） */
+ oct.transformAndByte(0x7F);
+ 
+ /* OR演算（ビット論理和） */
+ oct.transformOrByte(0x7F);
+ 
+ /* XOR演算（ビット排他的論理和） */
+ oct.transformXorByte(0x7F);
+ 
+ /* NOT演算（ビット反転） */
+ oct.transformNotByte();
+
+-OctetBuilder.transformAndByte メソッド~
+--シグネチャ:~
+---OctetBuilder.transformAndByte(b)~
+--バッファへの全バイトに対して、AND演算を適用する。~
+--第１引数にはオペランドの 1byte 値を渡す。~
+
+-OctetBuilder.transformOrByte メソッド~
+--シグネチャ:~
+---OctetBuilder.transformOrByte(b)~
+--バッファへの全バイトに対して、OR演算を適用する。~
+--第１引数にはオペランドの 1byte 値を渡す。~
+
+-OctetBuilder.transformXorByte メソッド~
+--シグネチャ:~
+---OctetBuilder.transformXorByte(b)~
+--バッファへの全バイトに対して、XOR演算を適用する。~
+--第１引数にはオペランドの 1byte 値を渡す。~
+
+-OctetBuilder.transformNotByte メソッド~
+--シグネチャ:~
+---OctetBuilder.transformNotByte()~
+--バッファへの全バイトに対して、NOT演算を適用する。~
+

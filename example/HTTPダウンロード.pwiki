@@ -1,0 +1,76 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_network.dll (または ktl_network-d.dll)~
+--ktl_network-v500.dll (または ktl_network-v500-d.dll) -----Windows 2000 に対応する場合~
+--ktl_os_version.dll (または ktl_os_version-d.dll) ---------OSのバージョンチェックを行う場合（デフォルトで有効）~
+
+-スクリプト~
+--[[ktl/Network.tjs]]~
+
+-クラス~
+--[[Downloader クラス>ktl/Network.tjs#Downloader]]~
+ HTTPダウンロードを行うクラス。SSL接続（HTTPS）に対応。同期／非同期処理に対応。
+
+
+
+*同期ダウンロード
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* Downloader のインスタンス作成 */
+ var down = new Downloader();
+ 
+ /* foo.jpg をダウンロード */
+ if (!down.downloadHTTP("http://xxx.xx/foo.jpg", System.dataPath + "foo.jpg")) {
+     Debug.message("ダウンロードに失敗しました。");
+ }
+
+-[[Downloader.downloadHTTP メソッド>ktl/Network.tjs#Downloader-downloadHTTP]]~
+ 同期ダウンロードを実行する。
+
+
+
+*非同期ダウンロード
+ /* スクリプトのロード */
+ Scripts.execStorage("ktl/Network.tjs");
+ 
+ /* Downloader のインスタンス作成 */
+ var down1 = new Downloader();
+ var down2 = new Downloader();
+ 
+ /* foo.jpg および bar.jpg を非同期ダウンロード（並列処理） */
+ down1.asyncDownloadHTTP("http://xxx.xx/foo.jpg", System.dataPath + "foo.jpg")
+ down2.asyncDownloadHTTP("https://xxx.xx/bar.jpg", System.dataPath + "bar.jpg")
+ 
+ /* フラグの判定 */
+ if (down2.isProcessing) {
+     Debug.message("ダウンロードが進行中です。");
+ } else if (down2.failed) {
+     Debug.message("ダウンロードに失敗しました。");
+ }
+ 
+ /* ダウンロードのキャンセル */
+ if (!down1.cancel()) {
+     Debug.message("ダウンロードは既に終わっています。");
+ }
+
+-[[Downloader.asyncDownloadHTTP メソッド>ktl/Network.tjs#Downloader-asyncDownloadHTTP]]~
+ 非同期ダウンロードを実行する。
+
+-[[Downloader.cancel メソッド>ktl/Network.tjs#Downloader-cancel]]~
+ 非同期処理をキャンセルする。
+
+-[[Downloader.isProcessing プロパティ>ktl/Network.tjs#Downloader-isProcessing]]~
+ 非同期処理が実行中であれば true、でなければ false を返す。 (getter)
+
+-[[Downloader.failed プロパティ>ktl/Network.tjs#Downloader-failed]]~
+ ダウンロードに失敗した（またはキャンセルで処理が中止された）なら true、でなければ false を返す。 (getter)
+
+-[[Downloader.cancelled プロパティ>ktl/Network.tjs#Downloader-cancelled]]~
+ ダウンロードがキャンセルされたならば true、でなければ false を返す。 (getter)
+

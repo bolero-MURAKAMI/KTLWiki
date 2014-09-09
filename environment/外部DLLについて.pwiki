@@ -1,0 +1,31 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#outlines-]
+KTL の提供する DLL のいくつかは、外部の別なライブラリの DLL に依存するものがあります。~
+こうした外部の別なライブラリの DLL を「外部DLL」と呼ぶことにします。~
+-注意点~
+通常、吉里吉里用のプラグインDLLは、実行ファイル（krkr.eXe）と同じ位置、または plugin フォルダに置くことができます。~
+しかし外部DLLは、実行ファイル（krkr.eXe）と同じ位置に置かなければなりません。~
+
+
+
+*ICU [#icu-]
+ICU は、IBM 製の Unicode ライブラリです。~
+-ICU に依存する DLL~
+--ktl_encoding.dll / ktl_encoding-d.dll(デバッグ版)~
+---→ icudt46.dll, icuuc46.dll, icuin46.dll に依存する~
+--ktl_ptree.dll / ktl_ptree-d.dll(デバッグ版)~
+---→ icudt46.dll, icuuc46.dll に依存する~
+
+-ICU の DLL~
+　■[[ICU.zip:http://www.boleros.x0.com/data/ICU.zip]]~
+　　( Copyright (C) 2010, International Business Machines Corporation and others. All Rights Reserved. )~
+
+-他~
+また、当サイトで頒布している ICU の DLL は、実行に Microsoft Visual C++ ランタイムが必要となります。~
+以下のページも参照ください。~
+　■[[ユーザ環境への依存-Microsoft Visual C++ ランタイム>environment/ユーザ環境への依存#msvcrt-]]~
+

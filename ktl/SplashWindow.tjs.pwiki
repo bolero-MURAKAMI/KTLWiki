@@ -1,0 +1,361 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ スプラッシュスクリーンなど。
+-パス:~
+--[[ktl/SplashWindow.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_splash_window.dll / ktl_splash_window-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[SplashWindow クラス>#SplashWindow]]~
+--[[LayeredSplashWindow クラス>#LayeredSplashWindow]]~
+
+--------------------------------------------------------------------------------
+
+**SplashWindow クラス [#SplashWindow]
+ スプラッシュスクリーンを表示するクラス。
+-メソッド:~
+--[[SplashWindow メソッド>#SplashWindow-SplashWindow]]~
+--[[initialize メソッド>#SplashWindow-initialize]]~
+--[[uninitialize メソッド>#SplashWindow-uninitialize]]~
+--[[loadImages メソッド>#SplashWindow-loadImages]]~
+--[[loadImagesFromOctet メソッド>#SplashWindow-loadImagesFromOctet]]~
+-プロパティ:~
+--[[visible プロパティ>#SplashWindow-visible]]~
+--[[topMost プロパティ>#SplashWindow-topMost]]~
+--[[imageWidth プロパティ>#SplashWindow-imageWidth]]~
+--[[imageHeight プロパティ>#SplashWindow-imageHeight]]~
+--[[left プロパティ>#SplashWindow-left]]~
+--[[top プロパティ>#SplashWindow-top]]~
+--[[width プロパティ>#SplashWindow-width]]~
+--[[height プロパティ>#SplashWindow-height]]~
+--[[identity プロパティ>#SplashWindow-identity]]~
+--[[initialized プロパティ>#SplashWindow-initialized]]~
+-注記:~
+スクリーンは、インスタンスが invalidate された時点で破棄される。~
+アルファチャンネル付き画像や半透明化を扱いたい場合は、[[LayeredSplashWindow クラス>#LayeredSplashWindow]] を使う。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.SplashWindow メソッド &aname(SplashWindow-SplashWindow);~
+ コンストラクタ。
+--シグネチャ:~
+---SplashWindow()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SplashWindow.initialize メソッド &aname(SplashWindow-initialize);~
+ ウィンドウを初期化する。
+--シグネチャ:~
+---SplashWindow.initialize(width, height)~
+---SplashWindow.initialize(width, height, identity)~
+--引数:~
+---width~
+スクリーンの幅。~
+---height~
+スクリーンの高さ。~
+---identity~
+ユニークな文字列（UUID など）。~
+省略した場合、ランダムに生成された UUID が使われる。~
+--返値:~
+---(なし)~
+--注記:~
+ウィンドウは自動的にデスクトップ領域に対してセンタリングされる。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.uninitialize メソッド &aname(SplashWindow-uninitialize);~
+ ウィンドウを破棄する。
+--シグネチャ:~
+---SplashWindow.uninitialize()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-SplashWindow.loadImages メソッド &aname(SplashWindow-loadImages);~
+ 表示される画像イメージをロードする。
+--シグネチャ:~
+---SplashWindow.loadImages(storage)~
+--引数:~
+---storage~
+ストレージパス。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---ファイル読込に失敗した場合~
+---非対応の画像形式だった場合~
+--注記:~
+現在、PNG 形式のみ対応。~
+アルファ値は単に無視される。~
+画像とスクリーンサイズが違った場合、イメージはスクリーンにフィットするようストレッチ（引き延ばし）される。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.loadImagesFromOctet メソッド &aname(SplashWindow-loadImagesFromOctet);~
+ 表示される画像イメージをオクテット列のファイルイメージからロードする。
+--シグネチャ:~
+---SplashWindow.loadImagesFromOctet(source)~
+--引数:~
+---source~
+オクテット列のファイルイメージ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---ファイル読込に失敗した場合~
+---非対応の画像形式だった場合~
+--注記:~
+現在、PNG 形式のみ対応。~
+アルファ値は単に無視される。~
+画像とスクリーンサイズが違った場合、イメージはスクリーンにフィットするようストレッチ（引き延ばし）される。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.visible プロパティ &aname(SplashWindow-visible);~
+ スクリーンの表示状態を設定／取得する。 (setter/getter)
+--注記:~
+このプロパティは、未初期化時に値を設定しようとした場合何もしない。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.topMost プロパティ &aname(SplashWindow-topMost);~
+ スクリーンが最前面かどうか設定／取得する。 (setter/getter)
+--注記:~
+このプロパティは、未初期化時に値を設定しようとした場合何もしない。~
+
+--------------------------------------------------------------------------------
+-SplashWindow.imageWidth プロパティ &aname(SplashWindow-imageWidth);~
+ 画像イメージの幅を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.imageHeight プロパティ &aname(SplashWindow-imageHeight);~
+ 画像イメージの高さを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.left プロパティ &aname(SplashWindow-left);~
+ ウィンドウの左上X座標を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.top プロパティ &aname(SplashWindow-top);~
+ ウィンドウの左上Y座標を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.width プロパティ &aname(SplashWindow-width);~
+ ウィンドウの幅を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.height プロパティ &aname(SplashWindow-height);~
+ ウィンドウの高さを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.identity プロパティ &aname(SplashWindow-identity);~
+ 初期化に使われたユニークな文字列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SplashWindow.initialized プロパティ &aname(SplashWindow-initialized);~
+ 既に初期化されているかどうかを返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**LayeredSplashWindow クラス [#LayeredSplashWindow]
+ アルファチャンネルを扱えるスプラッシュスクリーンを表示するクラス。
+-メソッド:~
+--[[LayeredSplashWindow メソッド>#LayeredSplashWindow-LayeredSplashWindow]]~
+--[[initialize メソッド>#LayeredSplashWindow-initialize]]~
+--[[uninitialize メソッド>#LayeredSplashWindow-uninitialize]]~
+--[[loadImages メソッド>#LayeredSplashWindow-loadImages]]~
+--[[loadImagesFromOctet メソッド>#LayeredSplashWindow-loadImagesFromOctet]]~
+--[[update メソッド>#LayeredSplashWindow-update]]~
+--[[updateToCenter メソッド>#LayeredSplashWindow-updateToCenter]]~
+-プロパティ:~
+--[[visible プロパティ>#LayeredSplashWindow-visible]]~
+--[[topMost プロパティ>#LayeredSplashWindow-topMost]]~
+--[[imageWidth プロパティ>#LayeredSplashWindow-imageWidth]]~
+--[[imageHeight プロパティ>#LayeredSplashWindow-imageHeight]]~
+--[[left プロパティ>#LayeredSplashWindow-left]]~
+--[[top プロパティ>#LayeredSplashWindow-top]]~
+--[[width プロパティ>#LayeredSplashWindow-width]]~
+--[[height プロパティ>#LayeredSplashWindow-height]]~
+--[[opacity プロパティ>#LayeredSplashWindow-opacity]]~
+--[[identity プロパティ>#LayeredSplashWindow-identity]]~
+--[[initialized プロパティ>#LayeredSplashWindow-initialized]]~
+-注記:~
+スクリーンは、インスタンスが invalidate された時点で破棄される。~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.LayeredSplashWindow メソッド &aname(LayeredSplashWindow-LayeredSplashWindow);~
+ コンストラクタ。
+--シグネチャ:~
+---LayeredSplashWindow()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.initialize メソッド &aname(LayeredSplashWindow-initialize);~
+ ウィンドウを初期化する。
+--シグネチャ:~
+---LayeredSplashWindow.initialize()~
+---LayeredSplashWindow.initialize(identity)~
+--引数:~
+---identity~
+ユニークな文字列（UUID など）。~
+省略した場合、ランダムに生成された UUID が使われる。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.uninitialize メソッド &aname(LayeredSplashWindow-uninitialize);~
+ ウィンドウを破棄する。
+--シグネチャ:~
+---LayeredSplashWindow.uninitialize()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.loadImages メソッド &aname(LayeredSplashWindow-loadImages);~
+ 表示される画像イメージをロードする。
+--シグネチャ:~
+---LayeredSplashWindow.loadImages(storage)~
+--引数:~
+---storage~
+ストレージパス。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---ファイル読込に失敗した場合~
+---非対応の画像形式だった場合~
+--注記:~
+現在、PNG 形式のみ対応。~
+ウィンドウが未初期化だった場合、常に失敗を返す。~
+ウィンドウの表示は、更新が呼ばれるまで変更されない。~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.loadImagesFromOctet メソッド &aname(LayeredSplashWindow-loadImagesFromOctet);~
+ 表示される画像イメージをオクテット列のファイルイメージからロードする。
+--シグネチャ:~
+---LayeredSplashWindow.loadImagesFromOctet(source)~
+--引数:~
+---source~
+オクテット列のファイルイメージ。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---ファイル読込に失敗した場合~
+---非対応の画像形式だった場合~
+--注記:~
+現在、PNG 形式のみ対応。~
+ウィンドウが未初期化だった場合、常に失敗を返す。~
+ウィンドウの表示は、更新が呼ばれるまで変更されない。~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.update メソッド &aname(LayeredSplashWindow-update);~
+ ウィンドウの表示を更新する。
+--シグネチャ:~
+---LayeredSplashWindow.update(left = void, top = void, opacity = void)~
+--引数:~
+---left~
+ウィンドウの左上X座標。~
+指定しなかった場合、現在値から変更されない。~
+---top~
+ウィンドウの左上Y座標。~
+指定しなかった場合、現在値から変更されない。~
+---opacity~
+ウィンドウの不透明度(0-255)。~
+指定しなかった場合、現在値から変更されない。(デフォルトで 255)~
+範囲外の値が渡された場合、0-255 に補正される。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---内部処理でエラーが発生した場合~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.updateToCenter メソッド &aname(LayeredSplashWindow-updateToCenter);~
+ ウィンドウをデスクトップ領域にセンタリングして表示を更新する。
+--シグネチャ:~
+---LayeredSplashWindow.updateToCenter(opacity = void)~
+--引数:~
+---opacity~
+ウィンドウの不透明度(0-255)。~
+指定しなかった場合、現在値から変更されない。(デフォルトで 255)~
+範囲外の値が渡された場合、0-255 に補正される。~
+--返値:~
+---true~
+処理に成功した場合。~
+---false~
+処理に失敗した場合。~
+--例外:~
+---内部処理でエラーが発生した場合~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.visible プロパティ &aname(LayeredSplashWindow-visible);~
+ スクリーンの表示状態を設定／取得する。 (setter/getter)
+--注記:~
+このプロパティは、未初期化時に値を設定しようとした場合何もしない。~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.topMost プロパティ &aname(LayeredSplashWindow-topMost);~
+ スクリーンが最前面かどうか設定／取得する。 (setter/getter)
+--注記:~
+このプロパティは、未初期化時に値を設定しようとした場合何もしない。~
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.imageWidth プロパティ &aname(LayeredSplashWindow-imageWidth);~
+ 画像イメージの幅を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.imageHeight プロパティ &aname(LayeredSplashWindow-imageHeight);~
+ 画像イメージの高さを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.left プロパティ &aname(LayeredSplashWindow-left);~
+ ウィンドウの左上X座標を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.top プロパティ &aname(LayeredSplashWindow-top);~
+ ウィンドウの左上Y座標を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.width プロパティ &aname(LayeredSplashWindow-width);~
+ ウィンドウの幅を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.height プロパティ &aname(LayeredSplashWindow-height);~
+ ウィンドウの高さを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.opacity プロパティ &aname(LayeredSplashWindow-opacity);~
+ ウィンドウの不透明度(0-255)を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.identity プロパティ &aname(LayeredSplashWindow-identity);~
+ 初期化に使われたユニークな文字列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LayeredSplashWindow.initialized プロパティ &aname(LayeredSplashWindow-initialized);~
+ 既に初期化されているかどうかを返す。 (getter)
+
+--------------------------------------------------------------------------------
+

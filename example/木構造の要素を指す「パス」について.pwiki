@@ -1,0 +1,175 @@
+*目次
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*「パス」とは
+-パス~
+--以下のような木構造を考える。~
+--ノードに関連付けられたキーを辿って要素を指す文字列を「パス」と呼ぶ。~
+ root
+ {
+     title foobar
+     item
+     {
+         name foo
+         index 1
+     }
+     item
+     {
+         name bar
+         index 2
+     }
+ }
+
+
+
+*例
+-例１~
+ root.title
+--パス root.title は、「root ノードの子の、title ノード」を指し示すパスになる。~
+ root           /* (root ノード) */
+ {
+     title foobar   /* (title ノード) ← これを指す */
+     item
+     {
+         name foo
+         index 1
+     }
+     item
+     {
+         name bar
+         index 2
+     }
+ }
+
+-例２~
+ root.item#0.1#
+--パス root.item#0.1# は、「root ノードの子の、0番目の item ノードの子の、1番目のノード」を指し示すパスになる。~
+ root           /* (root ノード) */
+ {
+     title foobar
+     item           /* (0番目の item ノード) */
+     {
+         name foo
+         index 1        /* (1番目のノード) ← これを指す */
+     }
+     item
+     {
+         name bar
+         index 2
+     }
+ }
+
+-例３~
+ root.inserted#+
+--パス root.inserted#+ は、「root ノードの子に、新たに末尾に追加した inserted ノード」を指し示すパスになる。~
+ root           /* (root ノード) */
+ {
+     title foobar
+     item
+     {
+         name foo
+         index 1
+     }
+     item
+     {
+         name bar
+         index 2
+     }
+     inserted ""    /* (末尾に追加した inserted ノード) ← これを指す */
+ }
+
+
+
+*「セパレータ」と「トークン」
+-セパレータとトークン~
+--パスは"."をセパレータとして、トークンに区切られる。~
+ "root.item.name"
+↓~
+ root
+ item
+ name
+
+--"\""で囲まれた区間は一つのトークンになる。~
+ "root.item.\"name.a.b\""
+↓~
+ root
+ item
+ name.a.b
+
+-キーを示すトークン~
+--"#"を含まないか、"#"がトークンの中間にくる場合。~
+ key
+ key#spec
+--"#"以降は特殊な指定子になる。~
+
+-順序付けを示すトークン~
+--トークンの末尾に"#"がある場合。~
+ N#
+
+-トークンの具体例~
+--存在する要素を指す~
+ "key"    // "key"のキーを持つ要素のうちどれか
+ "key#-"  // "key"のキーを持つ要素のうちどれか
+ "key#N"  // "key"のキーを持つ要素のうちN番目
+ "N#"     // 全体のN番目の要素
+--挿入する要素を指す~
+ "key#|"  // "key"のキーを持つ要素を末尾に挿入した要素
+ "key#+"  // "key"のキーを持つ要素を末尾に挿入した要素
+ "key#N|" // "key"のキーを持つ要素のうちN番目の直前に挿入した要素
+ "key#N+" // "key"のキーを持つ要素を全体のN番目の直前に挿入した要素
+ "N|#"    // 全体のN番目の要素の直前に挿入した要素
+ "N+#"    // 全体のN番目の要素の直前に挿入した要素
+
+
+
+*パスの分類
+-分類~
+--Exists-Path~
+既に存在する要素を指すパス。~
+取得系のメソッドで使用する~
+--Insertable-Path~
+これから挿入する、あるいは既に存在する要素を指すパス。~
+挿入・代入系のメソッドで使用する~
+
+
+*パスのカスタマイズ
+ /* セパレータ */
+ Debug.message("pathSeparator = \"" + #ptree.pathSeparator "\""); // pathSeparator = "."
+ ptree.pathSeparator = $"/";
+ /* 指定子 */
+ Debug.message("pathSharp = \"" + #ptree.pathSharp "\"");         // pathSharp = "#"
+ ptree.pathSeparator = $"@";
+ 
+ /* カスタマイズされた設定によるアクセス */
+ ptree.get("root/item@0/1@");
+
+-PTree.pathSeparator プロパティ~
+--トークンを区切るセパレータを設定・取得する。~
+--文字列でなく、１文字の文字コードを表わす。~
+--デフォルトで"."~
+--PTree のインスタンス毎に設定される~
+
+-PTree.pathSharp プロパティ~
+--トークンの特殊な指定子のための文字を設定・取得する。~
+--文字列でなく、１文字の文字コードを表わす。~
+--デフォルトで"#"~
+--PTree のインスタンス毎に設定される~
+

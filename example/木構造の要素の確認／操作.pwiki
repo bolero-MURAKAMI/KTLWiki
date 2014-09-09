@@ -1,0 +1,137 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_ptree.dll（または ktl_ptree-d.dll）~
+
+-外部DLL~
+--icudt46.dll %%icudt45.dll%% %%icudt44.dll%% (2011/02/03 更新)~
+--icuuc46.dll %%（または icuuc46d.dll）%% %%icuuc44.dll（または icuuc44d.dll）%% %%icuuc45.dll（または icuuc45d.dll）%% (2011/02/03 更新)~
+
+-スクリプト~
+--[[ktl/PTree.tjs]]~
+
+-クラス~
+--PTree クラス~
+
+
+
+*要素の除去
+ /* root.title の除去 */
+ var succeeded = ptree.erase("root.title");
+ if (!succeeded) {
+     Debug.message("不正なパス文字列です。");
+ }
+ 
+ /* root から item を全て除去 */
+ var num_erased = ptree.erase("root", "item");
+ if (num_erased > 0) {
+     Debug.message(num_erased + " 個の要素を除去しました。");
+ } else {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.erase メソッド~
+--シグネチャ:~
+---PTree.erase(path_exists)~
+---PTree.erase(path_exists, key)~
+--パスの指す要素を除去する。~
+--第２引数を渡した場合、パスの指す要素から、指定したキーの要素を全て除去する。~
+
+
+
+*要素が存在するか
+ /* root.item#0 が存在するか */
+ var path = "root.item#0";
+ if (ptree.exist(path)) {
+     Debug.message(path + " は存在します。"); // root.item#0 は存在します。
+ } else {
+     Debug.message("要素が存在しません。");
+ }
+
+-PTree.exist メソッド~
+--シグネチャ:~
+---PTree.exist(path_exists)~
+--パスの指す要素が存在するかを返す。~
+
+
+
+*要素のカウント
+ /* root の子要素の総数 */
+ var size_children = ptree.size("root");
+ if (size_children > 0) {
+     Debug.message(size_children + " 個の子要素。");
+ } else {
+     Debug.message("不正なパス文字列です。");
+ }
+ 
+ /* root の子要素のうち、item の数 */
+ var counted = ptree.count("root", "item");
+ if (counted > 0) {
+     Debug.message(counted + " 個の要素。");
+ } else {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.size メソッド~
+--シグネチャ:~
+---PTree.size(path_exists)~
+--パスの指す要素の子要素の総数を返す。~
+--パスの指す要素が存在しなかった場合、負値を返す。~
+
+-PTree.count メソッド~
+--シグネチャ:~
+---PTree.count(path_exists, key)~
+--パスの指す要素の子要素のうち、指定したキーの要素の数を返す。~
+--パスの指す要素が存在しなかった場合、負値を返す。~
+
+
+
+*子要素のクリア
+ /* root の子要素のクリア */
+ var succeeded = ptree.clear("root");
+ if (!succeeded) {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.clear メソッド~
+--シグネチャ:~
+---PTree.clear(path_exists)~
+--パスの指す要素の子要素をクリアする。~
+--成功した場合は true、不正なパス文字列だった場合は false を返す。~
+
+
+
+*子要素のソート
+ /* root の子要素を降順で安定ソート */
+ var succeeded = ptree.sort("root", "-", true);
+ if (!succeeded) {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.sort メソッド~
+--シグネチャ:~
+---PTree.sort(path_exists, comp = void, stable = false)~
+--パスの指す要素の子要素を、要素のキーでソートする。~
+--第２引数に"+"を渡した場合昇順、"-"を渡した場合降順でソートされる(デフォルトで昇順)。~
+--第３引数に真を渡した場合、安定ソートになる(デフォルトで安定でない)。~
+--成功した場合は true、不正なパス文字列だった場合は false を返す。~
+
+
+
+*子要素の並び反転
+ /* root の子要素を並び反転 */
+ var succeeded = ptree.reverse("root");
+ if (!succeeded) {
+     Debug.message("不正なパス文字列です。");
+ }
+
+-PTree.reverse メソッド~
+--シグネチャ:~
+---PTree.reverse(path_exists)~
+--パスの指す要素の子要素の並びを反転する。~
+--成功した場合は true、不正なパス文字列だった場合は false を返す。~
+

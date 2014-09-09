@@ -1,0 +1,309 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ メンバメソッドの上書きなど。
+-パス:~
+--[[ktl/MethodOverrider.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[MethodOverrider クラス>#MethodOverrider]]~
+--[[MultiMethodOverrider クラス>#MultiMethodOverrider]]~
+
+--------------------------------------------------------------------------------
+
+**MethodOverrider クラス [#MethodOverrider]
+ メンバメソッドの上書きを行うクラス。
+-メソッド:~
+--[[MethodOverrider メソッド>#MethodOverrider-MethodOverrider]]~
+--[[finalize メソッド>#MethodOverrider-finalize]]~
+--[[hook メソッド>#MethodOverrider-hook]]~
+--[[unhook メソッド>#MethodOverrider-unhook]]~
+--[[exec メソッド>#MethodOverrider-exec]]~
+--[[execOriginal メソッド>#MethodOverrider-execOriginal]]~
+-プロパティ:~
+--[[object プロパティ>#MethodOverrider-object]]~
+--[[key プロパティ>#MethodOverrider-key]]~
+--[[override プロパティ>#MethodOverrider-override]]~
+--[[useThisContext プロパティ>#MethodOverrider-useThisContext]]~
+--[[original プロパティ>#MethodOverrider-original]]~
+--[[func プロパティ>#MethodOverrider-func]]~
+--[[hooked プロパティ>#MethodOverrider-hooked]]~
+-注記:~
+ [deprecated] このクラスは古いものです。MultiMethodOverrider クラスを使用してください。
+[[MultiMethodOverrider クラス>#MultiMethodOverrider]] を参照。~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.MethodOverrider メソッド &aname(MethodOverrider-MethodOverrider);~
+ コンストラクタ。
+--シグネチャ:~
+---MethodOverrider(object, key, override, useThisContext = false, shouldHook = true)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---override~
+上書きするメソッド。~
+---useThisContext~
+上書きするメソッドのコンテキストを、このクラスのインスタンスに置きかえるかどうか。~
+---shouldHook~
+すぐにメンバメソッドのフックを実行するかどうか。~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.finalize メソッド &aname(MethodOverrider-finalize);~
+ ファイナライザ。メンバメソッドのフックを解除する。
+--シグネチャ:~
+---finalize()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.hook メソッド &aname(MethodOverrider-hook);~
+ メンバメソッドのフックを実行する。
+--シグネチャ:~
+---MethodOverrider.hook()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.unhook メソッド &aname(MethodOverrider-unhook);~
+ メンバメソッドのフックを解除する。
+--シグネチャ:~
+---MethodOverrider.unhook()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.exec(*) メソッド &aname(MethodOverrider-exec);~
+ 上書きメソッドを実行する。
+--シグネチャ:~
+---MethodOverrider.exec(*)~
+--引数:~
+---*~
+上書きメソッドに委譲される。~
+--返値:~
+---~
+上書きメソッドに委譲される。~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.execOriginal(*) メソッド &aname(MethodOverrider-execOriginal);~
+ オリジナルメソッドを実行する。
+--シグネチャ:~
+---MethodOverrider.execOriginal(*)~
+--引数:~
+---*~
+オリジナルメソッドに委譲される。~
+--返値:~
+---~
+オリジナルメソッドに委譲される。~
+
+--------------------------------------------------------------------------------
+-MethodOverrider.object プロパティ &aname(MethodOverrider-object);~
+ メンバメソッドを持つ対象オブジェクトを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.key プロパティ &aname(MethodOverrider-key);~
+ メンバ名を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.override プロパティ &aname(MethodOverrider-override);~
+ 上書きメソッドを設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.useThisContext プロパティ &aname(MethodOverrider-useThisContext);~
+ 上書きするメソッドのコンテキストを、このクラスのインスタンスに置きかえるか設定／取得する。 (setter/getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.original プロパティ &aname(MethodOverrider-original);~
+ オリジナルメソッドを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.func プロパティ &aname(MethodOverrider-func);~
+ コンテキストを変更しない上書きメソッドを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MethodOverrider.hooked プロパティ &aname(MethodOverrider-hooked);~
+ メンバメソッドがフックされているか返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**MultiMethodOverrider クラス [#MultiMethodOverrider]
+ メンバメソッドの多重上書きを行うクラス。
+-メソッド:~
+--[[MultiMethodOverrider メソッド>#MultiMethodOverrider-MultiMethod--]]~
+--[[finalize メソッド>#MultiMethodOverrider-finalize]]~
+--[[hook メソッド>#MultiMethodOverrider-hook]]~
+--[[unhook メソッド>#MultiMethodOverrider-unhook]]~
+--[[add メソッド>#MultiMethodOverrider-add]]~
+--[[remove メソッド>#MultiMethodOverrider-remove]]~
+--[[removeTag メソッド>#MultiMethodOverrider-removeTag]]~
+--[[exec メソッド>#MultiMethodOverrider-exec]]~
+--[[execOriginal メソッド>#MultiMethodOverrider-execOriginal]]~
+--[[execNext メソッド>#MultiMethodOverrider-execNext]]~
+-プロパティ:~
+--[[object プロパティ>#MultiMethodOverrider-object]]~
+--[[key プロパティ>#MultiMethodOverrider-key]]~
+--[[overrides プロパティ>#MultiMethodOverrider-overrides]]~
+--[[useThisContext プロパティ>#MultiMethodOverrider-useThisContext]]~
+--[[original プロパティ>#MultiMethodOverrider-original]]~
+--[[funcs プロパティ>#MultiMethodOverrider-funcs]]~
+--[[hooked プロパティ>#MultiMethodOverrider-hooked]]~
+-注記:~
+このクラスは直接扱わず、[[ktl/OverrideMethod.tjs>ktl/OverrideMethod.tjs]] で定義されるメソッドから利用することを推奨します。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.MultiMethodOverrider メソッド &aname(MultiMethodOverrider-MultiMethod--);~
+ コンストラクタ。
+--シグネチャ:~
+---MultiMethodOverrider(object, key, shouldHook = true)~
+--引数:~
+---object~
+メンバメソッドを持つ対象オブジェクト。~
+---key~
+メンバ名。~
+---shouldHook~
+すぐにメンバメソッドのフックを実行するかどうか。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.finalize メソッド &aname(MultiMethodOverrider-finalize);~
+ ファイナライザ。メンバメソッドのフックを解除する。
+--シグネチャ:~
+---finalize()~
+--引数:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.hook メソッド &aname(MultiMethodOverrider-hook);~
+ メンバメソッドのフックを実行する。
+--シグネチャ:~
+---MultiMethodOverrider.hook()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.unhook メソッド &aname(MultiMethodOverrider-unhook);~
+ メンバメソッドのフックを解除する。
+--シグネチャ:~
+---MultiMethodOverrider.unhook()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.add メソッド &aname(MultiMethodOverrider-add);~
+ 上書きするメソッドを追加する。
+--シグネチャ:~
+---MultiMethodOverrider.add(override, useThisContext = false, tag = void)~
+--引数:~
+---override~
+上書きするメソッド。~
+---useThisContext~
+上書きするメソッドのコンテキストを、このクラスのインスタンスに置きかえるかどうか。~
+---tag~
+メソッドの識別タグ。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.remove メソッド &aname(MultiMethodOverrider-remove);~
+ 上書きメソッドを削除する。
+--シグネチャ:~
+---MultiMethodOverrider.remove(override)~
+--引数:~
+---override~
+削除する上書きメソッド。~
+--返値:~
+---true~
+削除した場合。~
+---false~
+メソッドが見つからなかった場合。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.removeTag メソッド &aname(MultiMethodOverrider-removeTag);~
+ 識別タグによって上書きメソッドを削除する。
+--シグネチャ:~
+---MultiMethodOverrider.removeTag(tag)~
+--引数:~
+---tag~
+メソッドの識別タグ。~
+--返値:~
+---Integer~
+削除したメソッドの数。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.exec(*) メソッド &aname(MultiMethodOverrider-exec);~
+ 上書きメソッドを実行する。
+--シグネチャ:~
+---MultiMethodOverrider.exec(*)~
+--引数:~
+---*~
+上書きメソッドに委譲される。~
+--返値:~
+---~
+上書きメソッドに委譲される。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.execOriginal(*) メソッド &aname(MultiMethodOverrider-execOriginal);~
+ オリジナルメソッドを実行する。
+--シグネチャ:~
+---MultiMethodOverrider.execOriginal(*)~
+--引数:~
+---*~
+オリジナルメソッドに委譲される。~
+--返値:~
+---~
+オリジナルメソッドに委譲される。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.execNext(*) メソッド &aname(MultiMethodOverrider-execNext);~
+ 次の上書きメソッドを実行する。
+--シグネチャ:~
+---MultiMethodOverrider.execNext(*)~
+--引数:~
+---*~
+次の上書きメソッドに委譲される。~
+--返値:~
+---~
+次の上書きメソッドに委譲される。~
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.object プロパティ &aname(MultiMethodOverrider-object);~
+ メンバメソッドを持つ対象オブジェクトを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.key プロパティ &aname(MultiMethodOverrider-key);~
+ メンバ名を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.overrides プロパティ &aname(MultiMethodOverrider-overrides);~
+ 上書きメソッドの配列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.original プロパティ &aname(MultiMethodOverrider-original);~
+ オリジナルメソッドを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.funcs プロパティ &aname(MultiMethodOverrider-funcs);~
+ コンテキストを変更しない上書きメソッドの配列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-MultiMethodOverrider.hooked プロパティ &aname(MultiMethodOverrider-hooked);~
+ メンバメソッドがフックされているか返す。 (getter)
+
+--------------------------------------------------------------------------------
+
