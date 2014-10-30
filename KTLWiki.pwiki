@@ -7,6 +7,7 @@
 ◇ ''KTL'' (KiriKiri Trivial Library)~
 ◇ スクリプト言語 TJS2 の実行エンジン 吉里吉里2/吉里吉里Z のための''拡張機能ライブラリ''。~
 ◇ 主に、KAG に依存しない''様々なスクリプトのための汎用機能''の実装を目的としている。~
+◇ ''ネットワーク''I/O、''ローカルファイル''操作、''XML'' や ''JSON'' の処理、''文字列エンコード''、データ''圧縮／展開''や''スプラッシュスクリーン''などを実装している。~
 
 -はじめに~
 --KTL をはじめて導入する場合、【 [[''導入手順''>forum/導入手順]] 】を参照ください。~
@@ -30,28 +31,29 @@
 
 *リファレンス [#reference-]
 -スクリプト~
---[[ktl/ktl.tjs]] - すべての KTL スクリプトに先行する~
---[[ktl/Outputs.tjs]] - ログ出力のための簡易フレームワーク~
---[[ktl/Sources.tjs]] - スクリプトのインポート管理~
---[[ktl/Utils.tjs]] - 様々なユーティリティ~
---[[ktl/Network.tjs]] - ネットワーク通信のための機能~
---[[ktl/LocalFiles.tjs]] - OS ネイティブのファイル操作~
---[[ktl/StorageStream.tjs]] - ローカルストレージ（ファイル）への I/O ~
---[[ktl/Compression.tjs]] - Deflate アルゴリズムによるデータ圧縮／展開~
---[[ktl/Bzip2.tjs]] - Bzip2 によるデータ圧縮／展開~
---[[ktl/Checksum.tjs]] - チェックサム計算~
---[[ktl/OctetBuilder.tjs]] - オクテット列操作~
---[[ktl/Encoding.tjs]] - 文字コード変換やエンコード~
---[[ktl/PTree.tjs]] - 構造化データの読み書きや操作~
---[[ktl/PTime.tjs]] - 日付と時刻の計算~
---[[ktl/VariateRandom.tjs]] - 様々な乱数生成エンジンと確率分布~
---[[ktl/BigInt.tjs]] - 多倍長整数~
---[[ktl/MathEx.tjs]] - 様々な数学計算~
---[[ktl/SplashWindow.tjs]] - スプラッシュスクリーン~
---[[ktl/SpriteCoord.tjs]] - スプライト表示のための座標計算~
---[[ktl/OSVersion.tjs]] - OS のバージョンチェック~
---[[ktl/OverrideMethod.tjs]] - メンバメソッドの上書き~
---[[ktl/MethodOverrider.tjs]] - メンバメソッドの上書き~
+|LEFT:200|LEFT:800|c
+| [[ktl/ktl.tjs]] | すべての KTL スクリプトに先行する                  |
+| [[ktl/Outputs.tjs]] | ログ出力のための簡易フレームワーク             |
+| [[ktl/Sources.tjs]] | スクリプトのインポート管理                     |
+| [[ktl/Utils.tjs]] | 様々なユーティリティ                             |
+| [[ktl/Network.tjs]] | ネットワーク通信のための機能                   |
+| [[ktl/LocalFiles.tjs]] | OS ネイティブのファイル操作                 |
+| [[ktl/StorageStream.tjs]] | ローカルストレージ（ファイル）への I/O   |
+| [[ktl/Compression.tjs]] | Deflate アルゴリズムによるデータ圧縮／展開 |
+| [[ktl/Bzip2.tjs]] | Bzip2 によるデータ圧縮／展開                     |
+| [[ktl/Checksum.tjs]] | チェックサム計算                              |
+| [[ktl/OctetBuilder.tjs]] | オクテット列操作                          |
+| [[ktl/Encoding.tjs]] | 文字コード変換やエンコード                    |
+| [[ktl/PTree.tjs]] | 構造化データの読み書きや操作                     |
+| [[ktl/PTime.tjs]] | 日付と時刻の計算                                 |
+| [[ktl/VariateRandom.tjs]] | 様々な乱数生成エンジンと確率分布         |
+| [[ktl/BigInt.tjs]] | 多倍長整数                                      |
+| [[ktl/MathEx.tjs]] | 様々な数学計算                                  |
+| [[ktl/SplashWindow.tjs]] | スプラッシュスクリーン                    |
+| [[ktl/SpriteCoord.tjs]] | スプライト表示のための座標計算             |
+| [[ktl/OSVersion.tjs]] | OS のバージョンチェック                      |
+| [[ktl/OverrideMethod.tjs]] | メンバメソッドの上書き                  |
+| [[ktl/MethodOverrider.tjs]] | メンバメソッドの上書き                 |
 
 
 
