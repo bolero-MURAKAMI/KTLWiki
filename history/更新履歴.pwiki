@@ -3,6 +3,17 @@
 
 
 
+*更新履歴(2015/01) [#update1501-]
+-2015/01/14~
+&color(red){Ver 0.2.10};~
+--スクリプト[[ktl/Geometry.tjs]]追加。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 追加。~
+---様々な幾何計算を実装。~
+--DLL すべて更新。~
+---Boost を Boost 1.55 から Boost 1.57 へアップデート。~
+
+
+
 *更新履歴(2014/04) [#update1404-]
 -2014/04/30~
 --DLL ktl_network.dll, ktl_network-d.dll 更新。~

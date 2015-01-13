@@ -101,6 +101,12 @@
 　　Sprig~
 　　Boost~
 ~
+--KTL.Geometry~
+　　tp_stub~
+　　ncbind~
+　　Sprig~
+　　Boost~
+~
 --KTL.SplashWindow~
 　　tp_stub~
 　　ncbind~
