@@ -26,6 +26,13 @@
  このクラスは Math クラスのほぼ上位互換として使える。
 -スタティックメソッド:~
 
+> (各種数値)~
+
+--[[bernoulliB2n メソッド>#MathEx-bernoulliB2n]]~
+--[[tangentT2n メソッド>#MathEx-tangentT2n]]~
+--[[prime メソッド>#MathEx-prime]]~
+
+
 > (各種算術関数)~
 
 --[[abs メソッド>#MathEx-abs]]~
@@ -146,10 +153,18 @@
 
 --[[cylBesselJ メソッド>#MathEx-cylBesselJ]]~
 --[[cylNeumann メソッド>#MathEx-cylNeumann]]~
+--[[cylBesselJZero メソッド>#MathEx-cylBesselJZero]]~
+--[[cylNeumannZero メソッド>#MathEx-cylNeumannZero]]~
 --[[cylBesselI メソッド>#MathEx-cylBesselI]]~
 --[[cylBesselK メソッド>#MathEx-cylBesselK]]~
 --[[sphBessel メソッド>#MathEx-sphBessel]]~
 --[[sphNeumann メソッド>#MathEx-sphNeumann]]~
+--[[cylBesselJPrime メソッド>#MathEx-cylBesselJPrime]]~
+--[[cylNeumannPrime メソッド>#MathEx-cylNeumannPrime]]~
+--[[cylBesselIPrime メソッド>#MathEx-cylBesselIPrime]]~
+--[[cylBesselKPrime メソッド>#MathEx-cylBesselKPrime]]~
+--[[sphBesselPrime メソッド>#MathEx-sphBesselPrime]]~
+--[[sphNeumannPrime メソッド>#MathEx-sphNeumannPrime]]~
 
 > (ハンケル関数)~
 
@@ -239,6 +254,45 @@
 --[[LOG2E プロパティ>#MathEx-LOG2E]]~
 --[[SQRT2 プロパティ>#MathEx-SQRT2]]~
 --[[SQRT1_2 プロパティ>#MathEx-SQRT1_2]]~
+
+--------------------------------------------------------------------------------
+-MathEx.bernoulliB2n メソッド &aname(MathEx-bernoulliB2n);~
+ 偶数項のベルヌーイ数を返す。
+#tex(\[ bernoulliB2n(i) = B_{2i} = (-1)^{i+1}\frac{2(2i)!}{(2\pi)^{2i}} \left[1+\frac{1}{2^{2i}}+\frac{1}{3^{2i}}+\frac{1}{4^{2i}}+\cdots\;\right] \])
+--シグネチャ:~
+---MathEx.bernoulliB2n(i)~
+--引数:~
+---i~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.tangentT2n メソッド &aname(MathEx-tangentT2n);~
+ ゼロでないタンジェント数を返す。
+#tex(\[ tangentT2n(i) = T_i = \frac{2^{2i}(2^{2i}-1)|B_{2i}|}{2i} \])
+--シグネチャ:~
+---MathEx.tangentT2n(i)~
+--引数:~
+---i~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.prime メソッド &aname(MathEx-prime);~
+ n 番目の素数を返す。
+#tex(\[ prime(n) = P_n \])
+--シグネチャ:~
+---MathEx.prime(n)~
+--引数:~
+---n~
+正数。~
+--返値:~
+---Integer~
+計算結果。~
 
 --------------------------------------------------------------------------------
 -MathEx.abs メソッド &aname(MathEx-abs);~
@@ -1535,16 +1589,44 @@ a < b である場合。~
 計算結果。~
 
 --------------------------------------------------------------------------------
--MathEx.cylBesselI メソッド &aname(MathEx-cylBesselI);~
- 第１種変形ベッセル関数。
-#tex(\[ cylBesselI(v, x) = I_v(x) = \left(\frac{x}{2}\right)^v \sum_{k=0}^\infty \frac{\left(-\frac{x^2}{4}\right)^k}{k!\Gamma(v+k+1)} \])
+-MathEx.cylBesselJZero メソッド &aname(MathEx-cylBesselJZero);~
+ 第１種ベッセル関数の零点。
 --シグネチャ:~
----MathEx.cylBesselI(v, x)~
+---MathEx.cylBesselJZero(v, m)~
 --引数:~
 ---v~
 実数。~
 ---x~
 実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylNeumannZero メソッド &aname(MathEx-cylNeumannZero);~
+ 第２種ベッセル関数の零点。
+--シグネチャ:~
+---MathEx.cylNeumannZero(v, m)~
+--引数:~
+---v~
+実数。~
+---m~
+整数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselI メソッド &aname(MathEx-cylBesselI);~
+ 第１種変形ベッセル関数。
+#tex(\[ cylBesselI(v, m) = I_v(m) = \left(\frac{x}{2}\right)^v \sum_{k=0}^\infty \frac{\left(-\frac{x^2}{4}\right)^k}{k!\Gamma(v+k+1)} \])
+--シグネチャ:~
+---MathEx.cylBesselI(v, m)~
+--引数:~
+---v~
+実数。~
+---m~
+整数。~
 --返値:~
 ---Real~
 計算結果。~
@@ -1585,6 +1667,96 @@ a < b である場合。~
 #tex(\[ sphNeumann(v, x) = y_v(x) = \sqrt{\frac{\pi}{2x}}Y_{v+\frac{1}{2}}(x) \])
 --シグネチャ:~
 ---MathEx.sphNeumann(v, x)~
+--引数:~
+---v~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselJPrime メソッド &aname(MathEx-cylBesselJPrime);~
+ 第１種ベッセル関数の導関数。
+#tex(\[ cylBesselJPrime(v, x) = J'_v(x) = \frac{J_{v-1}_(x)+J_{v+1}_(x)}{2} \])
+--シグネチャ:~
+---MathEx.cylBesselJPrime(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylNeumannPrime メソッド &aname(MathEx-cylNeumannPrime);~
+ 第２種ベッセル関数の導関数。
+#tex(\[ cylNeumannPrime(v, x) = Y'_v(x) = \frac{Y_{v-1}_(x)+Y_{v+1}_(x)}{2} \])
+--シグネチャ:~
+---MathEx.cylNeumannPrime(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselIPrime メソッド &aname(MathEx-cylBesselIPrime);~
+ 第１種変形ベッセル関数の導関数。
+#tex(\[ cylBesselIPrime(v, x) = I'_v(x) = \frac{I_{v-1}_(x)+I_{v+1}_(x)}{2} \])
+--シグネチャ:~
+---MathEx.cylBesselIPrime(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.cylBesselKPrime メソッド &aname(MathEx-cylBesselKPrime);~
+ 第２種変形ベッセル関数の導関数。
+#tex(\[ cylBesselKPrime(v, x) = K'_v(x) = \frac{K_{v-1}_(x)+K_{v+1}_(x)}{2} \])
+--シグネチャ:~
+---MathEx.cylBesselKPrime(v, x)~
+--引数:~
+---v~
+実数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphBesselPrime メソッド &aname(MathEx-sphBesselPrime);~
+ 第１種球ベッセル関数の導関数。
+#tex(\[ sphBesselPrime(v, x) = j'_v(x) = \frac{n}{x}j_n(x)-j_{n+1}(x) \])
+--シグネチャ:~
+---MathEx.sphBesselPrime(v, x)~
+--引数:~
+---v~
+正数。~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.sphNeumannPrime メソッド &aname(MathEx-sphNeumannPrime);~
+ 第２種球ベッセル関数の導関数。
+#tex(\[ sphNeumannPrime(v, x) = y'_v(x) = \frac{n}{x}y_n(x)-y_{n+1}(x) \])
+--シグネチャ:~
+---MathEx.sphNeumannPrime(v, x)~
 --引数:~
 ---v~
 正数。~

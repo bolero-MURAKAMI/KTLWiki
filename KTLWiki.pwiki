@@ -25,7 +25,7 @@
 
 -最新のライブラリ更新~
 --スクリプト - &color(red,white){[2015.01.14]};~
---DLL Ver 0.2.10.x - &color(red,white){[2015.01.14]};~
+--DLL Ver 0.2.10.x - &color(red,white){[2015.01.20]};~
 
 
 
@@ -140,6 +140,14 @@
 
 
 *更新 [#update-]
+-2015/01/20~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスにベッセル関数のバリエーション、ベルヌーイ数等を追加。~
+
+-2015/01/15~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに matrixTransform, intersects メソッドを追加。~
+
 -2015/01/14~
 &color(red){Ver 0.2.10};~
 --スクリプト[[ktl/Geometry.tjs]]追加。~
@@ -162,29 +170,6 @@
 -2014/02/07~
 --DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
 ---MathEx クラスにエアリー関数、ヤコビの楕円関数を追加。~
-
--2014/02/05~
-&color(red){Ver 0.2.9};~
---DLL すべて更新。~
----Boost を Boost 1.54 から Boost 1.55 へアップデート。~
---DLL ktl_splash_window.dll, ktl_splash_window-d.dll 更新。~
----libpng を libpng 1.6.5 から libpng 1.6.8 へアップデート。~
---DLL ktl_network.dll, ktl_network-d.dll 更新。~
---DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
----OpenSSL を OpenSSL 1.0.1e から 1.0.1f へアップデート。~
---スクリプト更新。~
----Copyright(C) を表記。~
-
--2014/01/23~
---DLL ktl_network.dll, ktl_network-d.dll 更新。~
---DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
----Downloader, Socket, Acceptor クラスの onFinished ハンドラの中から呼出元インスタンスのメンバにアクセスした場合、デッドロックが発生する可能性があった問題を修正。~
----Downloader, Socket, Acceptor クラスの onFinished プロパティが void に設定されるタイミングを、ハンドラ呼出後から呼出時点に変更。~
-これによって、ハンドラの中から次の非同期処理で使われるハンドラを再設定できるようになった。~
----Downloader, Socket クラスの waitTimeoutFromNow, waitTimeoutAt メソッドで、非同期処理の完了如何に関わらず指定時間まで待機していたのを、非同期処理が完了した時点で返るように修正。~
----Downloader, Socket クラスに、単に非同期処理の完了を待機する join メソッドを追加。~
----Network クラスに、非同期処理をハードウェアの CPU コアの使用可能な並列実行数に基づいて駆動させる runWithHardwareConcurrency メソッドを追加。~
----Network クラスに、ハードウェアの CPU コアの使用可能な並列実行数を取得する threadHardwareConcurrency プロパティ を追加。~
 
 -(全ての更新)~
 --[[更新履歴>history/更新履歴]]~

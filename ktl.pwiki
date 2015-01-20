@@ -15,6 +15,7 @@
 --[[ktl/VariateRandom.tjs]]~
 --[[ktl/BigInt.tjs]]~
 --[[ktl/MathEx.tjs]]~
+--[[ktl/Geometry.tjs]]~
 --[[ktl/SplashWindow.tjs]]~
 --[[ktl/SpriteCoord.tjs]]~
 --[[ktl/OSVersion.tjs]]~

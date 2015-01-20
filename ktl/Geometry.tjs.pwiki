@@ -36,10 +36,12 @@
 --[[translate メソッド>#Geometry-translate]]~
 --[[scale メソッド>#Geometry-scale]]~
 --[[rotate メソッド>#Geometry-rotate]]~
+--[[matrixTransform メソッド>#Geometry-matrixTransform]]~
 
 > (図形同士の関係)~
 
 --[[disjoint メソッド>#Geometry-disjoint]]~
+--[[intersects メソッド>#Geometry-intersects]]~
 --[[coveredBy メソッド>#Geometry-coveredBy]]~
 --[[within メソッド>#Geometry-within]]~
 --[[equals メソッド>#Geometry-equals]]~
@@ -124,7 +126,7 @@
 -Geometry.area メソッド &aname(Geometry-area);~
  図形の面積を返す。
 --シグネチャ:~
----Geometry.perimeter(g, f)~
+---Geometry.area(g, f)~
 --引数:~
 ---g~
 図形データ。~
@@ -140,7 +142,7 @@
 -Geometry.centroid メソッド &aname(Geometry-centroid);~
  図形の中心点を返す。
 --シグネチャ:~
----Geometry.perimeter(g, f)~
+---Geometry.centroid(g, f)~
 --引数:~
 ---g~
 図形データ。~
@@ -217,6 +219,28 @@
 入力と同じ形式を返す。~
 
 --------------------------------------------------------------------------------
+-Geometry.matrixTransform メソッド &aname(Geometry-matrixTransform);~
+ 図形を行列によって変形したデータを返す。
+--シグネチャ:~
+---Geometry.matrixTransform(g, f, param)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+---param~
+3×3の行列。~
+ [
+   [ a00, a01, a02 ],
+   [ a10, a11, a12 ],
+   [ a20, a21, a22 ]
+ ]
+--返値:~
+---Array~
+行列によって変形した図形データ。~
+入力と同じ形式を返す。~
+
+--------------------------------------------------------------------------------
 -Geometry.disjoint メソッド &aname(Geometry-disjoint);~
  図形同士が互いに素であるかを返す。
 --シグネチャ:~
@@ -235,6 +259,26 @@
 互いに素である場合。~
 ---false~
 互いに素でない場合。~
+
+--------------------------------------------------------------------------------
+-Geometry.intersects メソッド &aname(Geometry-intersects);~
+ 図形同士が交差点を持っているかを返す。
+--シグネチャ:~
+---Geometry.intersects(g0, f0, g1, f1)~
+--引数:~
+---g0~
+図形Ａデータ。~
+---f0~
+図形Ａの分類フラグ。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+--返値:~
+---true~
+交差点を持っている場合。~
+---false~
+交差点を持っていない場合。~
 
 --------------------------------------------------------------------------------
 -Geometry.coveredBy メソッド &aname(Geometry-coveredBy);~

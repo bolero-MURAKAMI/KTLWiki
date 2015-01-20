@@ -4,6 +4,14 @@
 
 
 *更新履歴(2015/01) [#update1501-]
+-2015/01/20~
+--DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
+---MathEx クラスにベッセル関数のバリエーション、ベルヌーイ数等を追加。~
+
+-2015/01/15~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに matrixTransform, intersects メソッドを追加。~
+
 -2015/01/14~
 &color(red){Ver 0.2.10};~
 --スクリプト[[ktl/Geometry.tjs]]追加。~
