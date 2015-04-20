@@ -25,7 +25,7 @@
 
 -最新のライブラリ更新~
 --スクリプト - &color(red,white){[2015.01.14]};~
---DLL Ver 0.2.10.x - &color(red,white){[2015.01.20]};~
+--DLL Ver 0.2.11.x - &color(red,white){[2015.04.20]};~
 
 
 
@@ -49,7 +49,7 @@
 | [[ktl/VariateRandom.tjs]] | 様々な乱数生成エンジンと確率分布         |
 | [[ktl/BigInt.tjs]] | 多倍長整数                                      |
 | [[ktl/MathEx.tjs]] | 様々な数学計算                                  |
-| [[ktl/Geometry.tjs]] | 様々な幾何計算                                |
+| [[ktl/Geometry.tjs]] | 様々な計算幾何                                |
 | [[ktl/SplashWindow.tjs]] | スプラッシュスクリーン                    |
 | [[ktl/SpriteCoord.tjs]] | スプライト表示のための座標計算             |
 | [[ktl/OSVersion.tjs]] | OS のバージョンチェック                      |
@@ -140,6 +140,22 @@
 
 
 *更新 [#update-]
+-2015/04/20~
+&color(red){Ver 0.2.11};~
+--DLL すべて更新。~
+---Boost を Boost 1.57 から Boost 1.58 へアップデート。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスの disjoint, intersects メソッドに、以下のジオメトリの組み合わせサポートを追加。~
+multipoint/point, multipoint/segment, multipoint/box, multipoint/multipoint,~
+point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
+---MathEx クラスにガンマ関数のバリエーション trigamma, polygamma メソッドを追加。~
+---MathEx クラスに楕円積分のバリエーション ellintD, jacobiZeta, heumanLambda メソッドを追加。~
+---MathEx クラスの ellint2, ellint3メソッドの 2 引数版について、内部で不正に 3 引数版を呼んでいた問題を修正。~
+--DLL ktl_random.dll, ktl_random-d.dll 更新。~
+---ベータ分布 BetaDistribution クラスを追加。~
+---ラプラス分布 LaplaceDistribution クラスを追加。~
+---非心カイ二乗分布 NonCentralChiSquaredDistribution クラスを追加。~
+
 -2015/01/20~
 --DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
 ---MathEx クラスにベッセル関数のバリエーション、ベルヌーイ数等を追加。~
@@ -152,7 +168,7 @@
 &color(red){Ver 0.2.10};~
 --スクリプト[[ktl/Geometry.tjs]]追加。~
 --DLL ktl_geometry.dll, ktl_geometry-d.dll 追加。~
----様々な幾何計算を実装。~
+---様々な計算幾何を実装。~
 --DLL すべて更新。~
 ---Boost を Boost 1.55 から Boost 1.57 へアップデート。~
 
@@ -166,10 +182,6 @@
 --DLL VC12(VC++2013)ビルド版を公開。~
 ---■[[plugin-vc12.zip:http://www.boleros.x0.com/data/plugin-vc12.zip]]~
 ---VC12版DLLは、あくまで実験的なものです。~
-
--2014/02/07~
---DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
----MathEx クラスにエアリー関数、ヤコビの楕円関数を追加。~
 
 -(全ての更新)~
 --[[更新履歴>history/更新履歴]]~
@@ -208,7 +220,7 @@
 | VariateRandom | ktl_variate_random.dll | ktl_variate_random-d.dll | 様々な乱数生成エンジンと確率分布 |
 | BigInt        | ktl_big_int.dll        | ktl_big_int-d.dll        | 多倍長整数                       |
 | MathEx        | ktl_math_ex.dll        | ktl_math_ex-d.dll        | 様々な数学計算                   |
-| Geometry      | ktl_geometry.dll       | ktl_geometry-d.dll       | 様々な幾何計算                   |
+| Geometry      | ktl_geometry.dll       | ktl_geometry-d.dll       | 様々な計算幾何                   |
 | SplashWindow  | ktl_splash_window.dll  | ktl_splash_window-d.dll  | スプラッシュスクリーン           |
 | Serialization | ktl_serialization.dll  | ktl_serialization-d.dll  | シリアライゼーション             |
 | SpriteCoord   | ktl_sprite_coord.dll   | ktl_sprite_coord-d.dll   | スプライト表示のための座標計算   |
@@ -239,6 +251,7 @@
 --------------------------------------------------------------------------------
 　　　----最新版以外----~
 -DLL~
+--[[plugin-0.2.10.zip:http://www.boleros.x0.com/data/plugin-0.2.10.zip]]~
 --[[plugin-0.2.9.zip:http://www.boleros.x0.com/data/plugin-0.2.9.zip]]~
 --[[plugin-0.2.8.zip:http://www.boleros.x0.com/data/plugin-0.2.8.zip]]~
 --[[plugin-0.2.7.zip:http://www.boleros.x0.com/data/plugin-0.2.7.zip]]~

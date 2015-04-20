@@ -67,9 +67,12 @@
 --[[GammaDistribution クラス>#GammaDistribution]]~
 --[[WeibullDistribution クラス>#WeibullDistribution]]~
 --[[ExtremeValueDistribution クラス>#ExtremeValueDistribution]]~
+--[[BetaDistribution クラス>#BetaDistribution]]~
+--[[LaplaceDistribution クラス>#LaplaceDistribution]]~
 --[[NormalDistribution クラス>#NormalDistribution]]~
 --[[LognormalDistribution クラス>#LognormalDistribution]]~
 --[[ChiSquaredDistribution クラス>#ChiSquaredDistribution]]~
+--[[NonCentralChiSquaredDistribution クラス>#NonCentralChiSquaredDistribution]]~
 --[[CauchyDistribution クラス>#CauchyDistribution]]~
 --[[FisherFDistribution クラス>#FisherFDistribution]]~
 --[[StudentTDistribution クラス>#StudentTDistribution]]~
@@ -1250,18 +1253,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^32000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci607 メソッド>#LaggedFibonacci607-LaggedFibonacci607]]~
---[[random メソッド>#LaggedFibonacci607-random]]~
---[[seed メソッド>#LaggedFibonacci607-seed]]~
---[[randomize メソッド>#LaggedFibonacci607-randomize]]~
---[[serialize メソッド>#LaggedFibonacci607-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci607-deserialize]]~
+--[[LaggedFibonacci607 メソッド>#LF607-LaggedFibonacci607]]~
+--[[random メソッド>#LF607-random]]~
+--[[seed メソッド>#LF607-seed]]~
+--[[randomize メソッド>#LF607-randomize]]~
+--[[serialize メソッド>#LF607-serialize]]~
+--[[deserialize メソッド>#LF607-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci607-min]]~
---[[max プロパティ>#LaggedFibonacci607-max]]~
+--[[min プロパティ>#LF607-min]]~
+--[[max プロパティ>#LF607-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.LaggedFibonacci607 メソッド &aname(LaggedFibonacci607-LaggedFibonacci607);~
+-LaggedFibonacci607.LaggedFibonacci607 メソッド &aname(LF607-LaggedFibonacci607);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci607()~
@@ -1274,7 +1277,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.random メソッド &aname(LaggedFibonacci607-random);~
+-LaggedFibonacci607.random メソッド &aname(LF607-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci607.random()~
@@ -1285,7 +1288,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.seed メソッド &aname(LaggedFibonacci607-seed);~
+-LaggedFibonacci607.seed メソッド &aname(LF607-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci607.seed()~
@@ -1300,7 +1303,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.randomize メソッド &aname(LaggedFibonacci607-randomize);~
+-LaggedFibonacci607.randomize メソッド &aname(LF607-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci607.randomize()~
@@ -1314,10 +1317,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci607.seed メソッド>#LaggedFibonacci607-seed]] を参照。~
+[[LaggedFibonacci607.seed メソッド>#LF607-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.serialize メソッド &aname(LaggedFibonacci607-serialize);~
+-LaggedFibonacci607.serialize メソッド &aname(LF607-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci607.serialize()~
@@ -1328,7 +1331,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.deserialize メソッド &aname(LaggedFibonacci607-deserialize);~
+-LaggedFibonacci607.deserialize メソッド &aname(LF607-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci607.deserialize(serialized)~
@@ -1339,11 +1342,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.min プロパティ &aname(LaggedFibonacci607-min);~
+-LaggedFibonacci607.min プロパティ &aname(LF607-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci607.max プロパティ &aname(LaggedFibonacci607-max);~
+-LaggedFibonacci607.max プロパティ &aname(LF607-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1352,18 +1355,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^67000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci1279 メソッド>#LaggedFibonacci1279-LaggedFibonacci1279]]~
---[[random メソッド>#LaggedFibonacci1279-random]]~
---[[seed メソッド>#LaggedFibonacci1279-seed]]~
---[[randomize メソッド>#LaggedFibonacci1279-randomize]]~
---[[serialize メソッド>#LaggedFibonacci1279-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci1279-deserialize]]~
+--[[LaggedFibonacci1279 メソッド>#LF1279-LaggedFibonacci1279]]~
+--[[random メソッド>#LF1279-random]]~
+--[[seed メソッド>#LF1279-seed]]~
+--[[randomize メソッド>#LF1279-randomize]]~
+--[[serialize メソッド>#LF1279-serialize]]~
+--[[deserialize メソッド>#LF1279-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci1279-min]]~
---[[max プロパティ>#LaggedFibonacci1279-max]]~
+--[[min プロパティ>#LF1279-min]]~
+--[[max プロパティ>#LF1279-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.LaggedFibonacci1279 メソッド &aname(LaggedFibonacci1279-LaggedFibonacci1279);~
+-LaggedFibonacci1279.LaggedFibonacci1279 メソッド &aname(LF1279-LaggedFibonacci1279);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci1279()~
@@ -1376,7 +1379,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.random メソッド &aname(LaggedFibonacci1279-random);~
+-LaggedFibonacci1279.random メソッド &aname(LF1279-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci1279.random()~
@@ -1387,7 +1390,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.seed メソッド &aname(LaggedFibonacci1279-seed);~
+-LaggedFibonacci1279.seed メソッド &aname(LF1279-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci1279.seed()~
@@ -1402,7 +1405,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.randomize メソッド &aname(LaggedFibonacci1279-randomize);~
+-LaggedFibonacci1279.randomize メソッド &aname(LF1279-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci1279.randomize()~
@@ -1416,10 +1419,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci1279.seed メソッド>#LaggedFibonacci1279-seed]] を参照。~
+[[LaggedFibonacci1279.seed メソッド>#LF1279-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.serialize メソッド &aname(LaggedFibonacci1279-serialize);~
+-LaggedFibonacci1279.serialize メソッド &aname(LF1279-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci1279.serialize()~
@@ -1430,7 +1433,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.deserialize メソッド &aname(LaggedFibonacci1279-deserialize);~
+-LaggedFibonacci1279.deserialize メソッド &aname(LF1279-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci1279.deserialize(serialized)~
@@ -1441,11 +1444,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.min プロパティ &aname(LaggedFibonacci1279-min);~
+-LaggedFibonacci1279.min プロパティ &aname(LF1279-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci1279.max プロパティ &aname(LaggedFibonacci1279-max);~
+-LaggedFibonacci1279.max プロパティ &aname(LF1279-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1454,18 +1457,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^120000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci2281 メソッド>#LaggedFibonacci2281-LaggedFibonacci2281]]~
---[[random メソッド>#LaggedFibonacci2281-random]]~
---[[seed メソッド>#LaggedFibonacci2281-seed]]~
---[[randomize メソッド>#LaggedFibonacci2281-randomize]]~
---[[serialize メソッド>#LaggedFibonacci2281-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci2281-deserialize]]~
+--[[LaggedFibonacci2281 メソッド>#LF2281-LaggedFibonacci2281]]~
+--[[random メソッド>#LF2281-random]]~
+--[[seed メソッド>#LF2281-seed]]~
+--[[randomize メソッド>#LF2281-randomize]]~
+--[[serialize メソッド>#LF2281-serialize]]~
+--[[deserialize メソッド>#LF2281-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci2281-min]]~
---[[max プロパティ>#LaggedFibonacci2281-max]]~
+--[[min プロパティ>#LF2281-min]]~
+--[[max プロパティ>#LF2281-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.LaggedFibonacci2281 メソッド &aname(LaggedFibonacci2281-LaggedFibonacci2281);~
+-LaggedFibonacci2281.LaggedFibonacci2281 メソッド &aname(LF2281-LaggedFibonacci2281);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci2281()~
@@ -1478,7 +1481,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.random メソッド &aname(LaggedFibonacci2281-random);~
+-LaggedFibonacci2281.random メソッド &aname(LF2281-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci2281.random()~
@@ -1489,7 +1492,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.seed メソッド &aname(LaggedFibonacci2281-seed);~
+-LaggedFibonacci2281.seed メソッド &aname(LF2281-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci2281.seed()~
@@ -1504,7 +1507,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.randomize メソッド &aname(LaggedFibonacci2281-randomize);~
+-LaggedFibonacci2281.randomize メソッド &aname(LF2281-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci2281.randomize()~
@@ -1518,10 +1521,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci2281.seed メソッド>#LaggedFibonacci2281-seed]] を参照。~
+[[LaggedFibonacci2281.seed メソッド>#LF2281-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.serialize メソッド &aname(LaggedFibonacci2281-serialize);~
+-LaggedFibonacci2281.serialize メソッド &aname(LF2281-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci2281.serialize()~
@@ -1532,7 +1535,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.deserialize メソッド &aname(LaggedFibonacci2281-deserialize);~
+-LaggedFibonacci2281.deserialize メソッド &aname(LF2281-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci2281.deserialize(serialized)~
@@ -1543,11 +1546,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.min プロパティ &aname(LaggedFibonacci2281-min);~
+-LaggedFibonacci2281.min プロパティ &aname(LF2281-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci2281.max プロパティ &aname(LaggedFibonacci2281-max);~
+-LaggedFibonacci2281.max プロパティ &aname(LF2281-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1556,18 +1559,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^170000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci3217 メソッド>#LaggedFibonacci3217-LaggedFibonacci3217]]~
---[[random メソッド>#LaggedFibonacci3217-random]]~
---[[seed メソッド>#LaggedFibonacci3217-seed]]~
---[[randomize メソッド>#LaggedFibonacci3217-randomize]]~
---[[serialize メソッド>#LaggedFibonacci3217-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci3217-deserialize]]~
+--[[LaggedFibonacci3217 メソッド>#LF3217-LaggedFibonacci3217]]~
+--[[random メソッド>#LF3217-random]]~
+--[[seed メソッド>#LF3217-seed]]~
+--[[randomize メソッド>#LF3217-randomize]]~
+--[[serialize メソッド>#LF3217-serialize]]~
+--[[deserialize メソッド>#LF3217-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci3217-min]]~
---[[max プロパティ>#LaggedFibonacci3217-max]]~
+--[[min プロパティ>#LF3217-min]]~
+--[[max プロパティ>#LF3217-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.LaggedFibonacci3217 メソッド &aname(LaggedFibonacci3217-LaggedFibonacci3217);~
+-LaggedFibonacci3217.LaggedFibonacci3217 メソッド &aname(LF3217-LaggedFibonacci3217);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci3217()~
@@ -1580,7 +1583,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.random メソッド &aname(LaggedFibonacci3217-random);~
+-LaggedFibonacci3217.random メソッド &aname(LF3217-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci3217.random()~
@@ -1591,7 +1594,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.seed メソッド &aname(LaggedFibonacci3217-seed);~
+-LaggedFibonacci3217.seed メソッド &aname(LF3217-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci3217.seed()~
@@ -1606,7 +1609,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.randomize メソッド &aname(LaggedFibonacci3217-randomize);~
+-LaggedFibonacci3217.randomize メソッド &aname(LF3217-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci3217.randomize()~
@@ -1620,10 +1623,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci3217.seed メソッド>#LaggedFibonacci3217-seed]] を参照。~
+[[LaggedFibonacci3217.seed メソッド>#LF3217-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.serialize メソッド &aname(LaggedFibonacci3217-serialize);~
+-LaggedFibonacci3217.serialize メソッド &aname(LF3217-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci3217.serialize()~
@@ -1634,7 +1637,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.deserialize メソッド &aname(LaggedFibonacci3217-deserialize);~
+-LaggedFibonacci3217.deserialize メソッド &aname(LF3217-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci3217.deserialize(serialized)~
@@ -1645,11 +1648,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.min プロパティ &aname(LaggedFibonacci3217-min);~
+-LaggedFibonacci3217.min プロパティ &aname(LF3217-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci3217.max プロパティ &aname(LaggedFibonacci3217-max);~
+-LaggedFibonacci3217.max プロパティ &aname(LF3217-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1658,18 +1661,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^230000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci4423 メソッド>#LaggedFibonacci4423-LaggedFibonacci4423]]~
---[[random メソッド>#LaggedFibonacci4423-random]]~
---[[seed メソッド>#LaggedFibonacci4423-seed]]~
---[[randomize メソッド>#LaggedFibonacci4423-randomize]]~
---[[serialize メソッド>#LaggedFibonacci4423-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci4423-deserialize]]~
+--[[LaggedFibonacci4423 メソッド>#LF4423-LaggedFibonacci4423]]~
+--[[random メソッド>#LF4423-random]]~
+--[[seed メソッド>#LF4423-seed]]~
+--[[randomize メソッド>#LF4423-randomize]]~
+--[[serialize メソッド>#LF4423-serialize]]~
+--[[deserialize メソッド>#LF4423-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci4423-min]]~
---[[max プロパティ>#LaggedFibonacci4423-max]]~
+--[[min プロパティ>#LF4423-min]]~
+--[[max プロパティ>#LF4423-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.LaggedFibonacci4423 メソッド &aname(LaggedFibonacci4423-LaggedFibonacci4423);~
+-LaggedFibonacci4423.LaggedFibonacci4423 メソッド &aname(LF4423-LaggedFibonacci4423);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci4423()~
@@ -1682,7 +1685,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.random メソッド &aname(LaggedFibonacci4423-random);~
+-LaggedFibonacci4423.random メソッド &aname(LF4423-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci4423.random()~
@@ -1693,7 +1696,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.seed メソッド &aname(LaggedFibonacci4423-seed);~
+-LaggedFibonacci4423.seed メソッド &aname(LF4423-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci4423.seed()~
@@ -1708,7 +1711,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.randomize メソッド &aname(LaggedFibonacci4423-randomize);~
+-LaggedFibonacci4423.randomize メソッド &aname(LF4423-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci4423.randomize()~
@@ -1722,10 +1725,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci4423.seed メソッド>#LaggedFibonacci4423-seed]] を参照。~
+[[LaggedFibonacci4423.seed メソッド>#LF4423-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.serialize メソッド &aname(LaggedFibonacci4423-serialize);~
+-LaggedFibonacci4423.serialize メソッド &aname(LF4423-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci4423.serialize()~
@@ -1736,7 +1739,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.deserialize メソッド &aname(LaggedFibonacci4423-deserialize);~
+-LaggedFibonacci4423.deserialize メソッド &aname(LF4423-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci4423.deserialize(serialized)~
@@ -1747,11 +1750,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.min プロパティ &aname(LaggedFibonacci4423-min);~
+-LaggedFibonacci4423.min プロパティ &aname(LF4423-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci4423.max プロパティ &aname(LaggedFibonacci4423-max);~
+-LaggedFibonacci4423.max プロパティ &aname(LF4423-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1760,18 +1763,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^510000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci9689 メソッド>#LaggedFibonacci9689-LaggedFibonacci9689]]~
---[[random メソッド>#LaggedFibonacci9689-random]]~
---[[seed メソッド>#LaggedFibonacci9689-seed]]~
---[[randomize メソッド>#LaggedFibonacci9689-randomize]]~
---[[serialize メソッド>#LaggedFibonacci9689-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci9689-deserialize]]~
+--[[LaggedFibonacci9689 メソッド>#LF9689-LaggedFibonacci9689]]~
+--[[random メソッド>#LF9689-random]]~
+--[[seed メソッド>#LF9689-seed]]~
+--[[randomize メソッド>#LF9689-randomize]]~
+--[[serialize メソッド>#LF9689-serialize]]~
+--[[deserialize メソッド>#LF9689-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci9689-min]]~
---[[max プロパティ>#LaggedFibonacci9689-max]]~
+--[[min プロパティ>#LF9689-min]]~
+--[[max プロパティ>#LF9689-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.LaggedFibonacci9689 メソッド &aname(LaggedFibonacci9689-LaggedFibonacci9689);~
+-LaggedFibonacci9689.LaggedFibonacci9689 メソッド &aname(LF9689-LaggedFibonacci9689);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci9689()~
@@ -1784,7 +1787,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.random メソッド &aname(LaggedFibonacci9689-random);~
+-LaggedFibonacci9689.random メソッド &aname(LF9689-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci9689.random()~
@@ -1795,7 +1798,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.seed メソッド &aname(LaggedFibonacci9689-seed);~
+-LaggedFibonacci9689.seed メソッド &aname(LF9689-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci9689.seed()~
@@ -1810,7 +1813,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.randomize メソッド &aname(LaggedFibonacci9689-randomize);~
+-LaggedFibonacci9689.randomize メソッド &aname(LF9689-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci9689.randomize()~
@@ -1824,10 +1827,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci9689.seed メソッド>#LaggedFibonacci9689-seed]] を参照。~
+[[LaggedFibonacci9689.seed メソッド>#LF9689-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.serialize メソッド &aname(LaggedFibonacci9689-serialize);~
+-LaggedFibonacci9689.serialize メソッド &aname(LF9689-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci9689.serialize()~
@@ -1838,7 +1841,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.deserialize メソッド &aname(LaggedFibonacci9689-deserialize);~
+-LaggedFibonacci9689.deserialize メソッド &aname(LF9689-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci9689.deserialize(serialized)~
@@ -1849,11 +1852,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.min プロパティ &aname(LaggedFibonacci9689-min);~
+-LaggedFibonacci9689.min プロパティ &aname(LF9689-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9689.max プロパティ &aname(LaggedFibonacci9689-max);~
+-LaggedFibonacci9689.max プロパティ &aname(LF9689-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1862,18 +1865,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^1050000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci9937 メソッド>#LaggedFibonacci9937-LaggedFibonacci9937]]~
---[[random メソッド>#LaggedFibonacci9937-random]]~
---[[seed メソッド>#LaggedFibonacci9937-seed]]~
---[[randomize メソッド>#LaggedFibonacci9937-randomize]]~
---[[serialize メソッド>#LaggedFibonacci9937-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci9937-deserialize]]~
+--[[LaggedFibonacci9937 メソッド>#LF9937-LaggedFibonacci9937]]~
+--[[random メソッド>#LF9937-random]]~
+--[[seed メソッド>#LF9937-seed]]~
+--[[randomize メソッド>#LF9937-randomize]]~
+--[[serialize メソッド>#LF9937-serialize]]~
+--[[deserialize メソッド>#LF9937-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci9937-min]]~
---[[max プロパティ>#LaggedFibonacci9937-max]]~
+--[[min プロパティ>#LF9937-min]]~
+--[[max プロパティ>#LF9937-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.LaggedFibonacci9937 メソッド &aname(LaggedFibonacci9937-LaggedFibonacci9937);~
+-LaggedFibonacci9937.LaggedFibonacci9937 メソッド &aname(LF9937-LaggedFibonacci9937);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci9937()~
@@ -1886,7 +1889,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.random メソッド &aname(LaggedFibonacci9937-random);~
+-LaggedFibonacci9937.random メソッド &aname(LF9937-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci9937.random()~
@@ -1897,7 +1900,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.seed メソッド &aname(LaggedFibonacci9937-seed);~
+-LaggedFibonacci9937.seed メソッド &aname(LF9937-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci9937.seed()~
@@ -1912,7 +1915,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.randomize メソッド &aname(LaggedFibonacci9937-randomize);~
+-LaggedFibonacci9937.randomize メソッド &aname(LF9937-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci9937.randomize()~
@@ -1926,10 +1929,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci9937.seed メソッド>#LaggedFibonacci9937-seed]] を参照。~
+[[LaggedFibonacci9937.seed メソッド>#LF9937-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.serialize メソッド &aname(LaggedFibonacci9937-serialize);~
+-LaggedFibonacci9937.serialize メソッド &aname(LF9937-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci9937.serialize()~
@@ -1940,7 +1943,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.deserialize メソッド &aname(LaggedFibonacci9937-deserialize);~
+-LaggedFibonacci9937.deserialize メソッド &aname(LF9937-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci9937.deserialize(serialized)~
@@ -1951,11 +1954,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.min プロパティ &aname(LaggedFibonacci9937-min);~
+-LaggedFibonacci9937.min プロパティ &aname(LF9937-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci9937.max プロパティ &aname(LaggedFibonacci9937-max);~
+-LaggedFibonacci9937.max プロパティ &aname(LF9937-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -1964,18 +1967,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^1200000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci23209 メソッド>#LaggedFibonacci23209-LaggedFibonacci23209]]~
---[[random メソッド>#LaggedFibonacci23209-random]]~
---[[seed メソッド>#LaggedFibonacci23209-seed]]~
---[[randomize メソッド>#LaggedFibonacci23209-randomize]]~
---[[serialize メソッド>#LaggedFibonacci23209-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci23209-deserialize]]~
+--[[LaggedFibonacci23209 メソッド>#LF23209-LaggedFibonacci23209]]~
+--[[random メソッド>#LF23209-random]]~
+--[[seed メソッド>#LF23209-seed]]~
+--[[randomize メソッド>#LF23209-randomize]]~
+--[[serialize メソッド>#LF23209-serialize]]~
+--[[deserialize メソッド>#LF23209-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci23209-min]]~
---[[max プロパティ>#LaggedFibonacci23209-max]]~
+--[[min プロパティ>#LF23209-min]]~
+--[[max プロパティ>#LF23209-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.LaggedFibonacci23209 メソッド &aname(LaggedFibonacci23209-LaggedFibonacci23209);~
+-LaggedFibonacci23209.LaggedFibonacci23209 メソッド &aname(LF23209-LaggedFibonacci23209);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci23209()~
@@ -1988,7 +1991,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.random メソッド &aname(LaggedFibonacci23209-random);~
+-LaggedFibonacci23209.random メソッド &aname(LF23209-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci23209.random()~
@@ -1999,7 +2002,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.seed メソッド &aname(LaggedFibonacci23209-seed);~
+-LaggedFibonacci23209.seed メソッド &aname(LF23209-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci23209.seed()~
@@ -2014,7 +2017,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.randomize メソッド &aname(LaggedFibonacci23209-randomize);~
+-LaggedFibonacci23209.randomize メソッド &aname(LF23209-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci23209.randomize()~
@@ -2028,10 +2031,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci23209.seed メソッド>#LaggedFibonacci23209-seed]] を参照。~
+[[LaggedFibonacci23209.seed メソッド>#LF23209-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.serialize メソッド &aname(LaggedFibonacci23209-serialize);~
+-LaggedFibonacci23209.serialize メソッド &aname(LF23209-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci23209.serialize()~
@@ -2042,7 +2045,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.deserialize メソッド &aname(LaggedFibonacci23209-deserialize);~
+-LaggedFibonacci23209.deserialize メソッド &aname(LF23209-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci23209.deserialize(serialized)~
@@ -2053,11 +2056,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.min プロパティ &aname(LaggedFibonacci23209-min);~
+-LaggedFibonacci23209.min プロパティ &aname(LF23209-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci23209.max プロパティ &aname(LaggedFibonacci23209-max);~
+-LaggedFibonacci23209.max プロパティ &aname(LF23209-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -2066,18 +2069,18 @@
  Lagged Fibonacci 法の疑似乱数生成エンジンクラス。
  周期 ～2^2300000 ，精度 64bit 浮動小数点数．
 -メソッド:~
---[[LaggedFibonacci44497 メソッド>#LaggedFibonacci44497-LaggedFibonacci44497]]~
---[[random メソッド>#LaggedFibonacci44497-random]]~
---[[seed メソッド>#LaggedFibonacci44497-seed]]~
---[[randomize メソッド>#LaggedFibonacci44497-randomize]]~
---[[serialize メソッド>#LaggedFibonacci44497-serialize]]~
---[[deserialize メソッド>#LaggedFibonacci44497-deserialize]]~
+--[[LaggedFibonacci44497 メソッド>#LF44497-LaggedFibonacci44497]]~
+--[[random メソッド>#LF44497-random]]~
+--[[seed メソッド>#LF44497-seed]]~
+--[[randomize メソッド>#LF44497-randomize]]~
+--[[serialize メソッド>#LF44497-serialize]]~
+--[[deserialize メソッド>#LF44497-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LaggedFibonacci44497-min]]~
---[[max プロパティ>#LaggedFibonacci44497-max]]~
+--[[min プロパティ>#LF44497-min]]~
+--[[max プロパティ>#LF44497-max]]~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.LaggedFibonacci44497 メソッド &aname(LaggedFibonacci44497-LaggedFibonacci44497);~
+-LaggedFibonacci44497.LaggedFibonacci44497 メソッド &aname(LF44497-LaggedFibonacci44497);~
  コンストラクタ。
 --シグネチャ:~
 ---LaggedFibonacci44497()~
@@ -2090,7 +2093,7 @@
 複数の乱数種。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.random メソッド &aname(LaggedFibonacci44497-random);~
+-LaggedFibonacci44497.random メソッド &aname(LF44497-random);~
  乱数値を生成する。
 --シグネチャ:~
 ---LaggedFibonacci44497.random()~
@@ -2101,7 +2104,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.seed メソッド &aname(LaggedFibonacci44497-seed);~
+-LaggedFibonacci44497.seed メソッド &aname(LF44497-seed);~
  エンジンを乱数種で初期化する。
 --シグネチャ:~
 ---LaggedFibonacci44497.seed()~
@@ -2116,7 +2119,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.randomize メソッド &aname(LaggedFibonacci44497-randomize);~
+-LaggedFibonacci44497.randomize メソッド &aname(LF44497-randomize);~
  seed メソッドに同じ。
 --シグネチャ:~
 ---LaggedFibonacci44497.randomize()~
@@ -2130,10 +2133,10 @@
 --返値:~
 ---(なし)~
 --注記:~
-[[LaggedFibonacci44497.seed メソッド>#LaggedFibonacci44497-seed]] を参照。~
+[[LaggedFibonacci44497.seed メソッド>#LF44497-seed]] を参照。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.serialize メソッド &aname(LaggedFibonacci44497-serialize);~
+-LaggedFibonacci44497.serialize メソッド &aname(LF44497-serialize);~
  このエンジンの状態を文字列として書き出す。
 --シグネチャ:~
 ---LaggedFibonacci44497.serialize()~
@@ -2144,7 +2147,7 @@
 シリアライズ文字列。~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.deserialize メソッド &aname(LaggedFibonacci44497-deserialize);~
+-LaggedFibonacci44497.deserialize メソッド &aname(LF44497-deserialize);~
  このエンジンの状態を文字列から復元する。
 --シグネチャ:~
 ---LaggedFibonacci44497.deserialize(serialized)~
@@ -2155,11 +2158,11 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.min プロパティ &aname(LaggedFibonacci44497-min);~
+-LaggedFibonacci44497.min プロパティ &aname(LF44497-min);~
  このエンジンが生成する乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LaggedFibonacci44497.max プロパティ &aname(LaggedFibonacci44497-max);~
+-LaggedFibonacci44497.max プロパティ &aname(LF44497-max);~
  このエンジンが生成する乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3156,18 +3159,18 @@
  整数の一様分布を返す確率分布クラス。
  精度 64bit 符号付き整数．
 -メソッド:~
---[[UniformIntDistribution メソッド>#UniformIntDistribution-UniformIntDistribution]]~
+--[[UniformIntDistribution メソッド>#UniformIntD-UniformIntD]]~
 -メソッド:~
---[[random メソッド>#UniformIntDistribution-random]]~
---[[reset メソッド>#UniformIntDistribution-reset]]~
---[[serialize メソッド>#UniformIntDistribution-serialize]]~
---[[deserialize メソッド>#UniformIntDistribution-deserialize]]~
+--[[random メソッド>#UniformIntD-random]]~
+--[[reset メソッド>#UniformIntD-reset]]~
+--[[serialize メソッド>#UniformIntD-serialize]]~
+--[[deserialize メソッド>#UniformIntD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#UniformIntDistribution-min]]~
---[[max プロパティ>#UniformIntDistribution-max]]~
+--[[min プロパティ>#UniformIntD-min]]~
+--[[max プロパティ>#UniformIntD-max]]~
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.UniformIntDistribution メソッド &aname(UniformIntDistribution-UniformIntDistribution);~
+-UniformIntDistribution.UniformIntDistribution メソッド &aname(UniformIntD-UniformIntD);~
  コンストラクタ。
 --シグネチャ:~
 ---UniformIntDistribution(min = 0, max = 9)~
@@ -3178,7 +3181,7 @@
 最大値。~
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.random メソッド &aname(UniformIntDistribution-random);~
+-UniformIntDistribution.random メソッド &aname(UniformIntD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---UniformIntDistribution.random(engine)~
@@ -3190,7 +3193,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.reset メソッド &aname(UniformIntDistribution-reset);~
+-UniformIntDistribution.reset メソッド &aname(UniformIntD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---UniformIntDistribution.reset()~
@@ -3200,7 +3203,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.serialize メソッド &aname(UniformIntDistribution-serialize);~
+-UniformIntDistribution.serialize メソッド &aname(UniformIntD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---UniformIntDistribution.serialize()~
@@ -3210,7 +3213,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.deserialize メソッド &aname(UniformIntDistribution-deserialize);~
+-UniformIntDistribution.deserialize メソッド &aname(UniformIntD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---UniformIntDistribution.deserialize(serialized)~
@@ -3222,11 +3225,11 @@
 
 --------------------------------------------------------------------------------
 
--UniformIntDistribution.min プロパティ &aname(UniformIntDistribution-min);~
+-UniformIntDistribution.min プロパティ &aname(UniformIntD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--UniformIntDistribution.max プロパティ &aname(UniformIntDistribution-max);~
+-UniformIntDistribution.max プロパティ &aname(UniformIntD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3316,18 +3319,18 @@
  実数の一様分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[UniformRealDistribution メソッド>#UniformRealDistribution-UniformRealDistribution]]~
+--[[UniformRealDistribution メソッド>#UniformRealD-UniformRealD]]~
 -メソッド:~
---[[random メソッド>#UniformRealDistribution-random]]~
---[[reset メソッド>#UniformRealDistribution-reset]]~
---[[serialize メソッド>#UniformRealDistribution-serialize]]~
---[[deserialize メソッド>#UniformRealDistribution-deserialize]]~
+--[[random メソッド>#UniformRealD-random]]~
+--[[reset メソッド>#UniformRealD-reset]]~
+--[[serialize メソッド>#UniformRealD-serialize]]~
+--[[deserialize メソッド>#UniformRealD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#UniformRealDistribution-min]]~
---[[max プロパティ>#UniformRealDistribution-max]]~
+--[[min プロパティ>#UniformRealD-min]]~
+--[[max プロパティ>#UniformRealD-max]]~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.UniformRealDistribution メソッド &aname(UniformRealDistribution-UniformRealDistribution);~
+-UniformRealDistribution.UniformRealDistribution メソッド &aname(UniformRealD-UniformRealD);~~
  コンストラクタ。
 --シグネチャ:~
 ---UniformRealDistribution(min = 0, max = 9)~
@@ -3338,7 +3341,7 @@
 最大値。~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.random メソッド &aname(UniformRealDistribution-random);~
+-UniformRealDistribution.random メソッド &aname(UniformRealD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---UniformRealDistribution.random(engine)~
@@ -3350,7 +3353,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.reset メソッド &aname(UniformRealDistribution-reset);~
+-UniformRealDistribution.reset メソッド &aname(UniformRealD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---UniformRealDistribution.reset()~
@@ -3360,7 +3363,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.serialize メソッド &aname(UniformRealDistribution-serialize);~
+-UniformRealDistribution.serialize メソッド &aname(UniformRealD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---UniformRealDistribution.serialize()~
@@ -3370,7 +3373,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.deserialize メソッド &aname(UniformRealDistribution-deserialize);~
+-UniformRealDistribution.deserialize メソッド &aname(UniformRealD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---UniformRealDistribution.deserialize(serialized)~
@@ -3382,11 +3385,11 @@
 
 --------------------------------------------------------------------------------
 
--UniformRealDistribution.min プロパティ &aname(UniformRealDistribution-min);~
+-UniformRealDistribution.min プロパティ &aname(UniformRealD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.max プロパティ &aname(UniformRealDistribution-max);~
+-UniformRealDistribution.max プロパティ &aname(UniformRealD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3400,18 +3403,18 @@
  ベルヌーイ分布を返す確率分布クラス。
  精度 真理値．
 -メソッド:~
---[[BernoulliDistribution メソッド>#BernoulliDistribution-BernoulliDistribution]]~
+--[[BernoulliDistribution メソッド>#BernoulliD-BernoulliD]]~
 -メソッド:~
---[[random メソッド>#BernoulliDistribution-random]]~
---[[reset メソッド>#BernoulliDistribution-reset]]~
---[[serialize メソッド>#BernoulliDistribution-serialize]]~
---[[deserialize メソッド>#BernoulliDistribution-deserialize]]~
+--[[random メソッド>#BernoulliD-random]]~
+--[[reset メソッド>#BernoulliD-reset]]~
+--[[serialize メソッド>#BernoulliD-serialize]]~
+--[[deserialize メソッド>#BernoulliD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#BernoulliDistribution-min]]~
---[[max プロパティ>#BernoulliDistribution-max]]~
+--[[min プロパティ>#BernoulliD-min]]~
+--[[max プロパティ>#BernoulliD-max]]~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.BernoulliDistribution メソッド &aname(BernoulliDistribution-BernoulliDistribution);~
+-BernoulliDistribution.BernoulliDistribution メソッド &aname(BernoulliD-BernoulliD);~~
  コンストラクタ。
 --シグネチャ:~
 ---BernoulliDistribution(p = 0.5)~
@@ -3420,7 +3423,7 @@
 成功確率。(0 <= p <= 1)~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.random メソッド &aname(BernoulliDistribution-random);~
+-BernoulliDistribution.random メソッド &aname(BernoulliD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---BernoulliDistribution.random(engine)~
@@ -3432,7 +3435,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.reset メソッド &aname(BernoulliDistribution-reset);~
+-BernoulliDistribution.reset メソッド &aname(BernoulliD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---BernoulliDistribution.reset()~
@@ -3442,7 +3445,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.serialize メソッド &aname(BernoulliDistribution-serialize);~
+-BernoulliDistribution.serialize メソッド &aname(BernoulliD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---BernoulliDistribution.serialize()~
@@ -3452,7 +3455,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.deserialize メソッド &aname(BernoulliDistribution-deserialize);~
+-BernoulliDistribution.deserialize メソッド &aname(BernoulliD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---BernoulliDistribution.deserialize(serialized)~
@@ -3464,11 +3467,11 @@
 
 --------------------------------------------------------------------------------
 
--BernoulliDistribution.min プロパティ &aname(BernoulliDistribution-min);~
+-BernoulliDistribution.min プロパティ &aname(BernoulliD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.max プロパティ &aname(BernoulliDistribution-max);~
+-BernoulliDistribution.max プロパティ &aname(BernoulliD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3477,18 +3480,18 @@
  二項分布を返す確率分布クラス。
  精度 32bit 符号付き整数．
 -メソッド:~
---[[BinomialDistribution メソッド>#BinomialDistribution-BinomialDistribution]]~
+--[[BinomialDistribution メソッド>#BinomialD-BinomialD]]~
 -メソッド:~
---[[random メソッド>#BinomialDistribution-random]]~
---[[reset メソッド>#BinomialDistribution-reset]]~
---[[serialize メソッド>#BinomialDistribution-serialize]]~
---[[deserialize メソッド>#BinomialDistribution-deserialize]]~
+--[[random メソッド>#BinomialD-random]]~
+--[[reset メソッド>#BinomialD-reset]]~
+--[[serialize メソッド>#BinomialD-serialize]]~
+--[[deserialize メソッド>#BinomialD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#BinomialDistribution-min]]~
---[[max プロパティ>#BinomialDistribution-max]]~
+--[[min プロパティ>#BinomialD-min]]~
+--[[max プロパティ>#BinomialD-max]]~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.BinomialDistribution メソッド &aname(BinomialDistribution-BinomialDistribution);~
+-BinomialDistribution.BinomialDistribution メソッド &aname(BinomialD-BinomialD);~~
  コンストラクタ。
 --シグネチャ:~
 ---BinomialDistribution(t = 1, p = 0.5)~
@@ -3499,7 +3502,7 @@
 成功確率。(0 <= p <= 1)~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.random メソッド &aname(BinomialDistribution-random);~
+-BinomialDistribution.random メソッド &aname(BinomialD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---BinomialDistribution.random(engine)~
@@ -3511,7 +3514,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.reset メソッド &aname(BinomialDistribution-reset);~
+-BinomialDistribution.reset メソッド &aname(BinomialD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---BinomialDistribution.reset()~
@@ -3521,7 +3524,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.serialize メソッド &aname(BinomialDistribution-serialize);~
+-BinomialDistribution.serialize メソッド &aname(BinomialD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---BinomialDistribution.serialize()~
@@ -3531,7 +3534,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.deserialize メソッド &aname(BinomialDistribution-deserialize);~
+-BinomialDistribution.deserialize メソッド &aname(BinomialD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---BinomialDistribution.deserialize(serialized)~
@@ -3543,11 +3546,11 @@
 
 --------------------------------------------------------------------------------
 
--BinomialDistribution.min プロパティ &aname(BinomialDistribution-min);~
+-BinomialDistribution.min プロパティ &aname(BinomialD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--BinomialDistribution.max プロパティ &aname(BinomialDistribution-max);~
+-BinomialDistribution.max プロパティ &aname(BinomialD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3556,18 +3559,18 @@
  幾何分布を返す確率分布クラス。
  精度 64bit 符号付き整数．
 -メソッド:~
---[[GeometricDistribution メソッド>#GeometricDistribution-GeometricDistribution]]~
+--[[GeometricDistribution メソッド>#GeometricD-GeometricD]]~
 -メソッド:~
---[[random メソッド>#GeometricDistribution-random]]~
---[[reset メソッド>#GeometricDistribution-reset]]~
---[[serialize メソッド>#GeometricDistribution-serialize]]~
---[[deserialize メソッド>#GeometricDistribution-deserialize]]~
+--[[random メソッド>#GeometricD-random]]~
+--[[reset メソッド>#GeometricD-reset]]~
+--[[serialize メソッド>#GeometricD-serialize]]~
+--[[deserialize メソッド>#GeometricD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#GeometricDistribution-min]]~
---[[max プロパティ>#GeometricDistribution-max]]~
+--[[min プロパティ>#GeometricD-min]]~
+--[[max プロパティ>#GeometricD-max]]~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.GeometricDistribution メソッド &aname(GeometricDistribution-GeometricDistribution);~
+-GeometricDistribution.GeometricDistribution メソッド &aname(GeometricD-GeometricD);~~
  コンストラクタ。
 --シグネチャ:~
 ---GeometricDistribution(p = 0.5)~
@@ -3576,7 +3579,7 @@
 パラメータ。(0 < p < 1)~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.random メソッド &aname(GeometricDistribution-random);~
+-GeometricDistribution.random メソッド &aname(GeometricD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---GeometricDistribution.random(engine)~
@@ -3588,7 +3591,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.reset メソッド &aname(GeometricDistribution-reset);~
+-GeometricDistribution.reset メソッド &aname(GeometricD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---GeometricDistribution.reset()~
@@ -3598,7 +3601,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.serialize メソッド &aname(GeometricDistribution-serialize);~
+-GeometricDistribution.serialize メソッド &aname(GeometricD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---GeometricDistribution.serialize()~
@@ -3608,7 +3611,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.deserialize メソッド &aname(GeometricDistribution-deserialize);~
+-GeometricDistribution.deserialize メソッド &aname(GeometricD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---GeometricDistribution.deserialize(serialized)~
@@ -3620,11 +3623,11 @@
 
 --------------------------------------------------------------------------------
 
--GeometricDistribution.min プロパティ &aname(GeometricDistribution-min);~
+-GeometricDistribution.min プロパティ &aname(GeometricD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--GeometricDistribution.max プロパティ &aname(GeometricDistribution-max);~
+-GeometricDistribution.max プロパティ &aname(GeometricD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3633,21 +3636,21 @@
  負の二項分布を返す確率分布クラス。
  精度 64bit 符号付き整数．
 -メソッド:~
---[[NegativeBinomialDistribution メソッド>#NegativeBinomialDistribution-NegativeBinomialDistribution]]~
+--[[NegativeBinomialDistribution メソッド>#NBinomialD-NBinomialD]]~
 -メソッド:~
---[[random メソッド>#NegativeBinomialDistribution-random]]~
---[[reset メソッド>#NegativeBinomialDistribution-reset]]~
---[[serialize メソッド>#NegativeBinomialDistribution-serialize]]~
---[[deserialize メソッド>#NegativeBinomialDistribution-deserialize]]~
+--[[random メソッド>#NBinomialD-random]]~
+--[[reset メソッド>#NBinomialD-reset]]~
+--[[serialize メソッド>#NBinomialD-serialize]]~
+--[[deserialize メソッド>#NBinomialD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#NegativeBinomialDistribution-min]]~
---[[max プロパティ>#NegativeBinomialDistribution-max]]~
+--[[min プロパティ>#NBinomialD-min]]~
+--[[max プロパティ>#NBinomialD-max]]~
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.NegativeBinomialDistribution メソッド &aname(NegativeBinomialDistribution-NegativeBinomialDistribution);~
+-NBinomialDistribution.NegativeBinomialDistribution メソッド &aname(NBinomialD-NBinomialD);~~
  コンストラクタ。
 --シグネチャ:~
----NegativeBinomialDistribution(k = 1, p = 0.5)~
+---NBinomialDistribution(k = 1, p = 0.5)~
 --引数:~
 ---k~
 試行回数。(k >= 0)~
@@ -3655,10 +3658,10 @@
 成功確率。(0 <= p <= 1)~
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.random メソッド &aname(NegativeBinomialDistribution-random);~
+-NBinomialDistribution.random メソッド &aname(NBinomialD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
----NegativeBinomialDistribution.random(engine)~
+---NBinomialDistribution.random(engine)~
 --引数:~
 ---engine~
 乱数生成エンジンクラスのインスタンス。~
@@ -3667,30 +3670,30 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.reset メソッド &aname(NegativeBinomialDistribution-reset);~
+-NBinomialDistribution.reset メソッド &aname(NBinomialD-reset);~
  状態を初期化する。
 --シグネチャ:~
----NegativeBinomialDistribution.reset()~
+---NBinomialDistribution.reset()~
 --引数:~
 ---(なし)~
 --返値:~
 ---(なし)~
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.serialize メソッド &aname(NegativeBinomialDistribution-serialize);~
+-NBinomialDistribution.serialize メソッド &aname(NBinomialD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
----NegativeBinomialDistribution.serialize()~
+---NBinomialDistribution.serialize()~
 --引数:~
 ---(なし)~
 --返値:~
 ---String~
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.deserialize メソッド &aname(NegativeBinomialDistribution-deserialize);~
+-NBinomialDistribution.deserialize メソッド &aname(NBinomialD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
----NegativeBinomialDistribution.deserialize(serialized)~
+---NBinomialDistribution.deserialize(serialized)~
 --引数:~
 ---serialized~
 シリアライズ文字列。~
@@ -3699,11 +3702,11 @@
 
 --------------------------------------------------------------------------------
 
--NegativeBinomialDistribution.min プロパティ &aname(NegativeBinomialDistribution-min);~
+-NBinomialDistribution.min プロパティ &aname(NBinomialD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--NegativeBinomialDistribution.max プロパティ &aname(NegativeBinomialDistribution-max);~
+-NBinomialDistribution.max プロパティ &aname(NBinomialD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3712,18 +3715,18 @@
  ポアソン分布を返す確率分布クラス。
  精度 64bit 符号付き整数．
 -メソッド:~
---[[PoissonDistribution メソッド>#PoissonDistribution-PoissonDistribution]]~
+--[[PoissonDistribution メソッド>#PoissonD-PoissonD]]~
 -メソッド:~
---[[random メソッド>#PoissonDistribution-random]]~
---[[reset メソッド>#PoissonDistribution-reset]]~
---[[serialize メソッド>#PoissonDistribution-serialize]]~
---[[deserialize メソッド>#PoissonDistribution-deserialize]]~
+--[[random メソッド>#PoissonD-random]]~
+--[[reset メソッド>#PoissonD-reset]]~
+--[[serialize メソッド>#PoissonD-serialize]]~
+--[[deserialize メソッド>#PoissonD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#PoissonDistribution-min]]~
---[[max プロパティ>#PoissonDistribution-max]]~
+--[[min プロパティ>#PoissonD-min]]~
+--[[max プロパティ>#PoissonD-max]]~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.PoissonDistribution メソッド &aname(PoissonDistribution-PoissonDistribution);~
+-PoissonDistribution.PoissonDistribution メソッド &aname(PoissonD-PoissonD);~~
  コンストラクタ。
 --シグネチャ:~
 ---PoissonDistribution(mean = 1)~
@@ -3732,7 +3735,7 @@
 パラメータ。(mean > 0)~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.random メソッド &aname(PoissonDistribution-random);~
+-PoissonDistribution.random メソッド &aname(PoissonD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---PoissonDistribution.random(engine)~
@@ -3744,7 +3747,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.reset メソッド &aname(PoissonDistribution-reset);~
+-PoissonDistribution.reset メソッド &aname(PoissonD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---PoissonDistribution.reset()~
@@ -3754,7 +3757,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.serialize メソッド &aname(PoissonDistribution-serialize);~
+-PoissonDistribution.serialize メソッド &aname(PoissonD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---PoissonDistribution.serialize()~
@@ -3764,7 +3767,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.deserialize メソッド &aname(PoissonDistribution-deserialize);~
+-PoissonDistribution.deserialize メソッド &aname(PoissonD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---PoissonDistribution.deserialize(serialized)~
@@ -3776,11 +3779,11 @@
 
 --------------------------------------------------------------------------------
 
--PoissonDistribution.min プロパティ &aname(PoissonDistribution-min);~
+-PoissonDistribution.min プロパティ &aname(PoissonD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--PoissonDistribution.max プロパティ &aname(PoissonDistribution-max);~
+-PoissonDistribution.max プロパティ &aname(PoissonD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3789,18 +3792,18 @@
  指数分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[ExponentialDistribution メソッド>#ExponentialDistribution-ExponentialDistribution]]~
+--[[ExponentialDistribution メソッド>#ExponentialD-ExponentialD]]~
 -メソッド:~
---[[random メソッド>#ExponentialDistribution-random]]~
---[[reset メソッド>#ExponentialDistribution-reset]]~
---[[serialize メソッド>#ExponentialDistribution-serialize]]~
---[[deserialize メソッド>#ExponentialDistribution-deserialize]]~
+--[[random メソッド>#ExponentialD-random]]~
+--[[reset メソッド>#ExponentialD-reset]]~
+--[[serialize メソッド>#ExponentialD-serialize]]~
+--[[deserialize メソッド>#ExponentialD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#ExponentialDistribution-min]]~
---[[max プロパティ>#ExponentialDistribution-max]]~
+--[[min プロパティ>#ExponentialD-min]]~
+--[[max プロパティ>#ExponentialD-max]]~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.ExponentialDistribution メソッド &aname(ExponentialDistribution-ExponentialDistribution);~
+-ExponentialDistribution.ExponentialDistribution メソッド &aname(ExponentialD-ExponentialD);~~
  コンストラクタ。
 --シグネチャ:~
 ---ExponentialDistribution(lambda = 1)~
@@ -3809,7 +3812,7 @@
 パラメータ。(lambda > 0)~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.random メソッド &aname(ExponentialDistribution-random);~
+-ExponentialDistribution.random メソッド &aname(ExponentialD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---ExponentialDistribution.random(engine)~
@@ -3821,7 +3824,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.reset メソッド &aname(ExponentialDistribution-reset);~
+-ExponentialDistribution.reset メソッド &aname(ExponentialD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---ExponentialDistribution.reset()~
@@ -3831,7 +3834,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.serialize メソッド &aname(ExponentialDistribution-serialize);~
+-ExponentialDistribution.serialize メソッド &aname(ExponentialD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---ExponentialDistribution.serialize()~
@@ -3841,7 +3844,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.deserialize メソッド &aname(ExponentialDistribution-deserialize);~
+-ExponentialDistribution.deserialize メソッド &aname(ExponentialD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---ExponentialDistribution.deserialize(serialized)~
@@ -3853,11 +3856,11 @@
 
 --------------------------------------------------------------------------------
 
--ExponentialDistribution.min プロパティ &aname(ExponentialDistribution-min);~
+-ExponentialDistribution.min プロパティ &aname(ExponentialD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.max プロパティ &aname(ExponentialDistribution-max);~
+-ExponentialDistribution.max プロパティ &aname(ExponentialD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3866,18 +3869,18 @@
  ガンマ分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[GammaDistribution メソッド>#GammaDistribution-GammaDistribution]]~
+--[[GammaDistribution メソッド>#GammaD-GammaD]]~
 -メソッド:~
---[[random メソッド>#GammaDistribution-random]]~
---[[reset メソッド>#GammaDistribution-reset]]~
---[[serialize メソッド>#GammaDistribution-serialize]]~
---[[deserialize メソッド>#GammaDistribution-deserialize]]~
+--[[random メソッド>#GammaD-random]]~
+--[[reset メソッド>#GammaD-reset]]~
+--[[serialize メソッド>#GammaD-serialize]]~
+--[[deserialize メソッド>#GammaD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#GammaDistribution-min]]~
---[[max プロパティ>#GammaDistribution-max]]~
+--[[min プロパティ>#GammaD-min]]~
+--[[max プロパティ>#GammaD-max]]~
 
 --------------------------------------------------------------------------------
--GammaDistribution.GammaDistribution メソッド &aname(GammaDistribution-GammaDistribution);~
+-GammaDistribution.GammaDistribution メソッド &aname(GammaD-GammaD);~~
  コンストラクタ。
 --シグネチャ:~
 ---GammaDistribution(alpha = 1, beta = 1)~
@@ -3888,7 +3891,7 @@
 尺度母数。(beta > 0)~
 
 --------------------------------------------------------------------------------
--GammaDistribution.random メソッド &aname(GammaDistribution-random);~
+-GammaDistribution.random メソッド &aname(GammaD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---GammaDistribution.random(engine)~
@@ -3900,7 +3903,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--GammaDistribution.reset メソッド &aname(GammaDistribution-reset);~
+-GammaDistribution.reset メソッド &aname(GammaD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---GammaDistribution.reset()~
@@ -3910,7 +3913,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--GammaDistribution.serialize メソッド &aname(GammaDistribution-serialize);~
+-GammaDistribution.serialize メソッド &aname(GammaD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---GammaDistribution.serialize()~
@@ -3920,7 +3923,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--GammaDistribution.deserialize メソッド &aname(GammaDistribution-deserialize);~
+-GammaDistribution.deserialize メソッド &aname(GammaD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---GammaDistribution.deserialize(serialized)~
@@ -3932,11 +3935,11 @@
 
 --------------------------------------------------------------------------------
 
--GammaDistribution.min プロパティ &aname(GammaDistribution-min);~
+-GammaDistribution.min プロパティ &aname(GammaD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--GammaDistribution.max プロパティ &aname(GammaDistribution-max);~
+-GammaDistribution.max プロパティ &aname(GammaD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -3945,18 +3948,18 @@
  ワイブル分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[WeibullDistribution メソッド>#WeibullDistribution-WeibullDistribution]]~
+--[[WeibullDistribution メソッド>#WeibullD-WeibullD]]~
 -メソッド:~
---[[random メソッド>#WeibullDistribution-random]]~
---[[reset メソッド>#WeibullDistribution-reset]]~
---[[serialize メソッド>#WeibullDistribution-serialize]]~
---[[deserialize メソッド>#WeibullDistribution-deserialize]]~
+--[[random メソッド>#WeibullD-random]]~
+--[[reset メソッド>#WeibullD-reset]]~
+--[[serialize メソッド>#WeibullD-serialize]]~
+--[[deserialize メソッド>#WeibullD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#WeibullDistribution-min]]~
---[[max プロパティ>#WeibullDistribution-max]]~
+--[[min プロパティ>#WeibullD-min]]~
+--[[max プロパティ>#WeibullD-max]]~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.WeibullDistribution メソッド &aname(WeibullDistribution-WeibullDistribution);~
+-WeibullDistribution.WeibullDistribution メソッド &aname(WeibullD-WeibullD);~~
  コンストラクタ。
 --シグネチャ:~
 ---WeibullDistribution(a = 1, b = 1)~
@@ -3967,7 +3970,7 @@
 尺度パラメータ。(b > 0)~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.random メソッド &aname(WeibullDistribution-random);~
+-WeibullDistribution.random メソッド &aname(WeibullD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---WeibullDistribution.random(engine)~
@@ -3979,7 +3982,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.reset メソッド &aname(WeibullDistribution-reset);~
+-WeibullDistribution.reset メソッド &aname(WeibullD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---WeibullDistribution.reset()~
@@ -3989,7 +3992,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.serialize メソッド &aname(WeibullDistribution-serialize);~
+-WeibullDistribution.serialize メソッド &aname(WeibullD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---WeibullDistribution.serialize()~
@@ -3999,7 +4002,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.deserialize メソッド &aname(WeibullDistribution-deserialize);~
+-WeibullDistribution.deserialize メソッド &aname(WeibullD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---WeibullDistribution.deserialize(serialized)~
@@ -4011,11 +4014,11 @@
 
 --------------------------------------------------------------------------------
 
--WeibullDistribution.min プロパティ &aname(WeibullDistribution-min);~
+-WeibullDistribution.min プロパティ &aname(WeibullD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--WeibullDistribution.max プロパティ &aname(WeibullDistribution-max);~
+-WeibullDistribution.max プロパティ &aname(WeibullD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4024,18 +4027,18 @@
  極値分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[ExtremeValueDistribution メソッド>#ExtremeValueDistribution-ExtremeValueDistribution]]~
+--[[ExtremeValueDistribution メソッド>#ExtremeValueD-ExtremeValueD]]~
 -メソッド:~
---[[random メソッド>#ExtremeValueDistribution-random]]~
---[[reset メソッド>#ExtremeValueDistribution-reset]]~
---[[serialize メソッド>#ExtremeValueDistribution-serialize]]~
---[[deserialize メソッド>#ExtremeValueDistribution-deserialize]]~
+--[[random メソッド>#ExtremeValueD-random]]~
+--[[reset メソッド>#ExtremeValueD-reset]]~
+--[[serialize メソッド>#ExtremeValueD-serialize]]~
+--[[deserialize メソッド>#ExtremeValueD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#ExtremeValueDistribution-min]]~
---[[max プロパティ>#ExtremeValueDistribution-max]]~
+--[[min プロパティ>#ExtremeValueD-min]]~
+--[[max プロパティ>#ExtremeValueD-max]]~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.ExtremeValueDistribution メソッド &aname(ExtremeValueDistribution-ExtremeValueDistribution);~
+-ExtremeValueDistribution.ExtremeValueDistribution メソッド &aname(ExtremeValueD-ExtremeValueD);~~
  コンストラクタ。
 --シグネチャ:~
 ---ExtremeValueDistribution(a = 1, b = 1)~
@@ -4046,7 +4049,7 @@
 スケールパラメータ。(b > 0)~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.random メソッド &aname(ExtremeValueDistribution-random);~
+-ExtremeValueDistribution.random メソッド &aname(ExtremeValueD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---ExtremeValueDistribution.random(engine)~
@@ -4058,7 +4061,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.reset メソッド &aname(ExtremeValueDistribution-reset);~
+-ExtremeValueDistribution.reset メソッド &aname(ExtremeValueD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---ExtremeValueDistribution.reset()~
@@ -4068,7 +4071,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.serialize メソッド &aname(ExtremeValueDistribution-serialize);~
+-ExtremeValueDistribution.serialize メソッド &aname(ExtremeValueD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---ExtremeValueDistribution.serialize()~
@@ -4078,7 +4081,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.deserialize メソッド &aname(ExtremeValueDistribution-deserialize);~
+-ExtremeValueDistribution.deserialize メソッド &aname(ExtremeValueD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---ExtremeValueDistribution.deserialize(serialized)~
@@ -4090,11 +4093,169 @@
 
 --------------------------------------------------------------------------------
 
--ExtremeValueDistribution.min プロパティ &aname(ExtremeValueDistribution-min);~
+-ExtremeValueDistribution.min プロパティ &aname(ExtremeValueD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.max プロパティ &aname(ExtremeValueDistribution-max);~
+-ExtremeValueDistribution.max プロパティ &aname(ExtremeValueD-max);~
+ この分布が返す乱数値の最大値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**BetaDistribution クラス [#BetaDistribution]
+ ベータ分布を返す確率分布クラス。
+ 精度 64bit 浮動小数点数．
+-メソッド:~
+--[[BetaDistribution メソッド>#BetaD-BetaD]]~
+-メソッド:~
+--[[random メソッド>#BetaD-random]]~
+--[[reset メソッド>#BetaD-reset]]~
+--[[serialize メソッド>#BetaD-serialize]]~
+--[[deserialize メソッド>#BetaD-deserialize]]~
+-プロパティ:~
+--[[min プロパティ>#BetaD-min]]~
+--[[max プロパティ>#BetaD-max]]~
+
+--------------------------------------------------------------------------------
+-BetaDistribution.BetaDistribution メソッド &aname(BetaD-BetaD);~~
+ コンストラクタ。
+--シグネチャ:~
+---BetaDistribution(alpha = 1, beta = 1)~
+--引数:~
+---alpha~
+パラメータα。(alpha > 0)~
+---beta~
+パラメータβ。(beta > 0)~
+
+--------------------------------------------------------------------------------
+-BetaDistribution.random メソッド &aname(BetaD-random);~
+ 確率分布に従う乱数値を生成する。
+--シグネチャ:~
+---BetaDistribution.random(engine)~
+--引数:~
+---engine~
+乱数生成エンジンクラスのインスタンス。~
+--返値:~
+---Real~
+生成された乱数値。~
+
+--------------------------------------------------------------------------------
+-BetaDistribution.reset メソッド &aname(BetaD-reset);~
+ 状態を初期化する。
+--シグネチャ:~
+---BetaDistribution.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-BetaDistribution.serialize メソッド &aname(BetaD-serialize);~
+ 状態を文字列として書き出す。
+--シグネチャ:~
+---BetaDistribution.serialize()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+
+--------------------------------------------------------------------------------
+-BetaDistribution.deserialize メソッド &aname(BetaD-deserialize);~
+ 状態を文字列から復元する。
+--シグネチャ:~
+---BetaDistribution.deserialize(serialized)~
+--引数:~
+---serialized~
+シリアライズ文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+
+-BetaDistribution.min プロパティ &aname(BetaD-min);~
+ この分布が返す乱数値の最小値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-BetaDistribution.max プロパティ &aname(BetaD-max);~
+ この分布が返す乱数値の最大値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**LaplaceDistribution クラス [#LaplaceDistribution]
+ ラプラス分布を返す確率分布クラス。
+ 精度 64bit 浮動小数点数．
+-メソッド:~
+--[[LaplaceDistribution メソッド>#LaplaceD-LaplaceD]]~
+-メソッド:~
+--[[random メソッド>#LaplaceD-random]]~
+--[[reset メソッド>#LaplaceD-reset]]~
+--[[serialize メソッド>#LaplaceD-serialize]]~
+--[[deserialize メソッド>#LaplaceD-deserialize]]~
+-プロパティ:~
+--[[min プロパティ>#LaplaceD-min]]~
+--[[max プロパティ>#LaplaceD-max]]~
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.LaplaceDistribution メソッド &aname(LaplaceD-LaplaceD);~~
+ コンストラクタ。
+--シグネチャ:~
+---LaplaceDistribution(mean = 0, beta = 1)~
+--引数:~
+---mean~
+平均。~
+---beta~
+パラメータβ。~
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.random メソッド &aname(LaplaceD-random);~
+ 確率分布に従う乱数値を生成する。
+--シグネチャ:~
+---LaplaceDistribution.random(engine)~
+--引数:~
+---engine~
+乱数生成エンジンクラスのインスタンス。~
+--返値:~
+---Real~
+生成された乱数値。~
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.reset メソッド &aname(LaplaceD-reset);~
+ 状態を初期化する。
+--シグネチャ:~
+---LaplaceDistribution.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.serialize メソッド &aname(LaplaceD-serialize);~
+ 状態を文字列として書き出す。
+--シグネチャ:~
+---LaplaceDistribution.serialize()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.deserialize メソッド &aname(LaplaceD-deserialize);~
+ 状態を文字列から復元する。
+--シグネチャ:~
+---LaplaceDistribution.deserialize(serialized)~
+--引数:~
+---serialized~
+シリアライズ文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+
+-LaplaceDistribution.min プロパティ &aname(LaplaceD-min);~
+ この分布が返す乱数値の最小値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-LaplaceDistribution.max プロパティ &aname(LaplaceD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4103,18 +4264,18 @@
  正規分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[NormalDistribution メソッド>#NormalDistribution-NormalDistribution]]~
+--[[NormalDistribution メソッド>#NormalD-NormalD]]~
 -メソッド:~
---[[random メソッド>#NormalDistribution-random]]~
---[[reset メソッド>#NormalDistribution-reset]]~
---[[serialize メソッド>#NormalDistribution-serialize]]~
---[[deserialize メソッド>#NormalDistribution-deserialize]]~
+--[[random メソッド>#NormalD-random]]~
+--[[reset メソッド>#NormalD-reset]]~
+--[[serialize メソッド>#NormalD-serialize]]~
+--[[deserialize メソッド>#NormalD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#NormalDistribution-min]]~
---[[max プロパティ>#NormalDistribution-max]]~
+--[[min プロパティ>#NormalD-min]]~
+--[[max プロパティ>#NormalD-max]]~
 
 --------------------------------------------------------------------------------
--NormalDistribution.NormalDistribution メソッド &aname(NormalDistribution-NormalDistribution);~
+-NormalDistribution.NormalDistribution メソッド &aname(NormalD-NormalD);~~
  コンストラクタ。
 --シグネチャ:~
 ---NormalDistribution(mean = 0, sigma = 1)~
@@ -4125,7 +4286,7 @@
 分散。(sigma >= 0)~
 
 --------------------------------------------------------------------------------
--NormalDistribution.random メソッド &aname(NormalDistribution-random);~
+-NormalDistribution.random メソッド &aname(NormalD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---NormalDistribution.random(engine)~
@@ -4137,7 +4298,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--NormalDistribution.reset メソッド &aname(NormalDistribution-reset);~
+-NormalDistribution.reset メソッド &aname(NormalD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---NormalDistribution.reset()~
@@ -4147,7 +4308,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--NormalDistribution.serialize メソッド &aname(NormalDistribution-serialize);~
+-NormalDistribution.serialize メソッド &aname(NormalD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---NormalDistribution.serialize()~
@@ -4157,7 +4318,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--NormalDistribution.deserialize メソッド &aname(NormalDistribution-deserialize);~
+-NormalDistribution.deserialize メソッド &aname(NormalD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---NormalDistribution.deserialize(serialized)~
@@ -4169,11 +4330,11 @@
 
 --------------------------------------------------------------------------------
 
--NormalDistribution.min プロパティ &aname(NormalDistribution-min);~
+-NormalDistribution.min プロパティ &aname(NormalD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--NormalDistribution.max プロパティ &aname(NormalDistribution-max);~
+-NormalDistribution.max プロパティ &aname(NormalD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4182,18 +4343,18 @@
  対数正規分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[LognormalDistribution メソッド>#LognormalDistribution-LognormalDistribution]]~
+--[[LognormalDistribution メソッド>#LognormalD-LognormalD]]~
 -メソッド:~
---[[random メソッド>#LognormalDistribution-random]]~
---[[reset メソッド>#LognormalDistribution-reset]]~
---[[serialize メソッド>#LognormalDistribution-serialize]]~
---[[deserialize メソッド>#LognormalDistribution-deserialize]]~
+--[[random メソッド>#LognormalD-random]]~
+--[[reset メソッド>#LognormalD-reset]]~
+--[[serialize メソッド>#LognormalD-serialize]]~
+--[[deserialize メソッド>#LognormalD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#LognormalDistribution-min]]~
---[[max プロパティ>#LognormalDistribution-max]]~
+--[[min プロパティ>#LognormalD-min]]~
+--[[max プロパティ>#LognormalD-max]]~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.LognormalDistribution メソッド &aname(LognormalDistribution-LognormalDistribution);~
+-LognormalDistribution.LognormalDistribution メソッド &aname(LognormalD-LognormalD);~~
  コンストラクタ。
 --シグネチャ:~
 ---LognormalDistribution(mean = 1, sigma = 1)~
@@ -4204,7 +4365,7 @@
 分散。(sigma >= 0)~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.random メソッド &aname(LognormalDistribution-random);~
+-LognormalDistribution.random メソッド &aname(LognormalD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---LognormalDistribution.random(engine)~
@@ -4216,7 +4377,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.reset メソッド &aname(LognormalDistribution-reset);~
+-LognormalDistribution.reset メソッド &aname(LognormalD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---LognormalDistribution.reset()~
@@ -4226,7 +4387,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.serialize メソッド &aname(LognormalDistribution-serialize);~
+-LognormalDistribution.serialize メソッド &aname(LognormalD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---LognormalDistribution.serialize()~
@@ -4236,7 +4397,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.deserialize メソッド &aname(LognormalDistribution-deserialize);~
+-LognormalDistribution.deserialize メソッド &aname(LognormalD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---LognormalDistribution.deserialize(serialized)~
@@ -4248,11 +4409,11 @@
 
 --------------------------------------------------------------------------------
 
--LognormalDistribution.min プロパティ &aname(LognormalDistribution-min);~
+-LognormalDistribution.min プロパティ &aname(LognormalD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--LognormalDistribution.max プロパティ &aname(LognormalDistribution-max);~
+-LognormalDistribution.max プロパティ &aname(LognormalD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4261,18 +4422,18 @@
  カイ二乗分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[ChiSquaredDistribution メソッド>#ChiSquaredDistribution-ChiSquaredDistribution]]~
+--[[ChiSquaredDistribution メソッド>#ChiSquaredD-ChiSquaredD]]~
 -メソッド:~
---[[random メソッド>#ChiSquaredDistribution-random]]~
---[[reset メソッド>#ChiSquaredDistribution-reset]]~
---[[serialize メソッド>#ChiSquaredDistribution-serialize]]~
---[[deserialize メソッド>#ChiSquaredDistribution-deserialize]]~
+--[[random メソッド>#ChiSquaredD-random]]~
+--[[reset メソッド>#ChiSquaredD-reset]]~
+--[[serialize メソッド>#ChiSquaredD-serialize]]~
+--[[deserialize メソッド>#ChiSquaredD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#ChiSquaredDistribution-min]]~
---[[max プロパティ>#ChiSquaredDistribution-max]]~
+--[[min プロパティ>#ChiSquaredD-min]]~
+--[[max プロパティ>#ChiSquaredD-max]]~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.ChiSquaredDistribution メソッド &aname(ChiSquaredDistribution-ChiSquaredDistribution);~
+-ChiSquaredDistribution.ChiSquaredDistribution メソッド &aname(ChiSquaredD-ChiSquaredD);~~
  コンストラクタ。
 --シグネチャ:~
 ---ChiSquaredDistribution(n = 1)~
@@ -4281,7 +4442,7 @@
 母数。~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.random メソッド &aname(ChiSquaredDistribution-random);~
+-ChiSquaredDistribution.random メソッド &aname(ChiSquaredD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---ChiSquaredDistribution.random(engine)~
@@ -4293,7 +4454,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.reset メソッド &aname(ChiSquaredDistribution-reset);~
+-ChiSquaredDistribution.reset メソッド &aname(ChiSquaredD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---ChiSquaredDistribution.reset()~
@@ -4303,7 +4464,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.serialize メソッド &aname(ChiSquaredDistribution-serialize);~
+-ChiSquaredDistribution.serialize メソッド &aname(ChiSquaredD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---ChiSquaredDistribution.serialize()~
@@ -4313,7 +4474,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.deserialize メソッド &aname(ChiSquaredDistribution-deserialize);~
+-ChiSquaredDistribution.deserialize メソッド &aname(ChiSquaredD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---ChiSquaredDistribution.deserialize(serialized)~
@@ -4325,11 +4486,90 @@
 
 --------------------------------------------------------------------------------
 
--ChiSquaredDistribution.min プロパティ &aname(ChiSquaredDistribution-min);~
+-ChiSquaredDistribution.min プロパティ &aname(ChiSquaredD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.max プロパティ &aname(ChiSquaredDistribution-max);~
+-ChiSquaredDistribution.max プロパティ &aname(ChiSquaredD-max);~
+ この分布が返す乱数値の最大値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+
+**NonCentralChiSquaredDistribution クラス [#NonCentralChiSquaredDistribution]
+ 非心カイ二乗分布を返す確率分布クラス。
+ 精度 64bit 浮動小数点数．
+-メソッド:~
+--[[NonCentralChiSquaredDistribution メソッド>#NCChiSquaredD-NCChiSquaredD]]~
+-メソッド:~
+--[[random メソッド>#NCChiSquaredD-random]]~
+--[[reset メソッド>#NCChiSquaredD-reset]]~
+--[[serialize メソッド>#NCChiSquaredD-serialize]]~
+--[[deserialize メソッド>#NCChiSquaredD-deserialize]]~
+-プロパティ:~
+--[[min プロパティ>#NCChiSquaredD-min]]~
+--[[max プロパティ>#NCChiSquaredD-max]]~
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.NonCentralChiSquaredDistribution メソッド &aname(NCChiSquaredD-NCChiSquaredD);~
+ コンストラクタ。
+--シグネチャ:~
+---NonCentralChiSquaredDistribution(k = 1, lambda = 1)~
+--引数:~
+---k~
+自由度。(k > 0)~
+---lambda~
+非心度。(lambda > 0)~
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.random メソッド &aname(NCChiSquaredD-random);~
+ 確率分布に従う乱数値を生成する。
+--シグネチャ:~
+---NonCentralChiSquaredDistribution.random(engine)~
+--引数:~
+---engine~
+乱数生成エンジンクラスのインスタンス。~
+--返値:~
+---Real~
+生成された乱数値。~
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.reset メソッド &aname(NCChiSquaredD-reset);~
+ 状態を初期化する。
+--シグネチャ:~
+---NonCentralChiSquaredDistribution.reset()~
+--引数:~
+---(なし)~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.serialize メソッド &aname(NCChiSquaredD-serialize);~
+ 状態を文字列として書き出す。
+--シグネチャ:~
+---NonCentralChiSquaredDistribution.serialize()~
+--引数:~
+---(なし)~
+--返値:~
+---String~
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.deserialize メソッド &aname(NCChiSquaredD-deserialize);~
+ 状態を文字列から復元する。
+--シグネチャ:~
+---NonCentralChiSquaredDistribution.deserialize(serialized)~
+--引数:~
+---serialized~
+シリアライズ文字列。~
+--返値:~
+---(なし)~
+
+--------------------------------------------------------------------------------
+
+-NonCentralChiSquaredDistribution.min プロパティ &aname(NCChiSquaredD-min);~
+ この分布が返す乱数値の最小値を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-NonCentralChiSquaredDistribution.max プロパティ &aname(NCChiSquaredD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4338,18 +4578,18 @@
  コーシー分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[CauchyDistribution メソッド>#CauchyDistribution-CauchyDistribution]]~
+--[[CauchyDistribution メソッド>#CauchyD-CauchyD]]~
 -メソッド:~
---[[random メソッド>#CauchyDistribution-random]]~
---[[reset メソッド>#CauchyDistribution-reset]]~
---[[serialize メソッド>#CauchyDistribution-serialize]]~
---[[deserialize メソッド>#CauchyDistribution-deserialize]]~
+--[[random メソッド>#CauchyD-random]]~
+--[[reset メソッド>#CauchyD-reset]]~
+--[[serialize メソッド>#CauchyD-serialize]]~
+--[[deserialize メソッド>#CauchyD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#CauchyDistribution-min]]~
---[[max プロパティ>#CauchyDistribution-max]]~
+--[[min プロパティ>#CauchyD-min]]~
+--[[max プロパティ>#CauchyD-max]]~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.CauchyDistribution メソッド &aname(CauchyDistribution-CauchyDistribution);~
+-CauchyDistribution.CauchyDistribution メソッド &aname(CauchyD-CauchyD);~~
  コンストラクタ。
 --シグネチャ:~
 ---CauchyDistribution(median = 0, sigma = 1)~
@@ -4360,7 +4600,7 @@
 半値半幅を与える尺度母数。~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.random メソッド &aname(CauchyDistribution-random);~
+-CauchyDistribution.random メソッド &aname(CauchyD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---CauchyDistribution.random(engine)~
@@ -4372,7 +4612,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.reset メソッド &aname(CauchyDistribution-reset);~
+-CauchyDistribution.reset メソッド &aname(CauchyD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---CauchyDistribution.reset()~
@@ -4382,7 +4622,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.serialize メソッド &aname(CauchyDistribution-serialize);~
+-CauchyDistribution.serialize メソッド &aname(CauchyD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---CauchyDistribution.serialize()~
@@ -4392,7 +4632,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.deserialize メソッド &aname(CauchyDistribution-deserialize);~
+-CauchyDistribution.deserialize メソッド &aname(CauchyD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---CauchyDistribution.deserialize(serialized)~
@@ -4404,11 +4644,11 @@
 
 --------------------------------------------------------------------------------
 
--CauchyDistribution.min プロパティ &aname(CauchyDistribution-min);~
+-CauchyDistribution.min プロパティ &aname(CauchyD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--CauchyDistribution.max プロパティ &aname(CauchyDistribution-max);~
+-CauchyDistribution.max プロパティ &aname(CauchyD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4417,18 +4657,18 @@
  フィッシャーのF分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[FisherFDistribution メソッド>#FisherFDistribution-FisherFDistribution]]~
+--[[FisherFDistribution メソッド>#FisherFD-FisherFD]]~
 -メソッド:~
---[[random メソッド>#FisherFDistribution-random]]~
---[[reset メソッド>#FisherFDistribution-reset]]~
---[[serialize メソッド>#FisherFDistribution-serialize]]~
---[[deserialize メソッド>#FisherFDistribution-deserialize]]~
+--[[random メソッド>#FisherFD-random]]~
+--[[reset メソッド>#FisherFD-reset]]~
+--[[serialize メソッド>#FisherFD-serialize]]~
+--[[deserialize メソッド>#FisherFD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#FisherFDistribution-min]]~
---[[max プロパティ>#FisherFDistribution-max]]~
+--[[min プロパティ>#FisherFD-min]]~
+--[[max プロパティ>#FisherFD-max]]~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.FisherFDistribution メソッド &aname(FisherFDistribution-FisherFDistribution);~
+-FisherFDistribution.FisherFDistribution メソッド &aname(FisherFD-FisherFD);~~
  コンストラクタ。
 --シグネチャ:~
 ---FisherFDistribution(m = 1, n = 1)~
@@ -4439,7 +4679,7 @@
 自由度パラメータ。(n > 0)~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.random メソッド &aname(FisherFDistribution-random);~
+-FisherFDistribution.random メソッド &aname(FisherFD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---FisherFDistribution.random(engine)~
@@ -4451,7 +4691,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.reset メソッド &aname(FisherFDistribution-reset);~
+-FisherFDistribution.reset メソッド &aname(FisherFD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---FisherFDistribution.reset()~
@@ -4461,7 +4701,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.serialize メソッド &aname(FisherFDistribution-serialize);~
+-FisherFDistribution.serialize メソッド &aname(FisherFD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---FisherFDistribution.serialize()~
@@ -4471,7 +4711,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.deserialize メソッド &aname(FisherFDistribution-deserialize);~
+-FisherFDistribution.deserialize メソッド &aname(FisherFD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---FisherFDistribution.deserialize(serialized)~
@@ -4483,11 +4723,11 @@
 
 --------------------------------------------------------------------------------
 
--FisherFDistribution.min プロパティ &aname(FisherFDistribution-min);~
+-FisherFDistribution.min プロパティ &aname(FisherFD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--FisherFDistribution.max プロパティ &aname(FisherFDistribution-max);~
+-FisherFDistribution.max プロパティ &aname(FisherFD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4496,18 +4736,18 @@
  スチューデントのt分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[StudentTDistribution メソッド>#StudentTDistribution-StudentTDistribution]]~
+--[[StudentTDistribution メソッド>#StudentTD-StudentTD]]~
 -メソッド:~
---[[random メソッド>#StudentTDistribution-random]]~
---[[reset メソッド>#StudentTDistribution-reset]]~
---[[serialize メソッド>#StudentTDistribution-serialize]]~
---[[deserialize メソッド>#StudentTDistribution-deserialize]]~
+--[[random メソッド>#StudentTD-random]]~
+--[[reset メソッド>#StudentTD-reset]]~
+--[[serialize メソッド>#StudentTD-serialize]]~
+--[[deserialize メソッド>#StudentTD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#StudentTDistribution-min]]~
---[[max プロパティ>#StudentTDistribution-max]]~
+--[[min プロパティ>#StudentTD-min]]~
+--[[max プロパティ>#StudentTD-max]]~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.StudentTDistribution メソッド &aname(StudentTDistribution-StudentTDistribution);~
+-StudentTDistribution.StudentTDistribution メソッド &aname(StudentTD-StudentTD);~~
  コンストラクタ。
 --シグネチャ:~
 ---StudentTDistribution(n = 1)~
@@ -4516,7 +4756,7 @@
 自由度パラメータ。(n > 0)~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.random メソッド &aname(StudentTDistribution-random);~
+-StudentTDistribution.random メソッド &aname(StudentTD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---StudentTDistribution.random(engine)~
@@ -4528,7 +4768,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.reset メソッド &aname(StudentTDistribution-reset);~
+-StudentTDistribution.reset メソッド &aname(StudentTD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---StudentTDistribution.reset()~
@@ -4538,7 +4778,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.serialize メソッド &aname(StudentTDistribution-serialize);~
+-StudentTDistribution.serialize メソッド &aname(StudentTD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---StudentTDistribution.serialize()~
@@ -4548,7 +4788,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.deserialize メソッド &aname(StudentTDistribution-deserialize);~
+-StudentTDistribution.deserialize メソッド &aname(StudentTD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---StudentTDistribution.deserialize(serialized)~
@@ -4560,11 +4800,11 @@
 
 --------------------------------------------------------------------------------
 
--StudentTDistribution.min プロパティ &aname(StudentTDistribution-min);~
+-StudentTDistribution.min プロパティ &aname(StudentTD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--StudentTDistribution.max プロパティ &aname(StudentTDistribution-max);~
+-StudentTDistribution.max プロパティ &aname(StudentTD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4573,18 +4813,18 @@
  離散的整数分布を返す確率分布クラス。
  精度 64bit 符号付き整数．
 -メソッド:~
---[[DiscreteDistribution メソッド>#DiscreteDistribution-DiscreteDistribution]]~
+--[[DiscreteDistribution メソッド>#DiscreteD-DiscreteD]]~
 -メソッド:~
---[[random メソッド>#DiscreteDistribution-random]]~
---[[reset メソッド>#DiscreteDistribution-reset]]~
---[[serialize メソッド>#DiscreteDistribution-serialize]]~
---[[deserialize メソッド>#DiscreteDistribution-deserialize]]~
+--[[random メソッド>#DiscreteD-random]]~
+--[[reset メソッド>#DiscreteD-reset]]~
+--[[serialize メソッド>#DiscreteD-serialize]]~
+--[[deserialize メソッド>#DiscreteD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#DiscreteDistribution-min]]~
---[[max プロパティ>#DiscreteDistribution-max]]~
+--[[min プロパティ>#DiscreteD-min]]~
+--[[max プロパティ>#DiscreteD-max]]~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.DiscreteDistribution メソッド &aname(DiscreteDistribution-DiscreteDistribution);~
+-DiscreteDistribution.DiscreteDistribution メソッド &aname(DiscreteD-DiscreteD);~~
  コンストラクタ。
 --シグネチャ:~
 ---DiscreteDistribution(weights*)~
@@ -4593,7 +4833,7 @@
 各値のウェイト。~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.random メソッド &aname(DiscreteDistribution-random);~
+-DiscreteDistribution.random メソッド &aname(DiscreteD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---DiscreteDistribution.random(engine)~
@@ -4605,7 +4845,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.reset メソッド &aname(DiscreteDistribution-reset);~
+-DiscreteDistribution.reset メソッド &aname(DiscreteD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---DiscreteDistribution.reset()~
@@ -4615,7 +4855,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.serialize メソッド &aname(DiscreteDistribution-serialize);~
+-DiscreteDistribution.serialize メソッド &aname(DiscreteD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---DiscreteDistribution.serialize()~
@@ -4625,7 +4865,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.deserialize メソッド &aname(DiscreteDistribution-deserialize);~
+-DiscreteDistribution.deserialize メソッド &aname(DiscreteD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---DiscreteDistribution.deserialize(serialized)~
@@ -4637,11 +4877,11 @@
 
 --------------------------------------------------------------------------------
 
--DiscreteDistribution.min プロパティ &aname(DiscreteDistribution-min);~
+-DiscreteDistribution.min プロパティ &aname(DiscreteD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.max プロパティ &aname(DiscreteDistribution-max);~
+-DiscreteDistribution.max プロパティ &aname(DiscreteD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4650,18 +4890,18 @@
  一定区間分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[PiecewiseConstantDistribution メソッド>#PiecewiseConstantDistribution-PiecewiseConstantDistribution]]~
+--[[PiecewiseConstantDistribution メソッド>#PiecewiseConstantD-PiecewiseConstantD]]~
 -メソッド:~
---[[random メソッド>#PiecewiseConstantDistribution-random]]~
---[[reset メソッド>#PiecewiseConstantDistribution-reset]]~
---[[serialize メソッド>#PiecewiseConstantDistribution-serialize]]~
---[[deserialize メソッド>#PiecewiseConstantDistribution-deserialize]]~
+--[[random メソッド>#PiecewiseConstantD-random]]~
+--[[reset メソッド>#PiecewiseConstantD-reset]]~
+--[[serialize メソッド>#PiecewiseConstantD-serialize]]~
+--[[deserialize メソッド>#PiecewiseConstantD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#PiecewiseConstantDistribution-min]]~
---[[max プロパティ>#PiecewiseConstantDistribution-max]]~
+--[[min プロパティ>#PiecewiseConstantD-min]]~
+--[[max プロパティ>#PiecewiseConstantD-max]]~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.PiecewiseConstantDistribution メソッド &aname(PiecewiseConstantDistribution-PiecewiseConstantDistribution);~
+-PiecewiseConstantDistribution.PiecewiseConstantDistribution メソッド &aname(PiecewiseConstantD-PiecewiseConstantD);~~
  コンストラクタ。
 --シグネチャ:~
 ---PiecewiseConstantDistribution(intervals_weights*)~
@@ -4670,7 +4910,7 @@
 区間および各区間のウェイト。(intervals.count - 1 == weights.count)~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.random メソッド &aname(PiecewiseConstantDistribution-random);~
+-PiecewiseConstantDistribution.random メソッド &aname(PiecewiseConstantD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---PiecewiseConstantDistribution.random(engine)~
@@ -4682,7 +4922,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.reset メソッド &aname(PiecewiseConstantDistribution-reset);~
+-PiecewiseConstantDistribution.reset メソッド &aname(PiecewiseConstantD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---PiecewiseConstantDistribution.reset()~
@@ -4692,7 +4932,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.serialize メソッド &aname(PiecewiseConstantDistribution-serialize);~
+-PiecewiseConstantDistribution.serialize メソッド &aname(PiecewiseConstantD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---PiecewiseConstantDistribution.serialize()~
@@ -4702,7 +4942,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.deserialize メソッド &aname(PiecewiseConstantDistribution-deserialize);~
+-PiecewiseConstantDistribution.deserialize メソッド &aname(PiecewiseConstantD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---PiecewiseConstantDistribution.deserialize(serialized)~
@@ -4714,11 +4954,11 @@
 
 --------------------------------------------------------------------------------
 
--PiecewiseConstantDistribution.min プロパティ &aname(PiecewiseConstantDistribution-min);~
+-PiecewiseConstantDistribution.min プロパティ &aname(PiecewiseConstantD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.max プロパティ &aname(PiecewiseConstantDistribution-max);~
+-PiecewiseConstantDistribution.max プロパティ &aname(PiecewiseConstantD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4727,18 +4967,18 @@
  線形区間分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[PiecewiseLinearDistribution メソッド>#PiecewiseLinearDistribution-PiecewiseLinearDistribution]]~
+--[[PiecewiseLinearDistribution メソッド>#PiecewiseLinearD-PiecewiseLinearD]]~
 -メソッド:~
---[[random メソッド>#PiecewiseLinearDistribution-random]]~
---[[reset メソッド>#PiecewiseLinearDistribution-reset]]~
---[[serialize メソッド>#PiecewiseLinearDistribution-serialize]]~
---[[deserialize メソッド>#PiecewiseLinearDistribution-deserialize]]~
+--[[random メソッド>#PiecewiseLinearD-random]]~
+--[[reset メソッド>#PiecewiseLinearD-reset]]~
+--[[serialize メソッド>#PiecewiseLinearD-serialize]]~
+--[[deserialize メソッド>#PiecewiseLinearD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#PiecewiseLinearDistribution-min]]~
---[[max プロパティ>#PiecewiseLinearDistribution-max]]~
+--[[min プロパティ>#PiecewiseLinearD-min]]~
+--[[max プロパティ>#PiecewiseLinearD-max]]~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.PiecewiseLinearDistribution メソッド &aname(PiecewiseLinearDistribution-PiecewiseLinearDistribution);~
+-PiecewiseLinearDistribution.PiecewiseLinearDistribution メソッド &aname(PiecewiseLinearD-PiecewiseLinearD);~~
  コンストラクタ。
 --シグネチャ:~
 ---PiecewiseLinearDistribution(intervals_weights*)~
@@ -4747,7 +4987,7 @@
 区間および各区間のウェイト。(intervals.count == weights.count)~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.random メソッド &aname(PiecewiseLinearDistribution-random);~
+-PiecewiseLinearDistribution.random メソッド &aname(PiecewiseLinearD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---PiecewiseLinearDistribution.random(engine)~
@@ -4759,7 +4999,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.reset メソッド &aname(PiecewiseLinearDistribution-reset);~
+-PiecewiseLinearDistribution.reset メソッド &aname(PiecewiseLinearD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---PiecewiseLinearDistribution.reset()~
@@ -4769,7 +5009,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.serialize メソッド &aname(PiecewiseLinearDistribution-serialize);~
+-PiecewiseLinearDistribution.serialize メソッド &aname(PiecewiseLinearD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---PiecewiseLinearDistribution.serialize()~
@@ -4779,7 +5019,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.deserialize メソッド &aname(PiecewiseLinearDistribution-deserialize);~
+-PiecewiseLinearDistribution.deserialize メソッド &aname(PiecewiseLinearD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---PiecewiseLinearDistribution.deserialize(serialized)~
@@ -4791,11 +5031,11 @@
 
 --------------------------------------------------------------------------------
 
--PiecewiseLinearDistribution.min プロパティ &aname(PiecewiseLinearDistribution-min);~
+-PiecewiseLinearDistribution.min プロパティ &aname(PiecewiseLinearD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.max プロパティ &aname(PiecewiseLinearDistribution-max);~
+-PiecewiseLinearDistribution.max プロパティ &aname(PiecewiseLinearD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------
@@ -4804,18 +5044,18 @@
  三角分布を返す確率分布クラス。
  精度 64bit 浮動小数点数．
 -メソッド:~
---[[TriangleDistribution メソッド>#TriangleDistribution-TriangleDistribution]]~
+--[[TriangleDistribution メソッド>#TriangleD-TriangleD]]~
 -メソッド:~
---[[random メソッド>#TriangleDistribution-random]]~
---[[reset メソッド>#TriangleDistribution-reset]]~
---[[serialize メソッド>#TriangleDistribution-serialize]]~
---[[deserialize メソッド>#TriangleDistribution-deserialize]]~
+--[[random メソッド>#TriangleD-random]]~
+--[[reset メソッド>#TriangleD-reset]]~
+--[[serialize メソッド>#TriangleD-serialize]]~
+--[[deserialize メソッド>#TriangleD-deserialize]]~
 -プロパティ:~
---[[min プロパティ>#TriangleDistribution-min]]~
---[[max プロパティ>#TriangleDistribution-max]]~
+--[[min プロパティ>#TriangleD-min]]~
+--[[max プロパティ>#TriangleD-max]]~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.TriangleDistribution メソッド &aname(TriangleDistribution-TriangleDistribution);~
+-TriangleDistribution.TriangleDistribution メソッド &aname(TriangleD-TriangleD);~~
  コンストラクタ。
 --シグネチャ:~
 ---TriangleDistribution(a = 0, b = 0.5, c = 1)~
@@ -4828,7 +5068,7 @@
 最大値。(a <= b <= c)~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.random メソッド &aname(TriangleDistribution-random);~
+-TriangleDistribution.random メソッド &aname(TriangleD-random);~
  確率分布に従う乱数値を生成する。
 --シグネチャ:~
 ---TriangleDistribution.random(engine)~
@@ -4840,7 +5080,7 @@
 生成された乱数値。~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.reset メソッド &aname(TriangleDistribution-reset);~
+-TriangleDistribution.reset メソッド &aname(TriangleD-reset);~
  状態を初期化する。
 --シグネチャ:~
 ---TriangleDistribution.reset()~
@@ -4850,7 +5090,7 @@
 ---(なし)~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.serialize メソッド &aname(TriangleDistribution-serialize);~
+-TriangleDistribution.serialize メソッド &aname(TriangleD-serialize);~
  状態を文字列として書き出す。
 --シグネチャ:~
 ---TriangleDistribution.serialize()~
@@ -4860,7 +5100,7 @@
 ---String~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.deserialize メソッド &aname(TriangleDistribution-deserialize);~
+-TriangleDistribution.deserialize メソッド &aname(TriangleD-deserialize);~
  状態を文字列から復元する。
 --シグネチャ:~
 ---TriangleDistribution.deserialize(serialized)~
@@ -4872,11 +5112,11 @@
 
 --------------------------------------------------------------------------------
 
--TriangleDistribution.min プロパティ &aname(TriangleDistribution-min);~
+-TriangleDistribution.min プロパティ &aname(TriangleD-min);~
  この分布が返す乱数値の最小値を返す。 (getter)
 
 --------------------------------------------------------------------------------
--TriangleDistribution.max プロパティ &aname(TriangleDistribution-max);~
+-TriangleDistribution.max プロパティ &aname(TriangleD-max);~
  この分布が返す乱数値の最大値を返す。 (getter)
 
 --------------------------------------------------------------------------------

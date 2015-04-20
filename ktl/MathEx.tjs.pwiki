@@ -104,6 +104,8 @@
 --[[tgamma1Pm1 メソッド>#MathEx-tgamma1Pm1]]~
 --[[lgamma メソッド>#MathEx-lgamma]]~
 --[[digamma メソッド>#MathEx-digamma]]~
+--[[trigamma メソッド>#MathEx-trigamma]]~
+--[[polygamma メソッド>#MathEx-polygamma]]~
 --[[tgammaRatio メソッド>#MathEx-tgammaRatio]]~
 --[[tgammaDeltaRatio メソッド>#MathEx-tgammaDeltaRatio]]~
 --[[gammaP メソッド>#MathEx-gammaP]]~
@@ -202,6 +204,9 @@
 --[[ellint1 メソッド>#MathEx-ellint1]]~
 --[[ellint2 メソッド>#MathEx-ellint2]]~
 --[[ellint3 メソッド>#MathEx-ellint3]]~
+--[[ellintD メソッド>#MathEx-ellintD]]~
+--[[jacobiZeta メソッド>#MathEx-jacobiZeta]]~
+--[[heumanLambda メソッド>#MathEx-heumanLambda]]~
 
 > (ヤコビの楕円関数)~
 
@@ -953,10 +958,38 @@ a < b である場合。~
 --------------------------------------------------------------------------------
 -MathEx.digamma メソッド &aname(MathEx-digamma);~
  ディガンマ関数（ガンマ関数の対数の一階微分）。
-#tex(\[ digamma(x) = \psi(x) = \frac{d}{dx}\ln{\Gamma(z)} = \frac{\Gamma'(x)}{\Gamma(x)} \])
+#tex(\[ digamma(x) = \psi(x) = \frac{d}{dx}\ln{\Gamma(x)} = \frac{\Gamma'(x)}{\Gamma(x)} \])
 --シグネチャ:~
 ---MathEx.digamma(x)~
 --引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.trigamma メソッド &aname(MathEx-trigamma);~
+ トリガンマ関数（ガンマ関数の対数の二階微分）。
+#tex(\[ trigamma(x) = \psi^{(1)}(x) = \frac{d^2}{dx^2}\ln{\Gamma(x)} \])
+--シグネチャ:~
+---MathEx.trigamma(x)~
+--引数:~
+---x~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.polygamma メソッド &aname(MathEx-polygamma);~
+ ポリガンマ関数（ガンマ関数の対数の n 階微分）。
+#tex(\[ polygamma(n, x) = \psi^{(n)}(x) = \frac{d^{n+1}}{dx^{n+1}}\ln{\Gamma(x)} = \frac{d^n}{dx^n}\psi(x) \])
+--シグネチャ:~
+---MathEx.polygamma(n, x)~
+--引数:~
+---n~
+整数。~
 ---x~
 実数。~
 --返値:~
@@ -2074,6 +2107,54 @@ a < b である場合。~
 実数。(-1 <= k <= 1)~
 ---n~
 実数。(n < 1/sin^2(phi) または n < 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.ellintD メソッド &aname(MathEx-ellintD);~
+ 不完全楕円積分 D(φ, k)。
+ または完全楕円積分 D(k) = D(π/2, k)。
+#tex(\[ ellintD(k, \phi) = D(\phi, k) = \int_{0}^{\phi}\frac{\sin^2\theta}{\sqrt{1-k^2\sin^2\theta}}d\theta = \frac{1}{3}R_D(\frac{1}{\sin^2\theta}-1, \frac{1}{\sin^2\theta}-k^2, \frac{1}{\sin^2\theta}) \])
+#tex(\[ ellintD(k) = \D(\pi/2, k) \])
+--シグネチャ:~
+---MathEx.ellintD(k, phi)~
+---MathEx.ellintD(k)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.jacobiZeta メソッド &aname(MathEx-jacobiZeta);~
+ ヤコビのゼータ関数。
+#tex(\[ ellintD(k, \phi) = Z(\phi, k) = E(\phi, k)-\frac{E(k)F(\phi, k)}{K(k)} \])
+--シグネチャ:~
+---MathEx.jacobiZeta(k, phi)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
+---phi~
+実数。~
+--返値:~
+---Real~
+計算結果。~
+
+--------------------------------------------------------------------------------
+-MathEx.heumanLambda メソッド &aname(MathEx-heumanLambda);~
+ ヒューマンのラムダ関数。
+#tex(\[ heumanLambda(k, \phi) = \Lambda_0(\phi, k) = \frac{F(\phi, \sqrt{1-k^2})}{K(\sqrt{1-k^2})}+\frac{2}{\pi} K(k)Z(\phi,\sqrt{1-k^2}) \])
+--シグネチャ:~
+---MathEx.heumanLambda(k, phi)~
+--引数:~
+---k~
+実数。(-1 <= k <= 1)~
 ---phi~
 実数。~
 --返値:~

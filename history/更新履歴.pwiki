@@ -3,6 +3,25 @@
 
 
 
+*更新履歴(2015/04) [#update1504-]
+-2015/04/20~
+&color(red){Ver 0.2.11};~
+--DLL すべて更新。~
+---Boost を Boost 1.57 から Boost 1.58 へアップデート。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスの disjoint, intersects メソッドに、以下のジオメトリの組み合わせサポートを追加。~
+multipoint/point, multipoint/segment, multipoint/box, multipoint/multipoint,~
+point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
+---MathEx クラスにガンマ関数のバリエーション trigamma, polygamma メソッドを追加。~
+---MathEx クラスに楕円積分のバリエーション ellintD, jacobiZeta, heumanLambda メソッドを追加。~
+---MathEx クラスの ellint2, ellint3メソッドの 2 引数版について、内部で不正に 3 引数版を呼んでいた問題を修正。~
+--DLL ktl_random.dll, ktl_random-d.dll 更新。~
+---ベータ分布 BetaDistribution クラスを追加。~
+---ラプラス分布 LaplaceDistribution クラスを追加。~
+---非心カイ二乗分布 NonCentralChiSquaredDistribution クラスを追加。~
+
+
+
 *更新履歴(2015/01) [#update1501-]
 -2015/01/20~
 --DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
@@ -16,7 +35,7 @@
 &color(red){Ver 0.2.10};~
 --スクリプト[[ktl/Geometry.tjs]]追加。~
 --DLL ktl_geometry.dll, ktl_geometry-d.dll 追加。~
----様々な幾何計算を実装。~
+---様々な計算幾何を実装。~
 --DLL すべて更新。~
 ---Boost を Boost 1.55 から Boost 1.57 へアップデート。~
 

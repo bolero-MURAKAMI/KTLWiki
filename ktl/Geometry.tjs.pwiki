@@ -4,7 +4,7 @@
 
 
 *概要 [#summaries-]
- 様々な幾何計算など。
+ 様々な計算幾何など。
 -パス:~
 --[[ktl/Geometry.tjs]]~
 -インポートスクリプト:~
@@ -21,7 +21,7 @@
 --------------------------------------------------------------------------------
 
 **Geometry クラス [#Geometry]
- 様々な幾何計算などを行うクラス。
+ 様々な計算幾何などを行うクラス。
  このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
 -スタティックメソッド:~
 
@@ -74,6 +74,8 @@
 有効な図形である場合。~
 ---false~
 有効な図形でない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/is_valid/is_valid_1.html#geometry.reference.algorithms.is_valid.is_valid_1.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.isSimple メソッド &aname(Geometry-isSimple);~
@@ -90,6 +92,8 @@
 単純な図形である場合。~
 ---false~
 単純な図形でない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/is_simple.html#geometry.reference.algorithms.is_simple.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.length メソッド &aname(Geometry-length);~
@@ -137,6 +141,7 @@
 図形の面積。~
 --注記:~
 領域を持たない図形（e.g. Linestring）に対して、この関数は常に 0 を返す。~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/area/area_1.html#geometry.reference.algorithms.area.area_1.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.centroid メソッド &aname(Geometry-centroid);~
@@ -152,6 +157,8 @@
 ---Array~
 図形の中心点。~
  [ x, y ]
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/centroid/centroid_2.html#geometry.reference.algorithms.centroid.centroid_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.translate メソッド &aname(Geometry-translate);~
@@ -259,6 +266,8 @@
 互いに素である場合。~
 ---false~
 互いに素でない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.intersects メソッド &aname(Geometry-intersects);~
@@ -279,6 +288,8 @@
 交差点を持っている場合。~
 ---false~
 交差点を持っていない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.coveredBy メソッド &aname(Geometry-coveredBy);~
@@ -299,6 +310,8 @@
 内部または境界線上にある場合。~
 ---false~
 内部または境界線上にない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/covered_by/covered_by_2.html#geometry.reference.algorithms.covered_by.covered_by_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.within メソッド &aname(Geometry-within);~
@@ -319,6 +332,8 @@
 内部にある場合。~
 ---false~
 内部にない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/within/within_2.html#geometry.reference.algorithms.within.within_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.equals メソッド &aname(Geometry-equals);~
@@ -339,6 +354,8 @@
 空間的に等しい場合。~
 ---false~
 空間的に等しくない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/equals.html#geometry.reference.algorithms.equals.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.overlaps メソッド &aname(Geometry-overlaps);~
@@ -359,6 +376,8 @@
 重なっている場合。~
 ---false~
 重なっていない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/overlaps.html#geometry.reference.algorithms.overlaps.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.distance メソッド &aname(Geometry-distance);~
@@ -377,6 +396,8 @@
 --返値:~
 ---Real~
 距離。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/distance/distance_2.html#geometry.reference.algorithms.distance.distance_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.gmfPoint プロパティ &aname(Geometry-gmfPoint);~
