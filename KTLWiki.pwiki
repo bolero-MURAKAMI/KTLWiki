@@ -30,31 +30,42 @@
 
 
 *リファレンス [#reference-]
--スクリプト~
-|LEFT:200|LEFT:800|c
-| [[ktl/ktl.tjs]] | すべての KTL スクリプトに先行する                  |
-| [[ktl/Outputs.tjs]] | ログ出力のための簡易フレームワーク             |
-| [[ktl/Sources.tjs]] | スクリプトのインポート管理                     |
-| [[ktl/Utils.tjs]] | 様々なユーティリティ                             |
-| [[ktl/Network.tjs]] | ネットワーク通信のための機能                   |
-| [[ktl/LocalFiles.tjs]] | OS ネイティブのファイル操作                 |
-| [[ktl/StorageStream.tjs]] | ローカルストレージ（ファイル）への I/O   |
-| [[ktl/Compression.tjs]] | Deflate アルゴリズムによるデータ圧縮／展開 |
-| [[ktl/Bzip2.tjs]] | Bzip2 によるデータ圧縮／展開                     |
-| [[ktl/Checksum.tjs]] | チェックサム計算                              |
-| [[ktl/OctetBuilder.tjs]] | オクテット列操作                          |
-| [[ktl/Encoding.tjs]] | 文字コード変換やエンコード                    |
-| [[ktl/PTree.tjs]] | 構造化データの読み書きや操作                     |
-| [[ktl/PTime.tjs]] | 日付と時刻の計算                                 |
-| [[ktl/VariateRandom.tjs]] | 様々な乱数生成エンジンと確率分布         |
-| [[ktl/BigInt.tjs]] | 多倍長整数                                      |
-| [[ktl/MathEx.tjs]] | 様々な数学計算                                  |
-| [[ktl/Geometry.tjs]] | 様々な計算幾何                                |
-| [[ktl/SplashWindow.tjs]] | スプラッシュスクリーン                    |
-| [[ktl/SpriteCoord.tjs]] | スプライト表示のための座標計算             |
-| [[ktl/OSVersion.tjs]] | OS のバージョンチェック                      |
-| [[ktl/OverrideMethod.tjs]] | メンバメソッドの上書き                  |
-| [[ktl/MethodOverrider.tjs]] | メンバメソッドの上書き                 |
+-''ネットワークI/O''~
+--[[ktl/Network.tjs]] ---- ネットワーク通信機能~
+
+-''ローカルストレージ操作''~
+--[[ktl/LocalFiles.tjs]] ---- OS ネイティブのファイル操作~
+--[[ktl/StorageStream.tjs]] ---- ローカルストレージ（ファイル）への I/O~
+
+-''データ列操作''~
+--[[ktl/Encoding.tjs]] ---- 文字コード変換やエンコード~
+--[[ktl/PTree.tjs]] ---- 構造化データの読み書きや操作~
+--[[ktl/Checksum.tjs]] ---- チェックサム計算~
+--[[ktl/Compression.tjs]] ---- Deflate アルゴリズムによるデータ圧縮／展開~
+--[[ktl/Bzip2.tjs]] ---- Bzip2 によるデータ圧縮／展開~
+--[[ktl/OctetBuilder.tjs]] ---- オクテット列操作~
+
+-''数学''~
+--[[ktl/MathEx.tjs]] ---- 様々な数学計算~
+--[[ktl/Geometry.tjs]] ---- 様々な計算幾何~
+--[[ktl/VariateRandom.tjs]] ---- 様々な乱数生成エンジンと確率分布~
+--[[ktl/BigInt.tjs]] ---- 多倍長整数~
+--[[ktl/SpriteCoord.tjs]] ---- スプライト表示のための座標計算~
+
+-''システム''~
+--[[ktl/SplashWindow.tjs]] ---- スプラッシュスクリーン~
+--[[ktl/OSVersion.tjs]] ---- OS のバージョンチェック~
+--[[ktl/PTime.tjs]] ---- 日付と時刻の計算~
+
+-''クラス・メソッド操作''~
+--[[ktl/OverrideMethod.tjs]] ---- メンバメソッドの上書き~
+--[[ktl/MethodOverrider.tjs]] ---- メンバメソッドの上書き~
+
+-''ユーティリティ''~
+--[[ktl/Utils.tjs]] ---- 様々なユーティリティ~
+--[[ktl/Sources.tjs]] ---- スクリプトのインポート管理~
+--[[ktl/Outputs.tjs]] ---- ログ出力のための簡易フレームワーク~
+--[[ktl/ktl.tjs]] ---- すべての KTL スクリプトに先行する~
 
 
 
@@ -288,10 +299,14 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 
 *著作権等 [#copyrights-]
 -著作権~
-当サイトで公開されるテキスト、制作物等の著作権はとくに記載がない場合 Bolero MURAKAMI が保持します。~
+当サイトで公開するテキスト、制作物等の著作権はとくに記載がない場合 Bolero MURAKAMI が保持します。~
 他の著作者によるものを引用、再配布している場合は著作権表示に従います。~
+-ライセンス~
+KTL のバイナリおよびソースコード、スクリプトは Boost Software License - Version 1.0 ( http://www.boost.org/LICENSE_1_0.txt )の下で配布されています。~
+このライセンスはあらゆる個人および団体に対して、使用、複製、表示、配布、実行、譲渡を無償で許可しています。~
+KTL 以外のサードパーティ製ソフトウェアについては、各々のライセンスに従います。~
 -免責~
-万一当サイトの利用によって損害等が生じたとしても管理人は一切責任を負いません。~
+万一当サイトおよびソフトウェアの利用によって損害等が生じたとしても管理人は一切責任を負いません。~
 
 
 

@@ -1,28 +1,34 @@
 *リファレンス [#reference-]
--スクリプト~
---[[ktl/ktl.tjs]]~
---[[ktl/Outputs.tjs]]~
---[[ktl/Sources.tjs]]~
---[[ktl/Utils.tjs]]~
+-ネットワークI/O~
 --[[ktl/Network.tjs]]~
+-ローカルストレージ操作~
 --[[ktl/LocalFiles.tjs]]~
 --[[ktl/StorageStream.tjs]]~
---[[ktl/Compression.tjs]]~
---[[ktl/Bzip2.tjs]]~
---[[ktl/Checksum.tjs]]~
---[[ktl/OctetBuilder.tjs]]~
+-データ列操作~
 --[[ktl/Encoding.tjs]]~
 --[[ktl/PTree.tjs]]~
---[[ktl/PTime.tjs]]~
---[[ktl/VariateRandom.tjs]]~
---[[ktl/BigInt.tjs]]~
+--[[ktl/Checksum.tjs]]~
+--[[ktl/Compression.tjs]]~
+--[[ktl/Bzip2.tjs]]~
+--[[ktl/OctetBuilder.tjs]]~
+-数学~
 --[[ktl/MathEx.tjs]]~
 --[[ktl/Geometry.tjs]]~
---[[ktl/SplashWindow.tjs]]~
+--[[ktl/VariateRandom.tjs]]~
+--[[ktl/BigInt.tjs]]~
 --[[ktl/SpriteCoord.tjs]]~
+-システム~
+--[[ktl/SplashWindow.tjs]]~
 --[[ktl/OSVersion.tjs]]~
+--[[ktl/PTime.tjs]]~
+-クラス・メソッド操作~
 --[[ktl/OverrideMethod.tjs]]~
 --[[ktl/MethodOverrider.tjs]]~
+-ユーティリティ~
+--[[ktl/Utils.tjs]]~
+--[[ktl/Sources.tjs]]~
+--[[ktl/Outputs.tjs]]~
+--[[ktl/ktl.tjs]]~
 
 
 

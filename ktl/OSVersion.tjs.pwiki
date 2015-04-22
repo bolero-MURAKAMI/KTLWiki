@@ -40,6 +40,8 @@
 --[[vfWindowsXP プロパティ>#OSVersion-vfWindowsXP]]~
 --[[vfWindowsVista プロパティ>#OSVersion-vfWindowsVista]]~
 --[[vfWindows7 プロパティ>#OSVersion-vfWindows7]]~
+--[[vfWindows8 プロパティ>#OSVersion-vfWindows8]]~
+--[[vfWindows8_1 プロパティ>#OSVersion-vfWindows8_1]]~
 
 --------------------------------------------------------------------------------
 -OSVersion.checkVersion メソッド &aname(OSVersion-checkVersion);~
@@ -117,6 +119,14 @@
 --------------------------------------------------------------------------------
 -OSVersion.vfWindows7 プロパティ &aname(OSVersion-vfWindows7);~
  バージョンフラグ。Windows 7 を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindows8 プロパティ &aname(OSVersion-vfWindows8);~
+ バージョンフラグ。Windows 8 を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-OSVersion.vfWindows8_1 プロパティ &aname(OSVersion-vfWindows8_1);~
+ バージョンフラグ。Windows 8.1 を表わすフラグを返す。 (getter)
 
 --------------------------------------------------------------------------------
 

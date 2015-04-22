@@ -3330,7 +3330,7 @@
 --[[max プロパティ>#UniformRealD-max]]~
 
 --------------------------------------------------------------------------------
--UniformRealDistribution.UniformRealDistribution メソッド &aname(UniformRealD-UniformRealD);~~
+-UniformRealDistribution.UniformRealDistribution メソッド &aname(UniformRealD-UniformRealD);~
  コンストラクタ。
 --シグネチャ:~
 ---UniformRealDistribution(min = 0, max = 9)~
@@ -3414,7 +3414,7 @@
 --[[max プロパティ>#BernoulliD-max]]~
 
 --------------------------------------------------------------------------------
--BernoulliDistribution.BernoulliDistribution メソッド &aname(BernoulliD-BernoulliD);~~
+-BernoulliDistribution.BernoulliDistribution メソッド &aname(BernoulliD-BernoulliD);~
  コンストラクタ。
 --シグネチャ:~
 ---BernoulliDistribution(p = 0.5)~
@@ -3491,7 +3491,7 @@
 --[[max プロパティ>#BinomialD-max]]~
 
 --------------------------------------------------------------------------------
--BinomialDistribution.BinomialDistribution メソッド &aname(BinomialD-BinomialD);~~
+-BinomialDistribution.BinomialDistribution メソッド &aname(BinomialD-BinomialD);~
  コンストラクタ。
 --シグネチャ:~
 ---BinomialDistribution(t = 1, p = 0.5)~
@@ -3570,7 +3570,7 @@
 --[[max プロパティ>#GeometricD-max]]~
 
 --------------------------------------------------------------------------------
--GeometricDistribution.GeometricDistribution メソッド &aname(GeometricD-GeometricD);~~
+-GeometricDistribution.GeometricDistribution メソッド &aname(GeometricD-GeometricD);~
  コンストラクタ。
 --シグネチャ:~
 ---GeometricDistribution(p = 0.5)~
@@ -3647,7 +3647,7 @@
 --[[max プロパティ>#NBinomialD-max]]~
 
 --------------------------------------------------------------------------------
--NBinomialDistribution.NegativeBinomialDistribution メソッド &aname(NBinomialD-NBinomialD);~~
+-NBinomialDistribution.NegativeBinomialDistribution メソッド &aname(NBinomialD-NBinomialD);~
  コンストラクタ。
 --シグネチャ:~
 ---NBinomialDistribution(k = 1, p = 0.5)~
@@ -3726,7 +3726,7 @@
 --[[max プロパティ>#PoissonD-max]]~
 
 --------------------------------------------------------------------------------
--PoissonDistribution.PoissonDistribution メソッド &aname(PoissonD-PoissonD);~~
+-PoissonDistribution.PoissonDistribution メソッド &aname(PoissonD-PoissonD);~
  コンストラクタ。
 --シグネチャ:~
 ---PoissonDistribution(mean = 1)~
@@ -3803,7 +3803,7 @@
 --[[max プロパティ>#ExponentialD-max]]~
 
 --------------------------------------------------------------------------------
--ExponentialDistribution.ExponentialDistribution メソッド &aname(ExponentialD-ExponentialD);~~
+-ExponentialDistribution.ExponentialDistribution メソッド &aname(ExponentialD-ExponentialD);~
  コンストラクタ。
 --シグネチャ:~
 ---ExponentialDistribution(lambda = 1)~
@@ -3880,7 +3880,7 @@
 --[[max プロパティ>#GammaD-max]]~
 
 --------------------------------------------------------------------------------
--GammaDistribution.GammaDistribution メソッド &aname(GammaD-GammaD);~~
+-GammaDistribution.GammaDistribution メソッド &aname(GammaD-GammaD);~
  コンストラクタ。
 --シグネチャ:~
 ---GammaDistribution(alpha = 1, beta = 1)~
@@ -3959,7 +3959,7 @@
 --[[max プロパティ>#WeibullD-max]]~
 
 --------------------------------------------------------------------------------
--WeibullDistribution.WeibullDistribution メソッド &aname(WeibullD-WeibullD);~~
+-WeibullDistribution.WeibullDistribution メソッド &aname(WeibullD-WeibullD);~
  コンストラクタ。
 --シグネチャ:~
 ---WeibullDistribution(a = 1, b = 1)~
@@ -4038,7 +4038,7 @@
 --[[max プロパティ>#ExtremeValueD-max]]~
 
 --------------------------------------------------------------------------------
--ExtremeValueDistribution.ExtremeValueDistribution メソッド &aname(ExtremeValueD-ExtremeValueD);~~
+-ExtremeValueDistribution.ExtremeValueDistribution メソッド &aname(ExtremeValueD-ExtremeValueD);~
  コンストラクタ。
 --シグネチャ:~
 ---ExtremeValueDistribution(a = 1, b = 1)~
@@ -4117,7 +4117,7 @@
 --[[max プロパティ>#BetaD-max]]~
 
 --------------------------------------------------------------------------------
--BetaDistribution.BetaDistribution メソッド &aname(BetaD-BetaD);~~
+-BetaDistribution.BetaDistribution メソッド &aname(BetaD-BetaD);~
  コンストラクタ。
 --シグネチャ:~
 ---BetaDistribution(alpha = 1, beta = 1)~
@@ -4196,7 +4196,7 @@
 --[[max プロパティ>#LaplaceD-max]]~
 
 --------------------------------------------------------------------------------
--LaplaceDistribution.LaplaceDistribution メソッド &aname(LaplaceD-LaplaceD);~~
+-LaplaceDistribution.LaplaceDistribution メソッド &aname(LaplaceD-LaplaceD);~
  コンストラクタ。
 --シグネチャ:~
 ---LaplaceDistribution(mean = 0, beta = 1)~
@@ -4275,7 +4275,7 @@
 --[[max プロパティ>#NormalD-max]]~
 
 --------------------------------------------------------------------------------
--NormalDistribution.NormalDistribution メソッド &aname(NormalD-NormalD);~~
+-NormalDistribution.NormalDistribution メソッド &aname(NormalD-NormalD);~
  コンストラクタ。
 --シグネチャ:~
 ---NormalDistribution(mean = 0, sigma = 1)~
@@ -4354,7 +4354,7 @@
 --[[max プロパティ>#LognormalD-max]]~
 
 --------------------------------------------------------------------------------
--LognormalDistribution.LognormalDistribution メソッド &aname(LognormalD-LognormalD);~~
+-LognormalDistribution.LognormalDistribution メソッド &aname(LognormalD-LognormalD);~
  コンストラクタ。
 --シグネチャ:~
 ---LognormalDistribution(mean = 1, sigma = 1)~
@@ -4433,7 +4433,7 @@
 --[[max プロパティ>#ChiSquaredD-max]]~
 
 --------------------------------------------------------------------------------
--ChiSquaredDistribution.ChiSquaredDistribution メソッド &aname(ChiSquaredD-ChiSquaredD);~~
+-ChiSquaredDistribution.ChiSquaredDistribution メソッド &aname(ChiSquaredD-ChiSquaredD);~
  コンストラクタ。
 --シグネチャ:~
 ---ChiSquaredDistribution(n = 1)~
@@ -4589,7 +4589,7 @@
 --[[max プロパティ>#CauchyD-max]]~
 
 --------------------------------------------------------------------------------
--CauchyDistribution.CauchyDistribution メソッド &aname(CauchyD-CauchyD);~~
+-CauchyDistribution.CauchyDistribution メソッド &aname(CauchyD-CauchyD);~
  コンストラクタ。
 --シグネチャ:~
 ---CauchyDistribution(median = 0, sigma = 1)~
@@ -4668,7 +4668,7 @@
 --[[max プロパティ>#FisherFD-max]]~
 
 --------------------------------------------------------------------------------
--FisherFDistribution.FisherFDistribution メソッド &aname(FisherFD-FisherFD);~~
+-FisherFDistribution.FisherFDistribution メソッド &aname(FisherFD-FisherFD);~
  コンストラクタ。
 --シグネチャ:~
 ---FisherFDistribution(m = 1, n = 1)~
@@ -4747,7 +4747,7 @@
 --[[max プロパティ>#StudentTD-max]]~
 
 --------------------------------------------------------------------------------
--StudentTDistribution.StudentTDistribution メソッド &aname(StudentTD-StudentTD);~~
+-StudentTDistribution.StudentTDistribution メソッド &aname(StudentTD-StudentTD);~
  コンストラクタ。
 --シグネチャ:~
 ---StudentTDistribution(n = 1)~
@@ -4824,7 +4824,7 @@
 --[[max プロパティ>#DiscreteD-max]]~
 
 --------------------------------------------------------------------------------
--DiscreteDistribution.DiscreteDistribution メソッド &aname(DiscreteD-DiscreteD);~~
+-DiscreteDistribution.DiscreteDistribution メソッド &aname(DiscreteD-DiscreteD);~
  コンストラクタ。
 --シグネチャ:~
 ---DiscreteDistribution(weights*)~
@@ -4901,13 +4901,15 @@
 --[[max プロパティ>#PiecewiseConstantD-max]]~
 
 --------------------------------------------------------------------------------
--PiecewiseConstantDistribution.PiecewiseConstantDistribution メソッド &aname(PiecewiseConstantD-PiecewiseConstantD);~~
+-PiecewiseConstantDistribution.PiecewiseConstantDistribution メソッド &aname(PiecewiseConstantD-PiecewiseConstantD);~
  コンストラクタ。
 --シグネチャ:~
 ---PiecewiseConstantDistribution(intervals_weights*)~
 --引数:~
 ---intervals_weights~
-区間および各区間のウェイト。(intervals.count - 1 == weights.count)~
+区間および各区間のウェイト。(intervals_weights.count%2 == 1)~
+intervals_weights の前半 intervals_weights.count/2+1 個の要素を区間とする。~
+intervals_weights の後半 intervals_weights.count/2 個の要素を各区間のウェイトとする。~
 
 --------------------------------------------------------------------------------
 -PiecewiseConstantDistribution.random メソッド &aname(PiecewiseConstantD-random);~
@@ -4978,13 +4980,15 @@
 --[[max プロパティ>#PiecewiseLinearD-max]]~
 
 --------------------------------------------------------------------------------
--PiecewiseLinearDistribution.PiecewiseLinearDistribution メソッド &aname(PiecewiseLinearD-PiecewiseLinearD);~~
+-PiecewiseLinearDistribution.PiecewiseLinearDistribution メソッド &aname(PiecewiseLinearD-PiecewiseLinearD);~
  コンストラクタ。
 --シグネチャ:~
 ---PiecewiseLinearDistribution(intervals_weights*)~
 --引数:~
 ---intervals_weights~
-区間および各区間のウェイト。(intervals.count == weights.count)~
+区間および各区間のウェイト。(intervals_weights.count%2 == 0)~
+intervals_weights の前半 intervals_weights.count/2 個の要素を区間とする。~
+intervals_weights の後半 intervals_weights.count/2 個の要素を各区間のウェイトとする。~
 
 --------------------------------------------------------------------------------
 -PiecewiseLinearDistribution.random メソッド &aname(PiecewiseLinearD-random);~
@@ -5055,7 +5059,7 @@
 --[[max プロパティ>#TriangleD-max]]~
 
 --------------------------------------------------------------------------------
--TriangleDistribution.TriangleDistribution メソッド &aname(TriangleD-TriangleD);~~
+-TriangleDistribution.TriangleDistribution メソッド &aname(TriangleD-TriangleD);~
  コンストラクタ。
 --シグネチャ:~
 ---TriangleDistribution(a = 0, b = 0.5, c = 1)~

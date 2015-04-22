@@ -2118,7 +2118,7 @@ a < b である場合。~
  不完全楕円積分 D(φ, k)。
  または完全楕円積分 D(k) = D(π/2, k)。
 #tex(\[ ellintD(k, \phi) = D(\phi, k) = \int_{0}^{\phi}\frac{\sin^2\theta}{\sqrt{1-k^2\sin^2\theta}}d\theta = \frac{1}{3}R_D(\frac{1}{\sin^2\theta}-1, \frac{1}{\sin^2\theta}-k^2, \frac{1}{\sin^2\theta}) \])
-#tex(\[ ellintD(k) = \D(\pi/2, k) \])
+#tex(\[ ellintD(k) = D(\frac{\pi}{2}, k) \])
 --シグネチャ:~
 ---MathEx.ellintD(k, phi)~
 ---MathEx.ellintD(k)~
