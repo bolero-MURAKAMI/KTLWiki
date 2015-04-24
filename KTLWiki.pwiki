@@ -6,8 +6,8 @@
 *これは何？ [#about-]
 ◇ ''KTL'' (KiriKiri Trivial Library)~
 ◇ スクリプト言語 TJS2 の実行エンジン 吉里吉里2/吉里吉里Z のための''拡張機能ライブラリ''。~
-◇ 主に、KAG に依存しない''様々なスクリプトのための汎用機能''の実装を目的としている。~
-◇ ''ネットワーク''I/O、''ローカルファイル''操作、''XML'' や ''JSON'' の処理、''文字列エンコード''、データ''圧縮／展開''や''スプラッシュスクリーン''などを実装している。~
+◇ 主に、KAG に依存しない''汎用プログラミングのための機能''の実装を目的としている。~
+◇ 『''ネットワークI/O''』『''ローカルストレージ操作''』『''データ列操作''（文字コードや XML, JSON）』『''数学''（計算幾何や乱数）』などを実装している。~
 
 -はじめに~
 --KTL をはじめて導入する場合、【 [[''導入手順''>forum/導入手順]] 】を参照ください。~
@@ -55,6 +55,7 @@
 -''システム''~
 --[[ktl/SplashWindow.tjs]] ---- スプラッシュスクリーン~
 --[[ktl/OSVersion.tjs]] ---- OS のバージョンチェック~
+--[[ktl/SystemInfo.tjs]] ---- システム情報の取得~
 --[[ktl/PTime.tjs]] ---- 日付と時刻の計算~
 
 -''クラス・メソッド操作''~
@@ -216,33 +217,34 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 -DLL一覧~
 |LEFT:120|LEFT:150|LEFT:150|LEFT:200|c
 | モジュール    | リリース版             | デバッグ版               | 概要                             |h
-| Utils         | ktl_utils.dll          | ktl_utils-d.dll          | 様々なユーティリティ             |
-| Network       | ktl_network.dll        | ktl_network-d.dll        | ネットワークI/O                  |
-|~|               ktl_network-v500.dll   | ktl_network-v500-d.dll   | (Windows 2000 対応版)            |
-| LocalFiles    | ktl_local_files.dll    | ktl_local_files-d.dll    | OS ネイティブのファイル操作      |
-| StorageStream | ktl_storage_stream.dll | ktl_storage_stream-d.dll | ローカルストレージI/O            |
-| Compression   | ktl_compression.dll    | ktl_compression-d.dll    | データ圧縮／展開                 |
+| BigInt        | ktl_big_int.dll        | ktl_big_int-d.dll        | 多倍長整数                       |
 | Bzip2         | ktl_bzip2.dll          | ktl_bzip2-d.dll          | bzip2 によるデータ圧縮／展開     |
 | Checksum      | ktl_checksum.dll       | ktl_checksum-d.dll       | チェックサム計算                 |
-| OctetBuilder  | ktl_octet_builder.dll  | ktl_octet_builder-d.dll  | オクテット列操作                 |
+| Compression   | ktl_compression.dll    | ktl_compression-d.dll    | データ圧縮／展開                 |
 | Encoding      | ktl_encoding.dll       | ktl_encoding-d.dll       | 文字コード変換やエンコード       |
-| PTree         | ktl_ptree.dll          | ktl_ptree-d.dll          | 構造化データの読み書きや操作     |
-| PTime         | ktl_ptime.dll          | ktl_ptime-d.dll          | 日付と時刻の計算                 |
-| VariateRandom | ktl_variate_random.dll | ktl_variate_random-d.dll | 様々な乱数生成エンジンと確率分布 |
-| BigInt        | ktl_big_int.dll        | ktl_big_int-d.dll        | 多倍長整数                       |
-| MathEx        | ktl_math_ex.dll        | ktl_math_ex-d.dll        | 様々な数学計算                   |
-| Geometry      | ktl_geometry.dll       | ktl_geometry-d.dll       | 様々な計算幾何                   |
-| SplashWindow  | ktl_splash_window.dll  | ktl_splash_window-d.dll  | スプラッシュスクリーン           |
-| Serialization | ktl_serialization.dll  | ktl_serialization-d.dll  | シリアライゼーション             |
-| SpriteCoord   | ktl_sprite_coord.dll   | ktl_sprite_coord-d.dll   | スプライト表示のための座標計算   |
 | Functor       | ktl_functor.dll        | ktl_functor-d.dll        | 関数オブジェクト                 |
-| Sprites       | ktl_sprites.dll        | ktl_sprites-d.dll        | DirectX によるスプライト         |
+| Geometry      | ktl_geometry.dll       | ktl_geometry-d.dll       | 様々な計算幾何                   |
+| LocalFiles    | ktl_local_files.dll    | ktl_local_files-d.dll    | OS ネイティブのファイル操作      |
+| MathEx        | ktl_math_ex.dll        | ktl_math_ex-d.dll        | 様々な数学計算                   |
+| Network       | ktl_network.dll        | ktl_network-d.dll        | ネットワークI/O                  |
+|~|               ktl_network-v500.dll   | ktl_network-v500-d.dll   | (Windows 2000 対応版)            |
+| OctetBuilder  | ktl_octet_builder.dll  | ktl_octet_builder-d.dll  | オクテット列操作                 |
 | OSVersion     | ktl_os_version.dll     | ktl_os_version-d.dll     | OS のバージョンチェック          |
+| PTime         | ktl_ptime.dll          | ktl_ptime-d.dll          | 日付と時刻の計算                 |
+| PTree         | ktl_ptree.dll          | ktl_ptree-d.dll          | 構造化データの読み書きや操作     |
+| Serialization | ktl_serialization.dll  | ktl_serialization-d.dll  | シリアライゼーション             |
+| SplashWindow  | ktl_splash_window.dll  | ktl_splash_window-d.dll  | スプラッシュスクリーン           |
+| SpriteCoord   | ktl_sprite_coord.dll   | ktl_sprite_coord-d.dll   | スプライト表示のための座標計算   |
+| Sprites       | ktl_sprites.dll        | ktl_sprites-d.dll        | DirectX によるスプライト         |
+| StorageStream | ktl_storage_stream.dll | ktl_storage_stream-d.dll | ローカルストレージI/O            |
 | SystemInfo    | ktl_system_info.dll    | ktl_system_info-d.dll    | システム情報の取得               |
+| Utils         | ktl_utils.dll          | ktl_utils-d.dll          | 様々なユーティリティ             |
+| VariateRandom | ktl_variate_random.dll | ktl_variate_random-d.dll | 様々な乱数生成エンジンと確率分布 |
 
 
 
 *ダウンロード [#downloads-]
+　　　----最新版----~
 -スクリプト~
 --[[ktl.zip:http://www.boleros.x0.com/data/ktl.zip]]~
 -DLL~

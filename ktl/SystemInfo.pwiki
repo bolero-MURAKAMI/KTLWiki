@@ -1,0 +1,364 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ システム情報の取得など。
+-パス:~
+--[[ktl/SystemInfo.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_system_info.dll / ktl_system_info-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[SystemInfo クラス>#SystemInfo]]~
+
+--------------------------------------------------------------------------------
+
+**SystemInfo クラス [#SystemInfo]
+ システム情報の取得を行うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+
+> (ハードウェア情報)~
+
+--[[getDriveType メソッド>#SystemInfo-getDriveType]]~
+--[[getDriveTypeString メソッド>#SystemInfo-getDriveTypeString]]~
+--[[getVolumeInformation メソッド>#SystemInfo-getVolumeInformation]]~
+-スタティックプロパティ:~
+
+> (コンピュータ名)~
+
+--[[computerName プロパティ>#SystemInfo-computerName]]~
+
+> (システムディレクトリ)~
+
+--[[windowsDirectory プロパティ>#SystemInfo-windowsDirectory]]~
+--[[systemWindowsDirectory プロパティ>#SystemInfo-systemWindowsDirectory]]~
+--[[systemDirectory プロパティ>#SystemInfo-systemDirectory]]~
+
+> (ハードウェア情報)~
+
+--[[globalMemoryStatus プロパティ>#SystemInfo-globalMemoryStatus]]~
+--[[logicalDriveStrings プロパティ>#SystemInfo-logicalDriveStrings]]~
+--[[cleanBoot プロパティ>#SystemInfo-cleanBoot]]~
+--[[monitors プロパティ>#SystemInfo-monitors]]~
+--[[mouseButtons プロパティ>#SystemInfo-mouseButtons]]~
+--[[CPUType プロパティ>#SystemInfo-CPUType]]~
+
+> (ドライブフラグ)~
+
+--[[dfUnknown プロパティ>#SystemInfo-dfUnknown]]~
+--[[dfNoRootDir プロパティ>#SystemInfo-dfNoRootDir]]~
+--[[dfRemovable プロパティ>#SystemInfo-dfRemovable]]~
+--[[dfFixed プロパティ>#SystemInfo-dfFixed]]~
+--[[dfRemote プロパティ>#SystemInfo-dfRemote]]~
+--[[dfCDROM プロパティ>#SystemInfo-dfCDROM]]~
+--[[dfRAMDisk プロパティ>#SystemInfo-dfRAMDisk]]~
+
+> (ファイルシステムフラグ)~
+
+--[[fsfCaseIsPreserved プロパティ>#SystemInfo-fsfCaseIsPreserved]]~
+--[[fsfCaseSensitive プロパティ>#SystemInfo-fsfCaseSensitive]]~
+--[[fsfUnicodeStoredOnDisk プロパティ>#SystemInfo-fsfUnicodeStoredOnDisk]]~
+--[[fsfPersistentACLs プロパティ>#SystemInfo-fsfPersistentACLs]]~
+--[[fsfFileCompression プロパティ>#SystemInfo-fsfFileCompression]]~
+--[[fsfVolIsCompressed プロパティ>#SystemInfo-fsfVolIsCompressed]]~
+--[[fsfNamedStreams プロパティ>#SystemInfo-fsfNamedStreams]]~
+--[[fsfSupportsEncryption プロパティ>#SystemInfo-fsfSupportsEncryption]]~
+--[[fsfSupportsObjectIDs プロパティ>#SystemInfo-fsfSupportsObjectIDs]]~
+--[[fsfSupportsRepersePoints プロパティ>#SystemInfo-fsfSupportsRepersePoints]]~
+--[[fsfSupportsSparseFiles プロパティ>#SystemInfo-fsfSupportsSparseFiles]]~
+--[[fsfVolumeQuotas プロパティ>#SystemInfo-fsfVolumeQuotas]]~
+
+> (CPU 機能フラグ)~
+
+--[[cffFPU プロパティ>#SystemInfo-cffFPU]]~
+--[[cffMMX プロパティ>#SystemInfo-cffMMX]]~
+--[[cff3DN プロパティ>#SystemInfo-cff3DN]]~
+--[[cffSSE プロパティ>#SystemInfo-cffSSE]]~
+--[[cffCMOVcc プロパティ>#SystemInfo-cffCMOVcc]]~
+--[[cffE3DN プロパティ>#SystemInfo-cffE3DN]]~
+--[[cffEMMX プロパティ>#SystemInfo-cffEMMX]]~
+--[[cffSSE2 プロパティ>#SystemInfo-cffSSE2]]~
+--[[cffTSC プロパティ>#SystemInfo-cffTSC]]~
+--[[cffMask プロパティ>#SystemInfo-cffMask]]~
+
+> (CPU ベンダフラグ)~
+
+--[[cvfIntel プロパティ>#SystemInfo-cvfIntel]]~
+--[[cvfAMD プロパティ>#SystemInfo-cvfAMD]]~
+--[[cvfIDT プロパティ>#SystemInfo-cvfIDT]]~
+--[[cvfCyrix プロパティ>#SystemInfo-cvfCyrix]]~
+--[[cvfNexGen プロパティ>#SystemInfo-cvfNexGen]]~
+--[[cvfRise プロパティ>#SystemInfo-cvfRise]]~
+--[[cvfUMC プロパティ>#SystemInfo-cvfUMC]]~
+--[[cvfTransmeta プロパティ>#SystemInfo-cvfTransmeta]]~
+--[[cvfUnknown プロパティ>#SystemInfo-cvfUnknown]]~
+--[[cvfMask プロパティ>#SystemInfo-cvfMask]]~
+
+--------------------------------------------------------------------------------
+-SystemInfo.getDriveType メソッド &aname(SystemInfo-getDriveType);~
+ 指定されたドライブの種類を返す。
+--シグネチャ:~
+---SystemInfo.getDriveType(root_path_name)~
+--引数:~
+---root_path_name~
+ルートディレクトリ名。~
+--返値:~
+---整数~
+ドライブの種類の識別フラグ。
+
+--------------------------------------------------------------------------------
+-SystemInfo.getDriveTypeString メソッド &aname(SystemInfo-getDriveTypeString);~
+ 指定されたドライブの種類を表す文字列を返す。
+--シグネチャ:~
+---SystemInfo.getDriveTypeString(root_path_name)~
+--引数:~
+---root_path_name~
+ルートディレクトリ名。~
+--返値:~
+---整数~
+ドライブの種類を表す文字列。
+
+--------------------------------------------------------------------------------
+-SystemInfo.getVolumeInformation メソッド &aname(SystemInfo-getVolumeInformation);~
+ 指定されたドライブのファイルシステムとボリュームに関する情報を返す。
+--シグネチャ:~
+---SystemInfo.getVolumeInformation(root_path_name)~
+--引数:~
+---root_path_name~
+ルートディレクトリ名。~
+--返値:~
+---Dictionary~
+ファイルシステムとボリュームに関する情報を格納した辞書配列。~
+ %[
+    volumeName,             /* ボリューム名 */
+    serialNumber,           /* ボリュームのシリアル番号 */
+    maximumComponentLength, /* ファイル名の最大の長さ */
+    fileSystemFlags,        /* ファイルシステムのフラグ値の組合せ */
+    fileSystemName          /* ファイルシステム名 */
+ ]
+
+--------------------------------------------------------------------------------
+-SystemInfo.computerName プロパティ &aname(SystemInfo-computerName);~
+ ローカルコンピュータの NetBIOS 名または DNS 名を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.windowsDirectory プロパティ &aname(SystemInfo-windowsDirectory);~
+ Windows ディレクトリのパスを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.systemWindowsDirectory プロパティ &aname(SystemInfo-systemWindowsDirectory);~
+ マルチユーザーシステム上の共有 Windows ディレクトリのパスを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.systemDirectory プロパティ &aname(SystemInfo-systemDirectory);~
+ Windows のシステムディレクトリのパスを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.globalMemoryStatus プロパティ &aname(SystemInfo-globalMemoryStatus);~
+ 現在利用可能な物理メモリと仮想メモリの両方に関する情報の辞書配列を返す。 (getter)
+ %[
+    memoryLoad,          /* メモリ使用率(%) */
+    totalPhys,           /* 物理メモリの搭載容量 */
+    availPhys,           /* 物理メモリの空き容量 */
+    totalPageFile,       /* ページファイルの搭載容量 */
+    availPageFile,       /* ページファイルの空き容量 */
+    totalVirtual,        /* 仮想メモリの搭載容量 */
+    availVirtual,        /* 仮想メモリの空き容量 */
+    availExtendedVirtual /*仮想メモリの拡張空き容量  */
+ ]
+
+--------------------------------------------------------------------------------
+-SystemInfo.logicalDriveStrings プロパティ &aname(SystemInfo-logicalDriveStrings);~
+ システムで利用可能なドライブを表す文字列の配列を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cleanBoot プロパティ &aname(SystemInfo-cleanBoot);~
+ システムがどのように起動されたかを示す値を返す。 (getter)
+--0: 通常の起動~
+--1: セーフモードでの起動~
+--2: ネットワークを使ったセーフモードでの起動~
+
+--------------------------------------------------------------------------------
+-SystemInfo.monitors プロパティ &aname(SystemInfo-monitors);~
+ デスクトップ上のモニタの数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.mouseButtons プロパティ &aname(SystemInfo-mouseButtons);~
+ マウスボタンの数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.CPUType プロパティ &aname(SystemInfo-CPUType);~
+ CPU の機能とベンダに関する情報のフラグの組合せを返す。 (getter)
+
+--使用例:
+ /* 実行環境の CPU が MMX または SSE をサポートしているかチェック */
+ if (SystemInfo.CPUType & (SystemInfo.cffMMX | SystemInfo.cffSSE)) {
+     Debug.message("MMX または SSE がサポートされています。");
+ }
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfUnknown プロパティ &aname(SystemInfo-dfUnknown);~
+ ドライブの種類の識別フラグ。ドライブの種類を判別できない場合を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfNoRootDir プロパティ &aname(SystemInfo-dfNoRootDir);~
+ ドライブの種類の識別フラグ。指定のルートディレクトリが存在しない場合を表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfRemovable プロパティ &aname(SystemInfo-dfRemovable);~
+ ドライブの種類の識別フラグ。リムーバブルドライブを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfFixed プロパティ &aname(SystemInfo-dfFixed);~
+ ドライブの種類の識別フラグ。固定ドライブを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfRemote プロパティ &aname(SystemInfo-dfRemote);~
+ ドライブの種類の識別フラグ。リモートドライブを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfCDROM プロパティ &aname(SystemInfo-dfCDROM);~
+ ドライブの種類の識別フラグ。CD-ROM ドライブを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.dfRAMDisk プロパティ &aname(SystemInfo-dfRAMDisk);~
+ ドライブの種類の識別フラグ。RAM ディスクドライブを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfCaseIsPreserved プロパティ &aname(SystemInfo-fsfCaseIsPreserved);~
+ ファイルシステムのフラグ。ファイルシステムがディスクにファイル名を記録するときに、大文字と小文字を区別して保存することを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfCaseSensitive プロパティ &aname(SystemInfo-fsfCaseSensitive);~
+ ファイルシステムのフラグ。ファイルシステムがファイル名の大文字と小文字の区別をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfUnicodeStoredOnDisk プロパティ &aname(SystemInfo-fsfUnicodeStoredOnDisk);~
+ ファイルシステムのフラグ。ファイルシステムが Unicode のファイル名をサポートしていて、ディスク上でも正しく表示されることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfPersistentACLs プロパティ &aname(SystemInfo-fsfPersistentACLs);~
+ ファイルシステムのフラグ。ファイルシステムが ACL（アクセス制御リスト）の保存と適用を行うことを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfFileCompression プロパティ &aname(SystemInfo-fsfFileCompression);~
+ ファイルシステムのフラグ。ファイルシステムがファイルベースの圧縮をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfVolIsCompressed プロパティ &aname(SystemInfo-fsfVolIsCompressed);~
+ ファイルシステムのフラグ。圧縮ボリュームであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfNamedStreams プロパティ &aname(SystemInfo-fsfNamedStreams);~
+ ファイルシステムのフラグ。ファイルシステムが名前付きストリームをサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfSupportsEncryption プロパティ &aname(SystemInfo-fsfSupportsEncryption);~
+ ファイルシステムのフラグ。暗号化ファイルシステム（EFS）をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfSupportsObjectIDs プロパティ &aname(SystemInfo-fsfSupportsObjectIDs);~
+ ファイルシステムのフラグ。ファイルシステムがオブジェクト識別子をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfSupportsRepersePoints プロパティ &aname(SystemInfo-fsfSupportsRepersePoints);~
+ ファイルシステムのフラグ。ファイルシステムが再解析ポイントをサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfSupportsSparseFiles プロパティ &aname(SystemInfo-fsfSupportsSparseFiles);~
+ ファイルシステムのフラグ。ファイルシステムがスパースファイル（疎なファイル、未使用の領域が多い、または同じ値が長く続くファイル）をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.fsfVolumeQuotas プロパティ &aname(SystemInfo-fsfVolumeQuotas);~
+ ファイルシステムのフラグ。ファイルシステムがディスククォータ（ディスク使用量の割り当て機能）をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffFPU プロパティ &aname(SystemInfo-cffFPU);~
+ CPU の機能フラグ。CPU が FPU をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffMMX プロパティ &aname(SystemInfo-cffMMX);~
+ CPU の機能フラグ。CPU が MMX をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cff3DN プロパティ &aname(SystemInfo-cff3DN);~
+ CPU の機能フラグ。CPU が 3DNow! をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffSSE プロパティ &aname(SystemInfo-cffSSE);~
+ CPU の機能フラグ。CPU が SSE をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffCMOVcc プロパティ &aname(SystemInfo-cffCMOVcc);~
+ CPU の機能フラグ。CPU が CMOVcc をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffE3DN プロパティ &aname(SystemInfo-cffE3DN);~
+ CPU の機能フラグ。CPU が Enhanced 3DNOW! をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffEMMX プロパティ &aname(SystemInfo-cffEMMX);~
+ CPU の機能フラグ。CPU が FPU をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffSSE2 プロパティ &aname(SystemInfo-cffSSE2);~
+ CPU の機能フラグ。CPU が SSE2 をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffTSC プロパティ &aname(SystemInfo-cffTSC);~
+ CPU の機能フラグ。CPU が TSC をサポートすることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cffMask プロパティ &aname(SystemInfo-cffMask);~
+ CPU の機能フラグマスクを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfIntel プロパティ &aname(SystemInfo-cvfIntel);~
+ CPU のベンダフラグ。CPU が Intel ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfAMD プロパティ &aname(SystemInfo-cvfAMD);~
+ CPU のベンダフラグ。CPU が AMD ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfIDT プロパティ &aname(SystemInfo-cvfIDT);~
+ CPU のベンダフラグ。CPU が IDT ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfCyrix プロパティ &aname(SystemInfo-cvfCyrix);~
+ CPU のベンダフラグ。CPU が Cyrix ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfNexGen プロパティ &aname(SystemInfo-cvfNexGen);~
+ CPU のベンダフラグ。CPU が NexGen ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfRise プロパティ &aname(SystemInfo-cvfRise);~
+ CPU のベンダフラグ。CPU が Rise ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfUMC プロパティ &aname(SystemInfo-cvfUMC);~
+ CPU のベンダフラグ。CPU が UMC ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfTransmeta プロパティ &aname(SystemInfo-cvfTransmeta);~
+ CPU のベンダフラグ。CPU が Transmeta ベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfUnknown プロパティ &aname(SystemInfo-cvfUnknown);~
+ CPU のベンダフラグ。CPU が不明なベンダであることを表わすフラグを返す。 (getter)
+
+--------------------------------------------------------------------------------
+-SystemInfo.cvfMask プロパティ &aname(SystemInfo-cvfMask);~
+ CPU のベンダフラグマスクを返す。 (getter)
+
+--------------------------------------------------------------------------------
+
