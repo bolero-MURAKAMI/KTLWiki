@@ -24,8 +24,8 @@
 --[[http://www.boleros.x0.com/:http://www.boleros.x0.com/]]~
 
 -最新のライブラリ更新~
---スクリプト - &color(red,white){[2015.01.14]};~
---DLL Ver 0.2.11.x - &color(red,white){[2015.04.20]};~
+--スクリプト - &color(red,white){[2015.06.01]};~
+--DLL Ver 0.2.11.x - &color(red,white){[2015.06.01]};~
 
 
 
@@ -49,6 +49,7 @@
 --[[ktl/MathEx.tjs]] ---- 様々な数学計算~
 --[[ktl/Geometry.tjs]] ---- 様々な計算幾何~
 --[[ktl/VariateRandom.tjs]] ---- 様々な乱数生成エンジンと確率分布~
+--[[ktl/Odeint.tjs]] ---- 常微分方程式~
 --[[ktl/BigInt.tjs]] ---- 多倍長整数~
 --[[ktl/SpriteCoord.tjs]] ---- スプライト表示のための座標計算~
 
@@ -152,6 +153,13 @@
 
 
 *更新 [#update-]
+-2015/06/01~
+--スクリプト[[ktl/Odeint.tjs]]追加。~
+--DLL ktl_odeint.dll, ktl_odeint-d.dll 追加。~
+---Odeint クラスに常微分方程式を解く integrate メソッドを実装。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスの２つのジオメトリを引数にとるメソッドで、引数の順序が誤っていた問題を修正。~
+
 -2015/04/20~
 &color(red){Ver 0.2.11};~
 --DLL すべて更新。~
@@ -183,17 +191,6 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 ---様々な計算幾何を実装。~
 --DLL すべて更新。~
 ---Boost を Boost 1.55 から Boost 1.57 へアップデート。~
-
--2014/04/30~
---DLL ktl_network.dll, ktl_network-d.dll 更新。~
---DLL ktl_network-v500.dll, ktl_network-v500-d.dll 更新。~
----OpenSSL を OpenSSL 1.0.1f から 1.0.1g へアップデート。~
---スクリプト[[ktl/SystemInfo.tjs]]追加。~
---DLL ktl_system_info.dll, ktl_system_info-d.dll 追加。~
----実行環境のシステム情報を提供する SystemInfo クラスを実装。~
---DLL VC12(VC++2013)ビルド版を公開。~
----■[[plugin-vc12.zip:http://www.boleros.x0.com/data/plugin-vc12.zip]]~
----VC12版DLLは、あくまで実験的なものです。~
 
 -(全ての更新)~
 --[[更新履歴>history/更新履歴]]~
@@ -229,6 +226,7 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 | Network       | ktl_network.dll        | ktl_network-d.dll        | ネットワークI/O                  |
 |~|               ktl_network-v500.dll   | ktl_network-v500-d.dll   | (Windows 2000 対応版)            |
 | OctetBuilder  | ktl_octet_builder.dll  | ktl_octet_builder-d.dll  | オクテット列操作                 |
+| Odeint        | ktl_odeint.dll         | ktl_odeint-d.dll         | 常微分方程式                     |
 | OSVersion     | ktl_os_version.dll     | ktl_os_version-d.dll     | OS のバージョンチェック          |
 | PTime         | ktl_ptime.dll          | ktl_ptime-d.dll          | 日付と時刻の計算                 |
 | PTree         | ktl_ptree.dll          | ktl_ptree-d.dll          | 構造化データの読み書きや操作     |

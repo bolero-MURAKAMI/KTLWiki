@@ -3,6 +3,16 @@
 
 
 
+*更新履歴(2015/06) [#update1506-]
+-2015/06/01~
+--スクリプト[[ktl/Odeint.tjs]]追加。~
+--DLL ktl_odeint.dll, ktl_odeint-d.dll 追加。~
+---Odeint クラスに常微分方程式を解く integrate メソッドを実装。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスの２つのジオメトリを引数にとるメソッドで、引数の順序が誤っていた問題を修正。~
+
+
+
 *更新履歴(2015/04) [#update1504-]
 -2015/04/20~
 &color(red){Ver 0.2.11};~

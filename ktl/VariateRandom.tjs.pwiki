@@ -28,9 +28,15 @@
 --[[Kreutzer1986 クラス>#Kreutzer1986]]~
 --[[Taus88 クラス>#Taus88]]~
 --[[Hellekalek1995 クラス>#Hellekalek1995]]~
+
+> (生成エンジン／メルセンヌ・ツイスタ法)~
+
 --[[MT11213b クラス>#MT11213b]]~
 --[[MT19937 クラス>#MT19937]]~
 --[[MT19937_64 クラス>#MT19937_64]]~
+
+> (生成エンジン／Lagged Fibonacci 法)~
+
 --[[LaggedFibonacci607 クラス>#LaggedFibonacci607]]~
 --[[LaggedFibonacci1279 クラス>#LaggedFibonacci1279]]~
 --[[LaggedFibonacci2281 クラス>#LaggedFibonacci2281]]~
@@ -40,6 +46,9 @@
 --[[LaggedFibonacci9937 クラス>#LaggedFibonacci9937]]~
 --[[LaggedFibonacci23209 クラス>#LaggedFibonacci23209]]~
 --[[LaggedFibonacci44497 クラス>#LaggedFibonacci44497]]~
+
+> (生成エンジン／Luxury Random Numbers アルゴリズム)~
+
 --[[Ranlux3 クラス>#Ranlux3]]~
 --[[Ranlux4 クラス>#Ranlux4]]~
 --[[Ranlux64_3 クラス>#Ranlux64_3]]~
@@ -48,9 +57,12 @@
 --[[Ranlux4_01 クラス>#Ranlux4_01]]~
 --[[Ranlux64_3_01 クラス>#Ranlux64_3_01]]~
 --[[Ranlux64_4_01 クラス>#Ranlux64_4_01]]~
+
+> (生成エンジン／非決定論的乱数)~
+
 --[[RandomDevice クラス>#RandomDevice]]~
 
-> (確率分布)~
+> (確率分布／一様分布)~
 
 --[[UniformSmallint クラス>#UniformSmallint]]~
 --[[UniformIntDistribution クラス>#UniformIntDistribution]]~
@@ -58,10 +70,16 @@
 --[[Uniform01 クラス>#Uniform01]]~
 --[[UniformRealDistribution クラス>#UniformRealDistribution]]~
 --[[UniformReal クラス>#UniformReal]]~
+
+> (確率分布／ベルヌーイ分布)~
+
 --[[BernoulliDistribution クラス>#BernoulliDistribution]]~
 --[[BinomialDistribution クラス>#BinomialDistribution]]~
 --[[GeometricDistribution クラス>#GeometricDistribution]]~
 --[[NegativeBinomialDistribution クラス>#NegativeBinomialDistribution]]~
+
+> (確率分布／ポアソン分布)~
+
 --[[PoissonDistribution クラス>#PoissonDistribution]]~
 --[[ExponentialDistribution クラス>#ExponentialDistribution]]~
 --[[GammaDistribution クラス>#GammaDistribution]]~
@@ -69,6 +87,9 @@
 --[[ExtremeValueDistribution クラス>#ExtremeValueDistribution]]~
 --[[BetaDistribution クラス>#BetaDistribution]]~
 --[[LaplaceDistribution クラス>#LaplaceDistribution]]~
+
+> (確率分布／正規分布)~
+
 --[[NormalDistribution クラス>#NormalDistribution]]~
 --[[LognormalDistribution クラス>#LognormalDistribution]]~
 --[[ChiSquaredDistribution クラス>#ChiSquaredDistribution]]~
@@ -76,9 +97,15 @@
 --[[CauchyDistribution クラス>#CauchyDistribution]]~
 --[[FisherFDistribution クラス>#FisherFDistribution]]~
 --[[StudentTDistribution クラス>#StudentTDistribution]]~
+
+> (確率分布／サンプリング分布)~
+
 --[[DiscreteDistribution クラス>#DiscreteDistribution]]~
 --[[PiecewiseConstantDistribution クラス>#PiecewiseConstantDistribution]]~
 --[[PiecewiseLinearDistribution クラス>#PiecewiseLinearDistribution]]~
+
+> (確率分布／その他の分布)~
+
 --[[TriangleDistribution クラス>#TriangleDistribution]]~
 --[[UniformOnSphere クラス>#UniformOnSphere]]~
 
@@ -940,7 +967,7 @@
 --------------------------------------------------------------------------------
 
 **MT11213b クラス [#MT11213b]
- メルセンヌツイスタ法の疑似乱数生成エンジンクラス。
+ メルセンヌ・ツイスタ法の疑似乱数生成エンジンクラス。
  周期 2^11213-1 ，精度 32bit 符号無し整数．
 -メソッド:~
 --[[MT11213b メソッド>#MT11213b-MT11213b]]~
@@ -1042,7 +1069,7 @@
 --------------------------------------------------------------------------------
 
 **MT19937 クラス [#MT19937]
- メルセンヌツイスタ法の疑似乱数生成エンジンクラス。
+ メルセンヌ・ツイスタ法の疑似乱数生成エンジンクラス。
  周期 2^19937-1 ，精度 32bit 符号無し整数．
 -メソッド:~
 --[[MT19937 メソッド>#MT19937-MT19937]]~
@@ -1144,7 +1171,7 @@
 --------------------------------------------------------------------------------
 
 **MT19937_64 クラス [#MT19937_64]
- メルセンヌツイスタ法の疑似乱数生成エンジンクラス。
+ メルセンヌ・ツイスタ法の疑似乱数生成エンジンクラス。
  周期 2^19937-1 ，精度 64bit 符号無し整数．
 -メソッド:~
 --[[MT19937_64 メソッド>#MT19937_64-MT19937_64]]~
