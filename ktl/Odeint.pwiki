@@ -1,0 +1,148 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要 [#summaries-]
+ 常微分方程式を扱う。
+-パス:~
+--[[ktl/Odeint.tjs]]~
+-インポートスクリプト:~
+--[[ktl/Sources.tjs]]~
+-インポートDLL:~
+--ktl_odeint.dll / ktl_odeint-d.dll(デバッグ版)~
+
+
+
+*クラス [#class-]
+-クラス:~
+--[[Odeint クラス>#Odeint]]~
+
+--------------------------------------------------------------------------------
+
+**Odeint クラス [#Odeint]
+ 常微分方程式を扱うクラス。
+ このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
+-スタティックメソッド:~
+
+--[[integrate メソッド>#Odeint-integrate]]~
+
+-コンセプト:~
+
+--[[System コンセプト>#Odeint--System]]~
+--[[Observer コンセプト>#Odeint--Observer]]~
+--[[Vector コンセプト>#Odeint--Vector]]~
+--[[ConstVector コンセプト>#Odeint--ConstVector]]~
+
+--------------------------------------------------------------------------------
+-Odeint.integrate メソッド &aname(Odeint-integrate);~
+ 指定されたドライブの種類を返す。
+--シグネチャ:~
+---Odeint.integrate(system, start_state, start_time, end_time, dt)~
+---Odeint.integrate(system, start_state, start_time, end_time, dt, observer)~
+--引数:~
+---system~
+常微分方程式を表す関数。（[[System コンセプト>#Odeint--System]]）~
+---start_state~
+開始パラメータ。~
+---start_time~
+開始時間。（実数）~
+---end_time~
+終了時間。（実数）~
+---dt~
+刻み幅。（実数）~
+---observer~
+各ステップ毎のコールバック関数。（[[Observer コンセプト>#Odeint--Observer]]）~
+--返値:~
+---正数~
+ステップ数。~
+--注記:~
+副作用 : start_state は終了時に近似解 x(end_time) に変更される。~
+
+--------------------------------------------------------------------------------
+-(System コンセプト) &aname(Odeint--System);~
+ 常微分方程式を表す関数のコンセプト。以下のシグネチャで呼び出すことのできる関数をいう。
+--シグネチャ:~
+---function(x, dxdt, t)~
+--引数:~
+---x~
+ODE の状態 x。（[[Vector コンセプト>#Odeint--Vector]]）~
+---dxdt~
+ODE の状態 x' 。（[[ConstVector コンセプト>#Odeint--ConstVector]]）~
+---t~
+時間。（実数）~
+--注記:~
+x, dxdt オブジェクトは Odeint からコールバックされている間のみ有効なので、このオブジェクトを保存して後から参照してはならない。~
+必要なときは asArray プロパティで配列に変換すること。~
+--コード例:~
+ // ローレンツ：アトラクタ
+ function lorenzSystem(x, dxdt, t) {
+   // x=x[0], y=x[1], z=x[2]
+   dxdt[0] = -p * x[0] + p * x[1];           // dx/dt
+   dxdt[1] = -x[0] * x[2] + r * x[0] - x[1]; // dy/dt
+   dxdt[2] = x[0] * x[1] - b * x[2];         // dz/dt
+ }
+
+--------------------------------------------------------------------------------
+-(Observer コンセプト) &aname(Odeint--Observer);~
+ 各ステップ毎のコールバック関数のコンセプト。以下のシグネチャで呼び出すことのできる関数をいう。
+--シグネチャ:~
+---function(state, t)~
+--引数:~
+---state~
+常微分方程式の解。（[[ConstVector コンセプト>#Odeint--ConstVector]]）~
+---t~
+時間。（実数）~
+--注記:~
+state オブジェクトは Odeint からコールバックされている間のみ有効なので、このオブジェクトを保存して後から参照してはならない。~
+必要なときは asArray プロパティで配列に変換すること。~
+
+--------------------------------------------------------------------------------
+-(Vector コンセプト) &aname(Odeint--Vector);~
+ 任意次元のベクタオブジェクトのコンセプト。配列と同じように序数アクセスできる。
+--疑似コード:~
+ class Vector {
+   property [i] {
+     getter();
+     setter(v);
+   }
+   property count {
+     getter();
+   }
+   property asArray {
+     getter();
+   }
+ }
+--プロパティ:~
+---序数プロパティ~
+要素の値を設定/取得する。 (setter/getter)~
+---count プロパティ~
+要素数を返す。 (getter)~
+---asArray プロパティ~
+同じ要素数と値の配列を返す。 (getter)~
+
+--------------------------------------------------------------------------------
+-(ConstVector コンセプト) &aname(Odeint--ConstVector);~
+ 任意次元のベクタオブジェクトのコンセプト。要素の変更不可。
+--疑似コード:~
+ class ConstVector {
+   property [i] {
+     getter();
+   }
+   property count {
+     getter();
+   }
+   property asArray {
+     getter();
+   }
+ }
+--プロパティ:~
+---序数プロパティ~
+要素の値を取得する。 (getter)~
+---count プロパティ~
+要素数を返す。 (getter)~
+---asArray プロパティ~
+同じ要素数と値の配列を返す。 (getter)~
+
+--------------------------------------------------------------------------------
+

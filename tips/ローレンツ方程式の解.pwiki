@@ -1,0 +1,62 @@
+*目次 [#contents-]
+#contents
+
+
+
+*概要
+-必要DLL~
+--ktl_odeint.dll（または ktl_odeint-d.dll）~
+
+-スクリプト~
+--[[ktl/Odeint.tjs]]~
+
+-クラス~
+--Odeint クラス~
+
+
+
+*ローレンツ方程式の解を求める
+// KTL.Odeint をロード
+ Sources.include("ktl/Odeint.tjs");
+ 
+ class LorenzSystem {
+     var p;
+     var r;
+     var b;
+     function LorenzSystem(_p, _r, _b) {
+         p = _p;
+         r = _r;
+         b = _b;
+     }
+     function call(x, dxdt, t) {
+         // x=x[0], y=x[1], z=x[2]
+         dxdt[0] = -p * x[0] + p * x[1];              // dx/dt
+         dxdt[1] = -x[0] * x[2] + r * x[0] - x[1];    // dy/dt
+         dxdt[2] = x[0] * x[1] - b * x[2];            // dz/dt
+     }
+ }
+ class ArrayObserber {
+     var states;
+     var times;
+     function ArrayObserber() {
+         states = [];
+         times = [];
+     }
+     function call(s, t) {
+         states.push(s.asArray);
+         times.push(t);
+     }
+ }
+ // ローレンツ・アトラクタ
+ var lorenzSystem = new LorenzSystem(10.0, 28.0, 8.0 / 3);
+ // 解を配列に記録
+ var arrayObserber = new ArrayObserber();
+ // 常微分方程式を t0=0, t1=25, dt=0.01 で解く
+ var count = Odeint.integrate(
+     lorenzSystem.call,    // system
+     [10.0, 1.0, 1.0],    // start_state
+     0.0,                // start_time
+     25.0,                // end_time
+     0.01,                // dt
+     arrayObserber.call    // obserber
+     );
