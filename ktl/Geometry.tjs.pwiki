@@ -29,10 +29,13 @@
 
 --[[isValid メソッド>#Geometry-isValid]]~
 --[[isSimple メソッド>#Geometry-isSimple]]~
+--[[intersects メソッド>#Geometry-intersects-1]]~
+--[[touches メソッド>#Geometry-touches-1]]~
 --[[length メソッド>#Geometry-length]]~
 --[[perimeter メソッド>#Geometry-perimeter]]~
 --[[area メソッド>#Geometry-area]]~
 --[[centroid メソッド>#Geometry-centroid]]~
+--[[envelope メソッド>#Geometry-envelope]]~
 --[[translate メソッド>#Geometry-translate]]~
 --[[scale メソッド>#Geometry-scale]]~
 --[[rotate メソッド>#Geometry-rotate]]~
@@ -41,11 +44,13 @@
 > (図形同士の関係)~
 
 --[[disjoint メソッド>#Geometry-disjoint]]~
---[[intersects メソッド>#Geometry-intersects]]~
+--[[intersects メソッド>#Geometry-intersects-2]]~
 --[[coveredBy メソッド>#Geometry-coveredBy]]~
 --[[within メソッド>#Geometry-within]]~
 --[[equals メソッド>#Geometry-equals]]~
 --[[overlaps メソッド>#Geometry-overlaps]]~
+--[[touches メソッド>#Geometry-touches-2]]~
+--[[crosses メソッド>#Geometry-crosses]]~
 --[[distance メソッド>#Geometry-distance]]~
 
 -スタティックプロパティ:~
@@ -94,6 +99,38 @@
 単純な図形でない場合。~
 --注記:~
 [[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/is_simple.html#geometry.reference.algorithms.is_simple.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.intersects メソッド &aname(Geometry-intersects-1);~
+ 図形が交点を持っている（交差または自己接触）かを返す。
+--シグネチャ:~
+---Geometry.intersects(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---true~
+交点を持っている場合。~
+---false~
+交点を持っていない場合。~
+
+--------------------------------------------------------------------------------
+-Geometry.touches メソッド &aname(Geometry-touches-1);~
+ 図形が接点を持っている（自己接触）かを返す。
+--シグネチャ:~
+---Geometry.touches(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---true~
+接点を持っている場合。~
+---false~
+接点を持っていない場合。~
 
 --------------------------------------------------------------------------------
 -Geometry.length メソッド &aname(Geometry-length);~
@@ -159,6 +196,21 @@
  [ x, y ]
 --注記:~
 [[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/centroid/centroid_2.html#geometry.reference.algorithms.centroid.centroid_2.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.envelope メソッド &aname(Geometry-envelope);~
+ 図形の包絡線（矩形）を返す。
+--シグネチャ:~
+---Geometry.envelope(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---Array~
+図形の包絡線（矩形）。~
+ [ [ left, top ], [ right, bottom ] ]
 
 --------------------------------------------------------------------------------
 -Geometry.translate メソッド &aname(Geometry-translate);~
@@ -270,8 +322,8 @@
 [[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
 --------------------------------------------------------------------------------
--Geometry.intersects メソッド &aname(Geometry-intersects);~
- 図形同士が交差点を持っているかを返す。
+-Geometry.intersects メソッド &aname(Geometry-intersects-2);~
+ 図形同士が共通部分を持っているかを返す。
 --シグネチャ:~
 ---Geometry.intersects(g0, f0, g1, f1)~
 --引数:~
@@ -285,9 +337,9 @@
 図形Ｂの分類フラグ。~
 --返値:~
 ---true~
-交差点を持っている場合。~
+共通部分を持っている場合。~
 ---false~
-交差点を持っていない場合。~
+共通部分を持っていない場合。~
 --注記:~
 [[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
@@ -378,6 +430,48 @@
 重なっていない場合。~
 --注記:~
 [[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/overlaps.html#geometry.reference.algorithms.overlaps.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.touches メソッド &aname(Geometry-touches-2);~
+ 図形同士が接点を持っているかを返す。
+--シグネチャ:~
+---Geometry.touches(g0, f0, g1, f1)~
+--引数:~
+---g0~
+図形Ａデータ。~
+---f0~
+図形Ａの分類フラグ。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+--返値:~
+---true~
+接点を持っている場合。~
+---false~
+接点を持っていない場合。~
+
+--------------------------------------------------------------------------------
+-Geometry.crosses メソッド &aname(Geometry-crosses);~
+ 図形同士が交差するかを返す。
+--シグネチャ:~
+---Geometry.crosses(g0, f0, g1, f1)~
+--引数:~
+---g0~
+図形Ａデータ。~
+---f0~
+図形Ａの分類フラグ。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+--返値:~
+---true~
+交差する場合。~
+---false~
+交差しない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/crosses.html#geometry.reference.algorithms.crosses.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.distance メソッド &aname(Geometry-distance);~

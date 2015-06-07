@@ -25,7 +25,7 @@
 
 -最新のライブラリ更新~
 --スクリプト - &color(red,white){[2015.06.01]};~
---DLL Ver 0.2.11.x - &color(red,white){[2015.06.01]};~
+--DLL Ver 0.2.13.x - &color(red,white){[2015.06.07]};~
 
 
 
@@ -154,6 +154,25 @@
 
 
 *更新 [#update-]
+-2015/06/07~
+--DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
+---Utils クラスに saveStructString, saveStruct メソッドを追加。~
+
+-2015/06/06~
+&color(red){Ver 0.2.13};~
+--DLL すべて更新。~
+---DLL が読み込まれるとき、DLL の各種情報が ktldll グローバル変数に登録されるようにした。~
+
+-2015/06/03~
+&color(red){Ver 0.2.12};~
+--DLL すべて更新。~
+---メソッドの引数の型チェックを厳格にした。~
+整数または実数を要求する引数に void が渡された場合にエラーになるよう変更。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスで、転送コーディング（Transfer-Encoding）が chunked のとき2つ目以降のチャンクが正しく処理されていなかった問題を修正。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに envelope, (単項)intersects, (単項/二項)touches, crosses メソッドを追加。~
+
 -2015/06/01~
 --スクリプト[[ktl/Odeint.tjs]]追加。~
 --DLL ktl_odeint.dll, ktl_odeint-d.dll 追加。~
@@ -176,22 +195,6 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 ---ベータ分布 BetaDistribution クラスを追加。~
 ---ラプラス分布 LaplaceDistribution クラスを追加。~
 ---非心カイ二乗分布 NonCentralChiSquaredDistribution クラスを追加。~
-
--2015/01/20~
---DLL ktl_math_ex.dll, ktl_math_ex-d.dll 更新。~
----MathEx クラスにベッセル関数のバリエーション、ベルヌーイ数等を追加。~
-
--2015/01/15~
---DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
----Geometry クラスに matrixTransform, intersects メソッドを追加。~
-
--2015/01/14~
-&color(red){Ver 0.2.10};~
---スクリプト[[ktl/Geometry.tjs]]追加。~
---DLL ktl_geometry.dll, ktl_geometry-d.dll 追加。~
----様々な計算幾何を実装。~
---DLL すべて更新。~
----Boost を Boost 1.55 から Boost 1.57 へアップデート。~
 
 -(全ての更新)~
 --[[更新履歴>history/更新履歴]]~
@@ -263,6 +266,8 @@ point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
 --------------------------------------------------------------------------------
 　　　----最新版以外----~
 -DLL~
+--[[plugin-0.2.12.zip:http://www.boleros.x0.com/data/plugin-0.2.12.zip]]~
+--[[plugin-0.2.11.zip:http://www.boleros.x0.com/data/plugin-0.2.11.zip]]~
 --[[plugin-0.2.10.zip:http://www.boleros.x0.com/data/plugin-0.2.10.zip]]~
 --[[plugin-0.2.9.zip:http://www.boleros.x0.com/data/plugin-0.2.9.zip]]~
 --[[plugin-0.2.8.zip:http://www.boleros.x0.com/data/plugin-0.2.8.zip]]~

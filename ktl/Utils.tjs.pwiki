@@ -24,23 +24,47 @@
  雑多な機能を提供するクラス。
  このクラスは System クラスなどと同じように、インスタンスを作成する必要はない。
 -スタティックメソッド:~
+
+> (オブジェクト操作)~
+
 --[[getCii メソッド>#Utils-getCii]]~
 --[[getCount メソッド>#Utils-getCount]]~
 --[[getContext メソッド>#Utils-getContext]]~
+
+> (オクテット操作)~
+
 --[[getOctetData メソッド>#Utils-getOctetData]]~
 --[[getOctetSize メソッド>#Utils-getOctetSize]]~
 --[[beginOctet メソッド>#Utils-beginOctet]]~
 --[[endOctet メソッド>#Utils-endOctet]]~
+
+> (文字列操作)~
+
 --[[getStringData メソッド>#Utils-getStringData]]~
 --[[getStringSize メソッド>#Utils-getStringSize]]~
 --[[beginString メソッド>#Utils-beginString]]~
 --[[endString メソッド>#Utils-endString]]~
+
+> (文字列化)~
+
 --[[toString メソッド>#Utils-toString]]~
 --[[toReadableString メソッド>#Utils-toReadableString]]~
+--[[toExpressionString メソッド>#Utils-toExpressionString]]~
+
+> (セーブ・ロード)~
+
 --[[loadStorageToOctet メソッド>#Utils-loadStorageToOctet]]~
---[[saveStorageFromOctet メソッド>#Utils-saveStorageFromOctet]]~
+--[[saveStructString メソッド>#Utils-saveStructString]]~
+--[[saveStruct メソッド>#Utils-saveStruct]]~
+
+> (列挙)~
+
 --[[enumMembers メソッド>#Utils-enumMembers]]~
 --[[enumMembersName メソッド>#Utils-enumMembersName]]~
+-スタティックプロパティ:~
+--[[sfNoConstQualifier プロパティ>#Utils-sfNoConstQualifier]]~
+--[[sizeofWChar プロパティ>#Utils-sizeofWChar]]~
+--[[sizeofNChar プロパティ>#Utils-sizeofNChar]]~
 
 --------------------------------------------------------------------------------
 -Utils.getCii メソッド &aname(Utils-getCii);~
@@ -226,7 +250,19 @@
 最大の出力文字数。~
 --返値:~
 ---String~
-文字列。
+文字列。~
+
+--------------------------------------------------------------------------------
+-Utils.toExpressionString メソッド &aname(Utils-toExpressionString);~
+ 値を評価可能な式の文字列に変換して返す。
+--シグネチャ:~
+---Utils.toExpressionString(v)~
+--引数:~
+---v~
+値。~
+--返値:~
+---String~
+文字列。~
 
 --------------------------------------------------------------------------------
 -Utils.loadStorageToOctet メソッド &aname(Utils-loadStorageToOctet);~
@@ -238,7 +274,49 @@
 ストレージのパス。~
 --返値:~
 ---Octet~
-読み込まれたオクテット列。
+読み込まれたオクテット列。~
+
+--------------------------------------------------------------------------------
+-Utils.saveStructString メソッド &aname(Utils-saveStructString);~
+ 値を saveStruct 互換の形式で文字列化して返す。
+--シグネチャ:~
+---v~
+値。~
+---Utils.saveStructString(v, flag = 0, indent_char = #" ", indent_count = 1)~
+--引数:~
+---flag~
+セーブフラグ。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---String~
+文字列。
+---void~
+処理に失敗した場合~
+
+--------------------------------------------------------------------------------
+-Utils.saveStruct メソッド &aname(Utils-saveStruct);~
+ 値を saveStruct 互換の形式で文字列化してストレージに書き出す。
+--シグネチャ:~
+---v~
+値。~
+---Utils.saveStruct(storage, v, flag = 0, indent_char = #" ", indent_count = 1)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---flag~
+セーブフラグ。~
+---indent_char~
+インデントのための文字。~
+---indent_count~
+インデント単位の文字数。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
 
 --------------------------------------------------------------------------------
 -Utils.saveStorageFromOctet メソッド &aname(Utils-saveStorageFromOctet);~
@@ -264,9 +342,9 @@
 オブジェクト。~
 --返値:~
 ---Dictionary~
-メンバが格納された辞書配列。
+メンバが格納された辞書配列。~
 ---void~
-オブジェクトが null だった場合。
+オブジェクトが null だった場合。~
 
 --------------------------------------------------------------------------------
 -Utils.enumMembersName メソッド &aname(Utils-enumMembersName);~
@@ -278,9 +356,23 @@
 オブジェクト。~
 --返値:~
 ---Array~
-メンバ名が格納された配列。
+メンバ名が格納された配列。~
 ---void~
-オブジェクトが null だった場合。
+オブジェクトが null だった場合。~
+
+--------------------------------------------------------------------------------
+-Utils.sfNoConstQualifier プロパティ &aname(Utils-sfNoConstQualifier);~
+ セーブフラグを返す。ビット演算で他のフラグと組み合わせることができる。 (getter)
+--注記:~
+書き出される Array および Dictionary に、(const) 修飾がデフォルトで記述される動作を抑制する。~
+
+--------------------------------------------------------------------------------
+-Utils.sizeofWChar プロパティ &aname(Utils-sizeofWChar);~
+ 処理系が扱うワイド文字のバイト数を返す。 (getter)
+
+--------------------------------------------------------------------------------
+-Utils.sizeofNChar プロパティ &aname(Utils-sizeofNChar);~
+ 処理系が扱うナロー文字のバイト数を返す。 (getter)
 
 --------------------------------------------------------------------------------
 

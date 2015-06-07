@@ -4,6 +4,25 @@
 
 
 *更新履歴(2015/06) [#update1506-]
+-2015/06/07~
+--DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
+---Utils クラスに saveStructString, saveStruct メソッドを追加。~
+
+-2015/06/06~
+&color(red){Ver 0.2.13};~
+--DLL すべて更新。~
+---DLL が読み込まれるとき、DLL の各種情報が ktldll グローバル変数に登録されるようにした。~
+
+-2015/06/03~
+&color(red){Ver 0.2.12};~
+--DLL すべて更新。~
+---メソッドの引数の型チェックを厳格にした。~
+整数または実数を要求する引数に void が渡された場合にエラーになるよう変更。~
+--DLL ktl_network.dll, ktl_network-d.dll 更新。~
+---Downloader クラスで、転送コーディング（Transfer-Encoding）が chunked のとき2つ目以降のチャンクが正しく処理されていなかった問題を修正。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに envelope, (単項)intersects, (単項/二項)touches, crosses メソッドを追加。~
+
 -2015/06/01~
 --スクリプト[[ktl/Odeint.tjs]]追加。~
 --DLL ktl_odeint.dll, ktl_odeint-d.dll 追加。~
