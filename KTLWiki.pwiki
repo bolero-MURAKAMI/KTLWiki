@@ -24,8 +24,8 @@
 --[[http://www.boleros.x0.com/:http://www.boleros.x0.com/]]~
 
 -最新のライブラリ更新~
---スクリプト - &color(red,white){[2015.06.01]};~
---DLL Ver 0.2.13.x - &color(red,white){[2015.06.07]};~
+--スクリプト - &color(red,white){[2015.07.12]};~
+--DLL Ver 0.2.14.x - &color(red,white){[2015.09.06]};~
 
 
 
@@ -154,6 +154,23 @@
 
 
 *更新 [#update-]
+-2015/09/06~
+&color(red){Ver 0.2.14};~
+--DLL すべて更新。~
+---Boost を Boost 1.58 から Boost 1.59 へアップデート。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに isEmpty, relate, relation メソッドを追加。~
+---Geometry クラスに WKT(Well-known text) 読み書きのメソッドを追加。~
+---Geometry クラスの disjoint, intersects メソッドに、以下のジオメトリの組み合わせサポートを追加。~
+linestring/multipoint, multipoint/linestring,~
+multipoint/multilinestring, multilinestring/multipoint~
+
+-2015/07/12~
+--スクリプト[[ktl/Definition.tjs]]追加。~
+--DLL ktl_definition.dll, ktl_definition-d.dll 追加。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに convexHull, correct, simplify, expand メソッドを追加。~
+
 -2015/06/07~
 --DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
 ---Utils クラスに saveStructString, saveStruct メソッドを追加。~
@@ -172,29 +189,6 @@
 ---Downloader クラスで、転送コーディング（Transfer-Encoding）が chunked のとき2つ目以降のチャンクが正しく処理されていなかった問題を修正。~
 --DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
 ---Geometry クラスに envelope, (単項)intersects, (単項/二項)touches, crosses メソッドを追加。~
-
--2015/06/01~
---スクリプト[[ktl/Odeint.tjs]]追加。~
---DLL ktl_odeint.dll, ktl_odeint-d.dll 追加。~
----Odeint クラスに常微分方程式を解く integrate メソッドを実装。~
---DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
----Geometry クラスの２つのジオメトリを引数にとるメソッドで、引数の順序が誤っていた問題を修正。~
-
--2015/04/20~
-&color(red){Ver 0.2.11};~
---DLL すべて更新。~
----Boost を Boost 1.57 から Boost 1.58 へアップデート。~
---DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
----Geometry クラスの disjoint, intersects メソッドに、以下のジオメトリの組み合わせサポートを追加。~
-multipoint/point, multipoint/segment, multipoint/box, multipoint/multipoint,~
-point/multipoint, point/multipoint, segment/multipoint, box/multipoint~
----MathEx クラスにガンマ関数のバリエーション trigamma, polygamma メソッドを追加。~
----MathEx クラスに楕円積分のバリエーション ellintD, jacobiZeta, heumanLambda メソッドを追加。~
----MathEx クラスの ellint2, ellint3メソッドの 2 引数版について、内部で不正に 3 引数版を呼んでいた問題を修正。~
---DLL ktl_random.dll, ktl_random-d.dll 更新。~
----ベータ分布 BetaDistribution クラスを追加。~
----ラプラス分布 LaplaceDistribution クラスを追加。~
----非心カイ二乗分布 NonCentralChiSquaredDistribution クラスを追加。~
 
 -(全ての更新)~
 --[[更新履歴>history/更新履歴]]~

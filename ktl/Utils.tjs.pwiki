@@ -280,10 +280,10 @@
 -Utils.saveStructString メソッド &aname(Utils-saveStructString);~
  値を saveStruct 互換の形式で文字列化して返す。
 --シグネチャ:~
----v~
-値。~
 ---Utils.saveStructString(v, flag = 0, indent_char = #" ", indent_count = 1)~
 --引数:~
+---v~
+値。~
 ---flag~
 セーブフラグ。~
 ---indent_char~
@@ -300,12 +300,12 @@
 -Utils.saveStruct メソッド &aname(Utils-saveStruct);~
  値を saveStruct 互換の形式で文字列化してストレージに書き出す。
 --シグネチャ:~
----v~
-値。~
 ---Utils.saveStruct(storage, v, flag = 0, indent_char = #" ", indent_count = 1)~
 --引数:~
 ---storage~
 ストレージのパス文字列。~
+---v~
+値。~
 ---flag~
 セーブフラグ。~
 ---indent_char~

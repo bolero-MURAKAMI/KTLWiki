@@ -27,6 +27,7 @@
 
 > (図形の性質)~
 
+--[[isEmpty メソッド>#Geometry-isEmpty]]~
 --[[isValid メソッド>#Geometry-isValid]]~
 --[[isSimple メソッド>#Geometry-isSimple]]~
 --[[intersects メソッド>#Geometry-intersects-1]]~
@@ -36,6 +37,9 @@
 --[[area メソッド>#Geometry-area]]~
 --[[centroid メソッド>#Geometry-centroid]]~
 --[[envelope メソッド>#Geometry-envelope]]~
+--[[convexHull メソッド>#Geometry-convexHull]]~
+--[[correct メソッド>#Geometry-correct]]~
+--[[simplify メソッド>#Geometry-simplify]]~
 --[[translate メソッド>#Geometry-translate]]~
 --[[scale メソッド>#Geometry-scale]]~
 --[[rotate メソッド>#Geometry-rotate]]~
@@ -51,7 +55,17 @@
 --[[overlaps メソッド>#Geometry-overlaps]]~
 --[[touches メソッド>#Geometry-touches-2]]~
 --[[crosses メソッド>#Geometry-crosses]]~
+--[[relate メソッド>#Geometry-relate]]~
 --[[distance メソッド>#Geometry-distance]]~
+--[[relation メソッド>#Geometry-relation]]~
+--[[expand メソッド>#Geometry-expand]]~
+
+> (WKT 読み書き)~
+
+--[[readWKT メソッド>#Geometry-readWKT]]~
+--[[readStorageWKT メソッド>#Geometry-readStorageWKT]]~
+--[[writeWKTToString メソッド>#Geometry-writeWKTToString]]~
+--[[writeStorageWKT メソッド>#Geometry-writeStorageWKT]]~
 
 -スタティックプロパティ:~
 --[[gmfPoint プロパティ>#Geometry-gmfPoint]]~
@@ -63,6 +77,24 @@
 --[[gmfMultiPoint プロパティ>#Geometry-gmfMultiPoint]]~
 --[[gmfMultiLinestring プロパティ>#Geometry-gmfMultiLinestring]]~
 --[[gmfMultiPolygon プロパティ>#Geometry-gmfMultiPolygon]]~
+
+--------------------------------------------------------------------------------
+-Geometry.isEmpty メソッド &aname(Geometry-isEmpty);~
+ 図形が空集合であるかを返す。
+--シグネチャ:~
+---Geometry.isEmpty(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---true~
+空集合である場合。~
+---false~
+空集合でない場合。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/is_empty.html#geometry.reference.algorithms.is_empty.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.isValid メソッド &aname(Geometry-isValid);~
@@ -80,7 +112,7 @@
 ---false~
 有効な図形でない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/is_valid/is_valid_1.html#geometry.reference.algorithms.is_valid.is_valid_1.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/is_valid/is_valid_1.html#geometry.reference.algorithms.is_valid.is_valid_1.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.isSimple メソッド &aname(Geometry-isSimple);~
@@ -98,7 +130,7 @@
 ---false~
 単純な図形でない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/is_simple.html#geometry.reference.algorithms.is_simple.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/is_simple.html#geometry.reference.algorithms.is_simple.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.intersects メソッド &aname(Geometry-intersects-1);~
@@ -178,7 +210,7 @@
 図形の面積。~
 --注記:~
 領域を持たない図形（e.g. Linestring）に対して、この関数は常に 0 を返す。~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/area/area_1.html#geometry.reference.algorithms.area.area_1.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/area/area_1.html#geometry.reference.algorithms.area.area_1.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.centroid メソッド &aname(Geometry-centroid);~
@@ -195,7 +227,7 @@
 図形の中心点。~
  [ x, y ]
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/centroid/centroid_2.html#geometry.reference.algorithms.centroid.centroid_2.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/centroid/centroid_2.html#geometry.reference.algorithms.centroid.centroid_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.envelope メソッド &aname(Geometry-envelope);~
@@ -209,8 +241,60 @@
 図形の分類フラグ。~
 --返値:~
 ---Array~
-図形の包絡線（矩形）。~
+図形の包絡線（矩形）である Box ジオメトリ。~
  [ [ left, top ], [ right, bottom ] ]
+
+--------------------------------------------------------------------------------
+-Geometry.convexHull メソッド &aname(Geometry-convexHull);~
+ 図形の凸包を返す。
+--シグネチャ:~
+---Geometry.convexHull(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---Array~
+図形の凸包である Ring ジオメトリ。~
+ [ [ x0, y0 ], [ x1, y1 ], [ x2, y2 ], ..., [ xn, yn ] ]
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/convex_hull.html#geometry.reference.algorithms.convex_hull.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.correct メソッド &aname(Geometry-correct);~
+ 図形の誤りを修正して返す。
+ 向きが逆だったり、終了点が足りなかったりする図形を修正する。
+--シグネチャ:~
+---Geometry.correct(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---Array~
+修正された図形。~
+--注記:~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/correct.html#geometry.reference.algorithms.correct.supported_geometries]]~
+[[このメソッドのジオメトリ毎の挙動:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/correct.html#geometry.reference.algorithms.correct.behavior]]~
+
+--------------------------------------------------------------------------------
+-Geometry.simplify メソッド &aname(Geometry-simplify);~
+ 図形を単純化して返す。
+ 指定距離より近傍にある図形内の点を間引いて単純化する。
+--シグネチャ:~
+---Geometry.simplify(g, f, d)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+---d~
+単純化の距離。~
+--返値:~
+---Array~
+単純化された図形。~
 
 --------------------------------------------------------------------------------
 -Geometry.translate メソッド &aname(Geometry-translate);~
@@ -319,7 +403,7 @@
 ---false~
 互いに素でない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.intersects メソッド &aname(Geometry-intersects-2);~
@@ -341,7 +425,7 @@
 ---false~
 共通部分を持っていない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/disjoint.html#geometry.reference.algorithms.disjoint.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.coveredBy メソッド &aname(Geometry-coveredBy);~
@@ -363,7 +447,7 @@
 ---false~
 内部または境界線上にない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/covered_by/covered_by_2.html#geometry.reference.algorithms.covered_by.covered_by_2.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/covered_by/covered_by_2.html#geometry.reference.algorithms.covered_by.covered_by_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.within メソッド &aname(Geometry-within);~
@@ -385,7 +469,7 @@
 ---false~
 内部にない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/within/within_2.html#geometry.reference.algorithms.within.within_2.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/within/within_2.html#geometry.reference.algorithms.within.within_2.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.equals メソッド &aname(Geometry-equals);~
@@ -407,7 +491,7 @@
 ---false~
 空間的に等しくない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/equals.html#geometry.reference.algorithms.equals.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/equals.html#geometry.reference.algorithms.equals.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.overlaps メソッド &aname(Geometry-overlaps);~
@@ -429,7 +513,7 @@
 ---false~
 重なっていない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/overlaps.html#geometry.reference.algorithms.overlaps.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/overlaps.html#geometry.reference.algorithms.overlaps.supported_geometries]]~
 
 --------------------------------------------------------------------------------
 -Geometry.touches メソッド &aname(Geometry-touches-2);~
@@ -471,7 +555,31 @@
 ---false~
 交差しない場合。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/crosses.html#geometry.reference.algorithms.crosses.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/crosses.html#geometry.reference.algorithms.crosses.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.relate メソッド &aname(Geometry-relate);~
+ マスク（DE-9IM モデル）によって定義されたシオメトリ同士の関係をチェックする。
+--シグネチャ:~
+---Geometry.relate(g0, f0, g1, f1, mask)~
+--引数:~
+---g0~
+図形Ａデータ。~
+---f0~
+図形Ａの分類フラグ。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+---mask~
+マスク（DE-9IM モデル）文字列。~
+--返値:~
+---true~
+マスクとの互換性がある場合。~
+---false~
+マスクとの互換性がない場合。~
+--注記:~
+[[DE-9IM について:https://en.wikipedia.org/wiki/DE-9IM]]~
 
 --------------------------------------------------------------------------------
 -Geometry.distance メソッド &aname(Geometry-distance);~
@@ -491,7 +599,109 @@
 ---Real~
 距離。~
 --注記:~
-[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_58_0/libs/geometry/doc/html/geometry/reference/algorithms/distance/distance_2.html#geometry.reference.algorithms.distance.distance_2.supported_geometries]]~
+[[このメソッドがサポートするジオメトリ:http://www.boost.org/doc/libs/1_59_0/libs/geometry/doc/html/geometry/reference/algorithms/distance/distance_2.html#geometry.reference.algorithms.distance.distance_2.supported_geometries]]~
+
+--------------------------------------------------------------------------------
+-Geometry.relation メソッド &aname(Geometry-relation);~
+ シオメトリ同士の関係を DE-9IM モデルで計算して返す。
+--シグネチャ:~
+---Geometry.relation(g0, f0, g1, f1)~
+--引数:~
+---g0~
+図形Ａデータ。~
+---f0~
+図形Ａの分類フラグ。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+--返値:~
+---String~
+DE-9IM モデル文字列。~
+--注記:~
+[[DE-9IM について:https://en.wikipedia.org/wiki/DE-9IM]]~
+
+--------------------------------------------------------------------------------
+-Geometry.expand メソッド &aname(Geometry-expand);~
+ 矩形を他の図形を包有するよう拡張した矩形を返す。
+--シグネチャ:~
+---Geometry.expand(g0, f0, g1, f1)~
+--引数:~
+---g0~
+図形Ａデータ (Box ジオメトリのみ)。~
+---f0~
+図形Ａの分類フラグ（Geometry.gmfBox のみ）。~
+---g1~
+図形Ｂデータ。~
+---f1~
+図形Ｂの分類フラグ。~
+--返値:~
+---Array~
+拡張した矩形である Box ジオメトリ。~
+ [ [ left, top ], [ right, bottom ] ]
+
+--------------------------------------------------------------------------------
+-Geometry.readWKT メソッド &aname(Geometry-readWKT);~
+ 文字列から、WKT(Well-known text) を読み込む。
+--シグネチャ:~
+---Geometry.readWKT(str, f)~
+--引数:~
+---str~
+ソースとなる文字列。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---Array~
+図形データ。~
+
+--------------------------------------------------------------------------------
+-Geometry.readStorageWKT メソッド &aname(Geometry-readStorageWKT);~
+ ローカルストレージから、WKT(Well-known text) を読み込む。
+--シグネチャ:~
+---Geometry.readStorageWKT(storage, f)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---Array~
+図形データ。~
+
+--------------------------------------------------------------------------------
+-Geometry.writeWKTToString メソッド &aname(Geometry-writeWKTToString);~
+ 図形データを WKT(Well-known text) で、文字列へ書き出す。
+--シグネチャ:~
+---Geometry.writeWKTToString(g, f)~
+--引数:~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---String~
+WKT 文字列。~
+
+--------------------------------------------------------------------------------
+-Geometry.writeStorageWKT メソッド &aname(Geometry-writeStorageWKT);~
+ 図形データを WKT(Well-known text) で、ローカルストレージへ書き出す。
+--シグネチャ:~
+---Geometry.writeStorageWKT(storage, g, f)~
+--引数:~
+---storage~
+ストレージのパス文字列。~
+---g~
+図形データ。~
+---f~
+図形の分類フラグ。~
+--返値:~
+---String~
+WKT 文字列。~
+--返値:~
+---正値~
+書き出されたバイト数。~
+---負値~
+処理に失敗した場合。~
 
 --------------------------------------------------------------------------------
 -Geometry.gmfPoint プロパティ &aname(Geometry-gmfPoint);~

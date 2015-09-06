@@ -3,6 +3,29 @@
 
 
 
+*更新履歴(2015/09) [#update1509-]
+-2015/09/06~
+&color(red){Ver 0.2.14};~
+--DLL すべて更新。~
+---Boost を Boost 1.58 から Boost 1.59 へアップデート。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに isEmpty, relate, relation メソッドを追加。~
+---Geometry クラスに WKT(Well-known text) 読み書きのメソッドを追加。~
+---Geometry クラスの disjoint, intersects メソッドに、以下のジオメトリの組み合わせサポートを追加。~
+linestring/multipoint, multipoint/linestring,~
+multipoint/multilinestring, multilinestring/multipoint~
+
+
+
+*更新履歴(2015/07) [#update1507-]
+-2015/07/12~
+--スクリプト[[ktl/Definition.tjs]]追加。~
+--DLL ktl_definition.dll, ktl_definition-d.dll 追加。~
+--DLL ktl_geometry.dll, ktl_geometry-d.dll 更新。~
+---Geometry クラスに convexHull, correct, simplify, expand メソッドを追加。~
+
+
+
 *更新履歴(2015/06) [#update1506-]
 -2015/06/07~
 --DLL ktl_utils.dll, ktl_utils-d.dll 更新。~
